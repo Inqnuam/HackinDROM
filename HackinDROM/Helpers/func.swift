@@ -199,12 +199,13 @@ func GetDrivers(_ file: String) -> [Drivers] {
                             let dArguments = driv.Childs.first(where: {$0.name == "Arguments"})
                             let dComment = driv.Childs.first(where: {$0.name == "Comment"})
                             
+                            //#FIXME - "Comment" entry should not be added to 0.7.3, only above
                             AllDrivers.append( Drivers(
-                                Path: dPath != nil ? dPath!.StringValue : "",
-                                Arguments: dArguments != nil ? dArguments!.StringValue : "",
-                                Comment: dComment != nil ? dComment!.StringValue : "",
+                                Path: dPath?.StringValue ?? "",
+                                Arguments: dArguments?.StringValue ?? "",
+                                Comment: dComment?.StringValue ?? "",
                                 isSelected: true,
-                                Enabled:dEnabled != nil ? dEnabled!.BoolValue : false
+                                Enabled: dEnabled?.BoolValue ?? false
                             )
                                                
                             

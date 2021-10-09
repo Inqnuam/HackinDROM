@@ -369,9 +369,9 @@ struct ListView: View {
                     hovered = false
                 }
             }
-            if isUpdating {
-                HDUpdateView(isUpdating: $isUpdating, updatingPosition: $updatingPosition, updatingColor: $updatingColor)
-            }
+//            if isUpdating {
+//                HDUpdateView(isUpdating: $isUpdating, updatingPosition: $updatingPosition, updatingColor: $updatingColor)
+//            }
            
         }
         

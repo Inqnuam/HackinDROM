@@ -30,7 +30,7 @@ struct HDUpdateView: View {
             Color.red
                 .opacity(0.0)
             
-        }.frame(width: updatingPosition * 450)
+        }.frame(width: CGFloat(updatingPosition) * 450)
         .background(updatingColor.opacity(0.6))
         .contextMenu(menuItems: {
             Button("Cancel") {

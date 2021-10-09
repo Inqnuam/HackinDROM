@@ -173,28 +173,25 @@ class HASharedData: ObservableObject {
                     }
                     
                     if let index = self.AllBuilds.firstIndex(where: {$0.active && $0.id == self.MyBuildID}) {
-                        print("____________")
-                        print(self.MyBuildID)
-                        print(self.AllBuilds[index].latest.ocvs)
-                        print("____________")
+                       
                         self.CaseyLastestOCArchive = self.AllBuilds[index].latest.Archive
                         let downloadlink =  self.AllBuilds[index].latest.Archive
                         var configname = ""
                         
-                        print("+++++++++++")
+                      
                         if self.GPU == 0 {
-                            print("g0")
+                           
                             if self.Wifi == 0 {
-                                print("g0w0")
+                              
                                 if let index2 = self.AllBuilds[index].latest.AMDGPU.firstIndex(where: {$0.Name.contains("Broadcom")}) {
-                                    print("g0w0b")
+                                   
                                     configname =  self.AllBuilds[index].latest.AMDGPU[index2].link
                                 }
                                 
                             } else {
-                                print("g0w1")
+                              
                                 if let index2 = self.AllBuilds[index].latest.AMDGPU.firstIndex(where: {$0.Name.contains("Intel")}) {
-                                    print("g0w1i")
+                                    
                                     configname =  self.AllBuilds[index].latest.AMDGPU[index2].link
                                 }
                                 
@@ -202,26 +199,26 @@ class HASharedData: ObservableObject {
                             
                         }
                         else {
-                            print("g1")
+                           
                             if self.Wifi == 0 {
-                                print("g1w0")
+                               
                                 if let index2 = self.AllBuilds[index].latest.IntelGPU.firstIndex(where: {$0.Name.contains("Broadcom")}) {
-                                    print("g1w0b")
+                                   
                                     configname =  self.AllBuilds[index].latest.IntelGPU[index2].link
                                 }
                                 
                             }
                             else {
-                                print("g1w1")
+                               
                                 if let index2 = self.AllBuilds[index].latest.IntelGPU.firstIndex(where: {$0.Name.contains("Intel")}) {
-                                    print("g1w1i")
+                                   
                                     configname =  self.AllBuilds[index].latest.IntelGPU[index2].link
                                 }
                                 
                             }
                         }
                         
-                        print("+++++++++++")
+                      
                         if configname != "" && downloadlink != "nul" {
                             
                             self.OCv = self.AllBuilds[index].latest.ocvs

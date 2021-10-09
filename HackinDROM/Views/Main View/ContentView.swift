@@ -16,8 +16,8 @@ struct ContentView: View {
     @State var selectedFile = ""
     @State var query:String = ""
     
-    @StateObject var HAPlist = HAPlistContent()
-    @State var BridgeWin: BridgeNSWindow?
+    //@StateObject var HAPlist = HAPlistContent() // Xcode 13 can't detect StateOject as unavailble on Catalina
+   // @State var BridgeWin: BridgeNSWindow?
     var body: some View {
 
         VStack {
