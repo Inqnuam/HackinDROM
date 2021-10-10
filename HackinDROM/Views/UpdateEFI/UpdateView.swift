@@ -1095,7 +1095,7 @@ struct InstallView: View {
     
     func MergeDrivers() -> [Drivers] {
         
-        let LocalDrivers = GetDrivers(EFIs[sharedData.CurrentEFI].mounted + "/EFI/OC/config.plist")
+        let LocalDrivers = GetDrivers(EFIs[sharedData.CurrentEFI].mounted + "/EFI/OC/config.plist", updateTo: sharedData.OCv)
         var CaseyDrivers = sharedData.CaseyDriversList
         
         for driver in LocalDrivers {

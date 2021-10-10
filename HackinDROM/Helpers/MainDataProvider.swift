@@ -241,7 +241,7 @@ class HASharedData: ObservableObject {
                                                 
                                                 self.CaseyLatestPlist = pathu
                                                 
-                                                CaseyDriversList = GetDrivers(CaseyLatestPlist)
+                                                CaseyDriversList = GetDrivers(CaseyLatestPlist, updateTo: self.OCv)
                                                 
                                                 do {
                                                     // MyEFI folder's Kexts

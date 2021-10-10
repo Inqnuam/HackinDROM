@@ -284,6 +284,32 @@ extension HAPlistStruct {
     func find(_ findingName: String) -> HAPlistStruct {
        return self.Childs.first(where: {$0.name == findingName}) ?? HAPlistStruct()
     }
+    
+    func get(_ values: [Any]) -> HAPlistStruct? {
+        
+        var foundElement:HAPlistStruct? = self
+        for val in values {
+            
+            let valType = String(describing: Swift.type(of: val ))
+            
+            if (valType == "String") {
+                if foundElement != nil {
+                if let gevor = foundElement!.Childs.first(where: {$0.name == val as! String}) {
+                    foundElement = gevor
+                }
+                } else {return nil}
+            } else if valType == "Int" {
+                if foundElement != nil {
+                if  self.Childs.indices.contains(val as! Int) {
+                    foundElement =  foundElement!.Childs[val as! Int]
+                }
+                } else {return nil}
+            }
+        
+        }
+        
+        return foundElement
+    }
 }
 extension Binding {
     func toggled(_ hav: Int, _ name:String, _ handler: @escaping (ToggleChanged) -> Void) -> Binding<Value> {

@@ -28,7 +28,7 @@ class HAPlistContent: ObservableObject {
                 self.originalContent = plist
                 self.pContent = plist
                 self.isTemplate = isTemplate
-                print("okkkkkk")
+                print("plist Loaded!")
                 
 //                if let FirstDictIndex =  self.plistContent.Childs.firstIndex(where: {$0.type == "dict"}) {
 //
@@ -45,7 +45,7 @@ class HAPlistContent: ObservableObject {
             var PlistExpl = PathExplorers.Plist(value: .dictionary([:]))
             try PlistExpl.add(createScoutExplValfromHDDict(hdItem: pContent))
             let readydata = try PlistExpl.get().exportData()
-            try readydata.write(to: URL(fileURLWithPath: newPath != nil ? newPath! : originalPath))
+            try readydata.write(to: URL(fileURLWithPath: newPath ?? originalPath))
           originalContent = pContent
             if newPath != nil {
                 originalPath = newPath!

@@ -11,6 +11,7 @@ import Scout
 import SwiftUI
 import Zip
 import UserNotifications
+import Version
 
 func shell(_ command: String, completionHandler: (_ result: String, _ error: String) -> Void) {
     let task = Process()
@@ -175,16 +176,16 @@ func GetAMLs(_ file: String) -> [AMLs] {
     return AllAMLs
 }
 
-func GetDrivers(_ file: String) -> [Drivers] {
+func GetDrivers(_ file: String, updateTo:String? = nil) -> [Drivers] {
 
     var AllDrivers: [Drivers] = []
     
     getHAPlistFrom(file) { plist in
         
-        if let UEFI = plist.Childs.first(where: {$0.name == "UEFI"}) {
-            if let DriversEl = UEFI.Childs.first(where: {$0.name == "Drivers"}) {
+            
+        if let DriversEl =  plist.get(["UEFI", "Drivers"]) {
                 
-                if !DriversEl.Childs.isEmpty {
+                
                     
                     if DriversEl.Childs[0].type == "string" {
                         for driv in DriversEl.Childs {
@@ -194,29 +195,40 @@ func GetDrivers(_ file: String) -> [Drivers] {
                         
                         for driv in DriversEl.Childs {
                             
-                            let dPath = driv.Childs.first(where: {$0.name == "Path"})
-                            let dEnabled = driv.Childs.first(where: {$0.name == "Enabled"})
-                            let dArguments = driv.Childs.first(where: {$0.name == "Arguments"})
-                            let dComment = driv.Childs.first(where: {$0.name == "Comment"})
+                            let dPath = driv.get(["Path"])
+                            let dEnabled = driv.get(["Enabled"])
+                            let dArguments = driv.get(["Arguments"])
+                            let dComment = driv.get(["Comment"])
                             
                             //#FIXME - "Comment" entry should not be added to 0.7.3, only above
-                            AllDrivers.append( Drivers(
-                                Path: dPath?.StringValue ?? "",
-                                Arguments: dArguments?.StringValue ?? "",
-                                Comment: dComment?.StringValue ?? "",
-                                isSelected: true,
-                                Enabled: dEnabled?.BoolValue ?? false
-                            )
-                                               
+                            var drv = Drivers()
                             
-                            )
+                            if let updateTo = updateTo {
+                                
+                                drv = Drivers(
+                                    Path: dPath?.StringValue ?? "",
+                                    Arguments: dArguments?.StringValue ?? "",
+                                    isSelected: true,
+                                    Enabled: dEnabled?.BoolValue ?? false
+                                )
+                                if Version(updateTo)! > Version("0.7.3")!{
+                                    drv.Comment = dComment?.StringValue ?? ""
+                                }
+                                
+                            } else {
+                                drv = Drivers(
+                                    Path: dPath?.StringValue ?? "",
+                                    Arguments: dArguments?.StringValue ?? "",
+                                    Comment: dComment?.StringValue ?? "",
+                                    isSelected: true,
+                                    Enabled: dEnabled?.BoolValue ?? false
+                                )
+                            }
+                            AllDrivers.append(drv)
                         }
                     }
-                }
-            }
         }
-        
-        
+ 
     }
     
     return AllDrivers
