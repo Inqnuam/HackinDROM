@@ -110,86 +110,76 @@ func runningkexts() -> [RunningKextsStruct] {
     return runningkexts
 }
 
-func GetKexts(_ file: String) -> [Kexts] {
+func GetKexts(_ plist: HAPlistStruct) -> [Kexts] {
 
     var AllKexts: [Kexts] = []
- 
-        guard let xml = fileManager.contents(atPath: file) else { return AllKexts }
-
-        do {
-            let json = try PathExplorers.Plist(data: xml)
-            let TotalKernel = try  json.get("Kernel", "Add", .count).int!
-
-            if TotalKernel != 0 {
-
-                for n in 0...TotalKernel - 1 {
-                    var kext = Kexts(Arch: "", BundlePath: "", Comment: "", Enabled: false, ExecutablePath: "", MaxKernel: "", MinKernel: "", PlistPath: "")
-
-                    kext.Arch =  try  json.get("Kernel", "Add", .index(n), "Arch").string!
-                    kext.BundlePath =  try  json.get("Kernel", "Add", .index(n), "BundlePath").string!
-                    kext.Comment =  try  json.get("Kernel", "Add", .index(n), "Comment").string!
-                    kext.Enabled =  try  json.get("Kernel", "Add", .index(n), "Enabled").bool!
-                    kext.ExecutablePath =  try  json.get("Kernel", "Add", .index(n), "ExecutablePath").string!
-                    kext.MaxKernel =  try  json.get("Kernel", "Add", .index(n), "MaxKernel").string!
-                    kext.MinKernel =  try  json.get("Kernel", "Add", .index(n), "MinKernel").string!
-                    kext.PlistPath =  try  json.get("Kernel", "Add", .index(n), "PlistPath").string!
-                    AllKexts.append(kext)
-                }
-            }
-        } catch {
-
+    if let allKexts =  plist.get(["Kernel", "Add"]) {
+        
+        
+        for kxt in allKexts.Childs {
+            
+            let dArch =  kxt.get(["Arch"])
+            let dBundlePath =  kxt.get(["BundlePath"])
+            let dComment =  kxt.get(["Comment"])
+            let dEnabled =  kxt.get(["Enabled"])
+            let dExecutablePath =  kxt.get(["ExecutablePath"])
+            let dMaxKernel =  kxt.get(["MaxKernel"])
+            let dMinKernel =  kxt.get(["MinKernel"])
+            let dPlistPath =  kxt.get(["PlistPath"])
+            
+            AllKexts.append(Kexts(Arch: dArch?.StringValue ?? "",
+                                  BundlePath: dBundlePath?.StringValue ?? "",
+                                  Comment: dComment?.StringValue ?? "",
+                                  Enabled: dEnabled?.BoolValue ?? false,
+                                  ExecutablePath: dExecutablePath?.StringValue ?? "",
+                                  MaxKernel: dMaxKernel?.StringValue ?? "",
+                                  MinKernel: dMinKernel?.StringValue ?? "",
+                                  PlistPath: dPlistPath?.StringValue ?? "")
+            )
         }
-    
-
+        
+    }
     return AllKexts
 }
 
-func GetAMLs(_ file: String) -> [AMLs] {
+func GetAMLs(_ plist: HAPlistStruct) -> [AMLs] {
     
     var AllAMLs: [AMLs] = []
     
-    guard let xml = fileManager.contents(atPath: file) else { return AllAMLs }
-    
-    do {
-        
-        let json = try PathExplorers.Plist(data: xml)
-        let TotalACPI = try  json.get("ACPI", "Add", .count).int!
-        
-        if TotalACPI != 0 {
-            for n in 0...TotalACPI - 1 {
+        if let allALMS =  plist.get(["ACPI", "Add"]) {
+            
+            
+            for driv in allALMS.Childs {
                 
-                var aml = AMLs(Comment: "", Enabled: false, Path: "")
+                let dPath = driv.get(["Path"])
+                let dEnabled = driv.get(["Enabled"])
+                let dComment = driv.get(["Comment"])
                 
-                aml.Comment = try json.get("ACPI", "Add", .index(n), "Comment").string!
-                aml.Enabled = try json.get("ACPI", "Add", .index(n), "Enabled").bool!
-                aml.Path = try json.get("ACPI", "Add", .index(n), "Path").string!
-                
-                AllAMLs.append(aml)
+                if !(dPath?.StringValue.isEmpty)! {
+                    
+                    AllAMLs.append(AMLs(
+                                    Comment: dComment?.StringValue ?? "",
+                                    Enabled: dEnabled?.BoolValue ?? false,
+                                    Path: dPath?.StringValue ?? "")
+                    )
+                }
                 
             }
         }
-    } catch {
-        
-    }
-    
     
     return AllAMLs
 }
 
-func GetDrivers(_ file: String, updateTo:String? = nil) -> [Drivers] {
+func GetDrivers(_ plist: HAPlistStruct, updateTo:String? = nil) -> [Drivers] {
 
     var AllDrivers: [Drivers] = []
     
-    getHAPlistFrom(file) { plist in
-        
-            
+ 
         if let DriversEl =  plist.get(["UEFI", "Drivers"]) {
                 
-                
-                    
                     if DriversEl.Childs[0].type == "string" {
                         for driv in DriversEl.Childs {
-                            AllDrivers.append( Drivers(Path: driv.StringValue, isSelected: true, Enabled: !driv.StringValue.hasPrefix("#")))
+                            AllDrivers.append( Drivers(Path: driv.StringValue, Enabled: !driv.StringValue.hasPrefix("#")))
                         }
                     } else if DriversEl.Childs[0].type == "dict" {
                         
@@ -208,7 +198,7 @@ func GetDrivers(_ file: String, updateTo:String? = nil) -> [Drivers] {
                                 drv = Drivers(
                                     Path: dPath?.StringValue ?? "",
                                     Arguments: dArguments?.StringValue ?? "",
-                                    isSelected: true,
+                                    
                                     Enabled: dEnabled?.BoolValue ?? false
                                 )
                                 if Version(updateTo)! > Version("0.7.3")!{
@@ -220,7 +210,7 @@ func GetDrivers(_ file: String, updateTo:String? = nil) -> [Drivers] {
                                     Path: dPath?.StringValue ?? "",
                                     Arguments: dArguments?.StringValue ?? "",
                                     Comment: dComment?.StringValue ?? "",
-                                    isSelected: true,
+                                   
                                     Enabled: dEnabled?.BoolValue ?? false
                                 )
                             }
@@ -229,7 +219,7 @@ func GetDrivers(_ file: String, updateTo:String? = nil) -> [Drivers] {
                     }
         }
  
-    }
+    
     
     return AllDrivers
 }

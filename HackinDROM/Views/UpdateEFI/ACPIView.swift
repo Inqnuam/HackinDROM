@@ -39,26 +39,26 @@ struct ACPI: View {
             List {
                
                            
-              ForEach(PreparingAMLs, id: \.self) { element in
+              ForEach(PreparingAMLs.indexed(), id:\.element.id) { (index, element) in
                 
-                if let index = PreparingAMLs.firstIndex(where: {$0 == element}) {
+              
                     HStack {
                         if #available(OSX 11.0, *) {
-                            Toggle("", isOn:  bindingChild(for:index).isSelected)
+                            Toggle("", isOn:  $PreparingAMLs[index].isSelected)
                                 .labelsHidden()
                                 .toggleStyle(SwitchToggleStyle(tint: .blue))
                                 
                                 .padding(.leading, 5)
                                 .disabled(isWorking)
                             
-                            Toggle("", isOn:  bindingChild(for:index).AML.Enabled)
+                            Toggle("", isOn:  $PreparingAMLs[index].AML.Enabled)
                                 .labelsHidden()
                                 .toggleStyle(SwitchToggleStyle(tint: .green))
                                 .disabled(isWorking)
                         } else {
-                            HDToggleView(isOn:  bindingChild(for:index).isSelected, togCol: Color(.systemBlue), disabled: isWorking)
+                            HDToggleView(isOn:  $PreparingAMLs[index].isSelected, togCol: Color(.systemBlue), disabled: isWorking)
                                 .padding(.leading, 25)
-                            HDToggleView(isOn:  bindingChild(for:index).AML.Enabled, disabled: isWorking)
+                            HDToggleView(isOn:  $PreparingAMLs[index].AML.Enabled, disabled: isWorking)
                                 .padding(.leading, 25)
                                 .padding(.trailing, 10)
                             
@@ -67,12 +67,12 @@ struct ACPI: View {
                             selectedId = index
                         } .buttonStyle(PlainButtonStyle())
                         
-                        .popover(isPresented: self.makeIsPresented(index)) {
-                            
-                            Text(PreparingAMLs[index].AML.Comment)
-                                .padding(8)
-                        }
-                        
+//                        .popover(isPresented: self.makeIsPresented(index)) {
+//
+//                            Text(PreparingAMLs[index].AML.Comment)
+//                                .padding(8)
+//                        }
+//
                         
                         Spacer()
                     }
@@ -85,7 +85,7 @@ struct ACPI: View {
                         
                     }))
                     
-                }
+                
               }
             }
             

@@ -10,19 +10,9 @@ import SwiftUI
 
 struct DriversView: View {
     @EnvironmentObject var sharedData: HASharedData
-    @Binding var PreparingDrivers: [Drivers]
+    @Binding var PreparingDrivers: [SelectingDrivers]
     
     var  isWorking: Bool
-    
-    
-    func bindingChild(for index: Int) -> Binding<Drivers> {
-        .init(get: {
-            guard PreparingDrivers.indices.contains(index) else { return Drivers() } // check if `index` is valid
-            return PreparingDrivers[index]
-        }, set: {
-            PreparingDrivers[index] = $0
-        })
-    }
     var body: some View {
         
         VStack {
@@ -42,29 +32,29 @@ struct DriversView: View {
                 
                 List {
                     
-                    ForEach(PreparingDrivers, id: \.self) { element in
-                        if let index = PreparingDrivers.firstIndex(where: {$0 == element})  {
+                    ForEach(PreparingDrivers.indexed(), id:\.element.id) { (index, element) in
+                       
                         HStack {
                             if #available(macOS 11.0, *) {
-                                Toggle("", isOn: bindingChild(for:index).isSelected)
+                                Toggle("", isOn: $PreparingDrivers[index].isSelected)
                                     .toggleStyle(SwitchToggleStyle(tint: .blue))
                                     .padding(.leading, 5)
                                     .disabled(isWorking)
-                                Toggle("", isOn: bindingChild(for:index).Enabled.toggled(index, "", ChangeDriverStatus)) // .onChange(intChanged)
+                                Toggle("", isOn: $PreparingDrivers[index].Driver.Enabled.toggled(index, "", ChangeDriverStatus)) // .onChange(intChanged)
                                     .toggleStyle(SwitchToggleStyle(tint: .green))
                                     .disabled(isWorking)
                                 
                             } else {
-                                HDToggleView(isOn: bindingChild(for:index).isSelected, togCol: Color(.systemBlue), disabled: isWorking)
+                                HDToggleView(isOn: $PreparingDrivers[index].isSelected, togCol: Color(.systemBlue), disabled: isWorking)
                                     .padding(.leading, 25)
                                 
-                                HDToggleView(isOn: bindingChild(for:index).Enabled.toggled(index, "", ChangeDriverStatus), disabled: isWorking)
+                                HDToggleView(isOn: $PreparingDrivers[index].Driver.Enabled.toggled(index, "", ChangeDriverStatus), disabled: isWorking)
                                     .padding(.leading, 25)
                                     .padding(.trailing, 10)
                                 
                                 
                             }
-                            Text(PreparingDrivers[index].Path.replacingOccurrences(of: "#", with: "").replacingOccurrences(of: ".efi", with: ""))
+                            Text(PreparingDrivers[index].Driver.Path.replacingOccurrences(of: "#", with: "").replacingOccurrences(of: ".efi", with: ""))
                             
                             Spacer()
                         }
@@ -77,7 +67,7 @@ struct DriversView: View {
                             
                         }))
                         
-                    }
+                    
                     
                 }
                 
@@ -90,9 +80,9 @@ struct DriversView: View {
     func ChangeDriverStatus(to value: ToggleChanged) {
         
         if value.yes {
-            PreparingDrivers[value.which].Path = PreparingDrivers[value.which].Path.replacingOccurrences(of: "#", with: "")
+            PreparingDrivers[value.which].Driver.Path = PreparingDrivers[value.which].Driver.Path.replacingOccurrences(of: "#", with: "")
         } else {
-            PreparingDrivers[value.which].Path = "#\( PreparingDrivers[value.which].Path)"
+            PreparingDrivers[value.which].Driver.Path = "#\( PreparingDrivers[value.which].Driver.Path)"
         }
         
     }

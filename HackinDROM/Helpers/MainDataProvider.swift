@@ -41,8 +41,11 @@ class HASharedData: ObservableObject {
     @Published var Updating: String = ""
     @Published var CurrentKexts: [KextStructs] = []
     @Published var CaseyLatestPlist: String = ""
+    @Published var caseyPlist  = HAPlistStruct()
     @Published var CaseyKextsList: [KextStructs] = []
     @Published var CaseyDriversList: [Drivers] = []
+    @Published var CaseyKexts:[Kexts] = []
+    @Published var CaseyAMLs: [AMLs] = []
     @Published var OCv: String = "0.0.0"
     @Published var CaseyLastestOCArchive: String = ""
     @Published var OpenCoreDownloadLink: String = ""
@@ -241,7 +244,12 @@ class HASharedData: ObservableObject {
                                                 
                                                 self.CaseyLatestPlist = pathu
                                                 
-                                                CaseyDriversList = GetDrivers(CaseyLatestPlist, updateTo: self.OCv)
+                                                getHAPlistFrom(self.CaseyLatestPlist) { cPlist in
+                                                    caseyPlist = cPlist
+                                                    CaseyDriversList = GetDrivers(cPlist, updateTo: self.OCv)
+                                                    CaseyKexts = GetKexts(cPlist)
+                                                    CaseyAMLs = GetAMLs(cPlist)
+                                                }
                                                 
                                                 do {
                                                     // MyEFI folder's Kexts

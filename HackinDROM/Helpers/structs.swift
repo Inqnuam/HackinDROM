@@ -121,7 +121,6 @@ struct Drivers: Hashable, Equatable, Decodable, Encodable {
     var Path: String = ""
     var Arguments: String = ""
     var Comment: String?
-    var isSelected: Bool = false
     var Enabled: Bool = true
 }
 

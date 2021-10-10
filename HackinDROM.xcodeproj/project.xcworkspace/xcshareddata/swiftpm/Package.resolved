@@ -51,8 +51,8 @@
         "repositoryURL": "https://github.com/ABridoux/scout",
         "state": {
           "branch": null,
-          "revision": "49587c0822b975898d181e2aad896e894bed6963",
-          "version": "4.0.4"
+          "revision": "48e3da292252aae46388decb5f2d20ff2adfa44e",
+          "version": "4.0.3"
         }
       },
       {
@@ -60,8 +60,8 @@
         "repositoryURL": "https://github.com/JohnSundell/Splash",
         "state": {
           "branch": null,
-          "revision": "7f4df436eb78fe64fe2c32c58006e9949fa28ad8",
-          "version": "0.16.0"
+          "revision": "81de0389558ad40579027735841593b21a511fa8",
+          "version": "0.15.0"
         }
       },
       {

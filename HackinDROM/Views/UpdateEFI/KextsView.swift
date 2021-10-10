@@ -46,23 +46,23 @@ struct KextsView: View {
             
             List {
                 
-                ForEach(PreparingKexts, id: \.self) { element in
-                    if let index = PreparingKexts.firstIndex(where: {$0 == element}) {
+                ForEach(PreparingKexts.indexed(), id:\.element.id) { (index, element) in
+                    
                     HStack {
                         if #available(OSX 11.0, *) {
-                            Toggle("", isOn: bindingChild(for:index).isSelected)
+                            Toggle("", isOn: $PreparingKexts[index].isSelected)
                                 
                                 .toggleStyle(SwitchToggleStyle(tint: .blue))
                                 
                                 .padding(.leading, 5)
                                 .disabled(isWorking)
-                            Toggle("", isOn: bindingChild(for:index).Kext.Enabled)
+                            Toggle("", isOn: $PreparingKexts[index].Kext.Enabled)
                                 .toggleStyle(SwitchToggleStyle(tint: .green))
                                 .disabled(isWorking)
                         } else {
-                            HDToggleView(isOn: bindingChild(for:index).isSelected, togCol: Color(.systemBlue), disabled: isWorking)
+                            HDToggleView(isOn: $PreparingKexts[index].isSelected, togCol: Color(.systemBlue), disabled: isWorking)
                                 .padding(.leading, 25)
-                            HDToggleView(isOn: bindingChild(for:index).Kext.Enabled, disabled: isWorking)
+                            HDToggleView(isOn: $PreparingKexts[index].Kext.Enabled, disabled: isWorking)
                                 .padding(.leading, 25)
                                 .padding(.trailing, 10)
                             
@@ -72,10 +72,10 @@ struct KextsView: View {
                             selectedId = index
                         } .buttonStyle(PlainButtonStyle())
                             
-                            .popover(isPresented: self.makeIsPresented(index)) {
-                                 Text(PreparingKexts[index].Kext.Comment)
-                                    .padding(8)
-                             }
+//                            .popover(isPresented: self.makeIsPresented(index)) {
+//                                 Text(PreparingKexts[index].Kext.Comment)
+//                                    .padding(8)
+//                             }
                       
                         Spacer()
                     }
@@ -88,7 +88,7 @@ struct KextsView: View {
                         
                     }))
                     
-                }
+                
                 }
             }.background(Color.clear)
             

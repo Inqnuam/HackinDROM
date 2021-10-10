@@ -25,7 +25,7 @@ struct InstallView: View {
     @State var mycustomdata = MyHackDataStrc()
     @State var PreparingKexts: [SelectingKexts] = []
     @State var PreparingAMLs: [SelectingAMLs] = []
-    @State var PreparingDrivers: [Drivers] = []
+    @State var PreparingDrivers: [SelectingDrivers] = []
     @State var Currentindex: Int = 100
     @State var MySystem = ""
     @Binding var isCharging: Bool
@@ -36,8 +36,8 @@ struct InstallView: View {
     
     @State private var showingSheet = false
     @State var buildID: Int = 0
-
-
+    @State var localPlist = HAPlistStruct()
+    @State var caseyPlist = HAPlistStruct()
     let ClosePopoNotif = nc.publisher(for: NSNotification.Name("CloseSheet"))
     var body: some View {
         
@@ -69,7 +69,7 @@ struct InstallView: View {
                     } else {
                         
                         Text("Updating....:")
-                        .foregroundColor(DownloadColor)
+                            .foregroundColor(DownloadColor)
                         Text(StatusText)
                     }
                     
@@ -78,6 +78,12 @@ struct InstallView: View {
         }
         .padding(15)
         Divider()
+        Button(MySystem) {
+            withAnimation {
+                sharedData.currentview = 3
+            }
+        }
+        .buttonStyle(LinkButtonStyle())
         NavigationView {
             
             List {
@@ -111,14 +117,9 @@ struct InstallView: View {
         }
         
         HStack {
-         
-                
-            Button(MySystem) {
-                withAnimation {
-                    sharedData.currentview = 3
-                }
-            }
-                .buttonStyle(LinkButtonStyle())
+            
+            
+           
             
             if !sharedData.AllBuilds.isEmpty {
                 if sharedData.AllBuilds.indices.contains(Currentindex) {
@@ -132,13 +133,7 @@ struct InstallView: View {
                         }, label: {
                             
                             if !sharedData.AllBuilds[Currentindex].latest.warning {
-                                if #available(OSX 11.0, *) {
-                                    Image(systemName: "info")
-                                    
-                                } else {
-                                    Image(nsImage: NSImage(named: NSImage.infoName)!)
-                                    
-                                }
+                                Text("Release Notes")
                             } else {
                                 
                                 Text("⚠️")
@@ -175,10 +170,10 @@ struct InstallView: View {
                     DownloadColor = .red
                     StatusText = "Canceling..."
                     
-                  
-                        
-                        self.EFIs = getEFIList()
-                        sharedData.currentview = 0
+                    
+                    
+                    self.EFIs = getEFIList()
+                    sharedData.currentview = 0
                     
                     
                 }
@@ -227,7 +222,13 @@ struct InstallView: View {
                     
                 }
             }
+            getHAPlistFrom(EFIs[sharedData.CurrentEFI].mounted + "/EFI/OC/config.plist") {plist in
+                localPlist = plist
+            }
             
+            getHAPlistFrom(EFIs[sharedData.CurrentEFI].mounted + "/EFI/OC/config.plist") {plist in
+                caseyPlist = plist
+            }
         }
         
         .onReceive(ClosePopoNotif) { (_) in
@@ -254,10 +255,10 @@ struct InstallView: View {
             DownloadColor = .red
             StatusText = "Canceling..."
             
-          
-                
-                self.EFIs = getEFIList()
-                sharedData.currentview = 0
+            
+            
+            self.EFIs = getEFIList()
+            sharedData.currentview = 0
             
             return
             
@@ -306,11 +307,11 @@ struct InstallView: View {
                 if !aml.isSelected && !aml.AML.Enabled && fileManager.fileExists(atPath: "\(CurrentEFI)/EFI/OC/ACPI/\(aml.AML.Path)") {
                     
                     SendingAMLs.append(aml.AML)
-                       
+                    
                 } else {
                     SendingAMLs.append(aml.AML)
                 }
-               
+                
                 
             }
             
@@ -318,10 +319,10 @@ struct InstallView: View {
                 
                 if driver.isSelected {
                     
-                    SendingDrivers.append(driver)
-                      
+                    SendingDrivers.append(driver.Driver)
+                    
                 }
-             
+                
                 
             }
             
@@ -331,14 +332,14 @@ struct InstallView: View {
                 
                 if !kext.isSelected && !kext.Kext.Enabled && fileManager.fileExists(atPath: "\(CurrentEFI)/EFI/OC/Kexts/\(kext.Kext.BundlePath)") {
                     
-                   if kext.Kext.BundlePath == "Lilu.kext" {
-                            SendingKexts.insert(kext.Kext, at: 0)
-                        } else if kext.Kext.BundlePath == "VirtualSMC.kext" {
-                            SendingKexts.insert(kext.Kext, at: 1)
-                        } else {
-                            SendingKexts.append(kext.Kext)
-                        }
-                        
+                    if kext.Kext.BundlePath == "Lilu.kext" {
+                        SendingKexts.insert(kext.Kext, at: 0)
+                    } else if kext.Kext.BundlePath == "VirtualSMC.kext" {
+                        SendingKexts.insert(kext.Kext, at: 1)
+                    } else {
+                        SendingKexts.append(kext.Kext)
+                    }
+                    
                     
                 } else {
                     if kext.Kext.BundlePath == "Lilu.kext" {
@@ -369,100 +370,100 @@ struct InstallView: View {
             var config = PathExplorers.Plist(booleanLiteral: false)
             
             do {
-               config = try PathExplorers.Plist(data: plist)
+                config = try PathExplorers.Plist(data: plist)
             } catch {
                 //print("SHOULD LEAVE THE GROUP TO CONTINUE")
                 print(error)
                 StatusText = "Error! No plist found"
-           
+                
             }
-                if CancelMe { return}
+            if CancelMe { return}
             
             do {
-              let _ =  try config.get("PlatformInfo")
+                let _ =  try config.get("PlatformInfo")
             } catch {
                 DownloadColor = Color.red
                 StatusText = "Error! No PlatformInfo"
                 serialQueue.asyncAfter(deadline: .now() + 2) {
-                CancelMe = true
+                    CancelMe = true
                     group.leave()
-                print(error)
-            }
+                    print(error)
+                }
             }
             if CancelMe { return}
             do {
-              let _ =  try config.get("PlatformInfo", "Generic")
+                let _ =  try config.get("PlatformInfo", "Generic")
             } catch {
                 DownloadColor = Color.red
                 StatusText = "Error! No Generic section in PlatformInfo"
                 serialQueue.asyncAfter(deadline: .now() + 2) {
-                CancelMe = true
+                    CancelMe = true
                     group.leave()
-                print(error)
-            }
+                    print(error)
+                }
             }
             
-                do {
-                    try config.set("PlatformInfo", "Generic", "MLB", to: mycustomdata.MLB)
-                } catch {
-                    DownloadColor = Color.red
-                    StatusText = "MLB Missing"
-                    print(error)
-                }
-                do {
-                    try config.set("PlatformInfo", "Generic", "SystemSerialNumber", to: mycustomdata.SystemSerialNumber)
-                } catch {
-                    DownloadColor = Color.red
+            do {
+                try config.set("PlatformInfo", "Generic", "MLB", to: mycustomdata.MLB)
+            } catch {
+                DownloadColor = Color.red
+                StatusText = "MLB Missing"
+                print(error)
+            }
+            do {
+                try config.set("PlatformInfo", "Generic", "SystemSerialNumber", to: mycustomdata.SystemSerialNumber)
+            } catch {
+                DownloadColor = Color.red
                 
-                    StatusText = "SystemSerialNumber is missing"
-                    print(error)
-                }
+                StatusText = "SystemSerialNumber is missing"
+                print(error)
+            }
+            
+            do {
+                try config.set("PlatformInfo", "Generic", "SystemProductName", to: mycustomdata.SystemProductName)
+            } catch {
+                DownloadColor = Color.red
                 
-                do {
-                    try config.set("PlatformInfo", "Generic", "SystemProductName", to: mycustomdata.SystemProductName)
-                } catch {
-                    DownloadColor = Color.red
-              
-                    StatusText = "SystemProductName is missing"
-                    print(error)
-                }
+                StatusText = "SystemProductName is missing"
+                print(error)
+            }
+            
+            do {
+                try config.set("PlatformInfo", "Generic", "SystemUUID", to: mycustomdata.SystemUUID)
+            } catch {
+                DownloadColor = Color.red
+                StatusText = "SystemUUID is missing"
                 
-                do {
-                    try config.set("PlatformInfo", "Generic", "SystemUUID", to: mycustomdata.SystemUUID)
-                } catch {
-                    DownloadColor = Color.red
-                    StatusText = "SystemUUID is missing"
-              
-                    print(error)
-                }
+                print(error)
+            }
+            
+            
+            
+            do {
+                try config.set("NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "boot-args", to: mycustomdata.BootArgs)
+            } catch {
+                DownloadColor = Color.red
+                StatusText = "boot-args is missing"
+                print(error)
+            }
+            do {
+                try config.set("PlatformInfo", "Generic", "ROM", to: Data(base64Encoded: mycustomdata.ROM.data(using: .bytesHexLiteral)!.base64EncodedString())!)
+            } catch {
+                DownloadColor = Color.red
                 
-                
-                
-                do {
-                    try config.set("NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "boot-args", to: mycustomdata.BootArgs)
-                } catch {
-                    DownloadColor = Color.red
-                    StatusText = "boot-args is missing"
-                    print(error)
-                }
-                do {
-                    try config.set("PlatformInfo", "Generic", "ROM", to: Data(base64Encoded: mycustomdata.ROM.data(using: .bytesHexLiteral)!.base64EncodedString())!)
-                } catch {
-                    DownloadColor = Color.red
-                    
-                    StatusText = "ROM is missing"
-                    print(error)
-                }
-                do {
-                    try config.set("NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "csr-active-config", to: Data(base64Encoded: mycustomdata.SIP.data(using: .bytesHexLiteral)!.base64EncodedString())!)
-                } catch {
-                    StatusText = "csr-active-config is missing"
-                    DownloadColor = Color.red
-                    print(error)
-                }
-                let encoder = PropertyListEncoder()
-                encoder.outputFormat = .xml
-                
+                StatusText = "ROM is missing"
+                print(error)
+            }
+            do {
+                try config.set("NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "csr-active-config", to: Data(base64Encoded: mycustomdata.SIP.data(using: .bytesHexLiteral)!.base64EncodedString())!)
+            } catch {
+                StatusText = "csr-active-config is missing"
+                DownloadColor = Color.red
+                print(error)
+            }
+            let encoder = PropertyListEncoder()
+            encoder.outputFormat = .xml
+            
             let pathik = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("workingHD.plist")
             pathu = pathik.relativePath
             do {
@@ -473,9 +474,9 @@ struct InstallView: View {
             } catch {
                 print(error)
             }
-                ProgressValue += 5
-                group.leave()
-                
+            ProgressValue += 5
+            group.leave()
+            
             
             
         }
@@ -754,16 +755,16 @@ struct InstallView: View {
                 }
                 
                 for driver in PreparingDrivers {
-                    StatusText = "Working with \(driver.Path.replacingOccurrences(of: ".efi", with: ""))"
+                    StatusText = "Working with \(driver.Driver.Path.replacingOccurrences(of: ".efi", with: ""))"
                     if driver.isSelected {
                         
-                        if !fileManager.fileExists(atPath: "\(newplace)/\(CaseysFolder)/OC/Drivers/\(driver.Path)") {
+                        if !fileManager.fileExists(atPath: "\(newplace)/\(CaseysFolder)/OC/Drivers/\(driver.Driver.Path)") {
                             
-                            if fileManager.fileExists(atPath: "\(newplace)/latestOC/X64/EFI/OC/Drivers/\(driver.Path)") {
+                            if fileManager.fileExists(atPath: "\(newplace)/latestOC/X64/EFI/OC/Drivers/\(driver.Driver.Path)") {
                                 
-                                shell("rm '\(newplace)/\(CaseysFolder)/OC/Drivers/\(driver.Path)'") { _, _ in
+                                shell("rm '\(newplace)/\(CaseysFolder)/OC/Drivers/\(driver.Driver.Path)'") { _, _ in
                                     
-                                    shell("mv '\(newplace)/latestOC/X64/EFI/OC/Drivers/\(driver.Path)' '\(newplace)/\(CaseysFolder)/OC/Drivers/\(driver.Path)'") { _, _ in}
+                                    shell("mv '\(newplace)/latestOC/X64/EFI/OC/Drivers/\(driver.Driver.Path)' '\(newplace)/\(CaseysFolder)/OC/Drivers/\(driver.Driver.Path)'") { _, _ in}
                                 }
                                 
                             }
@@ -772,11 +773,11 @@ struct InstallView: View {
                         }
                     } else {
                         
-                        if fileManager.fileExists(atPath: "\(CurrentEFI)/MyOldEfi/OC/Drivers/\(driver.Path)") {
+                        if fileManager.fileExists(atPath: "\(CurrentEFI)/MyOldEfi/OC/Drivers/\(driver.Driver.Path)") {
                             
-                            shell("rm '\(newplace)/\(CaseysFolder)/OC/Drivers/\(driver.Path)'") { _, _ in
+                            shell("rm '\(newplace)/\(CaseysFolder)/OC/Drivers/\(driver.Driver.Path)'") { _, _ in
                                 
-                                shell("mv '\(CurrentEFI)/MyOldEfi/OC/Drivers/\(driver.Path)' '\(newplace)/\(CaseysFolder)/OC/Drivers/\(driver.Path)'") { _, _ in}
+                                shell("mv '\(CurrentEFI)/MyOldEfi/OC/Drivers/\(driver.Driver.Path)' '\(newplace)/\(CaseysFolder)/OC/Drivers/\(driver.Driver.Path)'") { _, _ in}
                             }
                             
                         }
@@ -967,9 +968,9 @@ struct InstallView: View {
             DownloadColor = Color.green
             EFIs[sharedData.CurrentEFI].OCv = sharedData.OCv
             
-          
             
-           
+            
+            
             withAnimation {
                 nc.post(name: Notification.Name("JustMounted"), object: nil, userInfo: ["JustMounted": ""])
                 sharedData.currentview = 0
@@ -987,8 +988,8 @@ struct InstallView: View {
     
     func MergeKexts() -> [SelectingKexts] {
         
-        let LocalKexts = GetKexts(EFIs[sharedData.CurrentEFI].mounted + "/EFI/OC/config.plist")
-        var CaseyKexts =  GetKexts(sharedData.CaseyLatestPlist)
+        let LocalKexts = GetKexts(localPlist)
+        var CaseyKexts =  sharedData.CaseyKexts
         var MergedKexts: [SelectingKexts] = []
         self.KextList = getMyKextList(EFIs[sharedData.CurrentEFI].mounted, sharedData.CaseyKextsList)
         
@@ -1041,11 +1042,11 @@ struct InstallView: View {
     }
     
     func MergeAMLs() -> [SelectingAMLs] {
-        
-        let LocalAMLs = GetAMLs(EFIs[sharedData.CurrentEFI].mounted + "/EFI/OC/config.plist")
-        var CaseyAMLs = GetAMLs(sharedData.CaseyLatestPlist)
-        
         var MergedAMLs: [SelectingAMLs] = []
+        let LocalAMLs = GetAMLs(localPlist)
+        var CaseyAMLs = sharedData.CaseyAMLs
+        
+        
         
         for MyAML in LocalAMLs {
             
@@ -1093,32 +1094,55 @@ struct InstallView: View {
         return MergedAMLs
     }
     
-    func MergeDrivers() -> [Drivers] {
-        
-        let LocalDrivers = GetDrivers(EFIs[sharedData.CurrentEFI].mounted + "/EFI/OC/config.plist", updateTo: sharedData.OCv)
+    func MergeDrivers() -> [SelectingDrivers] {
+        var mergedDrivers:[SelectingDrivers] = []
+       
+        let LocalDrivers = GetDrivers(localPlist, updateTo: sharedData.OCv)
         var CaseyDrivers = sharedData.CaseyDriversList
-        
-        for driver in LocalDrivers {
+        for myDriver in LocalDrivers {
             
-            let taporIndex = CaseyDrivers.firstIndex(where: { $0.Path.replacingOccurrences(of: "#", with: "").lowercased() == driver.Path.replacingOccurrences(of: "#", with: "").lowercased() })
-            
-            if taporIndex == nil {
+            if CaseyDrivers.firstIndex(where: { $0.Path == myDriver.Path }) == nil {
                 
-                CaseyDrivers.append(driver)
+                mergedDrivers.append(SelectingDrivers(
+                    Driver: myDriver,
+                    isSelected: true
+                )
+                
+                )
+                
+            }
+        }
+        
+        
+        for (index, CasDriver) in CaseyDrivers.enumerated() {
+            
+            if let LocIndex = LocalDrivers.firstIndex(where: { $0.Path.replacingOccurrences(of: "#", with: "").lowercased() == CasDriver.Path.replacingOccurrences(of: "#", with: "").lowercased() }) {
+                
+                CaseyDrivers[index].Enabled = LocalDrivers[LocIndex].Enabled
+                
+                mergedDrivers.append(SelectingDrivers(
+                    Driver: CaseyDrivers[index],
+                    isSelected: true
+                )
+                )
                 
             } else {
                 
-                CaseyDrivers[taporIndex!] = driver
+                mergedDrivers.append(SelectingDrivers(
+                    Driver: CasDriver,
+                    isSelected: true
+                )
+                )
                 
             }
             
         }
         
-        CaseyDrivers.sort {
-            $0.Path < $1.Path
+        mergedDrivers.sort {
+            $0.Driver.Path < $1.Driver.Path
         }
         
-        return CaseyDrivers
+        return mergedDrivers
     }
     
     func GetPlatformInfo() -> MyHackDataStrc {
@@ -1150,17 +1174,24 @@ struct InstallView: View {
     
 }
 
-struct SelectingKexts: Hashable, Decodable, Encodable {
-    
+struct SelectingKexts:Identifiable, Hashable, Decodable, Encodable {
+    var id = UUID()
     var Kext = Kexts()
     var isSelected: Bool = false
     var DownloadLink: String = ""
     
 }
 
-struct SelectingAMLs: Hashable, Decodable, Encodable {
-    
+struct SelectingAMLs: Identifiable,Hashable, Decodable, Encodable  {
+    var id = UUID()
     var AML = AMLs()
+    var isSelected: Bool = false
+    
+}
+
+struct SelectingDrivers: Identifiable,Hashable, Decodable, Encodable  {
+    var id = UUID()
+    var Driver = Drivers()
     var isSelected: Bool = false
     
 }
