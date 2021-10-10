@@ -19,20 +19,23 @@ struct DriversView: View {
             
             if PreparingDrivers.isEmpty {
                 
-                Spacer()
-                Text("Analyzing Drivers...")
-                if #available(OSX 11.0, *) {
-                    ProgressView()
+                
+                HStack {
+                    Spacer()
+                    Text("Analyzing Drivers...")
+                    if #available(OSX 11.0, *) {
+                        ProgressView()
+                    }
+                    Spacer()
                 }
-                Spacer()
+                
+              
                 
             } else {
                 UpateViewTableHeader()
                 Divider()
                 
-                List {
-                    
-                    ForEach(PreparingDrivers.indexed(), id:\.element.id) { (index, element) in
+                ForEach(PreparingDrivers.indexed(), id:\.element.id) { (index, element) in
                        
                         HStack {
                             if #available(macOS 11.0, *) {
@@ -40,41 +43,40 @@ struct DriversView: View {
                                     .toggleStyle(SwitchToggleStyle(tint: .blue))
                                     .padding(.leading, 5)
                                     .disabled(isWorking)
-                                Toggle("", isOn: $PreparingDrivers[index].Driver.Enabled.toggled(index, "", ChangeDriverStatus)) // .onChange(intChanged)
+                                Toggle("", isOn: $PreparingDrivers[index].Driver.Enabled.toggled(index, "", ChangeDriverStatus))
                                     .toggleStyle(SwitchToggleStyle(tint: .green))
                                     .disabled(isWorking)
                                 
                             } else {
                                 HDToggleView(isOn: $PreparingDrivers[index].isSelected, togCol: Color(.systemBlue), disabled: isWorking)
                                     .padding(.leading, 25)
-                                
+
                                 HDToggleView(isOn: $PreparingDrivers[index].Driver.Enabled.toggled(index, "", ChangeDriverStatus), disabled: isWorking)
                                     .padding(.leading, 25)
                                     .padding(.trailing, 10)
-                                
-                                
+                                    
+                            
                             }
-                            Text(PreparingDrivers[index].Driver.Path.replacingOccurrences(of: "#", with: "").replacingOccurrences(of: ".efi", with: ""))
+                            Text(element.Driver.Path.replacingOccurrences(of: "#", with: "").replacingOccurrences(of: ".efi", with: ""))
+                                .toolTip(element.Driver.Comment ?? "")
+                                                    .contextMenu(ContextMenu(menuItems: {
+                            
+                                                        Button("Remove") {
+                            
+                                                            PreparingDrivers.remove(at: index)
+                                                        }
+                            
+                                                    }))
                             
                             Spacer()
-                        }
-                        .contextMenu(ContextMenu(menuItems: {
-                            
-                            Button("Remove") {
-                                
-                                PreparingDrivers.remove(at: index)
-                            }
-                            
-                        }))
-                        
-                    
-                    
+                        }.id(index)
+
+                          
                 }
-                
-                }
-                
+  
             }
         }
+        Spacer()
     }
     
     func ChangeDriverStatus(to value: ToggleChanged) {

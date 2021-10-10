@@ -72,11 +72,8 @@ struct KextsView: View {
                             selectedId = index
                         } .buttonStyle(PlainButtonStyle())
                             
-//                            .popover(isPresented: self.makeIsPresented(index)) {
-//                                 Text(PreparingKexts[index].Kext.Comment)
-//                                    .padding(8)
-//                             }
-                      
+                        Text(element.Kext.BundlePath.replacingOccurrences(of: ".kext", with: ""))
+                            .toolTip(element.Kext.Comment)
                         Spacer()
                     }
                     .contextMenu(ContextMenu(menuItems: {

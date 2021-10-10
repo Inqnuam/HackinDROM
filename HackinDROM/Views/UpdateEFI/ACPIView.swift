@@ -37,11 +37,8 @@ struct ACPI: View {
             }
             
             List {
-               
-                           
               ForEach(PreparingAMLs.indexed(), id:\.element.id) { (index, element) in
-                
-              
+
                     HStack {
                         if #available(OSX 11.0, *) {
                             Toggle("", isOn:  $PreparingAMLs[index].isSelected)
@@ -63,17 +60,9 @@ struct ACPI: View {
                                 .padding(.trailing, 10)
                             
                         }
-                        Button(element.AML.Path.replacingOccurrences(of: ".aml", with: "")) {
-                            selectedId = index
-                        } .buttonStyle(PlainButtonStyle())
                         
-//                        .popover(isPresented: self.makeIsPresented(index)) {
-//
-//                            Text(PreparingAMLs[index].AML.Comment)
-//                                .padding(8)
-//                        }
-//
-                        
+                        Text(element.AML.Path.replacingOccurrences(of: ".aml", with: ""))
+                            .toolTip(element.AML.Comment)
                         Spacer()
                     }
                     .contextMenu(ContextMenu(menuItems: {
@@ -84,18 +73,10 @@ struct ACPI: View {
                         }
                         
                     }))
-                    
-                
               }
             }
             
         }
-    }
-    func makeIsPresented(_ item: Int) -> Binding<Bool> {
-        return .init(get: {
-            return self.selectedId == item && !PreparingAMLs[item].AML.Comment.isEmpty
-        }, set: { _ in
-        })
     }
 }
 

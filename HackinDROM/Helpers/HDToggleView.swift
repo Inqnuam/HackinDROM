@@ -88,7 +88,7 @@ struct HDToggleView: View {
         .onTapGesture {
           
              isOn.toggle()
-         
+            print("Cliked!!")
           
         }
         .allowsHitTesting(!disabled)
