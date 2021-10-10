@@ -144,7 +144,7 @@ struct ContentView: View {
                     
                     OpenSafari("https://www.tonymacx86.com/threads/hackindrom-app-for-opencore-efi-creation-and-update.312176/") // BETA
                 }
-                Text("v\(sharedData.CurrentBuildVersion) Beta")
+                Text("v\(sharedData.CurrentBuildVersion)")
                     .bold()
                     .padding([.top, .bottom], 8)
                     .onTapGesture(count: 5) {

@@ -176,12 +176,14 @@ func GetDrivers(_ plist: HAPlistStruct, updateTo:String? = nil) -> [Drivers] {
     
  
         if let DriversEl =  plist.get(["UEFI", "Drivers"]) {
-                
-                    if DriversEl.Childs[0].type == "string" {
+               
+            if !DriversEl.Childs.isEmpty {
+            if DriversEl.Childs[0].type == "string" {
                         for driv in DriversEl.Childs {
                             AllDrivers.append( Drivers(Path: driv.StringValue, Enabled: !driv.StringValue.hasPrefix("#")))
                         }
-                    } else if DriversEl.Childs[0].type == "dict" {
+                    }
+            else if DriversEl.Childs[0].type == "dict" {
                         
                         for driv in DriversEl.Childs {
                             
@@ -218,8 +220,7 @@ func GetDrivers(_ plist: HAPlistStruct, updateTo:String? = nil) -> [Drivers] {
                         }
                     }
         }
- 
-    
+        }
     
     return AllDrivers
 }

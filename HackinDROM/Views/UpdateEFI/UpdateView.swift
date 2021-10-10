@@ -1182,8 +1182,8 @@ struct SelectingKexts:Identifiable, Hashable, Decodable, Encodable {
     
 }
 
-struct SelectingAMLs: Identifiable,Hashable, Decodable, Encodable  {
-    var id = UUID()
+struct SelectingAMLs: Identifiable, Equatable  {
+    let id = UUID()
     var AML = AMLs()
     var isSelected: Bool = false
     

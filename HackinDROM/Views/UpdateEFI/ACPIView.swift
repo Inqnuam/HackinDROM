@@ -13,7 +13,7 @@ struct ACPI: View {
     var  isWorking: Bool
     @State var selectedId:Int = 0
     
-    
+    @State var coco = [SelectingAMLs(isSelected: true), SelectingAMLs(isSelected: false)]
     func bindingChild(for index: Int) -> Binding<SelectingAMLs> {
         .init(get: {
             guard PreparingAMLs.indices.contains(index) else { return SelectingAMLs() } // check if `index` is valid
@@ -37,25 +37,25 @@ struct ACPI: View {
             }
             
             List {
-              ForEach(PreparingAMLs.indexed(), id:\.element.id) { (index, element) in
+                ForEach(PreparingAMLs.indexed() , id:\.element.id) { (index, element) in
 
                     HStack {
                         if #available(OSX 11.0, *) {
-                            Toggle("", isOn:  $PreparingAMLs[index].isSelected)
+                            Toggle("", isOn:  bindingChild(for: index).isSelected)
                                 .labelsHidden()
                                 .toggleStyle(SwitchToggleStyle(tint: .blue))
                                 
                                 .padding(.leading, 5)
                                 .disabled(isWorking)
                             
-                            Toggle("", isOn:  $PreparingAMLs[index].AML.Enabled)
+                            Toggle("", isOn:  bindingChild(for: index).AML.Enabled)
                                 .labelsHidden()
                                 .toggleStyle(SwitchToggleStyle(tint: .green))
                                 .disabled(isWorking)
                         } else {
-                            HDToggleView(isOn:  $PreparingAMLs[index].isSelected, togCol: Color(.systemBlue), disabled: isWorking)
+                            HDToggleView(isOn:  bindingChild(for: index).isSelected, togCol: Color(.systemBlue), disabled: isWorking)
                                 .padding(.leading, 25)
-                            HDToggleView(isOn:  $PreparingAMLs[index].AML.Enabled, disabled: isWorking)
+                            HDToggleView(isOn:  bindingChild(for: index).AML.Enabled, disabled: isWorking)
                                 .padding(.leading, 25)
                                 .padding(.trailing, 10)
                             
@@ -63,18 +63,19 @@ struct ACPI: View {
                         
                         Text(element.AML.Path.replacingOccurrences(of: ".aml", with: ""))
                             .toolTip(element.AML.Comment)
+                            .contextMenu(ContextMenu(menuItems: {
+                                
+                                Button("Remove") {
+                                    
+                                   PreparingAMLs.remove(at: index)
+                                }
+                                
+                            }))
                         Spacer()
                     }
-                    .contextMenu(ContextMenu(menuItems: {
-                        
-                        Button("Remove") {
-                            
-                            PreparingAMLs.remove(at: index)
-                        }
-                        
-                    }))
+                    
               }
-            }
+            }.background(Color.clear)
             
         }
     }

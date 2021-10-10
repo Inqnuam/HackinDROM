@@ -50,40 +50,39 @@ struct KextsView: View {
                     
                     HStack {
                         if #available(OSX 11.0, *) {
-                            Toggle("", isOn: $PreparingKexts[index].isSelected)
+                            Toggle("", isOn: bindingChild(for: index).isSelected)
                                 
                                 .toggleStyle(SwitchToggleStyle(tint: .blue))
                                 
                                 .padding(.leading, 5)
                                 .disabled(isWorking)
-                            Toggle("", isOn: $PreparingKexts[index].Kext.Enabled)
+                            Toggle("", isOn: bindingChild(for: index).Kext.Enabled)
                                 .toggleStyle(SwitchToggleStyle(tint: .green))
                                 .disabled(isWorking)
                         } else {
-                            HDToggleView(isOn: $PreparingKexts[index].isSelected, togCol: Color(.systemBlue), disabled: isWorking)
+                            HDToggleView(isOn: bindingChild(for: index).isSelected, togCol: Color(.systemBlue), disabled: isWorking)
                                 .padding(.leading, 25)
-                            HDToggleView(isOn: $PreparingKexts[index].Kext.Enabled, disabled: isWorking)
+                            HDToggleView(isOn: bindingChild(for: index).Kext.Enabled, disabled: isWorking)
                                 .padding(.leading, 25)
                                 .padding(.trailing, 10)
                             
                         }
                        
-                        Button(PreparingKexts[index].Kext.BundlePath.replacingOccurrences(of: ".kext", with: "")) {
-                            selectedId = index
-                        } .buttonStyle(PlainButtonStyle())
+                     
                             
                         Text(element.Kext.BundlePath.replacingOccurrences(of: ".kext", with: ""))
                             .toolTip(element.Kext.Comment)
+                            .contextMenu(ContextMenu(menuItems: {
+                                
+                                Button("Remove") {
+                                    
+                                    PreparingKexts.remove(at: index)
+                                }
+                                
+                            }))
                         Spacer()
                     }
-                    .contextMenu(ContextMenu(menuItems: {
-                        
-                        Button("Remove") {
-                            
-                            PreparingKexts.remove(at: index)
-                        }
-                        
-                    }))
+                   
                     
                 
                 }

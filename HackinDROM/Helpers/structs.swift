@@ -110,7 +110,8 @@ struct Kexts: Hashable, Decodable, Encodable {
 
 }
 
-struct AMLs: Hashable, Decodable, Encodable {
+struct AMLs: Identifiable, Decodable, Encodable, Equatable {
+    var id = UUID()
     var Comment: String = ""
     var Enabled: Bool = (1 != 0)
     var Path: String = ""

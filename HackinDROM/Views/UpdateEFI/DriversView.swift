@@ -13,6 +13,15 @@ struct DriversView: View {
     @Binding var PreparingDrivers: [SelectingDrivers]
     
     var  isWorking: Bool
+    
+    func bindingChild(for index: Int) -> Binding<SelectingDrivers> {
+        .init(get: {
+            guard PreparingDrivers.indices.contains(index) else { return SelectingDrivers() } // check if `index` is valid
+            return PreparingDrivers[index]
+        }, set: {
+            PreparingDrivers[index] = $0
+        })
+    }
     var body: some View {
         
         VStack {
@@ -35,43 +44,45 @@ struct DriversView: View {
                 UpateViewTableHeader()
                 Divider()
                 
-                ForEach(PreparingDrivers.indexed(), id:\.element.id) { (index, element) in
-                       
-                        HStack {
-                            if #available(macOS 11.0, *) {
-                                Toggle("", isOn: $PreparingDrivers[index].isSelected)
-                                    .toggleStyle(SwitchToggleStyle(tint: .blue))
-                                    .padding(.leading, 5)
-                                    .disabled(isWorking)
-                                Toggle("", isOn: $PreparingDrivers[index].Driver.Enabled.toggled(index, "", ChangeDriverStatus))
-                                    .toggleStyle(SwitchToggleStyle(tint: .green))
-                                    .disabled(isWorking)
-                                
-                            } else {
-                                HDToggleView(isOn: $PreparingDrivers[index].isSelected, togCol: Color(.systemBlue), disabled: isWorking)
-                                    .padding(.leading, 25)
-
-                                HDToggleView(isOn: $PreparingDrivers[index].Driver.Enabled.toggled(index, "", ChangeDriverStatus), disabled: isWorking)
-                                    .padding(.leading, 25)
-                                    .padding(.trailing, 10)
+                List {
+                    ForEach(PreparingDrivers.indexed(), id:\.element.id) { (index, element) in
+                           
+                            HStack {
+                                if #available(macOS 11.0, *) {
+                                    Toggle("", isOn: bindingChild(for: index).isSelected)
+                                        .toggleStyle(SwitchToggleStyle(tint: .blue))
+                                        .padding(.leading, 5)
+                                        .disabled(isWorking)
+                                    Toggle("", isOn: bindingChild(for: index).Driver.Enabled.toggled(index, "", ChangeDriverStatus))
+                                        .toggleStyle(SwitchToggleStyle(tint: .green))
+                                        .disabled(isWorking)
                                     
-                            
-                            }
-                            Text(element.Driver.Path.replacingOccurrences(of: "#", with: "").replacingOccurrences(of: ".efi", with: ""))
-                                .toolTip(element.Driver.Comment ?? "")
-                                                    .contextMenu(ContextMenu(menuItems: {
-                            
-                                                        Button("Remove") {
-                            
-                                                            PreparingDrivers.remove(at: index)
-                                                        }
-                            
-                                                    }))
-                            
-                            Spacer()
-                        }.id(index)
+                                } else {
+                                    HDToggleView(isOn: bindingChild(for: index).isSelected, togCol: Color(.systemBlue), disabled: isWorking)
+                                        .padding(.leading, 25)
 
-                          
+                                    HDToggleView(isOn: bindingChild(for: index).Driver.Enabled.toggled(index, "", ChangeDriverStatus), disabled: isWorking)
+                                        .padding(.leading, 25)
+                                        .padding(.trailing, 10)
+                                        
+                                
+                                }
+                                Text(element.Driver.Path.replacingOccurrences(of: "#", with: "").replacingOccurrences(of: ".efi", with: ""))
+                                    .toolTip(element.Driver.Comment ?? "")
+                                                        .contextMenu(ContextMenu(menuItems: {
+                                
+                                                            Button("Remove") {
+                                
+                                                                PreparingDrivers.remove(at: index)
+                                                            }
+                                
+                                                        }))
+                                
+                                Spacer()
+                            }.id(index)
+
+                              
+                    }
                 }
   
             }
