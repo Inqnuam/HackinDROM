@@ -20,7 +20,7 @@ class HAPlistContent: ObservableObject {
        
     }
     
-    func loadPlist(filePath: String, isTemplate:Bool) {
+    func loadPlist(filePath: String, isTemplate:Bool)->Bool {
         if fileManager.fileExists(atPath: filePath) {
             
             getHAPlistFrom(filePath) { plist in
@@ -34,11 +34,12 @@ class HAPlistContent: ObservableObject {
 //
 //                }
                 nc.post(name: Notification.Name("plistLoaded"), object: self.pContent)
+                
             }
-            
-        }
+            return true
+        } else {return false}
     }
-    func saveplist(newPath: String? = nil) {
+    func saveplist(newPath: String? = nil)->Bool {
         pContent.Childs.removeAll(where: {$0.name.hasPrefix("#WARNING")})
         
         do {
@@ -47,12 +48,14 @@ class HAPlistContent: ObservableObject {
             let readydata = try PlistExpl.get().exportData()
             try readydata.write(to: URL(fileURLWithPath: newPath ?? originalPath))
           originalContent = pContent
+           
             if newPath != nil {
                 originalPath = newPath!
             }
-          
+            return true
         } catch {
             print(error)
+            return false
         }
     }
 }

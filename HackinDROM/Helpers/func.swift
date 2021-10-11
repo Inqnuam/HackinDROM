@@ -174,9 +174,9 @@ func GetDrivers(_ plist: HAPlistStruct, updateTo:String? = nil) -> [Drivers] {
 
     var AllDrivers: [Drivers] = []
     
- 
+    var mutatingPlist = plist
         if let DriversEl =  plist.get(["UEFI", "Drivers"]) {
-               
+            mutatingPlist.set(HAPlistStruct(name: "Eh ouiiiiii ça marche!!!!!!!!!"), to: ["UEFI", "Drivers", 0, "Path"])
             if !DriversEl.Childs.isEmpty {
             if DriversEl.Childs[0].type == "string" {
                         for driv in DriversEl.Childs {
@@ -192,7 +192,7 @@ func GetDrivers(_ plist: HAPlistStruct, updateTo:String? = nil) -> [Drivers] {
                             let dArguments = driv.get(["Arguments"])
                             let dComment = driv.get(["Comment"])
                             
-                            //#FIXME - "Comment" entry should not be added to 0.7.3, only above
+                           
                             var drv = Drivers()
                             
                             if let updateTo = updateTo {

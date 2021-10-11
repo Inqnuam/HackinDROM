@@ -54,7 +54,7 @@ struct InstallView: View {
                 }
             }
             )
-            .disabled(isWorking)
+                .disabled(isWorking)
             
             Spacer()
             if isWorking {
@@ -74,7 +74,7 @@ struct InstallView: View {
                     }
                     
                 }
-            } 
+            }
         }
         .padding(15)
         Divider()
@@ -119,7 +119,7 @@ struct InstallView: View {
         HStack {
             
             
-           
+            
             
             if !sharedData.AllBuilds.isEmpty {
                 if sharedData.AllBuilds.indices.contains(Currentindex) {
@@ -194,7 +194,7 @@ struct InstallView: View {
                 }
                 
             })
-            .disabled(PreparingKexts.isEmpty || PreparingAMLs.isEmpty || PreparingDrivers.isEmpty || CancelMe)
+                .disabled(PreparingKexts.isEmpty || PreparingAMLs.isEmpty || PreparingDrivers.isEmpty || CancelMe)
         }
         .padding( 10)
         .onAppear {
@@ -367,118 +367,37 @@ struct InstallView: View {
             
             group.wait()
             group.enter()
-            var config = PathExplorers.Plist(booleanLiteral: false)
-            
-            do {
-                config = try PathExplorers.Plist(data: plist)
-            } catch {
-                //print("SHOULD LEAVE THE GROUP TO CONTINUE")
-                print(error)
-                StatusText = "Error! No plist found"
+            let myPlist = HAPlistContent()
+            if myPlist.loadPlist(filePath: "\(CurrentEFI)/EFI/OC/config.plist", isTemplate: false) {
                 
-            }
-            if CancelMe { return}
-            
-            do {
-                let _ =  try config.get("PlatformInfo")
-            } catch {
-                DownloadColor = Color.red
-                StatusText = "Error! No PlatformInfo"
-                serialQueue.asyncAfter(deadline: .now() + 2) {
-                    CancelMe = true
+                let _ =  myPlist.pContent.set(HAPlistStruct(name:"MLB", StringValue: mycustomdata.MLB, type: "string"), to: ["PlatformInfo", "Generic", "MLB"])
+                
+                let _ =  myPlist.pContent.set(HAPlistStruct(name:"SystemSerialNumber", StringValue: mycustomdata.SystemSerialNumber, type: "string"), to: ["PlatformInfo", "Generic", "SystemSerialNumber"])
+
+                let _ =  myPlist.pContent.set(HAPlistStruct(name:"SystemProductName", StringValue: mycustomdata.SystemProductName, type: "string"), to: ["PlatformInfo", "Generic", "SystemProductName"])
+                
+                let _ =  myPlist.pContent.set(HAPlistStruct(name:"SystemUUID", StringValue: mycustomdata.SystemUUID, type: "string"), to: ["PlatformInfo", "Generic", "SystemUUID"])
+                
+                
+                let _ = myPlist.pContent.set(HAPlistStruct(name:"boot-args", StringValue: mycustomdata.BootArgs, type: "string"), to: ["NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "boot-args"])
+                
+                let _ = myPlist.pContent.set(HAPlistStruct(name:"ROM", StringValue: mycustomdata.ROM, type: "data"), to: ["PlatformInfo", "Generic", "ROM"])
+                
+                let _ = myPlist.pContent.set(HAPlistStruct(name:"csr-active-config", StringValue: mycustomdata.SIP, type: "data"), to: ["NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "csr-active-config"])
+                
+                let pathik = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("workingHD.plist")
+                pathu = pathik.relativePath
+                if  myPlist.saveplist(newPath: pathu) {
                     group.leave()
-                    print(error)
+                } else {
+                    DownloadColor =  Color.red
+                    StatusText = "Error while saving plist"
                 }
+            } else {
+                DownloadColor =  Color.red
+                StatusText = "Plist not found"
             }
-            if CancelMe { return}
-            do {
-                let _ =  try config.get("PlatformInfo", "Generic")
-            } catch {
-                DownloadColor = Color.red
-                StatusText = "Error! No Generic section in PlatformInfo"
-                serialQueue.asyncAfter(deadline: .now() + 2) {
-                    CancelMe = true
-                    group.leave()
-                    print(error)
-                }
-            }
-            
-            do {
-                try config.set("PlatformInfo", "Generic", "MLB", to: mycustomdata.MLB)
-            } catch {
-                DownloadColor = Color.red
-                StatusText = "MLB Missing"
-                print(error)
-            }
-            do {
-                try config.set("PlatformInfo", "Generic", "SystemSerialNumber", to: mycustomdata.SystemSerialNumber)
-            } catch {
-                DownloadColor = Color.red
-                
-                StatusText = "SystemSerialNumber is missing"
-                print(error)
-            }
-            
-            do {
-                try config.set("PlatformInfo", "Generic", "SystemProductName", to: mycustomdata.SystemProductName)
-            } catch {
-                DownloadColor = Color.red
-                
-                StatusText = "SystemProductName is missing"
-                print(error)
-            }
-            
-            do {
-                try config.set("PlatformInfo", "Generic", "SystemUUID", to: mycustomdata.SystemUUID)
-            } catch {
-                DownloadColor = Color.red
-                StatusText = "SystemUUID is missing"
-                
-                print(error)
-            }
-            
-            
-            
-            do {
-                try config.set("NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "boot-args", to: mycustomdata.BootArgs)
-            } catch {
-                DownloadColor = Color.red
-                StatusText = "boot-args is missing"
-                print(error)
-            }
-            do {
-                try config.set("PlatformInfo", "Generic", "ROM", to: Data(base64Encoded: mycustomdata.ROM.data(using: .bytesHexLiteral)!.base64EncodedString())!)
-            } catch {
-                DownloadColor = Color.red
-                
-                StatusText = "ROM is missing"
-                print(error)
-            }
-            do {
-                try config.set("NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "csr-active-config", to: Data(base64Encoded: mycustomdata.SIP.data(using: .bytesHexLiteral)!.base64EncodedString())!)
-            } catch {
-                StatusText = "csr-active-config is missing"
-                DownloadColor = Color.red
-                print(error)
-            }
-            let encoder = PropertyListEncoder()
-            encoder.outputFormat = .xml
-            
-            let pathik = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("workingHD.plist")
-            pathu = pathik.relativePath
-            do {
-                let readydata = try config.get().exportData()
-                
-                if CancelMe { return}
-                try readydata.write(to: pathik)
-            } catch {
-                print(error)
-            }
-            ProgressValue += 5
-            group.leave()
-            
-            
-            
+              
         }
         
         serialQueue.async {
@@ -1003,7 +922,7 @@ struct InstallView: View {
                         isSelected: true,
                         DownloadLink: self.KextList[indeX].isUpdatable ? self.KextList[indeX].DownloadLink : ""
                     )
-                    
+                                       
                     )
                     
                 }
@@ -1019,16 +938,16 @@ struct InstallView: View {
                 CaseyKexts[index].Enabled = LocalKexts[LocIndex].Enabled
                 
                 MergedKexts.append(SelectingKexts(
-                                    Kext: CaseyKexts[index],
-                                    isSelected: true,
-                                    DownloadLink: ""))
+                    Kext: CaseyKexts[index],
+                    isSelected: true,
+                    DownloadLink: ""))
                 
             } else {
                 
                 MergedKexts.append(SelectingKexts(
-                                    Kext: CasKext,
-                                    isSelected: true,
-                                    DownloadLink: ""))
+                    Kext: CasKext,
+                    isSelected: true,
+                    DownloadLink: ""))
                 
             }
             
@@ -1056,7 +975,7 @@ struct InstallView: View {
                     AML: MyAML,
                     isSelected: true
                 )
-                
+                                  
                 )
                 
             }
@@ -1096,7 +1015,7 @@ struct InstallView: View {
     
     func MergeDrivers() -> [SelectingDrivers] {
         var mergedDrivers:[SelectingDrivers] = []
-       
+        
         let LocalDrivers = GetDrivers(localPlist, updateTo: sharedData.OCv)
         var CaseyDrivers = sharedData.CaseyDriversList
         for myDriver in LocalDrivers {
@@ -1107,7 +1026,7 @@ struct InstallView: View {
                     Driver: myDriver,
                     isSelected: true
                 )
-                
+                                     
                 )
                 
             }

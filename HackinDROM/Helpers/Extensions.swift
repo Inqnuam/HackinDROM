@@ -310,6 +310,45 @@ extension HAPlistStruct {
         
         return foundElement
     }
+    
+    mutating func set(_ val:HAPlistStruct, to: [Any])-> Bool {
+        var settingValue = val
+        var indexs:[Int] = []
+        var foundElement:HAPlistStruct = self
+        for key in to {
+            
+            let valType = String(describing: Swift.type(of: key ))
+            
+            if (valType == "String") {
+               
+                if let gevor = foundElement.Childs.firstIndex(where: {$0.name == key as! String}) {
+                    indexs.append(gevor)
+                    foundElement = foundElement.Childs[gevor]
+                } else {return false}
+              
+            } else if valType == "Int" {
+               
+                if  foundElement.Childs.indices.contains(key as! Int) {
+                    indexs.append(key as! Int)
+                    foundElement = foundElement.Childs[key as! Int]
+                } else {return false}
+                
+            }
+        
+        }
+        
+      
+        var yoo: WritableKeyPath = \HAPlistStruct.Childs[indexs[0]]
+        indexs.removeFirst()
+        for ind in indexs {
+            yoo =  yoo.appending(path: \.Childs[ind])
+        }
+       
+        settingValue.ParentName = self[keyPath: yoo].ParentName
+        self[keyPath: yoo] = settingValue
+       return true
+    }
+   
 }
 extension Binding {
     func toggled(_ hav: Int, _ name:String, _ handler: @escaping (ToggleChanged) -> Void) -> Binding<Value> {
