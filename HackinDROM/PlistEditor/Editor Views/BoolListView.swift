@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import Scout
 import ExyteGrid
 struct BoolListView: View {
     @EnvironmentObject var sharedData: HASharedData

@@ -39,7 +39,13 @@
 	<array>
 		<dict>
 			<key>CFBundleTypeRole</key>
-			<string>None</string>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>Inqnuam.HackinDROM</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>haplist</string>
+			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>

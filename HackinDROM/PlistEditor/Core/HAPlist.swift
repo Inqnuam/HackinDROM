@@ -38,13 +38,10 @@ struct HAPlistStruct: Identifiable, Equatable {
             }
         }
     }
-    var BoolValue: Bool = false
+    var BoolValue: Bool = false, isEditing: Bool = false, isShowing: Bool = false, isOn: Bool = false
     var type = ""
     var ParentName = ""
     var Childs: [HAPlistStruct] = []
-    var isEditing: Bool = false
-    var isShowing: Bool = false
-    var isOn: Bool = false
     var customName: String {
         var newVal = ""
         if let indeX = Childs.firstIndex(where: {$0.type == "string" && $0.name == "Path"}) {
@@ -88,8 +85,20 @@ func cleanHAPlistStruct(_ originalItem: HAPlistStruct) -> HAPlistStruct {
     return cleanItem
 }
 
+struct AnyEncodable: Encodable {
 
+    private let _encode: (Encoder) throws -> Void
+    public init<T: Encodable>(_ wrapped: T) {
+        _encode = wrapped.encode
+    }
 
+    func encode(to encoder: Encoder) throws {
+        try _encode(encoder)
+    }
+}
+func createDictFrom(_ hap: HAPlistStruct) {
+
+}
 
 
 
@@ -174,3 +183,4 @@ func calculateSelected(_ somme: Int, _ possibleNumbers:[HAPMultiOptions])-> [HAP
     }
     return selectedOptions
 }
+

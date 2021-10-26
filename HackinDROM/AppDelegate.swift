@@ -10,7 +10,6 @@
 import SwiftUI
 import DiskArbitration
 import LaunchAtLogin
-import Scout
 import UserNotifications
 import Version
 @NSApplicationMain
@@ -89,27 +88,41 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
     }
     
-    func application(_ sender: NSApplication, openFile filename: String) -> Bool {
-        if !sharedData.isSaved {
-            sharedData.editorIsAlerting = true
-            return false
-        } else {
-            sharedData.isShowingSheet = false
-            sharedData.ocTemplateName = ""
-            sharedData.savingFilePath = filename
-            if sharedData.currentview == 10 {
-                nc.post(name: Notification.Name("loadplist"), object: nil)
+    func application(_ sender: NSApplication, openFile filename: String, open url: URL) -> Bool {
+        
+//        if !sharedData.isSaved {
+//            sharedData.editorIsAlerting = true
+//            return false
+//        } else {
+//            sharedData.isShowingSheet = false
+//            sharedData.ocTemplateName = ""
+//            sharedData.savingFilePath = filename
+//            if sharedData.currentview == 10 {
+//                nc.post(name: Notification.Name("loadplist"), object: nil)
+//
+//            } else {
+//                sharedData.currentview = 10
+//            }
+//            if !self.popover.isShown {
+//                nc.post(name: Notification.Name("OpenPopover"), object: nil)
+//            }
+//            return URL(fileURLWithPath: filename).pathExtension == "plist" ? true : false
+//        }
+        
+        // Process the URL.
+        print(url)
+            guard let components = NSURLComponents(url: url, resolvingAgainstBaseURL: true),
+                let urlPath = components.path,
+                let params = components.queryItems else {
+                    print("Invalid URL or album path missing")
+                    return false
+            }
                 
-            } else {
-                sharedData.currentview = 10
-            }
-            if !self.popover.isShown {
-                nc.post(name: Notification.Name("OpenPopover"), object: nil)
-            }
-            return URL(fileURLWithPath: filename).pathExtension == "plist" ? true : false
-        }
-        
-        
+                print("urlPath", urlPath)
+                print("params", params)
+                return true
+                
+            
         
     }
     

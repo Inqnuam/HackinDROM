@@ -52,7 +52,7 @@ func HAPlistConstructor(_ item: [String: AnyObject], _ parent:HAPlistStruct) -> 
         var MiniChilItem = HAPlistStruct()
         
         let MiniChildType = String(describing: type(of: MiniChild.value) as Any)
-        
+
         MiniChilItem.name = MiniChild.key
         MiniChilItem.ParentName = parent.name.isEmpty ? parent.ParentName : parent.name
         
@@ -108,7 +108,7 @@ func HAPlistConstructor(_ item: [String: AnyObject], _ parent:HAPlistStruct) -> 
                 for StringItem in OCSecondChilds {
                     
                     
-                    MiniChilItem.Childs.append(HAPlistStruct(name: MiniChild.key, StringValue: StringItem, type: "string", ParentName: MiniChilItem.ParentName, isOn: !StringItem.hasPrefix("#")))
+                    MiniChilItem.Childs.append(HAPlistStruct(name: MiniChild.key, StringValue: StringItem, isOn: !StringItem.hasPrefix("#"), type: "string", ParentName: MiniChilItem.ParentName))
                     
                 }
             }
@@ -127,5 +127,6 @@ func HAPlistConstructor(_ item: [String: AnyObject], _ parent:HAPlistStruct) -> 
         
         
     }
+   
     return OCSecondChildItems
 }

@@ -590,7 +590,7 @@ struct PlistSheetView: View {
             if MiniChild.Childs.firstIndex(where: {$0.type == "string" && $0.StringValue == filName}) == nil {
                 
                 
-                MiniChild.Childs.append(HAPlistStruct(name: "Drivers", StringValue: filName, type: "string", ParentName: "UEFI", isOn: !file.hasPrefix("#")))
+                MiniChild.Childs.append(HAPlistStruct(name: "Drivers", StringValue: filName, isOn: !file.hasPrefix("#"), type: "string", ParentName: "UEFI"))
                 sharedData.isSaved = false
                 
                 

@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import Scout
 struct SingleRawStringView: View {
     @EnvironmentObject var sharedData: HASharedData
     @Binding var Dict: HAPlistStruct

@@ -174,9 +174,8 @@ func GetDrivers(_ plist: HAPlistStruct, updateTo:String? = nil) -> [Drivers] {
 
     var AllDrivers: [Drivers] = []
     
-    var mutatingPlist = plist
+   // var mutatingPlist = plist
         if let DriversEl =  plist.get(["UEFI", "Drivers"]) {
-            mutatingPlist.set(HAPlistStruct(name: "Eh ouiiiiii ça marche!!!!!!!!!"), to: ["UEFI", "Drivers", 0, "Path"])
             if !DriversEl.Childs.isEmpty {
             if DriversEl.Childs[0].type == "string" {
                         for driv in DriversEl.Childs {

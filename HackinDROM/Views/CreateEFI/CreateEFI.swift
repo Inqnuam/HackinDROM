@@ -1169,7 +1169,7 @@ struct CreateEFI: View {
                 
                 var plist = plist
                 
-                
+              
                 if let KernelSection =  plist.Childs.firstIndex(where: {$0.name == "Kernel"}) {
                   
                     if let PatchSection =  plist.Childs[KernelSection].Childs.firstIndex(where: {$0.name == "Patch"}) {

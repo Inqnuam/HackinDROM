@@ -8,7 +8,6 @@
 
 
 import SwiftUI
-import Scout
 struct ChildsView: View {
     @Binding var MicroChild: HAPlistStruct
     @EnvironmentObject var sharedData: HASharedData
