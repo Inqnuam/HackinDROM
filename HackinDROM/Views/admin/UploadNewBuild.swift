@@ -596,15 +596,10 @@ struct NewBuildView: View {
                     
                     let createddate = GetOCCreatedDate("\(selectedPath)/OC/OpenCore.efi")
                     
+                    OCvS = OCDateAndVersion[createddate.monthAndYear] ?? "0.0.0"
                     
-                    
-                    shell("curl --silent https://github.com/acidanthera/opencorepkg/releases | grep '\(createddate.monthAndYear)'  -B 60 | grep '{{ urlEncodedRefName }}...'") { result, _ in
-                        
-                        OCvS = result.slice(from: "{{ urlEncodedRefName }}...", to: "\"") ?? "0.0.0"
-                        
-                        if OCvS == "0.0.0" {
-                            customOCv = OCvS
-                        }
+                    if OCvS == "0.0.0" {
+                        customOCv = OCvS
                     }
                     
                 }
