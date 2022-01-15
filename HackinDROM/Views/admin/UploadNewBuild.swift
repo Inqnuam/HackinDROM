@@ -293,7 +293,7 @@ struct NewBuildView: View {
                     } else {
                         Text("☁️ Upload")
                     }
-                }).disabled(imageUrls.isEmpty)
+                }).disabled(imageUrls.isEmpty || UploadNewBuild.config.Archive == "nul" || UploadNewBuild.config.Archive == "")
                     .toolTip("Upload")
                 
             }
@@ -509,7 +509,7 @@ struct NewBuildView: View {
                         
                         UploadNewBuild.config.Archive = FileUpload("\(tmp)/HDWorkingFolder.zip").trimmingCharacters(in: .whitespacesAndNewlines)
                         
-                        if  UploadNewBuild.config.Archive != "nul" || UploadNewBuild.config.Archive != "" {
+                        if  UploadNewBuild.config.Archive != "nul" && UploadNewBuild.config.Archive != "" {
                             do {
                                 try fileManager.removeItem(at: URL(fileURLWithPath: "\(tmp)/HDWorkingFolder.zip"))
                                 try  fileManager.removeItem(at: URL(fileURLWithPath: "\(tmp)/HDWorkingFolder"))

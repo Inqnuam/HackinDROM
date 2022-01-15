@@ -58,8 +58,6 @@
 	<true/>
 	<key>NSHumanReadableCopyright</key>
 	<string>2021 HackinDROM</string>
-	<key>NSMainStoryboardFile</key>
-	<string>Main</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>NSSupportsAutomaticTermination</key>

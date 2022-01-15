@@ -12,7 +12,7 @@ import DiskArbitration
 import LaunchAtLogin
 import UserNotifications
 import Version
-@NSApplicationMain
+//@NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     @ObservedObject var sharedData = HASharedData()
     var statusBar: StatusBarController?
@@ -63,13 +63,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
             
         }
-        _ = MarkdownDocumentController()
+        _ = PlistDocumentController()
         
-        
-        let myRootView = StartView(EFIs: getEFIList())
+        // SwiftUI Bridge
+        let myRootView = StartView(EFIs: getEFIList()).environmentObject(self.sharedData)
         self.popover.contentViewController = NSViewController()
-        self.popover.contentViewController?.view = NSHostingView(rootView: myRootView.environmentObject(self.sharedData))
-        self.popover.contentViewController?.view.window?.level = NSWindow.Level(rawValue: 16)
+        self.popover.contentViewController?.view = NSHostingView(rootView: myRootView)
+        
+        // as SwiftUI isn't very stable i'm going to try to switch to AppKit (without StoryBoard),
+        // also the app will be compatible with older versions of macOS too
+        // Uncomment next line to see AppKit side progress
+      //  self.popover.contentViewController = PopoverContentController(sharedData: sharedData)
+       // self.popover.contentViewController?.view.window?.level = NSWindow.Level(rawValue: 16)
        
         NSWorkspace.shared.notificationCenter.addObserver(
             self,
@@ -128,25 +133,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     
-    //    @objc private func sleepListener(_ aNotification: Notification) {
-    //
-    //        if aNotification.name == NSWorkspace.willSleepNotification {
-    //           // disableScreenSleep()
-    //            print("Going to sleep")
-    //
-    //            umount("disk2")
-    //            shell("caffeinate -d ") { req, _ in
-    //
-    //                print(req)
-    //            }
-    //            shell("diskutil eject disk3") {_,_ in}
-    //
-    //        } else if aNotification.name == NSWorkspace.didWakeNotification {
-    //            print("Woke up")
-    //        } else {
-    //            print("Some other event other than the first two")
-    //        }
-    //    }
     func applicationDidBecomeActive(_ notification: Notification) {
         // Return focus to the last active application if the shouldReturnFocus flag is set
         // This is used when the app's service is called
@@ -193,48 +179,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
    
 }
 
-//////////////
-// var assertionID: IOPMAssertionID = 0
-// var sleepDisabled = false
-// func disableScreenSleep(reason: String = "Disabling Screen Sleep") {
-//    print(IOPMAssertionCreateWithName(kIOPMAssertionTypeNoDisplaySleep as CFString, IOPMAssertionLevel(kIOPMAssertionLevelOn), reason as CFString, &assertionID))
-//
-// }
-// func enableScreenSleep() {
-//
-//    print(  IOPMAssertionRelease(assertionID))
-//
-//
-// }
-//
 
-@objc(MarkdownDocument)
-class MarkdownDocument: NSDocument {}
-class MarkdownDocumentController: NSDocumentController {
+@objc(PlistDocument)
+class PlistDocument: NSDocument {}
+class PlistDocumentController: NSDocumentController {
     // ...
     override var defaultType: String? {
         return "com.apple.property-list"
     }
     
     override func documentClass(forType typeName: String) -> AnyClass? {
-        return MarkdownDocument.self
+        return PlistDocument.self
     }
 }
-
-
-
-//    func Screensho() {
-//        let viewToCapture = popover.contentViewController!.view.window!.contentView!
-//        let rep = viewToCapture.bitmapImageRepForCachingDisplay(in: viewToCapture.bounds)!
-//        viewToCapture.cacheDisplay(in: viewToCapture.bounds, to: rep)
-//
-//        let img = NSImage(size: viewToCapture.bounds.size)
-//        img.addRepresentation(rep)
-//
-//
-//
-//
-//        let pngData = rep.representation(using: .png, properties: [:])
-//           try!  pngData!.write(to: URL(fileURLWithPath: "/Users/lian/Desktop/hellloooooosdffissd.png"))
-//
-//    }

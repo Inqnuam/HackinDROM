@@ -77,7 +77,8 @@ class HASharedData: ObservableObject {
         createDictFrom(HAPlistStruct())
         
         do {
-            try fileManager.createDirectory(atPath: tmp, withIntermediateDirectories: true, attributes: nil)
+           // try fileManager.createDirectory(atPath: tmp, withIntermediateDirectories: true, attributes: nil)
+            try fileManager.createDirectory(atPath: tmp+"/tmp", withIntermediateDirectories: true, attributes: nil)
             dortConfig = getDortConf()
         } catch {
            

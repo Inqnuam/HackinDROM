@@ -215,14 +215,15 @@ struct ListView: View {
                             .opacity(hovered ? 1 : 0.9)
                             .onTapGesture {
                                 self.isCharging = true
-                                umount(EFI.location, false)
+                                EFI.unmount(false)
+                               // umount(EFI.location, false)
                                 
                                 // sharedData.EFIs[index].mounted = ""
                                 
                             }
                             .contextMenu(menuItems: {
                                 Button("Force unmount") {
-                                    umount(EFI.location, true)
+                                    EFI.unmount(true)
                                 }
                                 
                             })
@@ -349,7 +350,7 @@ struct ListView: View {
                         
                         self.isCharging = true
                         
-                        if mountEFI(UUID: EFI.location, NAME: EFI.Name, user: sharedData.whoami, pwd: sharedData.Mypwd) == "nul" {
+                        if EFI.mount() == "nul" {
                             
                             self.isCharging = false
                             

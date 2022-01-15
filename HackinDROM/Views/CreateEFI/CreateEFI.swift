@@ -1065,7 +1065,7 @@ struct CreateEFI: View {
             }
             if CancelMe { return}
             ProgressValue += 5
-            shell("rm -rf '\(tmp)/tmp'") { _, _ in
+            shell("rm -rf '\(tmp)/tmp/*'") { _, _ in
                 shell("rm '\(tmp)/latestOC.zip'") { _, _ in}
                 if CancelMe { return}
                 group.leave()

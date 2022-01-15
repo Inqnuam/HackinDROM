@@ -8,24 +8,7 @@
 
 import Foundation
 
-struct EFI:Identifiable, Equatable {
-    let id:String = Foundation.UUID().uuidString
-    var location: String = ""
-    var Name: String = ""
-    var mounted: String = ""
-    var type: String = ""
-    var Where: String = ""
-    var SSD: String = ""
-    var UUID: String = ""
-    var OC: Bool = false
-    var OCv: String = ""
-    var Parent: String = ""
-    var FreeSpace: Int = 0
-    var BackUpSize: Int = 0
-    var plists: [String] = []
 
-   
-}
 struct MotherboardsList: Hashable {
 
     var id: String = ""
