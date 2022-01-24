@@ -606,18 +606,26 @@ struct NewBuildView: View {
                     if OCvS == "0.0.0" {
                         customOCv = OCvS
                     }
+                    let plists =  FindKexts.filter { $0.pathExtension == "plist" }
                     
+                    configplists = []
+                    for plist in plists {
+                        
+                        configplists.append(plist)
+                    }
+                } else {
+                    self.FolderPath = "OpenCore not found"
+                    OCvS = ""
+                    customOCv = ""
+                    configplists = []
                 }
-                let plists =  FindKexts.filter { $0.pathExtension == "plist" }
                 
-                configplists = []
-                for plist in plists {
-                    
-                    configplists.append(plist)
-                }
                 
             } catch {
-                
+                self.FolderPath = "OpenCore not found"
+                OCvS = ""
+                customOCv = ""
+                configplists = []
             }
             
         } else {

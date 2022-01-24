@@ -43,6 +43,7 @@
 		8C8EB29F25C9DDFE005E9332 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 8C8EB29E25C9DDFE005E9332 /* LaunchAtLogin */; };
 		8C97CD9625CA244700B6DE00 /* MainDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C97CD9525CA244700B6DE00 /* MainDataProvider.swift */; };
 		8C989F9A265DB90500B798B5 /* BluetoothDevices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C989F99265DB90500B798B5 /* BluetoothDevices.swift */; };
+		8C9F1B622796D87000C08775 /* macserial in Resources */ = {isa = PBXBuildFile; fileRef = 8C9F1B612796D87000C08775 /* macserial */; };
 		8CA1189F26CE91A500839E7E /* ToolbarButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA1189E26CE91A500839E7E /* ToolbarButtons.swift */; };
 		8CA272E6263E1A0100B5F402 /* HAPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA272E5263E1A0100B5F402 /* HAPlist.swift */; };
 		8CA2CB49261F456400EA8949 /* AppStorageforCatalina.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA2CB48261F456400EA8949 /* AppStorageforCatalina.swift */; };
@@ -54,7 +55,6 @@
 		8CB1784526C712590014A179 /* updateOCPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB1784426C712590014A179 /* updateOCPlist.swift */; };
 		8CB1784726C7146A0014A179 /* getHAPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB1784626C7146A0014A179 /* getHAPlist.swift */; };
 		8CB1784926C71DF40014A179 /* getEFIList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB1784826C71DF40014A179 /* getEFIList.swift */; };
-		8CBA3897262BFF7300D1FA1C /* macserial in Resources */ = {isa = PBXBuildFile; fileRef = 8CBA3896262BFF7300D1FA1C /* macserial */; };
 		8CBE18682687BDDE00085EEA /* AppKitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBE18672687BDDE00085EEA /* AppKitTest.swift */; };
 		8CC005E6270F4DDB00A21669 /* IndexedCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC005E5270F4DDB00A21669 /* IndexedCollection.swift */; };
 		8CCEED0F263D660000D10B0B /* BoolListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCEED0E263D660000D10B0B /* BoolListView.swift */; };
@@ -131,6 +131,7 @@
 		8C8AF5B125CD6F03003A10DD /* SystemInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemInfo.swift; sourceTree = "<group>"; };
 		8C97CD9525CA244700B6DE00 /* MainDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDataProvider.swift; sourceTree = "<group>"; };
 		8C989F99265DB90500B798B5 /* BluetoothDevices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothDevices.swift; sourceTree = "<group>"; };
+		8C9F1B612796D87000C08775 /* macserial */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = macserial; sourceTree = "<group>"; };
 		8CA1189E26CE91A500839E7E /* ToolbarButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarButtons.swift; sourceTree = "<group>"; };
 		8CA272E5263E1A0100B5F402 /* HAPlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HAPlist.swift; sourceTree = "<group>"; };
 		8CA2CB48261F456400EA8949 /* AppStorageforCatalina.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStorageforCatalina.swift; sourceTree = "<group>"; };
@@ -143,7 +144,6 @@
 		8CB1784426C712590014A179 /* updateOCPlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = updateOCPlist.swift; sourceTree = "<group>"; };
 		8CB1784626C7146A0014A179 /* getHAPlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getHAPlist.swift; sourceTree = "<group>"; };
 		8CB1784826C71DF40014A179 /* getEFIList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getEFIList.swift; sourceTree = "<group>"; };
-		8CBA3896262BFF7300D1FA1C /* macserial */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = macserial; sourceTree = "<group>"; };
 		8CBE18672687BDDE00085EEA /* AppKitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppKitTest.swift; sourceTree = "<group>"; };
 		8CC005E5270F4DDB00A21669 /* IndexedCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexedCollection.swift; sourceTree = "<group>"; };
 		8CCEED0E263D660000D10B0B /* BoolListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolListView.swift; sourceTree = "<group>"; };
@@ -317,6 +317,7 @@
 		A70B6232237AF87000A2BA73 /* HackinDROM */ = {
 			isa = PBXGroup;
 			children = (
+				8C9F1B612796D87000C08775 /* macserial */,
 				8C0B135F276A8424009715E9 /* Controllers */,
 				8C0B135A276A80D4009715E9 /* Structs */,
 				A70B6233237AF87000A2BA73 /* AppDelegate.swift */,
@@ -326,7 +327,6 @@
 				A70B6253237B081200A2BA73 /* Views */,
 				A70B623F237AF87700A2BA73 /* Info.plist */,
 				A70B6237237AF87700A2BA73 /* Assets.xcassets */,
-				8CBA3896262BFF7300D1FA1C /* macserial */,
 				A70B6239237AF87700A2BA73 /* Preview Content */,
 			);
 			path = HackinDROM;
@@ -465,8 +465,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C9F1B622796D87000C08775 /* macserial in Resources */,
 				A70B623B237AF87700A2BA73 /* Preview Assets.xcassets in Resources */,
-				8CBA3897262BFF7300D1FA1C /* macserial in Resources */,
 				A70B6238237AF87700A2BA73 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
