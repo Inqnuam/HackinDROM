@@ -12,10 +12,10 @@ import Scout
 struct CreateEFI: View {
     @EnvironmentObject var sharedData: HASharedData
 
-    @Binding var ExternalDisks: [ExternalDisks]
+    @Binding var ExternalDisksList: [ExternalDisks]
     @Binding var isCharging: Bool
     @Binding var EFIs: [EFI]
-    @State var selectedDrive = 100
+    @State var selectedDrive:ExternalDisks = ExternalDisks()
     @State var selectedGPU = 0
     @State var selectedWiFi = 0
     @State var selectedCore = "20"
@@ -98,9 +98,9 @@ struct CreateEFI: View {
                         if sharedData.Updating == "Update" {
 
                             HStack {
-                                Picker(selection: $ExternalDisks, label: Text("Select an External Drive")) { // #FIXME
-                                    ForEach(ExternalDisks, id: \.self) { extDisk in
-                                        Text("\(extDisk.name) - \(extDisk.SSD) \(extDisk.size) \(extDisk.location)").tag(extDisk)
+                                Picker(selection: $selectedDrive.externalSelected(SetNewSelectedDrive), label: Text("Select an External Drive")) { // #FIXME
+                                    ForEach(ExternalDisksList, id: \.self) { extDisk in
+                                        Text("\(extDisk.name) - \(extDisk.SSD) \(extDisk.size) \(extDisk.location)")//.tag(extDisk)
                                     }
                                 }
                                 Text("OR")
@@ -116,7 +116,7 @@ struct CreateEFI: View {
 
                                     } else {
 
-                                        selectedDrive = 100
+                                        selectedDrive = ExternalDisks()
                                     }
                                     nc.post(name: Notification.Name("ClosePasswordWindow"), object: nil)
                                 }
@@ -668,16 +668,7 @@ struct CreateEFI: View {
 
                             if !isWorking {
 
-                                if sharedData.Mypwd == "" {
-
-                                    sharedData.MountThisPartition[0] = "FormatInstall"
-                                    nc.post(name: Notification.Name("OpenPasswordWindow"), object: nil)
-
-                                } else {
-
-                                    FormatInstall()
-
-                                }
+                                FormatInstall()
 
                             } else {
 
@@ -693,7 +684,7 @@ struct CreateEFI: View {
                             }
 
                         })
-                        .disabled(mycustomdata.MLB.isEmpty || mycustomdata.ROM.count < 12 || mycustomdata.SystemUUID.isEmpty || mycustomdata.SystemSerialNumber.isEmpty  || selectedDrive == 100 || CancelMe)
+                            .disabled(mycustomdata.MLB.isEmpty || mycustomdata.ROM.count < 12 || mycustomdata.SystemUUID.isEmpty || mycustomdata.SystemSerialNumber.isEmpty  || selectedDrive.name.isEmpty || CancelMe)
                     } else {
                         Button(action: {
                             if !isWorking {
@@ -881,9 +872,9 @@ struct CreateEFI: View {
          sharedData.currentview = 0
          
     }
-    func SetNewSelectedDrive(to value: Int) {
+    func SetNewSelectedDrive(to value: ExternalDisks) {
 
-        if value != 100 {
+        if !value.name.isEmpty {
 
             SelectedFolder = ""
         }
@@ -1040,7 +1031,7 @@ struct CreateEFI: View {
     }
 
     func FormatInstall() {
-
+        print("LETS START")
         isWorking = true
 
         let serialQueue = DispatchQueue(label: "Installing")
@@ -1079,18 +1070,19 @@ struct CreateEFI: View {
 
             group.wait()
                group.enter()
-
-            if SelectedFolder == "" && sharedData.Updating == "Update" && selectedDrive != 100 {
+          
+            if sharedData.Updating == "Update" && !selectedDrive.name.isEmpty {
+              
                 if CancelMe { return}
                 StatusText = "DON'T UNPLUG YOUR DRIVE!!"
                 OCName = "OPENCORE_" + String(Int.random(in: 45..<843))
-                shell("diskutil eraseDisk JHFS+  \(OCName) '\(ExternalDisks[selectedDrive].location)'") { req, _ in
+                shell("diskutil eraseDisk JHFS+  \(OCName) '\(selectedDrive.location)'") { req, _ in
 
                     if   req.contains("Finished erase on ") {
 
                         if CancelMe { return}
                         StatusText = "Erasing done!"
-                        if let index = EFIs.firstIndex(where: { $0.Parent == ExternalDisks[selectedDrive].location.replacingOccurrences(of: "/dev/", with: "")}) {
+                        if let index = EFIs.firstIndex(where: { $0.Parent == selectedDrive.location.replacingOccurrences(of: "/dev/", with: "")}) {
 
                             EFIs.remove(at: index)
 
@@ -1099,7 +1091,7 @@ struct CreateEFI: View {
                         }
                         StatusText = "Mounting EFI..."
 
-                        CurrentEFI = mountEFI(UUID: ExternalDisks[selectedDrive].location.replacingOccurrences(of: "/dev/", with: "") + "s1", NAME: ExternalDisks[selectedDrive].name, user: sharedData.whoami, pwd: sharedData.Mypwd)
+                        CurrentEFI = mountEFI(UUID: selectedDrive.location.replacingOccurrences(of: "/dev/", with: "") + "s1", NAME: selectedDrive.name, user: sharedData.whoami, pwd: sharedData.Mypwd)
                         group.leave()
                     } else {
                         CancelMe = true
@@ -1341,9 +1333,9 @@ struct CreateEFI: View {
 
                     notifmsg = "Just saved OC \(selectedConfig.ocvs) EFI in \(SelectedFolder)"
 
-                } else if selectedDrive != 100 {
+                } else if !selectedDrive.name.isEmpty {
 
-                    notifmsg = "Just installed OC \(selectedConfig.ocvs) into \(ExternalDisks[selectedDrive].name)"
+                    notifmsg = "Just installed OC \(selectedConfig.ocvs) into \(selectedDrive.name)"
                 } else if sharedData.Updating.contains("Install") {
 
                     notifmsg = "Just installed OC \(selectedConfig.ocvs) into \(EFIs[sharedData.CurrentEFI].Name)"

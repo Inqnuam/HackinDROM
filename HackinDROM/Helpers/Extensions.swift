@@ -440,6 +440,18 @@ extension Binding {
         )
     }
     
+    func externalSelected(_ handler: @escaping (ExternalDisks) -> Void) -> Binding<Value> {
+        
+        Binding(
+            get: { self.wrappedValue },
+            set: { newValue in
+                self.wrappedValue = newValue
+                handler(newValue as! ExternalDisks)
+                
+            }
+        )
+    }
+    
 }
 
 

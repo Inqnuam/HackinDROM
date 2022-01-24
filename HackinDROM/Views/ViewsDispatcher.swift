@@ -74,7 +74,7 @@ struct StartView: View {
 
                 } else if sharedData.currentview == 4 {
                    
-                    CreateEFI(ExternalDisks: $ExternalDisks, isCharging: $isCharging, EFIs: $EFIs).environmentObject(sharedData)
+                    CreateEFI(ExternalDisksList: $ExternalDisks, isCharging: $isCharging, EFIs: $EFIs).environmentObject(sharedData)
                             .transition(AnyTransition.move(edge: .bottom)).animation(.default)
                             //.transition(.move(edge: .bottom)).animation(.default)
                     

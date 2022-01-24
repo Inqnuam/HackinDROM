@@ -259,9 +259,12 @@ struct NewBuildView: View {
                         pushBuildtoDB() { uploaded in
                             
                             if uploaded {
-                                sharedData.GetAllBuildsAndConfigure()
-                                isWorking = false
-                                sharedData.currentview = 5
+                                DispatchQueue.main.async {
+                                    sharedData.GetAllBuildsAndConfigure()
+                                    isWorking = false
+                                    sharedData.currentview = 5
+                                }
+                               
                                 
                             }
                             
@@ -272,10 +275,12 @@ struct NewBuildView: View {
                         
                         pushBuildtoDB() { uploaded in
                             
-                            if uploaded {
+                            if uploaded {  DispatchQueue.main.async {
+                                
                                 sharedData.GetAllBuildsAndConfigure()
                                 isWorking = false
                                 sharedData.currentview = 5
+                            }
                             }
                             
                         }
@@ -293,7 +298,7 @@ struct NewBuildView: View {
                     } else {
                         Text("☁️ Upload")
                     }
-                }).disabled(imageUrls.isEmpty || UploadNewBuild.config.Archive == "nul" || UploadNewBuild.config.Archive == "")
+                }).disabled(imageUrls.isEmpty || self.FolderPath == "nul" || self.FolderPath == "" || (!isNewBuild && selectedMLB.vendor.isEmpty))
                     .toolTip("Upload")
                 
             }
@@ -588,7 +593,7 @@ struct NewBuildView: View {
     func selectOCEFIfolder() {
         
         let selectedPath = FileSelector(allowedFileTypes: ["zip"], canCreateDirectories: true, canChooseFiles: false, canChooseDirectories: true)
-        if selectedPath != "nul" {
+        if selectedPath != "nul" && selectedPath != "" {
             self.FolderPath = selectedPath
             do {
                 let FindKexts = try fileManager.contentsOfDirectory(at: URL(fileURLWithPath: "\(selectedPath)/OC"), includingPropertiesForKeys: nil)
@@ -615,6 +620,12 @@ struct NewBuildView: View {
                 
             }
             
+        } else {
+            self.FolderPath = ""
+            self.OCvS = ""
+            self.customOCv = ""
+            configplists = []
+            imageUrls = [:]
         }
         nc.post(name: Notification.Name("OpenPopover"), object: nil)
     }

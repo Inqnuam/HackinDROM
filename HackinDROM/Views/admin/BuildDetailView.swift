@@ -325,7 +325,7 @@ struct BuildDetailView: View {
                                 .help("Delete definitely")
                                 .onTapGesture {
                                     DeleteingId = TheBuild.id
-                                    DeleteingName = "OpenCore \(String(format: "%.2f", TheBuild.ocv)  )"
+                                    DeleteingName = "OpenCore \(TheBuild.ocvs)"
                                     DeletingIndex = build
                                     DeletingType = "configs"
                                     showAlert = true
