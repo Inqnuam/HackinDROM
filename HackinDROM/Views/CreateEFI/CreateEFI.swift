@@ -1031,16 +1031,17 @@ struct CreateEFI: View {
     }
 
     func FormatInstall() {
-        print("LETS START")
+       
         isWorking = true
-
-        let serialQueue = DispatchQueue(label: "Installing")
-        let group = DispatchGroup()
         var PlistToEdit = ""
         var OCName = ""
         var CurrentEFI = ""
         var CaseysFolder = ""
+        
+        let serialQueue = DispatchQueue(label: "Installing")
+        let group = DispatchGroup()
         group.enter()
+        
         serialQueue.async {
 
             if CancelMe { return}
@@ -1062,7 +1063,7 @@ struct CreateEFI: View {
                 group.leave()
             }
 
-            ///////////////////////////////////////////////
+           
 
         }
 
@@ -1109,7 +1110,7 @@ struct CreateEFI: View {
         serialQueue.async {  // call this whenever you need to add a new work item to your queue
 
             group.wait()
-               group.enter()
+            group.enter()
 
             StatusText = "Cleaning folder..."
             ProgressValue += 5
@@ -1129,12 +1130,12 @@ struct CreateEFI: View {
         serialQueue.async {
 
             group.wait()
-               group.enter()
+            group.enter()
 
             do {
 
                 let GetCaseysFolder = try fileManager.contentsOfDirectory(at: URL(fileURLWithPath: "\(tmp)/tmp"), includingPropertiesForKeys: nil, options: [.skipsHiddenFiles])
-
+                 // FIXME check if archive was successfully downloaded
                 CaseysFolder = GetCaseysFolder[0].lastPathComponent
 
                 if CancelMe { return}
@@ -1155,7 +1156,8 @@ struct CreateEFI: View {
         serialQueue.async {
 
             group.wait()
-               group.enter()
+            group.enter()
+            
             if CancelMe { return}
             getHAPlistFrom("\(tmp)/tmp/\(CaseysFolder)/OC/configo.plist") { plist in
                 

@@ -28,7 +28,7 @@ struct ToolbarButtons: View {
                             
                             
                             Button("Save") {
-                                HAPlist.saveplist()
+                             let _ = HAPlist.saveplist()
                             }
                         }
                         
@@ -40,7 +40,7 @@ struct ToolbarButtons: View {
                                 
                                 if newDict != "nul" {
                                     
-                                    HAPlist.saveplist(newPath: newDict)
+                                    let _ =  HAPlist.saveplist(newPath: newDict)
                                 }
                                 
                             }
@@ -73,7 +73,7 @@ struct ToolbarButtons: View {
                             } else {
                                 HAPlist.isSaved = true
                                 
-                                HAPlist.loadPlist(filePath: FileSelector(allowedFileTypes: ["plist"], canCreateDirectories: false, canChooseFiles: true, canChooseDirectories: false), isTemplate: false)
+                                let _ =   HAPlist.loadPlist(filePath: FileSelector(allowedFileTypes: ["plist"], canCreateDirectories: false, canChooseFiles: true, canChooseDirectories: false), isTemplate: false)
                             }
                         }
                         
@@ -90,7 +90,7 @@ struct ToolbarButtons: View {
                                         HAPlist.isSaved = true
                                       
                                       //  sharedData.loadPlist("\(tmp)/oct/s/\(ocv).plist")
-                                        HAPlist.loadPlist(filePath: "\(tmp)/oct/s/\(ocv).plist", isTemplate: true)
+                                        let _ =    HAPlist.loadPlist(filePath: "\(tmp)/oct/s/\(ocv).plist", isTemplate: true)
                                     }
                                 }
                                 

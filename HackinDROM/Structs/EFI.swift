@@ -2,12 +2,15 @@
 //  EFI.swift
 //  HackinDROM
 //
-//  Created by lian on 15/12/2021.
-//  Copyright © 2021 Golden Chopper. All rights reserved.
+//  Created by Inqnuam on 15/12/2021.
+//  Copyright © 2021 HackitALL. All rights reserved.
 //
 
 import Foundation
-struct EFI:Identifiable, Equatable {
+import Version
+
+
+struct EFI: Identifiable, Equatable {
     let id:String = Foundation.UUID().uuidString
     var location: String = ""
     var Name: String = ""
@@ -22,8 +25,11 @@ struct EFI:Identifiable, Equatable {
     var FreeSpace: Int = 0
     var BackUpSize: Int = 0
     var plists: [String] = []
+    var isUpdating:Bool = false
+    var updateProgress:Double = 0.0
     
-     func mount() -> String {
+    
+    func mount() -> String {
         UserDefaults.standard.setValue(false, forKey: "Rename")
         var mountedEFIName = ""
         let disk = DADiskCreateFromBSDName(kCFAllocatorDefault, session!, "/dev/\(location)")!
@@ -66,9 +72,9 @@ struct EFI:Identifiable, Equatable {
                 
             }
         }
-       
-     
-      
+        
+        
+        
         var output:NSString?
         if launchCommandAsAdmin(location, &output) {
             if output != nil && output!.contains("\(location) mounted") {
@@ -80,18 +86,101 @@ struct EFI:Identifiable, Equatable {
             mountedEFIName = "nul"
         }
         
-       
+        
         
         return mountedEFIName
         
     }
     
+    
     func unmount(_ forceUnmount: Bool) {
         let disk = DADiskCreateFromBSDName(kCFAllocatorDefault, session!, "/dev/\(location)")!
         
         DADiskRename(disk, "EFI" as CFString, 0x00000000, nil, nil)
-            DADiskUnmount(disk, DADiskUnmountOptions(forceUnmount ? kDADiskUnmountOptionForce : kDADiskUnmountOptionDefault), PostAfterRename, nil)
+        DADiskUnmount(disk, DADiskUnmountOptions(forceUnmount ? kDADiskUnmountOptionForce : kDADiskUnmountOptionDefault), PostAfterRename, nil)
         
         
     }
+    
 }
+
+
+func getOCVersionFromCache(_ dir: String)-> String? {
+    
+    do {
+        
+        var foundFiles = try fileManager.contentsOfDirectory(atPath: dir)
+        
+      
+        foundFiles = foundFiles.filter({!$0.hasPrefix(".")})
+   
+        if !foundFiles.isEmpty {
+            return foundFiles.first!
+        } else {
+            return nil
+        }
+       
+        
+    } catch {
+        print(error)
+        return nil
+    }
+}
+func getFilesFrom(_ dir: String, _ ext: String? = nil )-> [String]? {
+    
+    do {
+        
+        let FindKexts = try fileManager.contentsOfDirectory(at: URL(fileURLWithPath: dir), includingPropertiesForKeys: nil, options: [.skipsHiddenFiles])
+        
+        let kexts = ext == nil ? FindKexts : FindKexts.filter { $0.pathExtension == ext }
+        let kextNames = kexts.map { $0.deletingPathExtension().lastPathComponent }
+        
+   
+        return kextNames
+        
+    } catch {
+        print(error)
+        return nil
+    }
+}
+
+
+
+
+func getGHDownloadLink(_ kextName: String, _ latestVersion: String) async -> URL? {
+    
+    let repoOwner = getRepoOwner(kextName)
+    let repoName = getRepoName(kextName)
+    var downloadingFileName = repoName
+    var latestVersion = latestVersion
+    if isVoodooPS2(repoName) {
+        downloadingFileName = "VoodooPS2Controller"
+    }
+    
+    if isBroadcomRelated(kextName) {
+        downloadingFileName = "BrcmPatchRAM"
+    }
+
+    if kextName == "MacHyperVSupport" {
+        if let gitVersion = getGitReleasesVersions(repoOwner, repoName, true) {
+            latestVersion = gitVersion.first!
+        }
+
+    }
+    
+    if repoOwner == "acidanthera" {
+        if let link:URL = URL(string: "https://github.com/\(repoOwner)/\(repoName)/releases/download/\(latestVersion)/\(downloadingFileName)-\(latestVersion)-RELEASE.zip") {
+            return link
+        } else {return nil}
+        
+    } else {
+        if let foundLink = await getGitHubRepoDownloadLinkfromHTML(repoOwner, repoName) {
+            
+            if let link:URL = URL(string: foundLink) {
+                return link
+            } else {return nil}
+        } else {return nil}
+        
+    }
+}
+

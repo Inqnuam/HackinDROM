@@ -9,15 +9,15 @@
 import Foundation
 
 class FileDownloader {
-
+    
     static func loadFileSync(url: URL, completion: @escaping (String?, Error?) -> Void) {
         let documentsUrl = fileManager.urls(for: .downloadsDirectory, in: .userDomainMask).first!
-
+        
         let destinationUrl = documentsUrl.appendingPathComponent(url.lastPathComponent)
         do {
-       try  fileManager.removeItem(at: URL(fileURLWithPath: destinationUrl.path))
+            try  fileManager.removeItem(at: URL(fileURLWithPath: destinationUrl.path))
         } catch {
-
+            
         }
         if fileManager.fileExists(atPath: destinationUrl.path) {
             print("File already exists [\(destinationUrl.path)]")
@@ -36,15 +36,15 @@ class FileDownloader {
             completion(destinationUrl.path, error)
         }
     }
-
+    
     static func loadFileAsync(url: URL, completion: @escaping (String?, Error?) -> ()) {
         let documentsUrl =  fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
-
+        
         let destinationUrl = documentsUrl.appendingPathComponent(url.lastPathComponent)
         do {
-       try  fileManager.removeItem(at: URL(fileURLWithPath: destinationUrl.path))
+            try  fileManager.removeItem(at: URL(fileURLWithPath: destinationUrl.path))
         } catch {
-
+            
         }
         if fileManager.fileExists(atPath: destinationUrl.path) {
             print("File already exists [\(destinationUrl.path)]")
@@ -78,8 +78,8 @@ class FileDownloader {
     }
 }
 
-func downloadtoHD(url: URL, completion: @escaping (String?, Error?) -> ()) {
-   
+func downloadtoHD(url: URL) async -> String? {
+    
     
     let destinationUrl = URL(fileURLWithPath: tmp + "/" + url.lastPathComponent)
     
@@ -90,31 +90,31 @@ func downloadtoHD(url: URL, completion: @escaping (String?, Error?) -> ()) {
     }
     if fileManager.fileExists(atPath: destinationUrl.path) {
         print("File already exists [\(destinationUrl.path)]")
-        completion(destinationUrl.path, nil)
+        return destinationUrl.path
+        
     } else {
         let session = URLSession(configuration: URLSessionConfiguration.default, delegate: nil, delegateQueue: nil)
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
-        let task = session.dataTask(with: request, completionHandler: {
-            data, response, error in
-            if error == nil {
-                if let response = response as? HTTPURLResponse {
-                    if response.statusCode == 200 {
-                        if let data = data {
-                            if let _ = try? data.write(to: destinationUrl, options: Data.WritingOptions.atomic) {
-                                completion(destinationUrl.path, error)
-                            } else {
-                                completion(destinationUrl.path, error)
-                            }
-                        } else {
-                            completion(destinationUrl.path, error)
-                        }
-                    }
-                }
+        
+        do {
+            let (data, response) = try await session.data(from: url)
+            
+            guard let response = response as? HTTPURLResponse else { return nil}
+            guard response.statusCode == 200 else {return nil}
+            
+            if let _ = try? data.write(to: destinationUrl, options: Data.WritingOptions.atomic) {
+                return (destinationUrl.path)
+                
             } else {
-                completion(destinationUrl.path, error)
+                return nil
             }
-        })
-        task.resume()
+        } catch {
+            return nil
+        }
+        
+        
+        
+        
     }
 }

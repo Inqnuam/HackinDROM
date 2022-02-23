@@ -10,50 +10,48 @@ import Foundation
 import Scout
 import Version
 
-func getDortConf()-> [DortaniaJSON] {
+func getDortConf() async throws -> [DortaniaJSON] {
     var allKexts: [DortaniaJSON] = []
-   
-    downloadtoHD(url: URL(string: "https://raw.githubusercontent.com/dortania/build-repo/builds/config.json")!) { (path, error) in
-        guard let path = path else { return }
+    
+    
+    do {
+        let path = await downloadtoHD(url: URL(string: "https://raw.githubusercontent.com/dortania/build-repo/builds/config.json")!)
+        guard let path = path else { return [] }
         
         let data = fileManager.contents(atPath: path)!
         
-       
+        let json = try PathExplorers.Json(data: data)
         
-        do {
-           
-            let json = try PathExplorers.Json(data: data)
-
-       
-           let keyList =  try json.get(.keysList).array(of: String.self)
+        
+        let keyList =  try json.get(.keysList).array(of: String.self)
+        
+        for k in keyList {
+            var element = DortaniaJSON()
             
-            for k in keyList {
-                var element = DortaniaJSON()
-                
-                element.name = k
-                do {
+            element.name = k
+            do {
                 element.type = try json.get([k, "type"]).string!
-                } catch {
-                    print(error)
-                }
-                do {
+            } catch {
+                print(error)
+            }
+            do {
                 element.versions = try json.get([k, "versions"]).array(of: DortaniaJSONVersions.self)
-                }
-                catch {
-                    print(error)
-                }
-              
-                allKexts.append(element)
+            }
+            catch {
+                print(error)
             }
             
-           
-        } catch {
-            print(error)
+            allKexts.append(element)
         }
+        
+        
+    } catch {
+        print(error)
     }
-   
+    
+    
     return allKexts
- 
+    
 }
 
 

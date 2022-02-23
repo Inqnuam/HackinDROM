@@ -11,7 +11,7 @@ import SwiftUI
 import Version
 struct ListView: View {
     
-    var EFI: EFI
+    @State var EFI: EFI
     var CurrentEFIIndex: Int
     @Binding var isCharging: Bool
     @EnvironmentObject var sharedData: HASharedData
@@ -25,7 +25,7 @@ struct ListView: View {
     @State var isShowingPopover:Bool = false
     @AppStorageCompat("BackUpsCustomFolder") var BackUpsCustomFolder = ""
     @AppStorageCompat("BackUpToFolder") var BackUpsToFolder = false
-    @State var isUpdating:Bool = false
+    
     @State var updatingColor: Color = .green
     @State var updatingPosition:Double = 0.0
     var body: some View {
@@ -145,23 +145,16 @@ struct ListView: View {
                 }
                 .contentShape(Rectangle())
                 .contextMenu(menuItems: {
-                    
-                    
-//                    if ismounted {
-//                        ForEach(EFI.plists, id:\.self) { plist in
-//
-//                            Button("Edit \(plist)") {
-//                                sharedData.ocTemplateName = ""
-//                                sharedData.savingFilePath = "\(EFI.mounted)/EFI/OC/\(plist)"
-//                                sharedData.currentview = 10
-//                            }
-//                        }
-//                        Button(isUpdating ? "Cancel" : "Update") {
-//                            withAnimation {
-//                            isUpdating.toggle()
-//                            }
-//                        }
-//                    }
+                    if ismounted && !EFI.plists.isEmpty {
+                         Button(EFI.isUpdating ? "Cancel" : "Update") {
+                            
+                            withAnimation {
+                               
+                                EFI.isUpdating.toggle()
+                            }
+                        }
+                        
+                    }
                     
                 })
                 .onTapGesture {
@@ -199,7 +192,7 @@ struct ListView: View {
                                     
                                 }
                             })
-                                .toolTip("Create a report Archive")
+                            .toolTip("Create a report Archive")
                             
                         }
                         Text("Unmount")
@@ -216,9 +209,6 @@ struct ListView: View {
                             .onTapGesture {
                                 self.isCharging = true
                                 EFI.unmount(false)
-                               // umount(EFI.location, false)
-                                
-                                // sharedData.EFIs[index].mounted = ""
                                 
                             }
                             .contextMenu(menuItems: {
@@ -355,7 +345,7 @@ struct ListView: View {
                             self.isCharging = false
                             
                         }
-                       
+                        
                         self.isCharging = false
                         
                     }
@@ -370,10 +360,12 @@ struct ListView: View {
                     hovered = false
                 }
             }
-//            if isUpdating {
-//                HDUpdateView(isUpdating: $isUpdating, updatingPosition: $updatingPosition, updatingColor: $updatingColor)
-//            }
-           
+            
+            // FIXME TEST
+            if EFI.isUpdating {
+                HDUpdateView(EFI: $EFI)
+            }
+            
         }
         
     }

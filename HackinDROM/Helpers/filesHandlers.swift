@@ -120,13 +120,13 @@ func FileUpload(_ filepath: String) -> String {
     return returnthis
 }
 
-func FileSelector(allowedFileTypes: [String], canCreateDirectories: Bool, canChooseFiles: Bool, canChooseDirectories: Bool ) -> String {
+func FileSelector(allowedFileTypes: [String], canCreateDirectories: Bool, canChooseFiles: Bool, canChooseDirectories: Bool, customTitle:String? = "Select a file" ) -> String {
     nc.post(name: Notification.Name("ClosePopover"), object: nil)
     var selectedfile  = ""
 
     let dialog = NSOpenPanel()
 
-    dialog.title                   = "Choose a file"
+    dialog.title                   = customTitle
     dialog.showsResizeIndicator    = true
     dialog.showsHiddenFiles        = false
     dialog.allowsMultipleSelection = false
@@ -243,6 +243,7 @@ func multiFileSelector(allowedFileTypes: [String]) -> [String] {
     return selectedfiles
 
 }
+
 func ImportFromFile(completion : @escaping (MyHackDataStrc)->()) {
 
     var PlatformInfo = MyHackDataStrc()

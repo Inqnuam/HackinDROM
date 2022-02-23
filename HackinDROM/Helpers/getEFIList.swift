@@ -2,10 +2,9 @@
 //  getEFIList.swift
 //  getEFIList
 //
-//  Created by lian on 13/08/2021.
-//  Copyright © 2021 Golden Chopper. All rights reserved.
+//  Created by Inqnuam on 13/08/2021.
+//  Copyright © 2021 HackitAll. All rights reserved.
 //
-
 import Foundation
 
 func getEFIList() -> [EFI] {

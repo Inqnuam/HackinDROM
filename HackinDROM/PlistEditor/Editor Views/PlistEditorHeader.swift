@@ -85,7 +85,7 @@ struct PlistEditorMainHeader: View {
                             
                             
                             Button("Save") {
-                                HAPlist.saveplist()
+                                let _ =    HAPlist.saveplist()
                             }
                         }
                         
@@ -97,7 +97,7 @@ struct PlistEditorMainHeader: View {
                                 
                                 if newDict != "nul" {
                                     
-                                    HAPlist.saveplist(newPath: newDict)
+                                    let _ =    HAPlist.saveplist(newPath: newDict)
                                 }
                                 
                             }
@@ -132,7 +132,7 @@ struct PlistEditorMainHeader: View {
                                 sharedData.ocTemplateName = ""
                                 sharedData.savingFilePath = FileSelector(allowedFileTypes: ["plist"], canCreateDirectories: false, canChooseFiles: true, canChooseDirectories: false)
                               
-                                HAPlist.loadPlist(filePath: sharedData.savingFilePath, isTemplate: false)
+                                let _ =   HAPlist.loadPlist(filePath: sharedData.savingFilePath, isTemplate: false)
                             }
                         }
                         
@@ -150,7 +150,7 @@ struct PlistEditorMainHeader: View {
                                         sharedData.ocTemplateName = "OpenCore \(ocv)"
                                         sharedData.savingFilePath = ""
                                       //  sharedData.loadPlist("\(tmp)/oct/s/\(ocv).plist")
-                                        HAPlist.loadPlist(filePath: "\(tmp)/oct/s/\(ocv).plist", isTemplate: true)
+                                        let _ =    HAPlist.loadPlist(filePath: "\(tmp)/oct/s/\(ocv).plist", isTemplate: true)
                                     }
                                 }
                                 

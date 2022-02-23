@@ -37,23 +37,35 @@ func shell(_ command: String, completionHandler: (_ result: String, _ error: Str
 
 }
 
-func HDUpdateLuncher(_ newVersion: String) {
-    SetNotif("📣❗️HackinDROM v\(newVersion)", "Please wait while updating...")
-    let apps: [AnyObject] = NSRunningApplication.runningApplications(withBundleIdentifier: "Inqnuam.HackinDROM")
-    let MyApp: [NSRunningApplication] = apps as! [NSRunningApplication]
+@discardableResult
+func shellAsync(_ command: String) async -> String {
     
-    let HDUpdater = Process()
-    HDUpdater.executableURL =  Bundle.main.url(forResource: "HDUpdater", withExtension: "")
-    HDUpdater.arguments = [String(MyApp[0].processIdentifier), newVersion]
+    // #FIXME Handle error
+    let task = Process()
+    let pipe = Pipe()
+    task.standardOutput = pipe
+    task.standardError = pipe
+    task.arguments = ["-c", command]
+    task.executableURL =  URL(fileURLWithPath: "/bin/zsh")
 
     do {
-        try HDUpdater.run()
-        print("is Running")
+        try task.run()
+       
     } catch {
         print(error)
     }
+    // task.
+
+    let data = pipe.fileHandleForReading.readDataToEndOfFile()
+
+    let output = String(data: data, encoding: .utf8) ?? ""
+
+   
+    return output.trimmingCharacters(in: .whitespacesAndNewlines)
 
 }
+
+
 
 func macserial(_ model: String) -> String {
     let task = Process()
@@ -235,8 +247,6 @@ func SetNotif(_ title: String, _ subtitle: String) {
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request)
 
-    
-
 }
 
 
@@ -245,6 +255,7 @@ struct GetState: Decodable {
     var active: Bool
     var status: String
 }
+
 func activate(id: String, active: Bool, type: String)  {
   
     var sendthis = active

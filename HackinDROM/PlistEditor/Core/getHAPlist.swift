@@ -11,32 +11,32 @@ import Foundation
 func getHAPlistFrom(_ FilePath: String, completion: @escaping(HAPlistStruct)->()) {
     var analyzedstruct = HAPlistStruct(name:"Root")
     if FilePath != "nul" {
-      //  var config:Data?
+        //  var config:Data?
         
-           let filesRawData = fileManager.contents(atPath: FilePath) ?? nil
+        let filesRawData = fileManager.contents(atPath: FilePath) ?? nil
         
         if filesRawData != nil {
-        do {
-            
-            let pListObject = try PropertyListSerialization.propertyList(from: filesRawData!, options: PropertyListSerialization.ReadOptions(), format: nil)
-            
-            
-            if let pListDict = pListObject as? [String: AnyObject] {
+            do {
+                
+                let pListObject = try PropertyListSerialization.propertyList(from: filesRawData!, options: PropertyListSerialization.ReadOptions(), format: nil)
                 
                 
+                if let pListDict = pListObject as? [String: AnyObject] {
+                    
+                    
+                    
+                    analyzedstruct = HAPlistConstructor(pListDict, HAPlistStruct(type:"dict"))
+                    completion(analyzedstruct)
+                    
+                    
+                }
                 
-                analyzedstruct = HAPlistConstructor(pListDict, HAPlistStruct(type:"dict"))
-                completion(analyzedstruct)
-                //dump(analyzedstruct)
+            } catch {
                 
+                print(error)
             }
             
-        } catch {
-            
-            print(error)
         }
-        
-    }
     }
     
 }
@@ -46,13 +46,22 @@ func HAPlistConstructor(_ item: [String: AnyObject], _ parent:HAPlistStruct) -> 
     
     var OCSecondChildItems = parent
     
+    // #FIXME: really ? :( a better implementation is needed
+    // use switch statement
+    // check by NS type value and not by string describing
+    // ex:
+    //    if MiniChild.value is String {
+    //        print(MiniChild.value, "is String")
+    //    }
+    
     
     for MiniChild in item {
         
         var MiniChilItem = HAPlistStruct()
         
+        
         let MiniChildType = String(describing: type(of: MiniChild.value) as Any)
-
+        
         MiniChilItem.name = MiniChild.key
         MiniChilItem.ParentName = parent.name.isEmpty ? parent.ParentName : parent.name
         
@@ -71,17 +80,12 @@ func HAPlistConstructor(_ item: [String: AnyObject], _ parent:HAPlistStruct) -> 
             
         } else if MiniChildType == "__NSCFData" {
             
-            
-            
             let DataRawValue = MiniChild.value as! Data
             MiniChilItem.StringValue = DataRawValue.hexEncodedString()
             MiniChilItem.type = "data"
             
         }
         else if MiniChildType == "__NSDictionaryM" || MiniChildType == "__NSDictionaryI" {
-            
-            
-            
             
             if let OCSecondChild = item[MiniChild.key] as? [String: AnyObject] {
                 MiniChilItem.type = "dict"
@@ -127,6 +131,6 @@ func HAPlistConstructor(_ item: [String: AnyObject], _ parent:HAPlistStruct) -> 
         
         
     }
-   
+    
     return OCSecondChildItems
 }

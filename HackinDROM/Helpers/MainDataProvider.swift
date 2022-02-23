@@ -14,6 +14,8 @@ import SwiftUI
 let fileManager = FileManager()
 let tmp = fileManager.temporaryDirectory.relativePath + "/HackinDROM"
 let procesinfo = ProcessInfo()
+let latestFolder = tmp + "/latest"
+let standaloneUpdateDir = tmp + "/standalone"
 
 class HASharedData: ObservableObject {
     @AppStorageCompat("CurrentUser") var CurrentUser = ""
@@ -72,29 +74,27 @@ class HASharedData: ObservableObject {
     @Published var initialEFIs: [EFI] = []
     let nvram = NVRAM()
     
-   
+    
     init() {
-        createDictFrom(HAPlistStruct())
+        
         
         do {
-           // try fileManager.createDirectory(atPath: tmp, withIntermediateDirectories: true, attributes: nil)
-            try fileManager.createDirectory(atPath: tmp+"/tmp", withIntermediateDirectories: true, attributes: nil)
-            dortConfig = getDortConf()
-        } catch {
            
+            try fileManager.createDirectory(atPath: tmp+"/tmp", withIntermediateDirectories: true, attributes: nil)
+            
+           
+        } catch {
+            
             print(error)
         }
         
-     
+        
         imOnline() { my in
             
             if my.online {
-                self.getOCLastSamples()
                 
-                if Version(self.CurrentBuildVersion)! < Version(my.version)! {
-                    
-                   // HDUpdateLuncher(my.version)
-                    self.newAppVersion = my.version
+                 if Version(self.CurrentBuildVersion)! < Version(my.version)! {
+                     self.newAppVersion = my.version
                     
                 } else {
                     self.GetAllBuildsAndConfigure()
@@ -123,8 +123,6 @@ class HASharedData: ObservableObject {
             }
         }
         
-        
-        
         do {
             MySystemsGPUs = try getGPUUsage()
             
@@ -140,364 +138,188 @@ class HASharedData: ObservableObject {
     
     
     func GetAllBuildsAndConfigure() {
-       
-            if fileManager.fileExists(atPath: tmp, isDirectory: nil) {
-                GetAllBuilds() { [self] Builds in
+        
+        if fileManager.fileExists(atPath: tmp, isDirectory: nil) {
+            GetAllBuilds() { [self] Builds in
+                
+                self.AllBuilds = Builds
+                
+                for IndeX in self.AllBuilds.indices {
                     
-                    self.AllBuilds = Builds
+                    self.AllBuilds[IndeX].configs.sort {
+                        $0.ocvs > $1.ocvs
+                    }
                     
                     
-                    
-                    for IndeX in self.AllBuilds.indices {
+                    if !self.vendors.contains(self.AllBuilds[IndeX].vendor) {
                         
-                        self.AllBuilds[IndeX].configs.sort {
-                            $0.ocvs > $1.ocvs
-                        }
-                        
-                        
-                        if !self.vendors.contains(self.AllBuilds[IndeX].vendor) {
+                        if  self.AllBuilds[IndeX].active {
                             
-                            if  self.AllBuilds[IndeX].active {
-                                
+                            self.vendors.append(self.AllBuilds[IndeX].vendor)
+                        } else {
+                            
+                            if self.AllBuilds[IndeX].leader.localizedCaseInsensitiveContains(self.ConnectedUser) {
                                 self.vendors.append(self.AllBuilds[IndeX].vendor)
-                            } else {
-                                
-                                if self.AllBuilds[IndeX].leader.localizedCaseInsensitiveContains(self.ConnectedUser) {
-                                    self.vendors.append(self.AllBuilds[IndeX].vendor)
-                                }
                             }
-                            
-                            
                         }
                         
-                        self.vendors.sort {
-                            $0 < $1
-                        }
                         
                     }
                     
-                    if let index = self.AllBuilds.firstIndex(where: {$0.active && $0.id == self.MyBuildID}) {
-                       
-                        self.CaseyLastestOCArchive = self.AllBuilds[index].latest.Archive
-                        let downloadlink =  self.AllBuilds[index].latest.Archive
-                        var configname = ""
+                    self.vendors.sort {
+                        $0 < $1
+                    }
+                    
+                }
+                
+                if let index = self.AllBuilds.firstIndex(where: {$0.active && $0.id == self.MyBuildID}) {
+                    
+                    self.CaseyLastestOCArchive = self.AllBuilds[index].latest.Archive
+                    let downloadlink =  self.AllBuilds[index].latest.Archive
+                    var configname = ""
+                    
+                    
+                    if self.GPU == 0 {
                         
-                      
-                        if self.GPU == 0 {
-                           
-                            if self.Wifi == 0 {
-                              
-                                if let index2 = self.AllBuilds[index].latest.AMDGPU.firstIndex(where: {$0.Name.contains("Broadcom")}) {
-                                   
-                                    configname =  self.AllBuilds[index].latest.AMDGPU[index2].link
-                                }
+                        if self.Wifi == 0 {
+                            
+                            if let index2 = self.AllBuilds[index].latest.AMDGPU.firstIndex(where: {$0.Name.contains("Broadcom")}) {
                                 
-                            } else {
-                              
-                                if let index2 = self.AllBuilds[index].latest.AMDGPU.firstIndex(where: {$0.Name.contains("Intel")}) {
-                                    
-                                    configname =  self.AllBuilds[index].latest.AMDGPU[index2].link
-                                }
+                                configname =  self.AllBuilds[index].latest.AMDGPU[index2].link
+                            }
+                            
+                        } else {
+                            
+                            if let index2 = self.AllBuilds[index].latest.AMDGPU.firstIndex(where: {$0.Name.contains("Intel")}) {
                                 
+                                configname =  self.AllBuilds[index].latest.AMDGPU[index2].link
+                            }
+                            
+                        }
+                        
+                    }
+                    else {
+                        
+                        if self.Wifi == 0 {
+                            
+                            if let index2 = self.AllBuilds[index].latest.IntelGPU.firstIndex(where: {$0.Name.contains("Broadcom")}) {
+                                
+                                configname =  self.AllBuilds[index].latest.IntelGPU[index2].link
                             }
                             
                         }
                         else {
-                           
-                            if self.Wifi == 0 {
-                               
-                                if let index2 = self.AllBuilds[index].latest.IntelGPU.firstIndex(where: {$0.Name.contains("Broadcom")}) {
-                                   
-                                    configname =  self.AllBuilds[index].latest.IntelGPU[index2].link
-                                }
+                            
+                            if let index2 = self.AllBuilds[index].latest.IntelGPU.firstIndex(where: {$0.Name.contains("Intel")}) {
                                 
+                                configname =  self.AllBuilds[index].latest.IntelGPU[index2].link
                             }
-                            else {
-                               
-                                if let index2 = self.AllBuilds[index].latest.IntelGPU.firstIndex(where: {$0.Name.contains("Intel")}) {
-                                   
-                                    configname =  self.AllBuilds[index].latest.IntelGPU[index2].link
-                                }
-                                
-                            }
-                        }
-                        
-                      
-                        if configname != "" && downloadlink != "nul" {
-                            
-                            self.OCv = self.AllBuilds[index].latest.ocvs
-                            
-                            
-                            
-                            let pathu = "\(tmp)/HDdefault.plist"
-                            shell("rm -rf '\(pathu)'") { result, error in
-                                
-                                shell("curl --silent 'https://hackindrom.zapto.org/app/public/uploads/\(downloadlink)'  -L -o '\(tmp)/\(downloadlink)'") { result, error in
-                                    
-                                    shell("rm -rf '\(tmp)/extracting'") { result, error in
-                                        
-                                        shell("unzip '\(tmp)/\(downloadlink)' -d '\(tmp)/extracting'") { result, error in
-                                            
-                                            var CaseysFolder = ""
-                                            CaseysFolder = try! fileManager.contentsOfDirectory(at: URL(fileURLWithPath: "\(tmp)/extracting"), includingPropertiesForKeys: nil, options: [.skipsHiddenFiles]).first!.lastPathComponent
-                                            
-                                            shell("mv '\(tmp)/extracting/\(CaseysFolder)/OC/\(configname)' '\(pathu)'") { _, error in
-                                                
-                                                self.CaseyLatestPlist = pathu
-                                                
-                                                getHAPlistFrom(self.CaseyLatestPlist) { cPlist in
-                                                    caseyPlist = cPlist
-                                                    CaseyDriversList = GetDrivers(cPlist, updateTo: self.OCv)
-                                                    CaseyKexts = GetKexts(cPlist)
-                                                    CaseyAMLs = GetAMLs(cPlist)
-                                                }
-                                                
-                                                do {
-                                                    // MyEFI folder's Kexts
-                                                    let FindKexts = try fileManager.contentsOfDirectory(at: URL(fileURLWithPath: "\(tmp)/extracting/\(CaseysFolder)/OC/Kexts/"), includingPropertiesForKeys: nil)
-                                                    
-                                                    let kexts =  FindKexts.filter { $0.pathExtension == "kext" }
-                                                    let FileNames = kexts.map { $0.deletingPathExtension().lastPathComponent }
-                                                    
-                                                    if FileNames.count > 0 {
-                                                        
-                                                        for KextName in FileNames {
-                                                            
-                                                            CaseyKextsList.append(KextStructs(name: KextName, LocalV: "nul", GitHubV: "nul", DownloadLink: "nul"))
-                                                            
-                                                        }
-                                                    }
-                                                } catch {
-                                                    
-                                                }
-                                                
-                                                shell("rm -rf '\(tmp)/extracting'") { result, error in
-                                                    
-                                                    shell("rm -rf '\(tmp)/\(downloadlink)'") { _, _ in
-                                                        
-                                                        if Version(self.OCv)! > Version(MyHackData.OCV)! && MyHackData.OCV != "0.0.0" {
-                                                            
-                                                            
-                                                            
-                                                            SetNotif("Update Available", "OpenCore \(self.OCv) is available!")
-                                                            
-                                                        }
-                                                    }
-                                                }
-                                                
-                                            }
-                                            
-                                        }
-                                        
-                                    }
-                                    
-                                }
-                                
-                            }
-                        } else {
-                            print("*0x45")
-                            self.OCv = "0.0.0"
                             
                         }
-                    } else {print("*0xFF")}
-                    
-                    self.AllBuilds.sort {
-                        $0.name < $1.name
                     }
-                }
-            }
-            
-        
-    }
-    
-    
-    
-    func getOCLastSamples() {
-      
-      
-            
-            var gitocvs = [""]
-            shell("curl --silent https://github.com/acidanthera/OpenCorePkg/releases.atom | grep '/releases/tag/' ") { ocs, _ in
-                gitocvs =  ocs.components(separatedBy: .newlines)
-              
-                
-                for (o, link) in gitocvs.enumerated() {
                     
-                    gitocvs[o] = link.slice(from: "/releases/tag/", to: "\"/>") ?? ""
-                   
-                }
-                gitocvs.sort { (a, b) -> Bool in
-                    a.compare(b, options: String.CompareOptions.numeric, range: nil, locale: nil) == .orderedDescending
-                }
-            }
-            if !fileManager.fileExists(atPath: tmp + "/oct") {
-                
-                do {
-                    try fileManager.createDirectory(atPath: tmp + "/oct/downloads", withIntermediateDirectories: true, attributes: nil)
-                    try fileManager.createDirectory(atPath: tmp + "/oct/s", withIntermediateDirectories: true, attributes: nil)
-                    try fileManager.createDirectory(atPath: tmp + "/oct/c", withIntermediateDirectories: true, attributes: nil)
                     
-                    for v in gitocvs {
+                    if configname != "" && downloadlink != "nul" {
                         
-                        if v != "" && v != "0.6.0" && v != "0.6.1" && v != "0.6.2" {
+                        self.OCv = self.AllBuilds[index].latest.ocvs
+                        
+                        
+                        
+                        let pathu = "\(tmp)/HDdefault.plist"
+                        shell("rm -rf '\(pathu)'") { result, error in
                             
-                            shell("curl --silent https://github.com/acidanthera/OpenCorePkg/releases/download/\(v)/OpenCore-\(v)-RELEASE.zip  -L -o '\(tmp)/oct/downloads/\(v).zip'") { download, _ in
+                            shell("curl --silent 'https://hackindrom.zapto.org/app/public/uploads/\(downloadlink)'  -L -o '\(tmp)/\(downloadlink)'") { result, error in
                                 
-                                do {
-                                    try Zip.unzipFile(URL(fileURLWithPath: "\(tmp)/oct/downloads/\(v).zip"), destination: URL(fileURLWithPath: "\(tmp)/oct/downloads/\(v)"), overwrite: true, password: nil, progress:  { completed in
+                                shell("rm -rf '\(tmp)/extracting'") { result, error in
+                                    
+                                    shell("unzip '\(tmp)/\(downloadlink)' -d '\(tmp)/extracting'") { result, error in
                                         
-                                        if completed == 1.0 {
+                                        var CaseysFolder = ""
+                                        CaseysFolder = try! fileManager.contentsOfDirectory(at: URL(fileURLWithPath: "\(tmp)/extracting"), includingPropertiesForKeys: nil, options: [.skipsHiddenFiles]).first!.lastPathComponent
+                                        
+                                        shell("mv '\(tmp)/extracting/\(CaseysFolder)/OC/\(configname)' '\(pathu)'") { _, error in
+                                            
+                                            self.CaseyLatestPlist = pathu
+                                            
+                                            getHAPlistFrom(self.CaseyLatestPlist) { cPlist in
+                                                self.caseyPlist = cPlist
+                                                self.CaseyDriversList = GetDrivers(cPlist, updateTo: self.OCv)
+                                                self.CaseyKexts = GetKexts(cPlist)
+                                                self.CaseyAMLs = GetAMLs(cPlist)
+                                            }
                                             
                                             do {
-                                                try fileManager.removeItem(atPath: "\(tmp)/oct/downloads/\(v).zip")
+                                                // MyEFI folder's Kexts
+                                                let FindKexts = try fileManager.contentsOfDirectory(at: URL(fileURLWithPath: "\(tmp)/extracting/\(CaseysFolder)/OC/Kexts/"), includingPropertiesForKeys: nil)
                                                 
-                                                try fileManager.moveItem(atPath: "\(tmp)/oct/downloads/\(v)/Docs/Sample.plist", toPath: "\(tmp)/oct/s/\(v).plist")
-                                                try fileManager.moveItem(atPath: "\(tmp)/oct/downloads/\(v)/Docs/SampleCustom.plist", toPath: "\(tmp)/oct/c/\(v).plist")
-                                                try fileManager.removeItem(atPath: "\(tmp)/oct/downloads/\(v)")
+                                                let kexts =  FindKexts.filter { $0.pathExtension == "kext" }
+                                                let FileNames = kexts.map { $0.deletingPathExtension().lastPathComponent }
                                                 
-                                                
-                                                // self.PlistData = fileManager.contents(atPath: "\(tmp)/oct/c/\(v).plist")!
-                                                getHAPlistFrom("\(tmp)/oct/c/\(v).plist") { expl in
-                                                   
+                                                if FileNames.count > 0 {
                                                     
-                                                    self.ocTemplatesHD.updateValue(expl, forKey: v)
-                                                    self.availableocts.append(v)
+                                                    for KextName in FileNames {
+                                                        
+                                                        CaseyKextsList.append(KextStructs(name: KextName, LocalV: "nul", GitHubV: "nul", DownloadLink: "nul"))
+                                                        
+                                                    }
                                                 }
-                                                
-                                                
-                                                
-                                                
                                             } catch {
-                                                print(error)
+                                                
                                             }
+                                            
+                                            shell("rm -rf '\(tmp)/extracting'") { result, error in
+                                                
+                                                shell("rm -rf '\(tmp)/\(downloadlink)'") { _, _ in
+                                                    
+                                                    if Version(self.OCv)! > Version(MyHackData.OCV)! && MyHackData.OCV != "0.0.0" {
+                                                        
+                                                        
+                                                        
+                                                        SetNotif("Update Available", "OpenCore \(self.OCv) is available!")
+                                                        
+                                                    }
+                                                }
+                                            }
+                                            
                                         }
                                         
-                                    })
-                                } catch {
-                                    print("unzipping error:", error)
-                                }
-                                
-                            }
-                        }
-                    }
-                    self.availableocts.sort { (a, b) -> Bool in
-                        a.compare(b, options: String.CompareOptions.numeric, range: nil, locale: nil) == .orderedDescending
-                    }
-                    
-                    
-                    
-                } catch {
-                    
-                    print(error)
-                }
-            } else {
-                do {
-                    
-                    
-                    let octs = try fileManager.contentsOfDirectory(at: URL(fileURLWithPath: tmp + "/oct/s"), includingPropertiesForKeys: nil, options: [.skipsHiddenFiles])
-                    if !octs.isEmpty {
-                        
-                        for v in octs {
-                            let vers = v.lastPathComponent.replacingOccurrences(of: ".plist", with: "")
-                            
-                            
-                            //  self.PlistData = fileManager.contents(atPath: "\(tmp)/oct/c/\(vers).plist")!
-                            getHAPlistFrom("\(tmp)/oct/c/\(vers).plist") { expl in
-                                
-                                
-                                self.ocTemplatesHD.updateValue(expl, forKey: vers)
-                                self.availableocts.append(vers)
-                            }
-                            
-                        }
-                        
-                        
-                        self.availableocts.sort { (a, b) -> Bool in
-                            a.compare(b, options: String.CompareOptions.numeric, range: nil, locale: nil) == .orderedDescending
-                        }
-                        
-                        
-                        
-                        if let first = self.availableocts.first {
-                            guard Version(first)! != Version(gitocvs.first!)  else {return}
-                            
-                            var vpatch = 0
-                            var vminor = 0
-                            var vmajor = 0
-                            
-                            var newVersion = "\(Version(first)!)"
-                            while Version(newVersion)! != Version(gitocvs.first!)! {
-                                if vpatch != 9 {
-                                    vpatch += 1
-                                } else {
-                                    vpatch = 0
-                                    if vminor != 9 {
-                                        vminor += 1
-                                    } else {
-                                        vminor = 0
-                                        vmajor += 1
-                                    }
-                                }
-                                
-                                newVersion = "\(Version(first)!.major).\(Version(first)!.minor + vminor).\(Version(first)!.patch + vpatch)"
-                                
-                                shell("curl --silent https://github.com/acidanthera/OpenCorePkg/releases/download/\(newVersion)/OpenCore-\(newVersion)-RELEASE.zip  -L -o '\(tmp)/oct/downloads/\(newVersion).zip'") { download, _ in
-                                    
-                                    do {
-                                        try Zip.unzipFile(URL(fileURLWithPath: "\(tmp)/oct/downloads/\(newVersion).zip"), destination: URL(fileURLWithPath: "\(tmp)/oct/downloads/\(newVersion)"), overwrite: true, password: nil, progress:  { completed in
-                                            
-                                            if completed == 1.0 {
-                                                
-                                                do {
-                                                    try fileManager.removeItem(atPath: "\(tmp)/oct/downloads/\(newVersion).zip")
-                                                    
-                                                    try fileManager.moveItem(atPath: "\(tmp)/oct/downloads/\(newVersion)/Docs/Sample.plist", toPath: "\(tmp)/oct/s/\(newVersion).plist")
-                                                    try fileManager.moveItem(atPath: "\(tmp)/oct/downloads/\(newVersion)/Docs/SampleCustom.plist", toPath: "\(tmp)/oct/c/\(newVersion).plist")
-                                                    try fileManager.removeItem(atPath: "\(tmp)/oct/downloads/\(newVersion)")
-                                                    
-                                                    
-                                                    
-                                                    // self.PlistData = fileManager.contents(atPath: "\(tmp)/oct/c/\(newVersion).plist")!
-                                                    getHAPlistFrom("\(tmp)/oct/c/\(newVersion).plist") { expl in
-                                                        
-                                                        
-                                                        self.ocTemplatesHD.updateValue(expl, forKey: newVersion)
-                                                        self.availableocts.insert(newVersion, at: 0)
-                                                    }
-                                                    
-                                                    
-                                                    
-                                                    
-                                                } catch {
-                                                    print(error)
-                                                }
-                                            }
-                                            
-                                        })
-                                    } catch {
-                                        print("unzipping error:", error)
                                     }
                                     
                                 }
                                 
-                                
                             }
                             
                         }
+                    } else {
+                        print("*0x45")
+                        self.OCv = "0.0.0"
                         
-                        //   Check if .first == github latest version if not then download every each version if possible
                     }
-                } catch {
-                    print(error)
+                } else {print("*0xFF")}
+                
+                self.AllBuilds.sort {
+                    $0.name < $1.name
                 }
             }
-            
+        }
         
         
     }
     
+    
+    
+    func getOCLastSamples() async {
+        let ocDir = latestFolder + "/oc"
+        if !fileManager.fileExists(atPath: ocDir) {
+            do {
+                try fileManager.createDirectory(atPath: ocDir, withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                print(error)
+            }
+        }
+      let _ =  await getLatestOCPath()
+    }
 }
-
 func currentOCv() -> String {
     var Getocv = nvram.GetOFVariable("4D1FDA02-38C7-4A6A-9CC6-4BCCA8B30102:opencore-version").slice(from: "-", to: "-") ?? "0.0.0"
     if Getocv != "0.0.0" {
@@ -524,26 +346,27 @@ let MyHackData = MyHackDataStrc(MLB: nvram.GetOFVariable("4D1EDE05-38C7-4A6A-9CC
 )
 
 
-func getLogicalCPUCount()-> String {
-    var totalCPUCores = ""
-    shell("sysctl hw.physicalcpu") { res, _ in
-        let stdOut = res.replace(string: "hw.physicalcpu: ", replacement: "")
-        
-        if stdOut == "6" {
-            totalCPUCores = "06"
-        } else  if stdOut == "8" {
-            totalCPUCores = "08"
-        } else if stdOut == "12" {
-            totalCPUCores = "0C"
-        } else  if stdOut == "16" {
-            totalCPUCores = "10"
-        } else  if stdOut == "32" {
-            totalCPUCores = "20"
-        } else {
-            totalCPUCores = "08"
-        }
-        
-    }
-    return totalCPUCores
-}
 
+@discardableResult
+func asyncUnzip (from: String, to: String) async -> String {
+    print("asyncUnzip", from, "to", to)
+    
+    return await shellAsync("unzip -o '\(from)' -d '\(to)'")
+    
+    
+//    do {
+//
+//        try Zip.unzipFile(URL(fileURLWithPath: from), destination: URL(fileURLWithPath: to), overwrite: true, password: nil, progress:  { completed in
+//
+//            if completed == 1.0 {
+//
+//                return
+//            }
+//
+//        })
+//    } catch let err {
+//
+//        print(err)
+//
+//    }
+}

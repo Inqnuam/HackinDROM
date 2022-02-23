@@ -88,6 +88,7 @@ extension String {
     }
     
     func removeWhitespace() -> String {
+       
         return self.replace(string: " ", replacement: "").trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
@@ -285,24 +286,27 @@ extension HAPlistStruct {
         return self.Childs.first(where: {$0.name == findingName}) ?? HAPlistStruct()
     }
     
+    
+   
     func get(_ values: [Any]) -> HAPlistStruct? {
-        
+     
         var foundElement:HAPlistStruct? = self
         for val in values {
             
-            let valType = String(describing: Swift.type(of: val ))
+            let valType = Swift.type(of: val )
             
-            if (valType == "String") {
+            if valType is String.Type {
                 if foundElement != nil {
                     if let gevor = foundElement!.Childs.first(where: {$0.name == val as! String}) {
                         foundElement = gevor
-                    }
+                    } else {return nil}
                 } else {return nil}
-            } else if valType == "Int" {
+                
+            } else if valType is Int.Type {
                 if foundElement != nil {
                     if  self.Childs.indices.contains(val as! Int) {
                         foundElement =  foundElement!.Childs[val as! Int]
-                    }
+                    } else {return nil}
                 } else {return nil}
             }
             
@@ -336,9 +340,11 @@ extension HAPlistStruct {
             }
             
         }
+        
         return indexs
     }
     
+    @discardableResult
     mutating func set(_ val:HAPlistStruct, to: [Any])-> Bool {
         var settingValue = val
         var indexs:[Int] = getHAPlistPath(from: to)
@@ -351,9 +357,56 @@ extension HAPlistStruct {
             }
             
             settingValue.ParentName = self[keyPath: settingPath].ParentName
+            
+            if settingValue.type.isEmpty {
+                settingValue.type = self[keyPath: settingPath].type
+            }
+            
+            if settingValue.name.isEmpty {
+                settingValue.name = self[keyPath: settingPath].name
+            }
             self[keyPath: settingPath] = settingValue
             return true
         } else {return false}
+    }
+    
+    
+    @discardableResult
+    mutating func remove(_ at: [Any]) -> Bool {
+        guard !at.isEmpty else {return false}
+        
+        let deletingValue = at.last!
+        var from = at
+        from = from.dropLast()
+        
+        var indexs:[Int] = getHAPlistPath(from: from)
+        
+        if !indexs.isEmpty {
+            var settingPath: WritableKeyPath = \HAPlistStruct.Childs[indexs[0]]
+            indexs.removeFirst()
+            for ind in indexs {
+                settingPath =  settingPath.appending(path: \.Childs[ind])
+            }
+            let valType =  Swift.type(of: deletingValue)
+            
+            if valType is String.Type {
+                if let foundIndex = self[keyPath: settingPath].Childs.firstIndex(where: {$0.name == deletingValue as! String}) {
+                    self[keyPath: settingPath].Childs.remove(at: foundIndex)
+                    return true
+                } else { return false }
+            }  else if valType is Int.Type {
+                if self[keyPath: settingPath].Childs.indices.contains(deletingValue as! Int) {
+                    self[keyPath: settingPath].Childs.remove(at: deletingValue as! Int)
+                    
+                    return true
+                } else { return false }
+            } else { return false }
+           
+           
+           
+        } else {return false}
+        
+       
     }
     
 }
@@ -456,18 +509,16 @@ extension Binding {
 
 
 func Base64toHex(_ dataString: String) -> String {
-    var returnthis = ""
+    var returningValue = ""
     
     if let nsdata1 = Data(base64Encoded: dataString, options: NSData.Base64DecodingOptions.ignoreUnknownCharacters) {
-        
         let arr2 = nsdata1.withUnsafeBytes {
             Array(UnsafeBufferPointer<UInt8>(start: $0, count: nsdata1.count/MemoryLayout<UInt8>.size))
-            
         }
         
-        returnthis =  arr2.bytesToHex(spacing: "")
+        returningValue =  arr2.bytesToHex(spacing: "")
     }
-    return returnthis
+    return returningValue
 }
 
 

@@ -14,7 +14,7 @@ import UserNotifications
 import Version
 //@NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    @ObservedObject var sharedData = HASharedData()
+    @ObservedObject var sharedData: HASharedData = HASharedData()
     var statusBar: StatusBarController?
     var popover: NSPopover = {
         let popover = NSPopover()
@@ -24,10 +24,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         popover.contentViewController?.view.window?.makeKey()
         return popover
     }()
-   
+    
+    
     let queue = DispatchQueue(label: "Arbitration")
     var matching: CFDictionary?
     static var mount: Bool = true
+    
     
     func register() {
         DARegisterDiskPeekCallback(session!, self.matching, 0, diskAppeard, nil)
@@ -41,24 +43,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Unregister callback
     }
     func applicationDidFinishLaunching(_ aNotification: Notification)   {
-        
         self.register()
         DASessionSetDispatchQueue(session!, queue)
         
         
-         if sharedData.FirstOpen {
+        if sharedData.FirstOpen {
             
-            UNUserNotificationCenter.current().getNotificationSettings(){ (settings) in
-                
+            Task {
+                let notifCenter = UNUserNotificationCenter.current()
+                let settings =  await notifCenter.notificationSettings()
+                print(settings)
+                let authorizationOptions: UNAuthorizationOptions = [.alert, .sound, .badge]
                 if settings.authorizationStatus != .authorized {
-                    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
-                        if success {
-                            // print("All set!")
-                        } else if let error = error {
-                            print(error.localizedDescription)
-                        }
-                        
+                    let authorizationGranted = try await notifCenter.requestAuthorization(options: authorizationOptions)
+                    if authorizationGranted {
+                        print("All set!")
                     }
+                    
+                    
                 }
             }
             
@@ -73,9 +75,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // as SwiftUI isn't very stable i'm going to try to switch to AppKit (without StoryBoard),
         // also the app will be compatible with older versions of macOS too
         // Uncomment next line to see AppKit side progress
-      //  self.popover.contentViewController = PopoverContentController(sharedData: sharedData)
-       // self.popover.contentViewController?.view.window?.level = NSWindow.Level(rawValue: 16)
-       
+        //  self.popover.contentViewController = PopoverContentController(sharedData: sharedData)
+        // self.popover.contentViewController?.view.window?.level = NSWindow.Level(rawValue: 16)
+        
         NSWorkspace.shared.notificationCenter.addObserver(
             self,
             selector: #selector(self.ChangePopoversScreen),
@@ -86,48 +88,49 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSApplication.shared.setActivationPolicy(.accessory)
         nc.addObserver(self, selector: #selector(self.OpenPopover(_:)), name: NSNotification.Name(rawValue: "OpenPopover"), object: nil)
         nc.addObserver(self, selector: #selector(self.ClosePopover(_:)), name: NSNotification.Name(rawValue: "ClosePopover"), object: nil)
-       
         
         self.statusBar = StatusBarController(self.popover)
-        self.sharedData.getOCLastSamples()
-        
+        Task {
+            await self.sharedData.getOCLastSamples()
+        }
+         
     }
     
     func application(_ sender: NSApplication, openFile filename: String, open url: URL) -> Bool {
         
-//        if !sharedData.isSaved {
-//            sharedData.editorIsAlerting = true
-//            return false
-//        } else {
-//            sharedData.isShowingSheet = false
-//            sharedData.ocTemplateName = ""
-//            sharedData.savingFilePath = filename
-//            if sharedData.currentview == 10 {
-//                nc.post(name: Notification.Name("loadplist"), object: nil)
-//
-//            } else {
-//                sharedData.currentview = 10
-//            }
-//            if !self.popover.isShown {
-//                nc.post(name: Notification.Name("OpenPopover"), object: nil)
-//            }
-//            return URL(fileURLWithPath: filename).pathExtension == "plist" ? true : false
-//        }
+        //        if !sharedData.isSaved {
+        //            sharedData.editorIsAlerting = true
+        //            return false
+        //        } else {
+        //            sharedData.isShowingSheet = false
+        //            sharedData.ocTemplateName = ""
+        //            sharedData.savingFilePath = filename
+        //            if sharedData.currentview == 10 {
+        //                nc.post(name: Notification.Name("loadplist"), object: nil)
+        //
+        //            } else {
+        //                sharedData.currentview = 10
+        //            }
+        //            if !self.popover.isShown {
+        //                nc.post(name: Notification.Name("OpenPopover"), object: nil)
+        //            }
+        //            return URL(fileURLWithPath: filename).pathExtension == "plist" ? true : false
+        //        }
         
         // Process the URL.
         print(url)
-            guard let components = NSURLComponents(url: url, resolvingAgainstBaseURL: true),
-                let urlPath = components.path,
-                let params = components.queryItems else {
-                    print("Invalid URL or album path missing")
-                    return false
-            }
-                
-                print("urlPath", urlPath)
-                print("params", params)
-                return true
-                
-            
+        guard let components = NSURLComponents(url: url, resolvingAgainstBaseURL: true),
+              let urlPath = components.path,
+              let params = components.queryItems else {
+                  print("Invalid URL or album path missing")
+                  return false
+              }
+        
+        print("urlPath", urlPath)
+        print("params", params)
+        return true
+        
+        
         
     }
     
@@ -168,15 +171,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
     }
     @objc func ChangePopoversScreen(_ notification: Notification) {
-       
+        
         if popover.isShown {
-           // popover.close()
+            // popover.close()
             showPO()
         }
         
     }
-   
-   
+    
+    
 }
 
 

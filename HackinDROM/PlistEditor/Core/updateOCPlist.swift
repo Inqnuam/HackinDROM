@@ -14,6 +14,9 @@ func updateOCPlist(_ reference: HAPlistStruct, _ findIn: HAPlistStruct) -> HAPli
     
     if reference.type == "string" || reference.type == "bool" || reference.type == "int" || reference.type == "data" {
         
+        
+        
+        
         if reference.type == findIn.type {
             
             returningItem = findIn
@@ -21,14 +24,16 @@ func updateOCPlist(_ reference: HAPlistStruct, _ findIn: HAPlistStruct) -> HAPli
             // If possible check authorized values in OC documentation -> failsafe value is used when old value isnt supported anymore
         } else {
             returningItem = reference
-            
-            // Not sur about next 2 lines
-            returningItem.StringValue = ""
-            returningItem.BoolValue = false
+  
         }
         
         if returningItem.name == "Comment" {
             returningItem.StringValue.removeAll(where: {$0.asciiValue == nil})
+        }
+        
+        if returningItem.type == "string" && (returningItem.name == "Path" || returningItem.name == "BundlePath") {
+            
+            returningItem.StringValue = returningItem.StringValue.removeWhitespace().replacingOccurrences(of: ",", with: "_")
         }
         
     }
@@ -39,10 +44,15 @@ func updateOCPlist(_ reference: HAPlistStruct, _ findIn: HAPlistStruct) -> HAPli
         returningItem.ParentName = findIn.ParentName
         
         
-        
-        if (returningItem.name == "Add" || returningItem.name == "Delete") && returningItem.ParentName == "DeviceProperties" {
+        if returningItem.ParentName == "DeviceProperties" && (returningItem.name == "Add" || returningItem.name == "Delete") {
             returningItem.Childs = findIn.Childs
-        } else  if (returningItem.name == "Add" || returningItem.name == "Delete" || returningItem.name == "LegacySchema") && returningItem.ParentName == "NVRAM" {
+            
+            // fix borked PCI path error
+            for (ind, itm) in returningItem.Childs.enumerated() {
+              returningItem.Childs[ind].name = itm.name.removeWhitespace()
+              
+            }
+        } else  if returningItem.ParentName == "NVRAM" && (returningItem.name == "Add" || returningItem.name == "Delete" || returningItem.name == "LegacySchema") {
             returningItem.Childs = findIn.Childs
         }
         else {
@@ -77,18 +87,50 @@ func updateOCPlist(_ reference: HAPlistStruct, _ findIn: HAPlistStruct) -> HAPli
             
             // Trying to create Template from Reference file
             let template = reference.Childs.isEmpty ? HAPlistStruct() : reference.Childs.first!
-                      
+            
             for item in findIn.Childs {
                 if template.type.isEmpty {
                     returningItem.Childs.append(item)
                 } else {
-                    returningItem.Childs.append(updateOCPlist(template, item))
+                    
+                    if template.ParentName == "Drivers" && item.type == "string" {
+                        
+                        let newDriverStruct =  generateNewDriverStructType(template: template, driverPath: item.StringValue)
+                        returningItem.Childs.append(newDriverStruct)
+                        
+                        
+                        
+                    } else {
+                        returningItem.Childs.append(updateOCPlist(template, item))
+                    }
+                    
+                    
                 }
- 
+                
             }
         }
         
     }
     
     return returningItem
+}
+
+func generateNewDriverStructType(template: HAPlistStruct, driverPath: String)-> HAPlistStruct {
+    var cleanedDriverTemplate = cleanHAPlistStruct(template)
+    
+    if let foundPathIndex = cleanedDriverTemplate.Childs.firstIndex(where: {$0.name == "Path"}) {
+        
+        cleanedDriverTemplate.Childs[foundPathIndex].StringValue = driverPath.replacingOccurrences(of: "#", with: "")
+    }
+    
+    
+    
+    if let foundEnabledIndex = cleanedDriverTemplate.Childs.firstIndex(where: {$0.name == "Enabled"}) {
+        
+        cleanedDriverTemplate.Childs[foundEnabledIndex].BoolValue = driverPath.hasPrefix("#") ? false : true
+    }
+    
+    
+    
+    return cleanedDriverTemplate
 }

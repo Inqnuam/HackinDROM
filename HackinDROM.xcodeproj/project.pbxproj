@@ -14,11 +14,34 @@
 		8C0B135E276A8235009715E9 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0B135D276A8235009715E9 /* main.swift */; };
 		8C0B1361276A8457009715E9 /* PopoverContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0B1360276A8457009715E9 /* PopoverContentController.swift */; };
 		8C1A0CD325D17ABA00D3D85D /* Scout in Frameworks */ = {isa = PBXBuildFile; productRef = 8C1A0CD225D17ABA00D3D85D /* Scout */; };
+		8C1BBA0D27C39ECE00042A45 /* switchs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA0C27C39ECE00042A45 /* switchs.swift */; };
+		8C1BBA0F27C3A01300042A45 /* getLatestKextPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA0E27C3A01300042A45 /* getLatestKextPath.swift */; };
+		8C1BBA1127C3A0BE00042A45 /* getLatestOCPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA1027C3A0BE00042A45 /* getLatestOCPath.swift */; };
+		8C1BBA1427C3A14A00042A45 /* cleandownloadedDir.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA1327C3A14A00042A45 /* cleandownloadedDir.swift */; };
+		8C1BBA1627C3B33900042A45 /* shouldUpdateLocalKext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA1527C3B33900042A45 /* shouldUpdateLocalKext.swift */; };
+		8C1BBA1827C3B3A800042A45 /* getRepoName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA1727C3B3A800042A45 /* getRepoName.swift */; };
+		8C1BBA1A27C3B54200042A45 /* standaloneUpdateKexts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA1927C3B54200042A45 /* standaloneUpdateKexts.swift */; };
+		8C1BBA1C27C3B5BE00042A45 /* findLatestKext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA1B27C3B5BE00042A45 /* findLatestKext.swift */; };
+		8C1BBA1F27C4191000042A45 /* standaloneUpdateDrivers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA1E27C4191000042A45 /* standaloneUpdateDrivers.swift */; };
+		8C1BBA2127C43BEA00042A45 /* getDriverDownloadLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA2027C43BEA00042A45 /* getDriverDownloadLink.swift */; };
+		8C1BBA2327C43C0C00042A45 /* downloadDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA2227C43C0C00042A45 /* downloadDriver.swift */; };
+		8C1BBA2527C43C2E00042A45 /* findDriverPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA2427C43C2E00042A45 /* findDriverPath.swift */; };
+		8C1BBA2827C43EF100042A45 /* standaloneUpdateResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA2727C43EF100042A45 /* standaloneUpdateResources.swift */; };
+		8C1BBA2A27C4C32D00042A45 /* standaloneToolsUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA2927C4C32D00042A45 /* standaloneToolsUpdater.swift */; };
+		8C1BBA2C27C4C74000042A45 /* cleanDir.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA2B27C4C74000042A45 /* cleanDir.swift */; };
+		8C1BBA2E27C4CA7E00042A45 /* copyMissingFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA2D27C4CA7E00042A45 /* copyMissingFiles.swift */; };
 		8C1D098925D28751003CE546 /* ACPIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1D098825D28751003CE546 /* ACPIView.swift */; };
 		8C2827B225CB736600CF0D82 /* DiskAtrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2827B125CB736600CF0D82 /* DiskAtrib.swift */; };
 		8C310C3B25F2E38F0054D93D /* ChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C310C3A25F2E38F0054D93D /* ChartsView.swift */; };
 		8C3393FA2623B59800CFA8BB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3393F92623B59800CFA8BB /* Extensions.swift */; };
 		8C3B19FC25DAB97300039267 /* DriversView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3B19FB25DAB97300039267 /* DriversView.swift */; };
+		8C4647D727C682430007E1BF /* additionalOCFixes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4647D627C682430007E1BF /* additionalOCFixes.swift */; };
+		8C4647D927C682760007E1BF /* asyncZip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4647D827C682760007E1BF /* asyncZip.swift */; };
+		8C4647DB27C682AD0007E1BF /* renameFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4647DA27C682AD0007E1BF /* renameFile.swift */; };
+		8C4647DD27C682CA0007E1BF /* backupEFI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4647DC27C682CA0007E1BF /* backupEFI.swift */; };
+		8C4647DF27C682E10007E1BF /* updateEFI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4647DE27C682E10007E1BF /* updateEFI.swift */; };
+		8C4EACF927C10A1600E7DCC4 /* AMDCoresCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4EACF827C10A1600E7DCC4 /* AMDCoresCount.swift */; };
+		8C4EACFC27C1394500E7DCC4 /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8C4EACFB27C1394500E7DCC4 /* FeedKit */; };
 		8C51A01625CECEE2009C9AE2 /* func.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C51A01525CECEE2009C9AE2 /* func.swift */; };
 		8C54539426CD02C2003FD811 /* HAPlistContentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C54539326CD02C2003FD811 /* HAPlistContentHandler.swift */; };
 		8C54539626CD115F003FD811 /* PlistEditorHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C54539526CD115F003FD811 /* PlistEditorHeader.swift */; };
@@ -104,12 +127,34 @@
 		8C0B135B276A80F0009715E9 /* EFI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFI.swift; sourceTree = "<group>"; };
 		8C0B135D276A8235009715E9 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		8C0B1360276A8457009715E9 /* PopoverContentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverContentController.swift; sourceTree = "<group>"; };
+		8C1BBA0C27C39ECE00042A45 /* switchs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = switchs.swift; sourceTree = "<group>"; };
+		8C1BBA0E27C3A01300042A45 /* getLatestKextPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getLatestKextPath.swift; sourceTree = "<group>"; };
+		8C1BBA1027C3A0BE00042A45 /* getLatestOCPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getLatestOCPath.swift; sourceTree = "<group>"; };
+		8C1BBA1327C3A14A00042A45 /* cleandownloadedDir.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cleandownloadedDir.swift; sourceTree = "<group>"; };
+		8C1BBA1527C3B33900042A45 /* shouldUpdateLocalKext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shouldUpdateLocalKext.swift; sourceTree = "<group>"; };
+		8C1BBA1727C3B3A800042A45 /* getRepoName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getRepoName.swift; sourceTree = "<group>"; };
+		8C1BBA1927C3B54200042A45 /* standaloneUpdateKexts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = standaloneUpdateKexts.swift; sourceTree = "<group>"; };
+		8C1BBA1B27C3B5BE00042A45 /* findLatestKext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = findLatestKext.swift; sourceTree = "<group>"; };
+		8C1BBA1E27C4191000042A45 /* standaloneUpdateDrivers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = standaloneUpdateDrivers.swift; sourceTree = "<group>"; };
+		8C1BBA2027C43BEA00042A45 /* getDriverDownloadLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getDriverDownloadLink.swift; sourceTree = "<group>"; };
+		8C1BBA2227C43C0C00042A45 /* downloadDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = downloadDriver.swift; sourceTree = "<group>"; };
+		8C1BBA2427C43C2E00042A45 /* findDriverPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = findDriverPath.swift; sourceTree = "<group>"; };
+		8C1BBA2727C43EF100042A45 /* standaloneUpdateResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = standaloneUpdateResources.swift; sourceTree = "<group>"; };
+		8C1BBA2927C4C32D00042A45 /* standaloneToolsUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = standaloneToolsUpdater.swift; sourceTree = "<group>"; };
+		8C1BBA2B27C4C74000042A45 /* cleanDir.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cleanDir.swift; sourceTree = "<group>"; };
+		8C1BBA2D27C4CA7E00042A45 /* copyMissingFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = copyMissingFiles.swift; sourceTree = "<group>"; };
 		8C1D098825D28751003CE546 /* ACPIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPIView.swift; sourceTree = "<group>"; };
 		8C20B619262AD8D300354B86 /* HackinDROMRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HackinDROMRelease.entitlements; sourceTree = "<group>"; };
 		8C2827B125CB736600CF0D82 /* DiskAtrib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskAtrib.swift; sourceTree = "<group>"; };
 		8C310C3A25F2E38F0054D93D /* ChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsView.swift; sourceTree = "<group>"; };
 		8C3393F92623B59800CFA8BB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		8C3B19FB25DAB97300039267 /* DriversView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriversView.swift; sourceTree = "<group>"; };
+		8C4647D627C682430007E1BF /* additionalOCFixes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = additionalOCFixes.swift; sourceTree = "<group>"; };
+		8C4647D827C682760007E1BF /* asyncZip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = asyncZip.swift; sourceTree = "<group>"; };
+		8C4647DA27C682AD0007E1BF /* renameFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = renameFile.swift; sourceTree = "<group>"; };
+		8C4647DC27C682CA0007E1BF /* backupEFI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = backupEFI.swift; sourceTree = "<group>"; };
+		8C4647DE27C682E10007E1BF /* updateEFI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = updateEFI.swift; sourceTree = "<group>"; };
+		8C4EACF827C10A1600E7DCC4 /* AMDCoresCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMDCoresCount.swift; sourceTree = "<group>"; };
 		8C51A01525CECEE2009C9AE2 /* func.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = func.swift; sourceTree = "<group>"; };
 		8C54539326CD02C2003FD811 /* HAPlistContentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HAPlistContentHandler.swift; sourceTree = "<group>"; };
 		8C54539526CD115F003FD811 /* PlistEditorHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlistEditorHeader.swift; sourceTree = "<group>"; };
@@ -180,6 +225,7 @@
 				8CD5E6112627D26600B0395B /* AuthenticationServices.framework in Frameworks */,
 				8C79122326586C2700C29FE6 /* Version in Frameworks */,
 				8C8EB29F25C9DDFE005E9332 /* LaunchAtLogin in Frameworks */,
+				8C4EACFC27C1394500E7DCC4 /* FeedKit in Frameworks */,
 				8CF9ED7325E722A000CAB276 /* Introspect in Frameworks */,
 				8CEEE90D25EDB2D100921AA4 /* Zip in Frameworks */,
 				8C57885B26CC3F9900F877AA /* ExyteGrid in Frameworks */,
@@ -239,12 +285,62 @@
 			path = PlistEditor;
 			sourceTree = "<group>";
 		};
+		8C1BBA0B27C39EBD00042A45 /* KextsUpdater */ = {
+			isa = PBXGroup;
+			children = (
+				8C1BBA0C27C39ECE00042A45 /* switchs.swift */,
+				8C1BBA0E27C3A01300042A45 /* getLatestKextPath.swift */,
+				8C1BBA1527C3B33900042A45 /* shouldUpdateLocalKext.swift */,
+				8C1BBA1727C3B3A800042A45 /* getRepoName.swift */,
+				8C1BBA1927C3B54200042A45 /* standaloneUpdateKexts.swift */,
+				8C1BBA1B27C3B5BE00042A45 /* findLatestKext.swift */,
+			);
+			path = KextsUpdater;
+			sourceTree = "<group>";
+		};
+		8C1BBA1227C3A0E600042A45 /* StandaloneUpdater */ = {
+			isa = PBXGroup;
+			children = (
+				8C4647D527C682260007E1BF /* Tools */,
+				8C1BBA1027C3A0BE00042A45 /* getLatestOCPath.swift */,
+				8C1BBA1327C3A14A00042A45 /* cleandownloadedDir.swift */,
+				8C1BBA2727C43EF100042A45 /* standaloneUpdateResources.swift */,
+				8C1BBA2927C4C32D00042A45 /* standaloneToolsUpdater.swift */,
+				8C1BBA0B27C39EBD00042A45 /* KextsUpdater */,
+				8C1BBA1D27C4099700042A45 /* DriversUpdater */,
+			);
+			path = StandaloneUpdater;
+			sourceTree = "<group>";
+		};
+		8C1BBA1D27C4099700042A45 /* DriversUpdater */ = {
+			isa = PBXGroup;
+			children = (
+				8C1BBA1E27C4191000042A45 /* standaloneUpdateDrivers.swift */,
+				8C1BBA2027C43BEA00042A45 /* getDriverDownloadLink.swift */,
+				8C1BBA2227C43C0C00042A45 /* downloadDriver.swift */,
+				8C1BBA2427C43C2E00042A45 /* findDriverPath.swift */,
+			);
+			path = DriversUpdater;
+			sourceTree = "<group>";
+		};
 		8C310C3C25F37CFB0054D93D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				8CD5E60F2627CFCB00B0395B /* AuthenticationServices.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8C4647D527C682260007E1BF /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				8C4647D627C682430007E1BF /* additionalOCFixes.swift */,
+				8C4647DE27C682E10007E1BF /* updateEFI.swift */,
+				8C4647D827C682760007E1BF /* asyncZip.swift */,
+				8C4647DA27C682AD0007E1BF /* renameFile.swift */,
+				8C4647DC27C682CA0007E1BF /* backupEFI.swift */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		8C5F6C5326C1CE5B009F1BCC /* Main View */ = {
@@ -323,6 +419,7 @@
 				A70B6233237AF87000A2BA73 /* AppDelegate.swift */,
 				8C0B135D276A8235009715E9 /* main.swift */,
 				8C0DFFE52631707F00E94142 /* PlistEditor */,
+				8C1BBA1227C3A0E600042A45 /* StandaloneUpdater */,
 				A70B6249237B000700A2BA73 /* Helpers */,
 				A70B6253237B081200A2BA73 /* Views */,
 				A70B623F237AF87700A2BA73 /* Info.plist */,
@@ -364,12 +461,15 @@
 				8C989F99265DB90500B798B5 /* BluetoothDevices.swift */,
 				8CEC523B269F344000851D15 /* DortaniaJSON.swift */,
 				8C097A4426C6058A001A4378 /* filesHandlers.swift */,
+				8C4EACF827C10A1600E7DCC4 /* AMDCoresCount.swift */,
 				8CB1783C26C6DAD30014A179 /* DiskMounter.h */,
 				8CB1783A26C6D9160014A179 /* DiskMounter.m */,
 				8CB1783E26C6DC7E0014A179 /* Authorization.h */,
 				8CB1784026C6DD020014A179 /* Authorization.m */,
 				8CB1783926C6D9150014A179 /* HackinDROM-Bridging-Header.h */,
 				8CC005E5270F4DDB00A21669 /* IndexedCollection.swift */,
+				8C1BBA2B27C4C74000042A45 /* cleanDir.swift */,
+				8C1BBA2D27C4CA7E00042A45 /* copyMissingFiles.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -413,6 +513,7 @@
 				8CEEE90C25EDB2D100921AA4 /* Zip */,
 				8C79122226586C2700C29FE6 /* Version */,
 				8C57885A26CC3F9900F877AA /* ExyteGrid */,
+				8C4EACFB27C1394500E7DCC4 /* FeedKit */,
 			);
 			productName = Ambar;
 			productReference = A70B6230237AF87000A2BA73 /* HackinDROM.app */;
@@ -450,6 +551,7 @@
 				8CEEE90B25EDB2D100921AA4 /* XCRemoteSwiftPackageReference "Zip" */,
 				8C79122126586C2700C29FE6 /* XCRemoteSwiftPackageReference "Version" */,
 				8C57885926CC3F9900F877AA /* XCRemoteSwiftPackageReference "Grid" */,
+				8C4EACFA27C1394500E7DCC4 /* XCRemoteSwiftPackageReference "FeedKit" */,
 			);
 			productRefGroup = A70B6231237AF87000A2BA73 /* Products */;
 			projectDirPath = "";
@@ -500,22 +602,31 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CA272E6263E1A0100B5F402 /* HAPlist.swift in Sources */,
+				8C1BBA1A27C3B54200042A45 /* standaloneUpdateKexts.swift in Sources */,
+				8C1BBA2127C43BEA00042A45 /* getDriverDownloadLink.swift in Sources */,
 				8C70956625E52CAE007C08DC /* LeaderStartView.swift in Sources */,
 				8CBE18682687BDDE00085EEA /* AppKitTest.swift in Sources */,
 				8CB1784926C71DF40014A179 /* getEFIList.swift in Sources */,
 				8CDD37B2262D671600387608 /* structs.swift in Sources */,
+				8C4647DD27C682CA0007E1BF /* backupEFI.swift in Sources */,
+				8C1BBA2327C43C0C00042A45 /* downloadDriver.swift in Sources */,
 				8CF043AA25D055E30090C41F /* GitHub.swift in Sources */,
 				A70B6236237AF87000A2BA73 /* ContentView.swift in Sources */,
 				8C51A01625CECEE2009C9AE2 /* func.swift in Sources */,
+				8C1BBA1F27C4191000042A45 /* standaloneUpdateDrivers.swift in Sources */,
 				8CEC523C269F344000851D15 /* DortaniaJSON.swift in Sources */,
 				8C54539626CD115F003FD811 /* PlistEditorHeader.swift in Sources */,
 				8C8AF5AF25CD56EB003A10DD /* ViewsDispatcher.swift in Sources */,
 				8C3393FA2623B59800CFA8BB /* Extensions.swift in Sources */,
 				8C97CD9625CA244700B6DE00 /* MainDataProvider.swift in Sources */,
+				8C1BBA1127C3A0BE00042A45 /* getLatestOCPath.swift in Sources */,
 				8C70956A25E53E30007C08DC /* LoginView.swift in Sources */,
+				8C1BBA2E27C4CA7E00042A45 /* copyMissingFiles.swift in Sources */,
 				8CF2D80F264392C10078B287 /* ArrayDictView.swift in Sources */,
 				8CCEED0F263D660000D10B0B /* BoolListView.swift in Sources */,
+				8C1BBA1C27C3B5BE00042A45 /* findLatestKext.swift in Sources */,
 				8CC005E6270F4DDB00A21669 /* IndexedCollection.swift in Sources */,
+				8C1BBA1427C3A14A00042A45 /* cleandownloadedDir.swift in Sources */,
 				8C70956825E52E05007C08DC /* BuildDetailView.swift in Sources */,
 				8C89FC042623347D00C0C69E /* ListView.swift in Sources */,
 				8CEE31E8263ACBE900881FCB /* PlistEditorSectionView.swift in Sources */,
@@ -526,13 +637,16 @@
 				8C0B135C276A80F0009715E9 /* EFI.swift in Sources */,
 				8C83F4AA2655C93000DBDD3B /* TagCloudView.swift in Sources */,
 				8CB1784526C712590014A179 /* updateOCPlist.swift in Sources */,
+				8C1BBA0D27C39ECE00042A45 /* switchs.swift in Sources */,
 				8C1D098925D28751003CE546 /* ACPIView.swift in Sources */,
 				8C8AF5B225CD6F03003A10DD /* SystemInfo.swift in Sources */,
+				8C1BBA2A27C4C32D00042A45 /* standaloneToolsUpdater.swift in Sources */,
 				8C0B135E276A8235009715E9 /* main.swift in Sources */,
 				8CF1ADFE25FB92DB003E89F3 /* SheetView.swift in Sources */,
 				8CAC9289276B61F400916A94 /* TopToolbarView.swift in Sources */,
 				A70B624C237B003900A2BA73 /* StatusBarController.swift in Sources */,
 				8C5ED1CA26597884003A6226 /* testingFunc.swift in Sources */,
+				8C1BBA2C27C4C74000042A45 /* cleanDir.swift in Sources */,
 				8CEA92E9264B525C00C9082E /* ArrayStringView.swift in Sources */,
 				8CEA92E7264AA21300C9082E /* DictView.swift in Sources */,
 				8CF043A825CF6EFD0090C41F /* SettingsView.swift in Sources */,
@@ -541,10 +655,16 @@
 				8C082B2F264D941500C3B0AB /* addingNewItem.swift in Sources */,
 				8C0B1361276A8457009715E9 /* PopoverContentController.swift in Sources */,
 				8CCEED11263D7ECC00D10B0B /* StringListView.swift in Sources */,
+				8C1BBA2527C43C2E00042A45 /* findDriverPath.swift in Sources */,
+				8C1BBA0F27C3A01300042A45 /* getLatestKextPath.swift in Sources */,
 				8C3B19FC25DAB97300039267 /* DriversView.swift in Sources */,
+				8C4647D927C682760007E1BF /* asyncZip.swift in Sources */,
+				8C1BBA1827C3B3A800042A45 /* getRepoName.swift in Sources */,
 				8C989F9A265DB90500B798B5 /* BluetoothDevices.swift in Sources */,
 				8C54539426CD02C2003FD811 /* HAPlistContentHandler.swift in Sources */,
+				8C4647DF27C682E10007E1BF /* updateEFI.swift in Sources */,
 				8CF2D80D264386240078B287 /* ArrayDictNameView.swift in Sources */,
+				8C4EACF927C10A1600E7DCC4 /* AMDCoresCount.swift in Sources */,
 				8C8AF5A925CCC302003A10DD /* Downloader.swift in Sources */,
 				8CA2CB49261F456400EA8949 /* AppStorageforCatalina.swift in Sources */,
 				8C8AF5AC25CCD12E003A10DD /* UpdateView.swift in Sources */,
@@ -554,11 +674,15 @@
 				8CA1189F26CE91A500839E7E /* ToolbarButtons.swift in Sources */,
 				8C082B33264DDAE700C3B0AB /* DictDetailsView.swift in Sources */,
 				8C83F4A52655608600DBDD3B /* HDToggleView.swift in Sources */,
+				8C4647D727C682430007E1BF /* additionalOCFixes.swift in Sources */,
+				8C1BBA2827C43EF100042A45 /* standaloneUpdateResources.swift in Sources */,
 				A70B6234237AF87000A2BA73 /* AppDelegate.swift in Sources */,
 				8CEE31E6263AC7CD00881FCB /* PlistEditorMainView.swift in Sources */,
 				8C097A4526C6058A001A4378 /* filesHandlers.swift in Sources */,
+				8C1BBA1627C3B33900042A45 /* shouldUpdateLocalKext.swift in Sources */,
 				8C5F6C5526C1D7B9009F1BCC /* HDUpdateView.swift in Sources */,
 				8C70956C25E542AA007C08DC /* Login.swift in Sources */,
+				8C4647DB27C682AD0007E1BF /* renameFile.swift in Sources */,
 				8CF043AE25D0BC620090C41F /* KextsView.swift in Sources */,
 				8CB1784726C7146A0014A179 /* getHAPlist.swift in Sources */,
 				8CF043AC25D0B46C0090C41F /* PlatformInfo.swift in Sources */,
@@ -703,7 +827,7 @@
 				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"HackinDROM/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
@@ -715,7 +839,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.1;
 				MTL_ENABLE_DEBUG_INFO = "";
 				ODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = NO;
 				OTHER_SWIFT_FLAGS = "";
@@ -738,7 +862,7 @@
 				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"HackinDROM/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
@@ -750,7 +874,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.1;
 				ODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = NO;
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = Inqnuam.HackinDROM;
@@ -790,7 +914,15 @@
 			repositoryURL = "https://github.com/ABridoux/scout";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.3;
+				minimumVersion = 4.0.4;
+			};
+		};
+		8C4EACFA27C1394500E7DCC4 /* XCRemoteSwiftPackageReference "FeedKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nmdias/FeedKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
 			};
 		};
 		8C57885926CC3F9900F877AA /* XCRemoteSwiftPackageReference "Grid" */ = {
@@ -840,6 +972,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8C1A0CD125D17ABA00D3D85D /* XCRemoteSwiftPackageReference "scout" */;
 			productName = Scout;
+		};
+		8C4EACFB27C1394500E7DCC4 /* FeedKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8C4EACFA27C1394500E7DCC4 /* XCRemoteSwiftPackageReference "FeedKit" */;
+			productName = FeedKit;
 		};
 		8C57885A26CC3F9900F877AA /* ExyteGrid */ = {
 			isa = XCSwiftPackageProductDependency;

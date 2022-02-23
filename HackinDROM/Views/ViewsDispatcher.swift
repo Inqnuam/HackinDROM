@@ -174,5 +174,7 @@ struct StartView: View {
 
             }
         }
+        
+       
     }
 }

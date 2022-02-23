@@ -127,7 +127,7 @@ struct BuildDetailView: View {
                     Spacer()
 
                     Picker(selection: $selectedProductName.pickerChanged(SetNewSPN), label: Text("")) {
-                        ForEach(0 ..< Macs.count) {
+                        ForEach(0 ..< Macs.count, id:\.self) {
                             Text("\(Macs[$0])")
                         }
                     }
