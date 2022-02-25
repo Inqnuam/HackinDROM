@@ -1135,7 +1135,7 @@ struct CreateEFI: View {
             do {
 
                 let GetCaseysFolder = try fileManager.contentsOfDirectory(at: URL(fileURLWithPath: "\(tmp)/tmp"), includingPropertiesForKeys: nil, options: [.skipsHiddenFiles])
-                 // FIXME check if archive was successfully downloaded
+                 // #FIXME: check if archive was successfully downloaded
                 CaseysFolder = GetCaseysFolder[0].lastPathComponent
 
                 if CancelMe { return}

@@ -30,10 +30,9 @@ func checkAndCleanStandaloneDir () {
 }
 
 func cleanDownloadedLatestKext(_ latestKextDir: String) {
-    
     if latestKextDir.contains("VirtualSMC") {
-        cleanDownloadedVirtualSCMDir(latestKextDir)
-    } else {
+       cleanDownloadedVirtualSCMDir(latestKextDir)
+    }
         do {
             let dirItems = try fileManager.contentsOfDirectory(at: URL(fileURLWithPath: latestKextDir), includingPropertiesForKeys: nil, options: [.skipsHiddenFiles])
             
@@ -46,7 +45,7 @@ func cleanDownloadedLatestKext(_ latestKextDir: String) {
         } catch {
             print(error)
         }
-    }
+    
     
 }
 

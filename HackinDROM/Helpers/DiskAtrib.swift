@@ -17,14 +17,14 @@ func releaseCallback(_ disk: DADisk, _ context: UnsafeMutableRawPointer?) -> Unm
     let nulvalue = "nul"
     let cstr = (nulvalue as NSString).utf8String
     let getDiskBSDNAME = DADiskGetBSDName(disk) ?? cstr
-    let mountediskid = String(cString: getDiskBSDNAME!) // #FIXME check if unmounting .dmg or netowrk disk is correctly handled
+    let mountediskid = String(cString: getDiskBSDNAME!) // #FIXME: check if unmounting .dmg or netowrk disk is correctly handled
     
     if mountediskid != "nul" {
         
         nc.post(name: Notification.Name("JustRemoved"), object: nil, userInfo: ["JustRemoved": mountediskid])
     }
     
-    return Unmanaged<DADissenter>.fromOpaque(Unmanaged.passRetained(dissenter).toOpaque()) // #FIXME check if this conflits with ereasedisk
+    return Unmanaged<DADissenter>.fromOpaque(Unmanaged.passRetained(dissenter).toOpaque()) // #FIXME: check if this conflits with ereasedisk
     
 }
 
@@ -34,7 +34,7 @@ func claimCallback(_ disk: DADisk, _ dissenter: DADissenter?, _ context: UnsafeM
     let nulvalue = "nul"
     let cstr = (nulvalue as NSString).utf8String
     let getDiskBSDNAME = DADiskGetBSDName(disk) ?? cstr
-    let mountediskid = String(cString: getDiskBSDNAME!) // #FIXME check if unmounting .dmg or netowrk disk is correctly handled
+    let mountediskid = String(cString: getDiskBSDNAME!) // #FIXME: check if unmounting .dmg or netowrk disk is correctly handled
     
     if mountediskid != "nul" {
         let desc = DADiskCopyDescription(disk) as! [String: CFTypeRef]
@@ -59,7 +59,7 @@ func diskAppeard(_ disk: DADisk, _ context: UnsafeMutableRawPointer?) {
     let nulvalue = "nul"
     let cstr = (nulvalue as NSString).utf8String
     let getDiskBSDNAME = DADiskGetBSDName(disk) ?? cstr
-    let mountediskid = String(cString: getDiskBSDNAME!) // #FIXME check if unmounting .dmg or netowrk disk is correctly handled
+    let mountediskid = String(cString: getDiskBSDNAME!) // #FIXME: check if unmounting .dmg or netowrk disk is correctly handled
     
     if mountediskid != "nul" {
         if  desc["DAMediaName"]! as! String == "EFI System Partition" {
@@ -99,7 +99,7 @@ func diskDisappeard(_ disk: DADisk, _ context: UnsafeMutableRawPointer?) {
     let cstr = (nulvalue as NSString).utf8String
     let getDiskBSDNAME = DADiskGetBSDName(disk) ?? cstr
     
-    let mountediskid = String(cString: getDiskBSDNAME!) // #FIXME check if unmounting .dmg or netowrk disk is correctly handled
+    let mountediskid = String(cString: getDiskBSDNAME!) // #FIXME: check if unmounting .dmg or netowrk disk is correctly handled
     
     if mountediskid != "nul" && desc["DAMediaWhole"]! as! Int == 1 {
         DispatchQueue.main.async {
@@ -115,7 +115,7 @@ func approveDiskMount(_ disk: DADisk, _ context: UnsafeMutableRawPointer?) -> Un
     let nulvalue = "nul"
     let cstr = (nulvalue as NSString).utf8String
     let getDiskBSDNAME = DADiskGetBSDName(disk) ?? cstr
-    let mountediskid = String(cString: getDiskBSDNAME!) // #FIXME check if unmounting .dmg or netowrk disk is correctly handled
+    let mountediskid = String(cString: getDiskBSDNAME!) // #FIXME: check if unmounting .dmg or netowrk disk is correctly handled
     
     if mountediskid != "nul" {
         
@@ -149,7 +149,7 @@ func approveDiskUnmount(_ disk: DADisk, _ context: UnsafeMutableRawPointer?) -> 
     let nulvalue = "nul"
     let cstr = (nulvalue as NSString).utf8String
     let getDiskBSDNAME = DADiskGetBSDName(disk) ?? cstr
-    let mountediskid = String(cString: getDiskBSDNAME!) // #FIXME check if unmounting .dmg or netowrk disk is correctly handled
+    let mountediskid = String(cString: getDiskBSDNAME!) // #FIXME: check if unmounting .dmg or netowrk disk is correctly handled
     
     if mountediskid != "nul" {
         let desc = DADiskCopyDescription(disk) as! [String: CFTypeRef]

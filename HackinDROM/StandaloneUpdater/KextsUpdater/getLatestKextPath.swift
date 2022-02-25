@@ -8,10 +8,10 @@
 
 import Foundation
 
-func getLatestKextPath(_ kextName: String) -> URL? {
-    
-    let repoName = getRepoName(kextName)
-    let kextPath = latestFolder + "/\(repoName)/\(kextName).kext"
+func getLatestKextPath(_ kextInfo: GitHubInfo) -> URL? {
+  
+
+    let kextPath = latestFolder + "/\(kextInfo.repo)/\(kextInfo.name).kext"
     
     if fileManager.fileExists(atPath: kextPath) {
         return URL(fileURLWithPath: kextPath)

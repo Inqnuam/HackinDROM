@@ -40,7 +40,7 @@ func shell(_ command: String, completionHandler: (_ result: String, _ error: Str
 @discardableResult
 func shellAsync(_ command: String) async -> String {
     
-    // #FIXME Handle error
+    // #FIXME: Handle error
     let task = Process()
     let pipe = Pipe()
     task.standardOutput = pipe

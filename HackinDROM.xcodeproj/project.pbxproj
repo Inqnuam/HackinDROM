@@ -14,12 +14,10 @@
 		8C0B135E276A8235009715E9 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0B135D276A8235009715E9 /* main.swift */; };
 		8C0B1361276A8457009715E9 /* PopoverContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0B1360276A8457009715E9 /* PopoverContentController.swift */; };
 		8C1A0CD325D17ABA00D3D85D /* Scout in Frameworks */ = {isa = PBXBuildFile; productRef = 8C1A0CD225D17ABA00D3D85D /* Scout */; };
-		8C1BBA0D27C39ECE00042A45 /* switchs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA0C27C39ECE00042A45 /* switchs.swift */; };
 		8C1BBA0F27C3A01300042A45 /* getLatestKextPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA0E27C3A01300042A45 /* getLatestKextPath.swift */; };
 		8C1BBA1127C3A0BE00042A45 /* getLatestOCPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA1027C3A0BE00042A45 /* getLatestOCPath.swift */; };
 		8C1BBA1427C3A14A00042A45 /* cleandownloadedDir.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA1327C3A14A00042A45 /* cleandownloadedDir.swift */; };
 		8C1BBA1627C3B33900042A45 /* shouldUpdateLocalKext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA1527C3B33900042A45 /* shouldUpdateLocalKext.swift */; };
-		8C1BBA1827C3B3A800042A45 /* getRepoName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA1727C3B3A800042A45 /* getRepoName.swift */; };
 		8C1BBA1A27C3B54200042A45 /* standaloneUpdateKexts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA1927C3B54200042A45 /* standaloneUpdateKexts.swift */; };
 		8C1BBA1C27C3B5BE00042A45 /* findLatestKext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA1B27C3B5BE00042A45 /* findLatestKext.swift */; };
 		8C1BBA1F27C4191000042A45 /* standaloneUpdateDrivers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA1E27C4191000042A45 /* standaloneUpdateDrivers.swift */; };
@@ -83,6 +81,11 @@
 		8CCEED0F263D660000D10B0B /* BoolListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCEED0E263D660000D10B0B /* BoolListView.swift */; };
 		8CCEED11263D7ECC00D10B0B /* StringListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCEED10263D7ECC00D10B0B /* StringListView.swift */; };
 		8CD5E6112627D26600B0395B /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD5E60F2627CFCB00B0395B /* AuthenticationServices.framework */; };
+		8CDA0DA627C782AF00229E2C /* kextLists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA0DA527C782AF00229E2C /* kextLists.swift */; };
+		8CDA0DA827C7986000229E2C /* getFilesFrom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA0DA727C7986000229E2C /* getFilesFrom.swift */; };
+		8CDA0DAA27C7987F00229E2C /* getGHDownloadLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA0DA927C7987F00229E2C /* getGHDownloadLink.swift */; };
+		8CDA0DAC27C7989A00229E2C /* getOCVersionFromCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA0DAB27C7989A00229E2C /* getOCVersionFromCache.swift */; };
+		8CDA0DAE27C799C700229E2C /* updateCachedKext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA0DAD27C799C700229E2C /* updateCachedKext.swift */; };
 		8CDD37B2262D671600387608 /* structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDD37B1262D671600387608 /* structs.swift */; };
 		8CEA92E7264AA21300C9082E /* DictView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEA92E6264AA21300C9082E /* DictView.swift */; };
 		8CEA92E9264B525C00C9082E /* ArrayStringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEA92E8264B525C00C9082E /* ArrayStringView.swift */; };
@@ -127,12 +130,10 @@
 		8C0B135B276A80F0009715E9 /* EFI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFI.swift; sourceTree = "<group>"; };
 		8C0B135D276A8235009715E9 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		8C0B1360276A8457009715E9 /* PopoverContentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverContentController.swift; sourceTree = "<group>"; };
-		8C1BBA0C27C39ECE00042A45 /* switchs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = switchs.swift; sourceTree = "<group>"; };
 		8C1BBA0E27C3A01300042A45 /* getLatestKextPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getLatestKextPath.swift; sourceTree = "<group>"; };
 		8C1BBA1027C3A0BE00042A45 /* getLatestOCPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getLatestOCPath.swift; sourceTree = "<group>"; };
 		8C1BBA1327C3A14A00042A45 /* cleandownloadedDir.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cleandownloadedDir.swift; sourceTree = "<group>"; };
 		8C1BBA1527C3B33900042A45 /* shouldUpdateLocalKext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shouldUpdateLocalKext.swift; sourceTree = "<group>"; };
-		8C1BBA1727C3B3A800042A45 /* getRepoName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getRepoName.swift; sourceTree = "<group>"; };
 		8C1BBA1927C3B54200042A45 /* standaloneUpdateKexts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = standaloneUpdateKexts.swift; sourceTree = "<group>"; };
 		8C1BBA1B27C3B5BE00042A45 /* findLatestKext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = findLatestKext.swift; sourceTree = "<group>"; };
 		8C1BBA1E27C4191000042A45 /* standaloneUpdateDrivers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = standaloneUpdateDrivers.swift; sourceTree = "<group>"; };
@@ -194,6 +195,11 @@
 		8CCEED0E263D660000D10B0B /* BoolListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolListView.swift; sourceTree = "<group>"; };
 		8CCEED10263D7ECC00D10B0B /* StringListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringListView.swift; sourceTree = "<group>"; };
 		8CD5E60F2627CFCB00B0395B /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
+		8CDA0DA527C782AF00229E2C /* kextLists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kextLists.swift; sourceTree = "<group>"; };
+		8CDA0DA727C7986000229E2C /* getFilesFrom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getFilesFrom.swift; sourceTree = "<group>"; };
+		8CDA0DA927C7987F00229E2C /* getGHDownloadLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getGHDownloadLink.swift; sourceTree = "<group>"; };
+		8CDA0DAB27C7989A00229E2C /* getOCVersionFromCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getOCVersionFromCache.swift; sourceTree = "<group>"; };
+		8CDA0DAD27C799C700229E2C /* updateCachedKext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = updateCachedKext.swift; sourceTree = "<group>"; };
 		8CDD37B1262D671600387608 /* structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = structs.swift; sourceTree = "<group>"; };
 		8CEA92E6264AA21300C9082E /* DictView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictView.swift; sourceTree = "<group>"; };
 		8CEA92E8264B525C00C9082E /* ArrayStringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayStringView.swift; sourceTree = "<group>"; };
@@ -288,12 +294,12 @@
 		8C1BBA0B27C39EBD00042A45 /* KextsUpdater */ = {
 			isa = PBXGroup;
 			children = (
-				8C1BBA0C27C39ECE00042A45 /* switchs.swift */,
+				8CDA0DA527C782AF00229E2C /* kextLists.swift */,
 				8C1BBA0E27C3A01300042A45 /* getLatestKextPath.swift */,
 				8C1BBA1527C3B33900042A45 /* shouldUpdateLocalKext.swift */,
-				8C1BBA1727C3B3A800042A45 /* getRepoName.swift */,
 				8C1BBA1927C3B54200042A45 /* standaloneUpdateKexts.swift */,
 				8C1BBA1B27C3B5BE00042A45 /* findLatestKext.swift */,
+				8CDA0DAD27C799C700229E2C /* updateCachedKext.swift */,
 			);
 			path = KextsUpdater;
 			sourceTree = "<group>";
@@ -339,6 +345,9 @@
 				8C4647D827C682760007E1BF /* asyncZip.swift */,
 				8C4647DA27C682AD0007E1BF /* renameFile.swift */,
 				8C4647DC27C682CA0007E1BF /* backupEFI.swift */,
+				8CDA0DA727C7986000229E2C /* getFilesFrom.swift */,
+				8CDA0DA927C7987F00229E2C /* getGHDownloadLink.swift */,
+				8CDA0DAB27C7989A00229E2C /* getOCVersionFromCache.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -617,6 +626,7 @@
 				8CEC523C269F344000851D15 /* DortaniaJSON.swift in Sources */,
 				8C54539626CD115F003FD811 /* PlistEditorHeader.swift in Sources */,
 				8C8AF5AF25CD56EB003A10DD /* ViewsDispatcher.swift in Sources */,
+				8CDA0DAA27C7987F00229E2C /* getGHDownloadLink.swift in Sources */,
 				8C3393FA2623B59800CFA8BB /* Extensions.swift in Sources */,
 				8C97CD9625CA244700B6DE00 /* MainDataProvider.swift in Sources */,
 				8C1BBA1127C3A0BE00042A45 /* getLatestOCPath.swift in Sources */,
@@ -625,19 +635,21 @@
 				8CF2D80F264392C10078B287 /* ArrayDictView.swift in Sources */,
 				8CCEED0F263D660000D10B0B /* BoolListView.swift in Sources */,
 				8C1BBA1C27C3B5BE00042A45 /* findLatestKext.swift in Sources */,
+				8CDA0DAE27C799C700229E2C /* updateCachedKext.swift in Sources */,
 				8CC005E6270F4DDB00A21669 /* IndexedCollection.swift in Sources */,
 				8C1BBA1427C3A14A00042A45 /* cleandownloadedDir.swift in Sources */,
 				8C70956825E52E05007C08DC /* BuildDetailView.swift in Sources */,
 				8C89FC042623347D00C0C69E /* ListView.swift in Sources */,
+				8CDA0DA827C7986000229E2C /* getFilesFrom.swift in Sources */,
 				8CEE31E8263ACBE900881FCB /* PlistEditorSectionView.swift in Sources */,
 				8CB1783D26C6DAD30014A179 /* DiskMounter.h in Sources */,
+				8CDA0DA627C782AF00229E2C /* kextLists.swift in Sources */,
 				8CB1784126C6DD020014A179 /* Authorization.m in Sources */,
 				8C80EFBB25DC6CA300DEC8D5 /* CreateEFI.swift in Sources */,
 				8C310C3B25F2E38F0054D93D /* ChartsView.swift in Sources */,
 				8C0B135C276A80F0009715E9 /* EFI.swift in Sources */,
 				8C83F4AA2655C93000DBDD3B /* TagCloudView.swift in Sources */,
 				8CB1784526C712590014A179 /* updateOCPlist.swift in Sources */,
-				8C1BBA0D27C39ECE00042A45 /* switchs.swift in Sources */,
 				8C1D098925D28751003CE546 /* ACPIView.swift in Sources */,
 				8C8AF5B225CD6F03003A10DD /* SystemInfo.swift in Sources */,
 				8C1BBA2A27C4C32D00042A45 /* standaloneToolsUpdater.swift in Sources */,
@@ -659,7 +671,6 @@
 				8C1BBA0F27C3A01300042A45 /* getLatestKextPath.swift in Sources */,
 				8C3B19FC25DAB97300039267 /* DriversView.swift in Sources */,
 				8C4647D927C682760007E1BF /* asyncZip.swift in Sources */,
-				8C1BBA1827C3B3A800042A45 /* getRepoName.swift in Sources */,
 				8C989F9A265DB90500B798B5 /* BluetoothDevices.swift in Sources */,
 				8C54539426CD02C2003FD811 /* HAPlistContentHandler.swift in Sources */,
 				8C4647DF27C682E10007E1BF /* updateEFI.swift in Sources */,
@@ -682,6 +693,7 @@
 				8C1BBA1627C3B33900042A45 /* shouldUpdateLocalKext.swift in Sources */,
 				8C5F6C5526C1D7B9009F1BCC /* HDUpdateView.swift in Sources */,
 				8C70956C25E542AA007C08DC /* Login.swift in Sources */,
+				8CDA0DAC27C7989A00229E2C /* getOCVersionFromCache.swift in Sources */,
 				8C4647DB27C682AD0007E1BF /* renameFile.swift in Sources */,
 				8CF043AE25D0BC620090C41F /* KextsView.swift in Sources */,
 				8CB1784726C7146A0014A179 /* getHAPlist.swift in Sources */,

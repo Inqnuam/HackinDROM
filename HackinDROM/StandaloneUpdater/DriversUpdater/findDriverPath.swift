@@ -8,14 +8,14 @@
 
 import Foundation
 
-func findDriverPath(_ driver: String) async -> String? {
+func findDriverPath(_ driver: String,  commitDate: Date?) async -> String? {
     
-    guard let latestOCVersion = getOCVersionFromCache(latestFolder + "/oc") else {return nil}
-    let cachedDriversDir = latestFolder + "/oc/\(latestOCVersion)/X64/EFI/OC/Drivers"
+  
+    let cachedDriversDir =  "\(latestOCFolder)/X64/EFI/OC/Drivers"
     let cachedDriverPath = cachedDriversDir + "/\(driver).efi"
     
     
-    
+    print("findDriverPath \(driver)")
     guard let cachedDrivers = getFilesFrom(cachedDriversDir) else { return await  downloadDriver(driver, cachedDriverPath)}
     
     if cachedDrivers.contains(driver) {
@@ -25,7 +25,7 @@ func findDriverPath(_ driver: String) async -> String? {
         
         var shouldUpdate:Bool = false
         if let attr = try? fileManager.attributesOfItem(atPath: cachedDriverPath) {
-            if let modifiedDate = attr[FileAttributeKey.modificationDate] as? Date {
+            if let modifiedDate = attr[.modificationDate] as? Date {
                 print("DRIVER MODIFED DATE:", modifiedDate)
                 if let commitDate = commitDate,  commitDate > modifiedDate{
                     shouldUpdate = true
@@ -36,13 +36,16 @@ func findDriverPath(_ driver: String) async -> String? {
         
        
         if shouldUpdate {
-            return await  downloadDriver(driver, cachedDriverPath)
+           
+            return await downloadDriver(driver, cachedDriverPath)
         } else {
+           
             return cachedDriverPath
         }
        
     } else {
-        return await  downloadDriver(driver, cachedDriverPath)
+       
+        return await downloadDriver(driver, cachedDriverPath)
     }
       
 }

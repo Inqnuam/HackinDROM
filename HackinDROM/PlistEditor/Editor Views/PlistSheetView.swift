@@ -489,7 +489,7 @@ struct PlistSheetView: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             typeLabelColor =  Color(.tertiaryLabelColor)
         }
-        //#FIXME check if it works in different sections
+        //#FIXME: check if it works in different sections
     }
     
     

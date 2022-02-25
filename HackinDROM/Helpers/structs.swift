@@ -257,6 +257,23 @@ let Macs = ["MacBook1,1", "MacBook10,1", "MacBook2,1", "MacBook3,1", "MacBook4,1
         BootArgData(value: "-liludbg", description: "Enables debug printing (available in DEBUG binaries)."),
         BootArgData(value: "-liludbgall", description: "Enables debug printing in Lilu and all loaded plugins (available in DEBUG binaries)."),
         BootArgData(value: "revcpu=", description: "To enable CPU brand string patching.\n  =1: non-Intel (default/disable), =0: Intel (default) \n RestrictEvents kext is required"),
-        BootArgData(value: "revcpuname=", description: "Custom CPU brand string (max 48 characters, 20 or less recommended, taken from CPUID otherwise)\n RestrictEvents kext is required")
+        BootArgData(value: "revcpuname=", description: "Custom CPU brand string (max 48 characters, 20 or less recommended, taken from CPUID otherwise)\n RestrictEvents kext is required"),
+        BootArgData(value: "-brcmfxdbg", description: "turns on debugging output"),
+        BootArgData(value: "-brcmfxbeta", description: "enables loading on unsupported osx"),
+        BootArgData(value: "-brcmfxoff", description: "disables kext loading"),
+        BootArgData(value: "-brcmfxwowl", description: "enables WOWL (WoWLAN) - it is disabled by default"),
+        BootArgData(value: "-brcmfx-alldrv", description: "allows patching for all supported drivers, disregarding current system version ..."),
+        BootArgData(value: "brcmfx-country=XX", description: "changes the country code to XX (US, CN, #a, ...), also can be injected via DSDT or Properties → DeviceProperties in bootloader"),
+        BootArgData(value: "brcmfx-aspm", description: "overrides value used for pci-aspm-default. Possible values: 0 = disables ASPM. kIOPCIExpressASPML0s = 0x00000001, kIOPCIExpressASPML1 = 0x00000002, kIOPCIExpressCommonClk = 0x00000040, kIOPCIExpressClkReq = 0x00000100"),
+        BootArgData(value: "brcmfx-wowl", description: "enables/disables WoWLAN patch"),
+        BootArgData(value: "brcmfx-delay=", description: "delays start of native broadcom driver for specified amount of milliseconds. It can solve panics or missing wi-fi device in Monterey. You can start with 15 seconds (brcmfx-delay=15000) and successively reduce this value until you notice instability in boot."),
+        BootArgData(value: "brcmfx-driver=", description: "enables only one kext for loading, 0 - AirPortBrcmNIC-MFG, 1 - AirPortBrcm4360, 2 - AirPortBrcmNIC, 3 - AirPortBrcm4331, also can be injected via DSDT or Properties → DeviceProperties in bootloader")
     ]
 
+struct GitHubInfo {
+    var owner:String
+    var repo: String
+    var name: String
+    var downloadName: String
+    
+}

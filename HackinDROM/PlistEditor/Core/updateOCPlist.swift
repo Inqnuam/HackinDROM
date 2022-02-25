@@ -20,7 +20,7 @@ func updateOCPlist(_ reference: HAPlistStruct, _ findIn: HAPlistStruct) -> HAPli
         if reference.type == findIn.type {
             
             returningItem = findIn
-            //  #FIXME Create an external function to handle custom vlues when the type is the same but accepted values are different from older version
+            //  #FIXME: Create an external function to handle custom vlues when the type is the same but accepted values are different from older version
             // If possible check authorized values in OC documentation -> failsafe value is used when old value isnt supported anymore
         } else {
             returningItem = reference

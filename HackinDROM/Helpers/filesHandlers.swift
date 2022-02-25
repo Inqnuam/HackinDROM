@@ -252,7 +252,7 @@ func ImportFromFile(completion : @escaping (MyHackDataStrc)->()) {
 
     if FilePath != "nul" {
         if let config = fileManager.contents(atPath: FilePath) {
-            // #FIXME -> Use HAPlistStruct instead of Scout
+            // #FIXME: -> Use HAPlistStruct instead of Scout
         var isClover: Bool = false
         shell("perl -wln -e 'print if /\\bSmUUID\\b/' '\(FilePath)'") { result, _ in
             isClover =  result.trimmingCharacters(in: .whitespacesAndNewlines) == "<key>SmUUID</key>"

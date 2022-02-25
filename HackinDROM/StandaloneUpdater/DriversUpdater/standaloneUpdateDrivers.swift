@@ -7,16 +7,16 @@
 //
 
 import Foundation
-var commitDate: Date?
+
 func standaloneUpdateDrivers(_ usersDriversDir: String) async {
+    var commitDate: Date?
     let localDriversDir = standaloneUpdateDir + "/EFI/OC/Drivers"
     
     guard let localDrivers = getFilesFrom(localDriversDir), let usersDrivers = getFilesFrom(usersDriversDir) else {return}
-     commitDate = getGitLatestCommitDate("https://github.com/acidanthera/OcBinaryData/commits.atom")
-    
+    commitDate = getGitLatestCommitDate("https://github.com/acidanthera/OcBinaryData/commits.atom")
     for driver in localDrivers {
         
-        if !usersDrivers.contains(driver) {
+        if !usersDrivers.contains(where: {$0.lowercased() == driver.lowercased()}) {
             do {
                 try fileManager.removeItem(atPath: localDriversDir + "/\(driver).efi")
             } catch {
@@ -26,10 +26,9 @@ func standaloneUpdateDrivers(_ usersDriversDir: String) async {
     }
     
     for driver in usersDrivers {
-        
-        if !localDrivers.contains(driver) {
+        if !localDrivers.contains(where: {$0.lowercased() == driver.lowercased()}) {
             
-            if let foundPath = await findDriverPath(driver) {
+            if let foundPath = await findDriverPath(driver, commitDate: commitDate) {
                 
                 do {
                     try fileManager.copyItem(atPath: foundPath, toPath: localDriversDir + "/\(driver).efi")
@@ -39,7 +38,6 @@ func standaloneUpdateDrivers(_ usersDriversDir: String) async {
                 
             } else {
                 // copy from users EFI drivers
-                
                 do {
                     try fileManager.copyItem(atPath: usersDriversDir + "/\(driver).efi", toPath: localDriversDir + "/\(driver).efi")
                 } catch {
@@ -49,8 +47,6 @@ func standaloneUpdateDrivers(_ usersDriversDir: String) async {
             }
         }
     }
-    
-
 }
 
 

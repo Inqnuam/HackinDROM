@@ -10,7 +10,7 @@ import SwiftUI
 import Scout
 
 
-// #FIXME Simplify addiding proceess 
+// #FIXME: Simplify addiding proceess 
 struct addingNewItem: View {
     @EnvironmentObject var sharedData: HASharedData
     @State var newItem = HAPlistStruct(type:"string")

@@ -61,7 +61,7 @@ class HASharedData: ObservableObject {
     @Published var editorIsAlerting:Bool = false
     @Published var savingFilePath: String = ""
     @Published var availableocts: [String] = []
-    @Published var MountThisPartition: [String] = ["nul", ""] //#FIXME better implmentation is needed
+    @Published var MountThisPartition: [String] = ["nul", ""] //#FIXME: better implmentation is needed
     @Published var AllBuilds: [AllBuilds] = []
     @Published var vendors: [String] = []
     @Published var ConnectedUser: String = ""

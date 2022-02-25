@@ -25,7 +25,7 @@ class PopoverContentController: NSViewController {
         
         txtField.placeholderString = "Yoooo"
         
-       //#FIXME separate main view in 3 NSView -> Top Toobar, EFI List and Bottom Toolbar
+       //#FIXME: separate main view in 3 NSView -> Top Toobar, EFI List and Bottom Toolbar
         let myBtn = NSButton(title: "Print and Clear", target: self, action: #selector(test))
         //myBtn.appearance = NSAppearance(named: .vibrantLight)
         inputArea.addSubview(txtField)

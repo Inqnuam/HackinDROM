@@ -10,28 +10,34 @@ import Foundation
 
 func standaloneToolsUpdater(_ usersToolsDir: String) {
     let toolsDir =  standaloneUpdateDir + "/EFI/OC/Tools"
-    
-    if let standaloneTools = try? fileManager.contentsOfDirectory(atPath: toolsDir) {
-        
-        for tool in standaloneTools {
+    guard let standaloneTools = getFilesFrom(toolsDir), let usersTools = getFilesFrom(usersToolsDir) else {return}
+    for tool in standaloneTools {
+        let originalToolPath = toolsDir + "/\(tool).efi"
+        if let foundTool = usersTools.first(where: {$0.lowercased() == tool.lowercased()}) {
             
-            if !fileManager.fileExists(atPath: usersToolsDir + "/\(tool)") {
-                do {
-                    try fileManager.removeItem(atPath: toolsDir + "/\(tool)")
-                } catch {
-                    print(error)
-                }
+            do {
+                // rename file to be insure case insensitivity
+                try fileManager.moveItem(atPath: originalToolPath, toPath:  toolsDir + "/\(foundTool).efi")
+            } catch {
+                print(error)
+            }
+            
+        } else {
+            //remove not needed tools
+            do {
+                try fileManager.removeItem(atPath: originalToolPath)
+            } catch {
+                print(error)
             }
         }
     }
     
-    if let userseTools = try? fileManager.contentsOfDirectory(atPath: usersToolsDir) {
-        
-        for tool in userseTools {
-            
-            if !fileManager.fileExists(atPath: toolsDir + "/\(tool)") {
+    // keep custom, not found, not updatable tools
+    if let updatedStandaloneToolsList = getFilesFrom(toolsDir) {
+        for tool in usersTools {
+            if !updatedStandaloneToolsList.contains(tool) {
                 do {
-                    try fileManager.copyItem(atPath: usersToolsDir + "/\(tool)", toPath: toolsDir + "/\(tool)")
+                    try fileManager.copyItem(atPath: usersToolsDir + "/\(tool).efi", toPath: toolsDir + "/\(tool).efi")
                 } catch {
                     print(error)
                 }

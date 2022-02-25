@@ -116,7 +116,7 @@ func getMyKextList (_ url: String, _ Kexts: [KextStructs]) -> [KextStructs] {
     return KextList
 }
 
-struct MySettings: Codable {
+struct PlistInfoStruct: Codable {
     var CFBundleVersion: String
 }
 
@@ -125,7 +125,7 @@ func getKextVersion(_ KextName: String, _ drive: String) -> String {
     do {
         let dataX = try Data(contentsOf: URL(fileURLWithPath: "\(drive)/EFI/OC/Kexts/\(KextName).kext/Contents/Info.plist"))
         let decoder = PropertyListDecoder()
-        let  settings = try decoder.decode(MySettings.self, from: dataX)
+        let  settings = try decoder.decode(PlistInfoStruct.self, from: dataX)
         
         return settings.CFBundleVersion
         
@@ -139,7 +139,7 @@ func getKextVersionFrom(path: String)-> Version {
     do {
         let dataX = try Data(contentsOf: URL(fileURLWithPath: "\(path).kext/Contents/Info.plist"))
         let decoder = PropertyListDecoder()
-        let  settings = try decoder.decode(MySettings.self, from: dataX)
+        let  settings = try decoder.decode(PlistInfoStruct.self, from: dataX)
         
         if let version = Version(tolerant: settings.CFBundleVersion) {
          
@@ -153,10 +153,10 @@ func getKextVersionFrom(path: String)-> Version {
         return Version("0.0.0")!
     }
 }
-func getGitHubRepoDownloadLinkfromHTML(_ repoOwner: String, _ repoName: String) async -> String? {
+func getGitHubRepoDownloadLinkfromHTML(_ kextInfo:GitHubInfo) async -> String? {
     
     // #FIXME: Use URLSession
-    let output = await shellAsync("curl --silent https://github.com/\(repoOwner)/\(repoName)/releases/latest -L | grep '/\(repoOwner)/\(repoName)/releases/download' | grep '.zip' | awk '{print $2}'")
+    let output = await shellAsync("curl --silent https://github.com/\(kextInfo.owner)/\(kextInfo.repo)/releases/latest -L | grep '/\(kextInfo.owner)/\(kextInfo.repo)/releases/download' | grep '.zip' | awk '{print $2}'")
   
     if let request = output.slice(from: "\"", to: "\"") {
         
@@ -277,6 +277,8 @@ func getGitLatestCommitDate(_ link: String) -> Date? {
 }
 
 func getGitReleasesVersions(_ username:String, _ repo: String, _ onlyFirst:Bool = false) -> [String]? {
+ 
+    
     var gitOCReleasesVersions: [String]? = []
     let feedURL = "https://github.com/\(username)/\(repo)/releases.atom"
     
@@ -317,11 +319,49 @@ func getGitReleasesVersions(_ username:String, _ repo: String, _ onlyFirst:Bool 
         gitOCReleasesVersions!.sort { (a, b) -> Bool in
             a.compare(b, options: String.CompareOptions.numeric, range: nil, locale: nil) == .orderedDescending
         }
+        
+      
         return (gitOCReleasesVersions!)
     } else {
         return nil
     }
 }
+
+
+extension URLSession {
+    @available(iOS, deprecated: 15.0, message: "This extension is no longer necessary. Use API built into SDK")
+    func data(for request: URLRequest) async throws -> (Data, URLResponse) {
+        try await withCheckedThrowingContinuation { continuation in
+            let task = self.dataTask(with: request) { data, response, error in
+                guard let data = data, let response = response else {
+                    let error = error ?? URLError(.badServerResponse)
+                    return continuation.resume(throwing: error)
+                }
+                
+                continuation.resume(returning: (data, response))
+            }
+            
+            task.resume()
+        }
+    }
+    
+    
+    func data(from url: URL) async throws -> (Data, URLResponse) {
+        try await withCheckedThrowingContinuation { continuation in
+            let task = self.dataTask(with: url) { data, response, error in
+                guard let data = data, let response = response else {
+                    let error = error ?? URLError(.badServerResponse)
+                    return continuation.resume(throwing: error)
+                }
+                
+                continuation.resume(returning: (data, response))
+            }
+            
+            task.resume()
+        }
+    }
+}
+
 
 func getRepoDataFromGhAPI(_ repoOwner: String, _ repoName: String) async -> [GitHubJSON]? {
     

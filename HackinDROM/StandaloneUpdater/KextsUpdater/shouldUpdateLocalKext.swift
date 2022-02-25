@@ -8,22 +8,19 @@
 
 import Foundation
 import Version
-func shouldUpdateLocalKext(_ kextName: String) -> Version? {
+func shouldUpdateLocalKext(_ kextInfo: GitHubInfo) -> String? {
  
-    let repoOwner = getRepoOwner(kextName)
-    let repoName = getRepoName(kextName)
+   
     
-    
-    guard let versions = getGitReleasesVersions(repoOwner, repoName, true) else {return  nil}
+    guard let versions = getGitReleasesVersions(kextInfo.owner, kextInfo.repo, true) else {return  nil}
     
     let remoteVersion = Version(tolerant: versions.first!)!
-    
-    let localKextPath = latestFolder + "/\(repoName)/\(kextName)"
+    let localKextPath = latestFolder + "/\(kextInfo.repo)/\(kextInfo.name)"
     
     let localVersion = getKextVersionFrom(path: localKextPath)
     
     if remoteVersion > localVersion {
-        return remoteVersion
+        return versions.first!
     } else {
         return nil
     }

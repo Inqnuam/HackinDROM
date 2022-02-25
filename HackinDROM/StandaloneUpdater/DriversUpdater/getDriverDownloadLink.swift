@@ -8,42 +8,31 @@
 
 import Foundation
 
+
+let driverGitHubLinks: [GitHubInfo] = [
+    GitHubInfo(owner: "acidanthera", repo: "OcBinaryData", name: "ExFatDxe", downloadName: "https://github.com/acidanthera/OcBinaryData/raw/master/Drivers/ExFatDxe.efi"),
+    GitHubInfo(owner: "acidanthera", repo: "OcBinaryData", name: "ExFatDxeLegacy", downloadName: "https://github.com/acidanthera/OcBinaryData/raw/master/Drivers/ExFatDxeLegacy.efi"),
+    GitHubInfo(owner: "acidanthera", repo: "OcBinaryData", name: "HfsPlus", downloadName: "https://github.com/acidanthera/OcBinaryData/raw/master/Drivers/HfsPlus.efi"),
+    GitHubInfo(owner: "acidanthera", repo: "OcBinaryData", name: "HfsPlus32", downloadName: "https://github.com/acidanthera/OcBinaryData/raw/master/Drivers/HfsPlus32.efi"),
+    GitHubInfo(owner: "acidanthera", repo: "OcBinaryData", name: "HfsPlusLegacy", downloadName: "https://github.com/acidanthera/OcBinaryData/raw/master/Drivers/HfsPlusLegacy.efi"),
+    GitHubInfo(owner: "acidanthera", repo: "OcBinaryData", name: "Rts5227S", downloadName: "https://github.com/acidanthera/OcBinaryData/raw/master/Drivers/Rts5227S.efi"),
+    GitHubInfo(owner: "acidanthera", repo: "OcBinaryData", name: "Rts5250", downloadName: "https://github.com/acidanthera/OcBinaryData/raw/master/Drivers/Rts5250.efi"),
+    GitHubInfo(owner: "acidanthera", repo: "OcBinaryData", name: "Rts5260", downloadName: "https://github.com/acidanthera/OcBinaryData/raw/master/Drivers/Rts5260.efi"),
+    GitHubInfo(owner: "acidanthera", repo: "OcBinaryData", name: "btrfs_x64", downloadName: "https://github.com/acidanthera/OcBinaryData/raw/master/Drivers/btrfs_x64.efi"),
+    GitHubInfo(owner: "acidanthera", repo: "OcBinaryData", name: "ext4_x64", downloadName: "https://github.com/acidanthera/OcBinaryData/raw/master/Drivers/ext4_x64.efi")
+]
+
 func getDriverDownloadLink(_ driver: String) -> String? {
     
+    let comparingName = driver.lowercased()
     
-    switch driver {
-        case "ExFatDxe":
-            return "https://github.com/acidanthera/OcBinaryData/raw/master/Drivers/ExFatDxe.efi"
-            
-        case "ExFatDxeLegacy":
-            return "https://github.com/acidanthera/OcBinaryData/raw/master/Drivers/ExFatDxeLegacy.efi"
-            
-        case "HfsPlus":
-            return "https://github.com/acidanthera/OcBinaryData/raw/master/Drivers/HfsPlus.efi"
-            
-        case "HfsPlus32":
-            return "https://github.com/acidanthera/OcBinaryData/raw/master/Drivers/HfsPlus32.efi"
-            
-        case "HfsPlusLegacy":
-            return "https://github.com/acidanthera/OcBinaryData/raw/master/Drivers/HfsPlusLegacy.efi"
-            
-        case "Rts5227S":
-            return "https://github.com/acidanthera/OcBinaryData/raw/master/Drivers/Rts5227S"
-            
-        case "Rts5250":
-            return "https://github.com/acidanthera/OcBinaryData/raw/master/Drivers/Rts5250.efi"
-            
-        case "Rts5260":
-            return "https://github.com/acidanthera/OcBinaryData/raw/master/Drivers/Rts5260.efi"
-            
-        case "btrfs_x64":
-            return "https://github.com/acidanthera/OcBinaryData/raw/master/Drivers/btrfs_x64.efi"
-            
-        case "ext4_x64":
-            return "https://github.com/acidanthera/OcBinaryData/raw/master/Drivers/ext4_x64.efi"
-            
-            
-        default:
-            return nil
-    }
+    
+    
+    if let foundDriver =  driverGitHubLinks.first(where: { $0.name.lowercased() == comparingName
+    }) {
+        print("FOUND DRIVER DOWNLOAD LINK")
+        return foundDriver.downloadName
+    } else {return nil}
+    
+
 }

@@ -186,7 +186,7 @@ struct HDUpdateView: View {
         // as theres multiple kexts with the same AirportItlwm.kext name for different macOS version we are not going to cache it
         // and everytime we have to ask to the user which version to download
         
-        // #FIXME open a request to the dev to ask to include macOS target version into plist
+        // #TODO: open a request to the dev to ask to include macOS target version into plist
         
         let temporaryKextPath = tmp + "/tmp/AirportItlwm.kext"
         if fileManager.fileExists(atPath: temporaryKextPath) {
@@ -246,6 +246,8 @@ struct HDUpdateView: View {
                 setProgress(0.4)
                 standaloneToolsUpdater(EFI.mounted + "/EFI/OC/Tools")
                 setProgress(0.5)
+                standaloneUpdateResources(EFI.mounted + "/EFI/OC/Resources")
+                setProgress(0.6)
             }
             catch {
                 print("Can't Update OpenCore ")
@@ -260,26 +262,37 @@ struct HDUpdateView: View {
             if var userKexts = getFilesFrom(kextDir) {
                 
                 // Check if user use OpenInelWirelss WiFi
-                if let foundIndex = userKexts.firstIndex(where: {$0 == "AirportItlwm"}) {
+                if let foundIndex = userKexts.firstIndex(where: {$0.lowercased() == "airportitlwm"}) {
                     shouldUpdateAirportItlwm = true
                     
                     // remove to avoid trying to find in standaloneUpdateKexts loop
+                    // AirportItlwm.kext will be handled separetly because no macOS name is provided in filename
                     userKexts.remove(at: foundIndex)
                 }
                 
-                if shouldUpdateAirportItlwm || userKexts.firstIndex(where: {$0 == "itlwm"}) != nil {
+                
+                var hasAirportIntelwmCustomName: Bool {
+                    
+                    if userKexts.firstIndex(where: {$0.localizedCaseInsensitiveContains("AirportItlwm")}) != nil {
+                        return true
+                    }
+                    return false
+                    
+                }
+                
+                if shouldUpdateAirportItlwm || hasAirportIntelwmCustomName || userKexts.firstIndex(where: {$0 == "itlwm"}) != nil {
                     if  let releases =  await  getRepoDataFromGhAPI("OpenIntelWireless", "itlwm") {
                         
                         stableRelease = releases.first(where: {!$0.prerelease})
                     }
                 }
                 
-                standaloneUpdateResources(EFI.mounted + "/EFI/OC/Resources")
+               
                 
                 // Update every kext but AirportItlm
                 if await standaloneUpdateKexts(kextDir, userKexts, stableRelease) {
-                    print("Kexts finished updateing")
-                    setProgress(0.9)
+                   
+                    setProgress(0.7)
                 }
                 
             }
@@ -287,6 +300,7 @@ struct HDUpdateView: View {
                 // remove all kexts if users dont uses any kext
                 cleanDir(kextDir)
             }
+            
             
             await standaloneUpdateDrivers(EFI.mounted + "/EFI/OC/Drivers")
             copyMissingFiles(from: EFI.mounted + "/EFI", to: standaloneUpdateDir + "/EFI")
