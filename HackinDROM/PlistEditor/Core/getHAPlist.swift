@@ -8,39 +8,49 @@
 
 import Foundation
 
-func getHAPlistFrom(_ FilePath: String, completion: @escaping(HAPlistStruct)->()) {
+func getHAPlistFrom(_ filePath: String, completion: @escaping(HAPlistStruct)->()) {
     var analyzedstruct = HAPlistStruct(name:"Root")
-    if FilePath != "nul" {
+    if filePath != "nul" || !filePath.isEmpty {
         //  var config:Data?
         
-        let filesRawData = fileManager.contents(atPath: FilePath) ?? nil
-        
+        let filesRawData = fileManager.contents(atPath: filePath) ?? nil
         if filesRawData != nil {
             do {
                 
                 let pListObject = try PropertyListSerialization.propertyList(from: filesRawData!, options: PropertyListSerialization.ReadOptions(), format: nil)
-                
-                
                 if let pListDict = pListObject as? [String: AnyObject] {
-                    
-                    
-                    
                     analyzedstruct = HAPlistConstructor(pListDict, HAPlistStruct(type:"dict"))
                     completion(analyzedstruct)
-                    
-                    
                 }
                 
             } catch {
-                
                 print(error)
             }
-            
         }
     }
     
 }
 
+func isNSString(_ t:String) -> Bool {
+    if t == "NSTaggedPointerString" || t == "__NSCFString" || t ==  "__NSCFConstantString" {
+        return true
+    }
+    return false
+}
+
+func isNSDict(_ t:String) -> Bool {
+    if t == "__NSDictionaryM" || t == "__NSDictionaryI" {
+        return true
+    }
+    return false
+}
+
+func isNSArray(_ t:String) -> Bool {
+    if t == "__NSArrayM" || t == "__NSArray0" {
+        return true
+    }
+    return false
+}
 
 func HAPlistConstructor(_ item: [String: AnyObject], _ parent:HAPlistStruct) -> HAPlistStruct {
     
@@ -48,11 +58,6 @@ func HAPlistConstructor(_ item: [String: AnyObject], _ parent:HAPlistStruct) -> 
     
     // #FIXME: really ? :( a better implementation is needed
     // use switch statement
-    // check by NS type value and not by string describing
-    // ex:
-    //    if MiniChild.value is String {
-    //        print(MiniChild.value, "is String")
-    //    }
     
     
     for MiniChild in item {
@@ -65,11 +70,10 @@ func HAPlistConstructor(_ item: [String: AnyObject], _ parent:HAPlistStruct) -> 
         MiniChilItem.name = MiniChild.key
         MiniChilItem.ParentName = parent.name.isEmpty ? parent.ParentName : parent.name
         
-        
         if MiniChildType == "__NSCFBoolean" {
             MiniChilItem.type = "bool"
             MiniChilItem.BoolValue = MiniChild.value as! Bool
-        } else if MiniChildType == "NSTaggedPointerString" || MiniChildType == "__NSCFString" || MiniChildType ==  "__NSCFConstantString" {
+        } else if isNSString(MiniChildType) {
             MiniChilItem.StringValue = MiniChild.value as! String
             MiniChilItem.type = "string"
             
@@ -85,7 +89,7 @@ func HAPlistConstructor(_ item: [String: AnyObject], _ parent:HAPlistStruct) -> 
             MiniChilItem.type = "data"
             
         }
-        else if MiniChildType == "__NSDictionaryM" || MiniChildType == "__NSDictionaryI" {
+        else if isNSDict(MiniChildType) {
             
             if let OCSecondChild = item[MiniChild.key] as? [String: AnyObject] {
                 MiniChilItem.type = "dict"
@@ -93,43 +97,25 @@ func HAPlistConstructor(_ item: [String: AnyObject], _ parent:HAPlistStruct) -> 
                 
             }
         }
-        else if MiniChildType == "__NSArrayM" || MiniChildType == "__NSArray0" {
+        else if isNSArray(MiniChildType) {
             MiniChilItem.type = "array"
             
             if let arrayItems = item[MiniChild.key] as? [[String: AnyObject]] {
-                
-                
                 for OCSecondChild in arrayItems {
-                    
                     let microchild = HAPlistConstructor(OCSecondChild, HAPlistStruct(type:"dict", ParentName: MiniChilItem.name))
-                    
-                    
                     MiniChilItem.Childs.append(microchild)
                 }
             } else if let OCSecondChilds = item[MiniChild.key] as? [String] {
-                
-                
                 for StringItem in OCSecondChilds {
-                    
-                    
                     MiniChilItem.Childs.append(HAPlistStruct(name: MiniChild.key, StringValue: StringItem, isOn: !StringItem.hasPrefix("#"), type: "string", ParentName: MiniChilItem.ParentName))
-                    
                 }
             }
-            
-            
         }
-        
-        
         OCSecondChildItems.Childs.append(MiniChilItem)
     }
     
     if OCSecondChildItems.type == "dict"{
-        
-        
         OCSecondChildItems.Childs.sort(by: { $0.name < $1.name })
-        
-        
     }
     
     return OCSecondChildItems
