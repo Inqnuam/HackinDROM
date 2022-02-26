@@ -3,674 +3,625 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8C097A4526C6058A001A4378 /* filesHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C097A4426C6058A001A4378 /* filesHandlers.swift */; };
-		8C0B135C276A80F0009715E9 /* EFI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0B135B276A80F0009715E9 /* EFI.swift */; };
-		8C0B135E276A8235009715E9 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0B135D276A8235009715E9 /* main.swift */; };
-		8C0B1361276A8457009715E9 /* PopoverContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0B1360276A8457009715E9 /* PopoverContentController.swift */; };
-		8C1BBA0F27C3A01300042A45 /* getLatestKextPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA0E27C3A01300042A45 /* getLatestKextPath.swift */; };
-		8C1BBA1127C3A0BE00042A45 /* getLatestOCPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA1027C3A0BE00042A45 /* getLatestOCPath.swift */; };
-		8C1BBA1427C3A14A00042A45 /* cleandownloadedDir.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA1327C3A14A00042A45 /* cleandownloadedDir.swift */; };
-		8C1BBA1627C3B33900042A45 /* shouldUpdateLocalKext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA1527C3B33900042A45 /* shouldUpdateLocalKext.swift */; };
-		8C1BBA1A27C3B54200042A45 /* standaloneUpdateKexts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA1927C3B54200042A45 /* standaloneUpdateKexts.swift */; };
-		8C1BBA1C27C3B5BE00042A45 /* findLatestKext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA1B27C3B5BE00042A45 /* findLatestKext.swift */; };
-		8C1BBA1F27C4191000042A45 /* standaloneUpdateDrivers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA1E27C4191000042A45 /* standaloneUpdateDrivers.swift */; };
-		8C1BBA2127C43BEA00042A45 /* getDriverDownloadLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA2027C43BEA00042A45 /* getDriverDownloadLink.swift */; };
-		8C1BBA2327C43C0C00042A45 /* downloadDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA2227C43C0C00042A45 /* downloadDriver.swift */; };
-		8C1BBA2527C43C2E00042A45 /* findDriverPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA2427C43C2E00042A45 /* findDriverPath.swift */; };
-		8C1BBA2827C43EF100042A45 /* standaloneUpdateResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA2727C43EF100042A45 /* standaloneUpdateResources.swift */; };
-		8C1BBA2A27C4C32D00042A45 /* standaloneToolsUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA2927C4C32D00042A45 /* standaloneToolsUpdater.swift */; };
-		8C1BBA2C27C4C74000042A45 /* cleanDir.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA2B27C4C74000042A45 /* cleanDir.swift */; };
-		8C1BBA2E27C4CA7E00042A45 /* copyMissingFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA2D27C4CA7E00042A45 /* copyMissingFiles.swift */; };
-		8C1D098925D28751003CE546 /* ACPIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1D098825D28751003CE546 /* ACPIView.swift */; };
-		8C2827B225CB736600CF0D82 /* DiskAtrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2827B125CB736600CF0D82 /* DiskAtrib.swift */; };
-		8C310C3B25F2E38F0054D93D /* ChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C310C3A25F2E38F0054D93D /* ChartsView.swift */; };
-		8C3393FA2623B59800CFA8BB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3393F92623B59800CFA8BB /* Extensions.swift */; };
-		8C3B19FC25DAB97300039267 /* DriversView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3B19FB25DAB97300039267 /* DriversView.swift */; };
-		8C4647D727C682430007E1BF /* additionalOCFixes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4647D627C682430007E1BF /* additionalOCFixes.swift */; };
-		8C4647D927C682760007E1BF /* asyncZip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4647D827C682760007E1BF /* asyncZip.swift */; };
-		8C4647DB27C682AD0007E1BF /* renameFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4647DA27C682AD0007E1BF /* renameFile.swift */; };
-		8C4647DD27C682CA0007E1BF /* backupEFI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4647DC27C682CA0007E1BF /* backupEFI.swift */; };
-		8C4647DF27C682E10007E1BF /* updateEFI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4647DE27C682E10007E1BF /* updateEFI.swift */; };
-		8C4EACF927C10A1600E7DCC4 /* AMDCoresCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4EACF827C10A1600E7DCC4 /* AMDCoresCount.swift */; };
-		8C4EACFC27C1394500E7DCC4 /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8C4EACFB27C1394500E7DCC4 /* FeedKit */; };
-		8C51A01625CECEE2009C9AE2 /* func.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C51A01525CECEE2009C9AE2 /* func.swift */; };
-		8C54539426CD02C2003FD811 /* HAPlistContentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C54539326CD02C2003FD811 /* HAPlistContentHandler.swift */; };
-		8C5ED1CA26597884003A6226 /* testingFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5ED1C926597884003A6226 /* testingFunc.swift */; };
-		8C5F6C5526C1D7B9009F1BCC /* HDUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5F6C5426C1D7B9009F1BCC /* HDUpdateView.swift */; };
-		8C6413842645F49800C034D8 /* DragAndDropViewConstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6413832645F49800C034D8 /* DragAndDropViewConstructor.swift */; };
-		8C70956625E52CAE007C08DC /* LeaderStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C70956525E52CAE007C08DC /* LeaderStartView.swift */; };
-		8C70956825E52E05007C08DC /* BuildDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C70956725E52E05007C08DC /* BuildDetailView.swift */; };
-		8C70956A25E53E30007C08DC /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C70956925E53E30007C08DC /* LoginView.swift */; };
-		8C70956C25E542AA007C08DC /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C70956B25E542AA007C08DC /* Login.swift */; };
-		8C79122326586C2700C29FE6 /* Version in Frameworks */ = {isa = PBXBuildFile; productRef = 8C79122226586C2700C29FE6 /* Version */; };
-		8C80EFBB25DC6CA300DEC8D5 /* CreateEFI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C80EFBA25DC6CA300DEC8D5 /* CreateEFI.swift */; };
-		8C82752E25E144730073616D /* UploadNewBuild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C82752D25E144730073616D /* UploadNewBuild.swift */; };
-		8C83F4A52655608600DBDD3B /* HDToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C83F4A42655608600DBDD3B /* HDToggleView.swift */; };
-		8C83F4AA2655C93000DBDD3B /* TagCloudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C83F4A92655C93000DBDD3B /* TagCloudView.swift */; };
-		8C89FC042623347D00C0C69E /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C89FC032623347D00C0C69E /* ListView.swift */; };
-		8C8AF5A925CCC302003A10DD /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8AF5A825CCC302003A10DD /* Downloader.swift */; };
-		8C8AF5AC25CCD12E003A10DD /* UpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8AF5AB25CCD12E003A10DD /* UpdateView.swift */; };
-		8C8AF5AF25CD56EB003A10DD /* ViewsDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8AF5AE25CD56EB003A10DD /* ViewsDispatcher.swift */; };
-		8C8AF5B225CD6F03003A10DD /* SystemInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8AF5B125CD6F03003A10DD /* SystemInfo.swift */; };
-		8C8EB29F25C9DDFE005E9332 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 8C8EB29E25C9DDFE005E9332 /* LaunchAtLogin */; };
-		8C97CD9625CA244700B6DE00 /* MainDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C97CD9525CA244700B6DE00 /* MainDataProvider.swift */; };
-		8C989F9A265DB90500B798B5 /* BluetoothDevices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C989F99265DB90500B798B5 /* BluetoothDevices.swift */; };
-		8C9F1B622796D87000C08775 /* macserial in Resources */ = {isa = PBXBuildFile; fileRef = 8C9F1B612796D87000C08775 /* macserial */; };
-		8CA272E6263E1A0100B5F402 /* HAPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA272E5263E1A0100B5F402 /* HAPlist.swift */; };
-		8CA2CB49261F456400EA8949 /* AppStorageforCatalina.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA2CB48261F456400EA8949 /* AppStorageforCatalina.swift */; };
-		8CAC9289276B61F400916A94 /* TopToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAC9288276B61F400916A94 /* TopToolbarView.swift */; };
-		8CB1783B26C6D9160014A179 /* DiskMounter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB1783A26C6D9160014A179 /* DiskMounter.m */; };
-		8CB1783D26C6DAD30014A179 /* DiskMounter.h in Sources */ = {isa = PBXBuildFile; fileRef = 8CB1783C26C6DAD30014A179 /* DiskMounter.h */; };
-		8CB1783F26C6DC7E0014A179 /* Authorization.h in Sources */ = {isa = PBXBuildFile; fileRef = 8CB1783E26C6DC7E0014A179 /* Authorization.h */; };
-		8CB1784126C6DD020014A179 /* Authorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB1784026C6DD020014A179 /* Authorization.m */; };
-		8CB1784526C712590014A179 /* updateOCPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB1784426C712590014A179 /* updateOCPlist.swift */; };
-		8CB1784726C7146A0014A179 /* getHAPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB1784626C7146A0014A179 /* getHAPlist.swift */; };
-		8CB1784926C71DF40014A179 /* getEFIList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB1784826C71DF40014A179 /* getEFIList.swift */; };
-		8CC005E6270F4DDB00A21669 /* IndexedCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC005E5270F4DDB00A21669 /* IndexedCollection.swift */; };
-		8CCEED11263D7ECC00D10B0B /* StringListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCEED10263D7ECC00D10B0B /* StringListView.swift */; };
-		8CD5E6112627D26600B0395B /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD5E60F2627CFCB00B0395B /* AuthenticationServices.framework */; };
-		8CDA0DA627C782AF00229E2C /* kextLists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA0DA527C782AF00229E2C /* kextLists.swift */; };
-		8CDA0DA827C7986000229E2C /* getFilesFrom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA0DA727C7986000229E2C /* getFilesFrom.swift */; };
-		8CDA0DAA27C7987F00229E2C /* getGHDownloadLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA0DA927C7987F00229E2C /* getGHDownloadLink.swift */; };
-		8CDA0DAC27C7989A00229E2C /* getOCVersionFromCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA0DAB27C7989A00229E2C /* getOCVersionFromCache.swift */; };
-		8CDA0DAE27C799C700229E2C /* updateCachedKext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA0DAD27C799C700229E2C /* updateCachedKext.swift */; };
-		8CDD37B2262D671600387608 /* structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDD37B1262D671600387608 /* structs.swift */; };
-		8CE439E327CA38BA0056034E /* HAPlistEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE439E227CA38BA0056034E /* HAPlistEncoder.swift */; };
-		8CEEE90D25EDB2D100921AA4 /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = 8CEEE90C25EDB2D100921AA4 /* Zip */; };
-		8CF043A825CF6EFD0090C41F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF043A725CF6EFD0090C41F /* SettingsView.swift */; };
-		8CF043AA25D055E30090C41F /* GitHub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF043A925D055E30090C41F /* GitHub.swift */; };
-		8CF043AC25D0B46C0090C41F /* PlatformInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF043AB25D0B46C0090C41F /* PlatformInfo.swift */; };
-		8CF043AE25D0BC620090C41F /* KextsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF043AD25D0BC620090C41F /* KextsView.swift */; };
-		8CF1ADFE25FB92DB003E89F3 /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF1ADFD25FB92DB003E89F3 /* SheetView.swift */; };
-		8CF9ED7325E722A000CAB276 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 8CF9ED7225E722A000CAB276 /* Introspect */; };
-		A70B6234237AF87000A2BA73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70B6233237AF87000A2BA73 /* AppDelegate.swift */; };
-		A70B6236237AF87000A2BA73 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70B6235237AF87000A2BA73 /* ContentView.swift */; };
-		A70B6238237AF87700A2BA73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A70B6237237AF87700A2BA73 /* Assets.xcassets */; };
-		A70B623B237AF87700A2BA73 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A70B623A237AF87700A2BA73 /* Preview Assets.xcassets */; };
-		A70B624C237B003900A2BA73 /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70B624B237B003900A2BA73 /* StatusBarController.swift */; };
+		8CD2EF0D27CA7FA800509485 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CD2EF0C27CA7FA800509485 /* Assets.xcassets */; };
+		8CD2EF1027CA7FA800509485 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CD2EF0F27CA7FA800509485 /* Preview Assets.xcassets */; };
+		8CD2EF2527CA807600509485 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 8CD2EF2427CA807600509485 /* LaunchAtLogin */; };
+		8CD2EF2827CA808B00509485 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 8CD2EF2727CA808B00509485 /* Introspect */; };
+		8CD2EF2B27CA809900509485 /* Version in Frameworks */ = {isa = PBXBuildFile; productRef = 8CD2EF2A27CA809900509485 /* Version */; };
+		8CD2EF2E27CA80A800509485 /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8CD2EF2D27CA80A800509485 /* FeedKit */; };
+		8CD2EF3327CA80FD00509485 /* macserial in Resources */ = {isa = PBXBuildFile; fileRef = 8CD2EF3227CA80FD00509485 /* macserial */; };
+		8CD2EF3727CA813A00509485 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF3527CA813A00509485 /* AppDelegate.swift */; };
+		8CD2EF3827CA813A00509485 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF3627CA813A00509485 /* main.swift */; };
+		8CD2EF5B27CA81E600509485 /* DiskMounter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF3D27CA81E600509485 /* DiskMounter.m */; };
+		8CD2EF5C27CA81E600509485 /* IndexedCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF3E27CA81E600509485 /* IndexedCollection.swift */; };
+		8CD2EF5D27CA81E600509485 /* DiskAtrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF3F27CA81E600509485 /* DiskAtrib.swift */; };
+		8CD2EF5E27CA81E600509485 /* cleanDir.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF4027CA81E600509485 /* cleanDir.swift */; };
+		8CD2EF5F27CA81E600509485 /* TagCloudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF4127CA81E600509485 /* TagCloudView.swift */; };
+		8CD2EF6027CA81E600509485 /* MainDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF4227CA81E600509485 /* MainDataProvider.swift */; };
+		8CD2EF6127CA81E600509485 /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF4327CA81E600509485 /* Downloader.swift */; };
+		8CD2EF6227CA81E600509485 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF4427CA81E600509485 /* Login.swift */; };
+		8CD2EF6327CA81E600509485 /* SystemInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF4527CA81E600509485 /* SystemInfo.swift */; };
+		8CD2EF6427CA81E600509485 /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF4627CA81E600509485 /* StatusBarController.swift */; };
+		8CD2EF6527CA81E600509485 /* AMDCoresCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF4727CA81E600509485 /* AMDCoresCount.swift */; };
+		8CD2EF6627CA81E600509485 /* Authorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF4827CA81E600509485 /* Authorization.m */; };
+		8CD2EF6727CA81E600509485 /* AskPasswordPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF4927CA81E600509485 /* AskPasswordPopover.swift */; };
+		8CD2EF6827CA81E600509485 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF4A27CA81E600509485 /* Extensions.swift */; };
+		8CD2EF6927CA81E600509485 /* testingFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF4B27CA81E600509485 /* testingFunc.swift */; };
+		8CD2EF6A27CA81E600509485 /* func.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF4C27CA81E600509485 /* func.swift */; };
+		8CD2EF6B27CA81E600509485 /* ChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF4D27CA81E600509485 /* ChartsView.swift */; };
+		8CD2EF6C27CA81E600509485 /* BluetoothDevices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF4E27CA81E600509485 /* BluetoothDevices.swift */; };
+		8CD2EF6D27CA81E600509485 /* HDToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF4F27CA81E600509485 /* HDToggleView.swift */; };
+		8CD2EF6E27CA81E600509485 /* structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF5027CA81E600509485 /* structs.swift */; };
+		8CD2EF6F27CA81E600509485 /* DragAndDropViewConstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF5227CA81E600509485 /* DragAndDropViewConstructor.swift */; };
+		8CD2EF7027CA81E600509485 /* AppStorageforCatalina.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF5327CA81E600509485 /* AppStorageforCatalina.swift */; };
+		8CD2EF7127CA81E600509485 /* copyMissingFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF5427CA81E600509485 /* copyMissingFiles.swift */; };
+		8CD2EF7227CA81E600509485 /* GitHub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF5527CA81E600509485 /* GitHub.swift */; };
+		8CD2EF7327CA81E600509485 /* filesHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF5627CA81E600509485 /* filesHandlers.swift */; };
+		8CD2EF7427CA81E600509485 /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF5727CA81E600509485 /* SheetView.swift */; };
+		8CD2EF7527CA81E600509485 /* getEFIList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF5A27CA81E600509485 /* getEFIList.swift */; };
+		8CD2EFB427CA820D00509485 /* additionalOCFixes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF7827CA820D00509485 /* additionalOCFixes.swift */; };
+		8CD2EFB527CA820D00509485 /* asyncZip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF7927CA820D00509485 /* asyncZip.swift */; };
+		8CD2EFB627CA820D00509485 /* updateEFI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF7A27CA820D00509485 /* updateEFI.swift */; };
+		8CD2EFB727CA820D00509485 /* getGHDownloadLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF7B27CA820D00509485 /* getGHDownloadLink.swift */; };
+		8CD2EFB827CA820D00509485 /* getOCVersionFromCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF7C27CA820D00509485 /* getOCVersionFromCache.swift */; };
+		8CD2EFB927CA820D00509485 /* getFilesFrom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF7D27CA820D00509485 /* getFilesFrom.swift */; };
+		8CD2EFBA27CA820D00509485 /* renameFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF7E27CA820D00509485 /* renameFile.swift */; };
+		8CD2EFBB27CA820D00509485 /* backupEFI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF7F27CA820D00509485 /* backupEFI.swift */; };
+		8CD2EFBC27CA820D00509485 /* getLatestOCPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF8027CA820D00509485 /* getLatestOCPath.swift */; };
+		8CD2EFBD27CA820D00509485 /* standaloneToolsUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF8127CA820D00509485 /* standaloneToolsUpdater.swift */; };
+		8CD2EFBE27CA820D00509485 /* standaloneUpdateResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF8227CA820D00509485 /* standaloneUpdateResources.swift */; };
+		8CD2EFBF27CA820D00509485 /* getLatestKextPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF8427CA820D00509485 /* getLatestKextPath.swift */; };
+		8CD2EFC027CA820D00509485 /* kextLists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF8527CA820D00509485 /* kextLists.swift */; };
+		8CD2EFC127CA820D00509485 /* standaloneUpdateKexts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF8627CA820D00509485 /* standaloneUpdateKexts.swift */; };
+		8CD2EFC227CA820D00509485 /* updateCachedKext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF8727CA820D00509485 /* updateCachedKext.swift */; };
+		8CD2EFC327CA820D00509485 /* findLatestKext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF8827CA820D00509485 /* findLatestKext.swift */; };
+		8CD2EFC427CA820D00509485 /* shouldUpdateLocalKext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF8927CA820D00509485 /* shouldUpdateLocalKext.swift */; };
+		8CD2EFC527CA820D00509485 /* findDriverPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF8B27CA820D00509485 /* findDriverPath.swift */; };
+		8CD2EFC627CA820D00509485 /* downloadDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF8C27CA820D00509485 /* downloadDriver.swift */; };
+		8CD2EFC727CA820D00509485 /* getDriverDownloadLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF8D27CA820D00509485 /* getDriverDownloadLink.swift */; };
+		8CD2EFC827CA820D00509485 /* standaloneUpdateDrivers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF8E27CA820D00509485 /* standaloneUpdateDrivers.swift */; };
+		8CD2EFC927CA820D00509485 /* cleandownloadedDir.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF8F27CA820D00509485 /* cleandownloadedDir.swift */; };
+		8CD2EFCA27CA820D00509485 /* EFI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF9127CA820D00509485 /* EFI.swift */; };
+		8CD2EFCB27CA820D00509485 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF9327CA820D00509485 /* SettingsView.swift */; };
+		8CD2EFCC27CA820D00509485 /* ViewsDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF9427CA820D00509485 /* ViewsDispatcher.swift */; };
+		8CD2EFCD27CA820D00509485 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF9527CA820D00509485 /* LoginView.swift */; };
+		8CD2EFCE27CA820D00509485 /* LeaderStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF9727CA820D00509485 /* LeaderStartView.swift */; };
+		8CD2EFCF27CA820D00509485 /* BuildDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF9827CA820D00509485 /* BuildDetailView.swift */; };
+		8CD2EFD027CA820D00509485 /* UploadNewBuild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF9927CA820D00509485 /* UploadNewBuild.swift */; };
+		8CD2EFD127CA820D00509485 /* KextsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF9B27CA820D00509485 /* KextsView.swift */; };
+		8CD2EFD227CA820D00509485 /* ACPIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF9C27CA820D00509485 /* ACPIView.swift */; };
+		8CD2EFD327CA820D00509485 /* UpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF9D27CA820D00509485 /* UpdateView.swift */; };
+		8CD2EFD427CA820D00509485 /* PlatformInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF9E27CA820D00509485 /* PlatformInfo.swift */; };
+		8CD2EFD527CA820D00509485 /* DriversView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF9F27CA820D00509485 /* DriversView.swift */; };
+		8CD2EFD627CA820D00509485 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EFA127CA820D00509485 /* ListView.swift */; };
+		8CD2EFD727CA820D00509485 /* HDUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EFA227CA820D00509485 /* HDUpdateView.swift */; };
+		8CD2EFD827CA820D00509485 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EFA327CA820D00509485 /* ContentView.swift */; };
+		8CD2EFD927CA820D00509485 /* CreateEFI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EFA527CA820D00509485 /* CreateEFI.swift */; };
+		8CD2EFDA27CA820D00509485 /* HAPlistEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EFA927CA820D00509485 /* HAPlistEncoder.swift */; };
+		8CD2EFDB27CA820D00509485 /* updateOCPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EFAB27CA820D00509485 /* updateOCPlist.swift */; };
+		8CD2EFDC27CA820D00509485 /* getHAPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EFAC27CA820D00509485 /* getHAPlist.swift */; };
+		8CD2EFDD27CA820D00509485 /* HAPlistContentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EFAD27CA820D00509485 /* HAPlistContentHandler.swift */; };
+		8CD2EFDE27CA820D00509485 /* HAPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EFAE27CA820D00509485 /* HAPlist.swift */; };
+		8CD2EFDF27CA820D00509485 /* StringListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EFB027CA820D00509485 /* StringListView.swift */; };
+		8CD2EFE027CA820D00509485 /* PopoverContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EFB227CA820D00509485 /* PopoverContentController.swift */; };
+		8CD2EFE127CA820D00509485 /* TopToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EFB327CA820D00509485 /* TopToolbarView.swift */; };
+		8CD2EFE527CA99C700509485 /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = 8CD2EFE427CA99C700509485 /* Zip */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXBuildRule section */
-		8C3EFD6925DF3CC6005C21FE /* PBXBuildRule */ = {
-			isa = PBXBuildRule;
-			compilerSpec = com.apple.compilers.proxy.script;
-			fileType = sourcecode.metal;
-			inputFiles = (
-			);
-			isEditable = 1;
-			outputFiles = (
-			);
-			script = "# metal\n";
-		};
-/* End PBXBuildRule section */
-
 /* Begin PBXFileReference section */
-		8C097A4426C6058A001A4378 /* filesHandlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = filesHandlers.swift; sourceTree = "<group>"; };
-		8C0B135B276A80F0009715E9 /* EFI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFI.swift; sourceTree = "<group>"; };
-		8C0B135D276A8235009715E9 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		8C0B1360276A8457009715E9 /* PopoverContentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverContentController.swift; sourceTree = "<group>"; };
-		8C1BBA0E27C3A01300042A45 /* getLatestKextPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getLatestKextPath.swift; sourceTree = "<group>"; };
-		8C1BBA1027C3A0BE00042A45 /* getLatestOCPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getLatestOCPath.swift; sourceTree = "<group>"; };
-		8C1BBA1327C3A14A00042A45 /* cleandownloadedDir.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cleandownloadedDir.swift; sourceTree = "<group>"; };
-		8C1BBA1527C3B33900042A45 /* shouldUpdateLocalKext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shouldUpdateLocalKext.swift; sourceTree = "<group>"; };
-		8C1BBA1927C3B54200042A45 /* standaloneUpdateKexts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = standaloneUpdateKexts.swift; sourceTree = "<group>"; };
-		8C1BBA1B27C3B5BE00042A45 /* findLatestKext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = findLatestKext.swift; sourceTree = "<group>"; };
-		8C1BBA1E27C4191000042A45 /* standaloneUpdateDrivers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = standaloneUpdateDrivers.swift; sourceTree = "<group>"; };
-		8C1BBA2027C43BEA00042A45 /* getDriverDownloadLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getDriverDownloadLink.swift; sourceTree = "<group>"; };
-		8C1BBA2227C43C0C00042A45 /* downloadDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = downloadDriver.swift; sourceTree = "<group>"; };
-		8C1BBA2427C43C2E00042A45 /* findDriverPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = findDriverPath.swift; sourceTree = "<group>"; };
-		8C1BBA2727C43EF100042A45 /* standaloneUpdateResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = standaloneUpdateResources.swift; sourceTree = "<group>"; };
-		8C1BBA2927C4C32D00042A45 /* standaloneToolsUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = standaloneToolsUpdater.swift; sourceTree = "<group>"; };
-		8C1BBA2B27C4C74000042A45 /* cleanDir.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cleanDir.swift; sourceTree = "<group>"; };
-		8C1BBA2D27C4CA7E00042A45 /* copyMissingFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = copyMissingFiles.swift; sourceTree = "<group>"; };
-		8C1D098825D28751003CE546 /* ACPIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPIView.swift; sourceTree = "<group>"; };
-		8C20B619262AD8D300354B86 /* HackinDROMRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HackinDROMRelease.entitlements; sourceTree = "<group>"; };
-		8C2827B125CB736600CF0D82 /* DiskAtrib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskAtrib.swift; sourceTree = "<group>"; };
-		8C310C3A25F2E38F0054D93D /* ChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsView.swift; sourceTree = "<group>"; };
-		8C3393F92623B59800CFA8BB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		8C3B19FB25DAB97300039267 /* DriversView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriversView.swift; sourceTree = "<group>"; };
-		8C4647D627C682430007E1BF /* additionalOCFixes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = additionalOCFixes.swift; sourceTree = "<group>"; };
-		8C4647D827C682760007E1BF /* asyncZip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = asyncZip.swift; sourceTree = "<group>"; };
-		8C4647DA27C682AD0007E1BF /* renameFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = renameFile.swift; sourceTree = "<group>"; };
-		8C4647DC27C682CA0007E1BF /* backupEFI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = backupEFI.swift; sourceTree = "<group>"; };
-		8C4647DE27C682E10007E1BF /* updateEFI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = updateEFI.swift; sourceTree = "<group>"; };
-		8C4EACF827C10A1600E7DCC4 /* AMDCoresCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMDCoresCount.swift; sourceTree = "<group>"; };
-		8C51A01525CECEE2009C9AE2 /* func.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = func.swift; sourceTree = "<group>"; };
-		8C54539326CD02C2003FD811 /* HAPlistContentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HAPlistContentHandler.swift; sourceTree = "<group>"; };
-		8C5ED1C926597884003A6226 /* testingFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testingFunc.swift; sourceTree = "<group>"; };
-		8C5F6C5426C1D7B9009F1BCC /* HDUpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDUpdateView.swift; sourceTree = "<group>"; };
-		8C6413832645F49800C034D8 /* DragAndDropViewConstructor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragAndDropViewConstructor.swift; sourceTree = "<group>"; };
-		8C70956525E52CAE007C08DC /* LeaderStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderStartView.swift; sourceTree = "<group>"; };
-		8C70956725E52E05007C08DC /* BuildDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildDetailView.swift; sourceTree = "<group>"; };
-		8C70956925E53E30007C08DC /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		8C70956B25E542AA007C08DC /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
-		8C80EFBA25DC6CA300DEC8D5 /* CreateEFI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEFI.swift; sourceTree = "<group>"; };
-		8C82752D25E144730073616D /* UploadNewBuild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadNewBuild.swift; sourceTree = "<group>"; };
-		8C83F4A42655608600DBDD3B /* HDToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDToggleView.swift; sourceTree = "<group>"; };
-		8C83F4A92655C93000DBDD3B /* TagCloudView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCloudView.swift; sourceTree = "<group>"; };
-		8C89FC032623347D00C0C69E /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
-		8C8AF5A825CCC302003A10DD /* Downloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
-		8C8AF5AB25CCD12E003A10DD /* UpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateView.swift; sourceTree = "<group>"; };
-		8C8AF5AE25CD56EB003A10DD /* ViewsDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewsDispatcher.swift; sourceTree = "<group>"; };
-		8C8AF5B125CD6F03003A10DD /* SystemInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemInfo.swift; sourceTree = "<group>"; };
-		8C97CD9525CA244700B6DE00 /* MainDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDataProvider.swift; sourceTree = "<group>"; };
-		8C989F99265DB90500B798B5 /* BluetoothDevices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothDevices.swift; sourceTree = "<group>"; };
-		8C9F1B612796D87000C08775 /* macserial */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = macserial; sourceTree = "<group>"; };
-		8CA272E5263E1A0100B5F402 /* HAPlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HAPlist.swift; sourceTree = "<group>"; };
-		8CA2CB48261F456400EA8949 /* AppStorageforCatalina.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStorageforCatalina.swift; sourceTree = "<group>"; };
-		8CAC9288276B61F400916A94 /* TopToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopToolbarView.swift; sourceTree = "<group>"; };
-		8CB1783926C6D9150014A179 /* HackinDROM-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HackinDROM-Bridging-Header.h"; sourceTree = "<group>"; };
-		8CB1783A26C6D9160014A179 /* DiskMounter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiskMounter.m; sourceTree = "<group>"; };
-		8CB1783C26C6DAD30014A179 /* DiskMounter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiskMounter.h; sourceTree = "<group>"; };
-		8CB1783E26C6DC7E0014A179 /* Authorization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Authorization.h; sourceTree = "<group>"; };
-		8CB1784026C6DD020014A179 /* Authorization.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Authorization.m; sourceTree = "<group>"; };
-		8CB1784426C712590014A179 /* updateOCPlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = updateOCPlist.swift; sourceTree = "<group>"; };
-		8CB1784626C7146A0014A179 /* getHAPlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getHAPlist.swift; sourceTree = "<group>"; };
-		8CB1784826C71DF40014A179 /* getEFIList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getEFIList.swift; sourceTree = "<group>"; };
-		8CC005E5270F4DDB00A21669 /* IndexedCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexedCollection.swift; sourceTree = "<group>"; };
-		8CCEED10263D7ECC00D10B0B /* StringListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringListView.swift; sourceTree = "<group>"; };
-		8CD5E60F2627CFCB00B0395B /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
-		8CDA0DA527C782AF00229E2C /* kextLists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kextLists.swift; sourceTree = "<group>"; };
-		8CDA0DA727C7986000229E2C /* getFilesFrom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getFilesFrom.swift; sourceTree = "<group>"; };
-		8CDA0DA927C7987F00229E2C /* getGHDownloadLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getGHDownloadLink.swift; sourceTree = "<group>"; };
-		8CDA0DAB27C7989A00229E2C /* getOCVersionFromCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getOCVersionFromCache.swift; sourceTree = "<group>"; };
-		8CDA0DAD27C799C700229E2C /* updateCachedKext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = updateCachedKext.swift; sourceTree = "<group>"; };
-		8CDD37B1262D671600387608 /* structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = structs.swift; sourceTree = "<group>"; };
-		8CE439E227CA38BA0056034E /* HAPlistEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HAPlistEncoder.swift; sourceTree = "<group>"; };
-		8CF043A725CF6EFD0090C41F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		8CF043A925D055E30090C41F /* GitHub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHub.swift; sourceTree = "<group>"; };
-		8CF043AB25D0B46C0090C41F /* PlatformInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformInfo.swift; sourceTree = "<group>"; };
-		8CF043AD25D0BC620090C41F /* KextsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KextsView.swift; sourceTree = "<group>"; };
-		8CF1ADFD25FB92DB003E89F3 /* SheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetView.swift; sourceTree = "<group>"; };
-		A70B6230237AF87000A2BA73 /* HackinDROM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackinDROM.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A70B6233237AF87000A2BA73 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A70B6235237AF87000A2BA73 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		A70B6237237AF87700A2BA73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A70B623A237AF87700A2BA73 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		A70B623F237AF87700A2BA73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A70B624B237B003900A2BA73 /* StatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
+		8CD2EF0527CA7FA700509485 /* HackinDROM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackinDROM.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CD2EF0C27CA7FA800509485 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8CD2EF0F27CA7FA800509485 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8CD2EF1127CA7FA800509485 /* HackinDROM.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HackinDROM.entitlements; sourceTree = "<group>"; };
+		8CD2EF3227CA80FD00509485 /* macserial */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = macserial; sourceTree = "<group>"; };
+		8CD2EF3427CA813900509485 /* HackinDROM-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HackinDROM-Bridging-Header.h"; sourceTree = "<group>"; };
+		8CD2EF3527CA813A00509485 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8CD2EF3627CA813A00509485 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		8CD2EF3D27CA81E600509485 /* DiskMounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiskMounter.m; sourceTree = "<group>"; };
+		8CD2EF3E27CA81E600509485 /* IndexedCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexedCollection.swift; sourceTree = "<group>"; };
+		8CD2EF3F27CA81E600509485 /* DiskAtrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiskAtrib.swift; sourceTree = "<group>"; };
+		8CD2EF4027CA81E600509485 /* cleanDir.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cleanDir.swift; sourceTree = "<group>"; };
+		8CD2EF4127CA81E600509485 /* TagCloudView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCloudView.swift; sourceTree = "<group>"; };
+		8CD2EF4227CA81E600509485 /* MainDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainDataProvider.swift; sourceTree = "<group>"; };
+		8CD2EF4327CA81E600509485 /* Downloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
+		8CD2EF4427CA81E600509485 /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		8CD2EF4527CA81E600509485 /* SystemInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemInfo.swift; sourceTree = "<group>"; };
+		8CD2EF4627CA81E600509485 /* StatusBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
+		8CD2EF4727CA81E600509485 /* AMDCoresCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMDCoresCount.swift; sourceTree = "<group>"; };
+		8CD2EF4827CA81E600509485 /* Authorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Authorization.m; sourceTree = "<group>"; };
+		8CD2EF4927CA81E600509485 /* AskPasswordPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AskPasswordPopover.swift; sourceTree = "<group>"; };
+		8CD2EF4A27CA81E600509485 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		8CD2EF4B27CA81E600509485 /* testingFunc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testingFunc.swift; sourceTree = "<group>"; };
+		8CD2EF4C27CA81E600509485 /* func.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = func.swift; sourceTree = "<group>"; };
+		8CD2EF4D27CA81E600509485 /* ChartsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsView.swift; sourceTree = "<group>"; };
+		8CD2EF4E27CA81E600509485 /* BluetoothDevices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothDevices.swift; sourceTree = "<group>"; };
+		8CD2EF4F27CA81E600509485 /* HDToggleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDToggleView.swift; sourceTree = "<group>"; };
+		8CD2EF5027CA81E600509485 /* structs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = structs.swift; sourceTree = "<group>"; };
+		8CD2EF5127CA81E600509485 /* DiskMounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiskMounter.h; sourceTree = "<group>"; };
+		8CD2EF5227CA81E600509485 /* DragAndDropViewConstructor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragAndDropViewConstructor.swift; sourceTree = "<group>"; };
+		8CD2EF5327CA81E600509485 /* AppStorageforCatalina.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStorageforCatalina.swift; sourceTree = "<group>"; };
+		8CD2EF5427CA81E600509485 /* copyMissingFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = copyMissingFiles.swift; sourceTree = "<group>"; };
+		8CD2EF5527CA81E600509485 /* GitHub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHub.swift; sourceTree = "<group>"; };
+		8CD2EF5627CA81E600509485 /* filesHandlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = filesHandlers.swift; sourceTree = "<group>"; };
+		8CD2EF5727CA81E600509485 /* SheetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SheetView.swift; sourceTree = "<group>"; };
+		8CD2EF5927CA81E600509485 /* Authorization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Authorization.h; sourceTree = "<group>"; };
+		8CD2EF5A27CA81E600509485 /* getEFIList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = getEFIList.swift; sourceTree = "<group>"; };
+		8CD2EF7827CA820D00509485 /* additionalOCFixes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = additionalOCFixes.swift; sourceTree = "<group>"; };
+		8CD2EF7927CA820D00509485 /* asyncZip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = asyncZip.swift; sourceTree = "<group>"; };
+		8CD2EF7A27CA820D00509485 /* updateEFI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = updateEFI.swift; sourceTree = "<group>"; };
+		8CD2EF7B27CA820D00509485 /* getGHDownloadLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = getGHDownloadLink.swift; sourceTree = "<group>"; };
+		8CD2EF7C27CA820D00509485 /* getOCVersionFromCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = getOCVersionFromCache.swift; sourceTree = "<group>"; };
+		8CD2EF7D27CA820D00509485 /* getFilesFrom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = getFilesFrom.swift; sourceTree = "<group>"; };
+		8CD2EF7E27CA820D00509485 /* renameFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = renameFile.swift; sourceTree = "<group>"; };
+		8CD2EF7F27CA820D00509485 /* backupEFI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = backupEFI.swift; sourceTree = "<group>"; };
+		8CD2EF8027CA820D00509485 /* getLatestOCPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = getLatestOCPath.swift; sourceTree = "<group>"; };
+		8CD2EF8127CA820D00509485 /* standaloneToolsUpdater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = standaloneToolsUpdater.swift; sourceTree = "<group>"; };
+		8CD2EF8227CA820D00509485 /* standaloneUpdateResources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = standaloneUpdateResources.swift; sourceTree = "<group>"; };
+		8CD2EF8427CA820D00509485 /* getLatestKextPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = getLatestKextPath.swift; sourceTree = "<group>"; };
+		8CD2EF8527CA820D00509485 /* kextLists.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = kextLists.swift; sourceTree = "<group>"; };
+		8CD2EF8627CA820D00509485 /* standaloneUpdateKexts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = standaloneUpdateKexts.swift; sourceTree = "<group>"; };
+		8CD2EF8727CA820D00509485 /* updateCachedKext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = updateCachedKext.swift; sourceTree = "<group>"; };
+		8CD2EF8827CA820D00509485 /* findLatestKext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = findLatestKext.swift; sourceTree = "<group>"; };
+		8CD2EF8927CA820D00509485 /* shouldUpdateLocalKext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = shouldUpdateLocalKext.swift; sourceTree = "<group>"; };
+		8CD2EF8B27CA820D00509485 /* findDriverPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = findDriverPath.swift; sourceTree = "<group>"; };
+		8CD2EF8C27CA820D00509485 /* downloadDriver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = downloadDriver.swift; sourceTree = "<group>"; };
+		8CD2EF8D27CA820D00509485 /* getDriverDownloadLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = getDriverDownloadLink.swift; sourceTree = "<group>"; };
+		8CD2EF8E27CA820D00509485 /* standaloneUpdateDrivers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = standaloneUpdateDrivers.swift; sourceTree = "<group>"; };
+		8CD2EF8F27CA820D00509485 /* cleandownloadedDir.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cleandownloadedDir.swift; sourceTree = "<group>"; };
+		8CD2EF9127CA820D00509485 /* EFI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EFI.swift; sourceTree = "<group>"; };
+		8CD2EF9327CA820D00509485 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		8CD2EF9427CA820D00509485 /* ViewsDispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewsDispatcher.swift; sourceTree = "<group>"; };
+		8CD2EF9527CA820D00509485 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		8CD2EF9727CA820D00509485 /* LeaderStartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderStartView.swift; sourceTree = "<group>"; };
+		8CD2EF9827CA820D00509485 /* BuildDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildDetailView.swift; sourceTree = "<group>"; };
+		8CD2EF9927CA820D00509485 /* UploadNewBuild.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadNewBuild.swift; sourceTree = "<group>"; };
+		8CD2EF9B27CA820D00509485 /* KextsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KextsView.swift; sourceTree = "<group>"; };
+		8CD2EF9C27CA820D00509485 /* ACPIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACPIView.swift; sourceTree = "<group>"; };
+		8CD2EF9D27CA820D00509485 /* UpdateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateView.swift; sourceTree = "<group>"; };
+		8CD2EF9E27CA820D00509485 /* PlatformInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformInfo.swift; sourceTree = "<group>"; };
+		8CD2EF9F27CA820D00509485 /* DriversView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriversView.swift; sourceTree = "<group>"; };
+		8CD2EFA127CA820D00509485 /* ListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		8CD2EFA227CA820D00509485 /* HDUpdateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDUpdateView.swift; sourceTree = "<group>"; };
+		8CD2EFA327CA820D00509485 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		8CD2EFA527CA820D00509485 /* CreateEFI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEFI.swift; sourceTree = "<group>"; };
+		8CD2EFA927CA820D00509485 /* HAPlistEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HAPlistEncoder.swift; sourceTree = "<group>"; };
+		8CD2EFAB27CA820D00509485 /* updateOCPlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = updateOCPlist.swift; sourceTree = "<group>"; };
+		8CD2EFAC27CA820D00509485 /* getHAPlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = getHAPlist.swift; sourceTree = "<group>"; };
+		8CD2EFAD27CA820D00509485 /* HAPlistContentHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HAPlistContentHandler.swift; sourceTree = "<group>"; };
+		8CD2EFAE27CA820D00509485 /* HAPlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HAPlist.swift; sourceTree = "<group>"; };
+		8CD2EFB027CA820D00509485 /* StringListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringListView.swift; sourceTree = "<group>"; };
+		8CD2EFB227CA820D00509485 /* PopoverContentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverContentController.swift; sourceTree = "<group>"; };
+		8CD2EFB327CA820D00509485 /* TopToolbarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopToolbarView.swift; sourceTree = "<group>"; };
+		8CD2EFE227CA858500509485 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A70B622D237AF87000A2BA73 /* Frameworks */ = {
+		8CD2EF0227CA7FA700509485 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CD5E6112627D26600B0395B /* AuthenticationServices.framework in Frameworks */,
-				8C79122326586C2700C29FE6 /* Version in Frameworks */,
-				8C8EB29F25C9DDFE005E9332 /* LaunchAtLogin in Frameworks */,
-				8C4EACFC27C1394500E7DCC4 /* FeedKit in Frameworks */,
-				8CF9ED7325E722A000CAB276 /* Introspect in Frameworks */,
-				8CEEE90D25EDB2D100921AA4 /* Zip in Frameworks */,
+				8CD2EF2B27CA809900509485 /* Version in Frameworks */,
+				8CD2EF2527CA807600509485 /* LaunchAtLogin in Frameworks */,
+				8CD2EF2827CA808B00509485 /* Introspect in Frameworks */,
+				8CD2EF2E27CA80A800509485 /* FeedKit in Frameworks */,
+				8CD2EFE527CA99C700509485 /* Zip in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8C0302D226B9847100E6935D /* UpdateEFI */ = {
+		8CD2EEFC27CA7FA700509485 = {
 			isa = PBXGroup;
 			children = (
-				8C8AF5AB25CCD12E003A10DD /* UpdateView.swift */,
-				8C1D098825D28751003CE546 /* ACPIView.swift */,
-				8CF043AB25D0B46C0090C41F /* PlatformInfo.swift */,
-				8CF043AD25D0BC620090C41F /* KextsView.swift */,
-				8C3B19FB25DAB97300039267 /* DriversView.swift */,
-			);
-			path = UpdateEFI;
-			sourceTree = "<group>";
-		};
-		8C0302D326B984CC00E6935D /* admin */ = {
-			isa = PBXGroup;
-			children = (
-				8C70956525E52CAE007C08DC /* LeaderStartView.swift */,
-				8C70956725E52E05007C08DC /* BuildDetailView.swift */,
-				8C82752D25E144730073616D /* UploadNewBuild.swift */,
-			);
-			path = admin;
-			sourceTree = "<group>";
-		};
-		8C0B135A276A80D4009715E9 /* Structs */ = {
-			isa = PBXGroup;
-			children = (
-				8C0B135B276A80F0009715E9 /* EFI.swift */,
-			);
-			path = Structs;
-			sourceTree = "<group>";
-		};
-		8C0B135F276A8424009715E9 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				8C0B1360276A8457009715E9 /* PopoverContentController.swift */,
-				8CAC9288276B61F400916A94 /* TopToolbarView.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		8C0DFFE52631707F00E94142 /* PlistEditor */ = {
-			isa = PBXGroup;
-			children = (
-				8CB1784326C70ECF0014A179 /* Core */,
-				8CB1784226C70E9F0014A179 /* Editor Views */,
-			);
-			path = PlistEditor;
-			sourceTree = "<group>";
-		};
-		8C1BBA0B27C39EBD00042A45 /* KextsUpdater */ = {
-			isa = PBXGroup;
-			children = (
-				8CDA0DA527C782AF00229E2C /* kextLists.swift */,
-				8C1BBA0E27C3A01300042A45 /* getLatestKextPath.swift */,
-				8C1BBA1527C3B33900042A45 /* shouldUpdateLocalKext.swift */,
-				8C1BBA1927C3B54200042A45 /* standaloneUpdateKexts.swift */,
-				8C1BBA1B27C3B5BE00042A45 /* findLatestKext.swift */,
-				8CDA0DAD27C799C700229E2C /* updateCachedKext.swift */,
-			);
-			path = KextsUpdater;
-			sourceTree = "<group>";
-		};
-		8C1BBA1227C3A0E600042A45 /* StandaloneUpdater */ = {
-			isa = PBXGroup;
-			children = (
-				8C4647D527C682260007E1BF /* Tools */,
-				8C1BBA1027C3A0BE00042A45 /* getLatestOCPath.swift */,
-				8C1BBA1327C3A14A00042A45 /* cleandownloadedDir.swift */,
-				8C1BBA2727C43EF100042A45 /* standaloneUpdateResources.swift */,
-				8C1BBA2927C4C32D00042A45 /* standaloneToolsUpdater.swift */,
-				8C1BBA0B27C39EBD00042A45 /* KextsUpdater */,
-				8C1BBA1D27C4099700042A45 /* DriversUpdater */,
-			);
-			path = StandaloneUpdater;
-			sourceTree = "<group>";
-		};
-		8C1BBA1D27C4099700042A45 /* DriversUpdater */ = {
-			isa = PBXGroup;
-			children = (
-				8C1BBA1E27C4191000042A45 /* standaloneUpdateDrivers.swift */,
-				8C1BBA2027C43BEA00042A45 /* getDriverDownloadLink.swift */,
-				8C1BBA2227C43C0C00042A45 /* downloadDriver.swift */,
-				8C1BBA2427C43C2E00042A45 /* findDriverPath.swift */,
-			);
-			path = DriversUpdater;
-			sourceTree = "<group>";
-		};
-		8C310C3C25F37CFB0054D93D /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				8CD5E60F2627CFCB00B0395B /* AuthenticationServices.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		8C4647D527C682260007E1BF /* Tools */ = {
-			isa = PBXGroup;
-			children = (
-				8C4647D627C682430007E1BF /* additionalOCFixes.swift */,
-				8C4647DE27C682E10007E1BF /* updateEFI.swift */,
-				8C4647D827C682760007E1BF /* asyncZip.swift */,
-				8C4647DA27C682AD0007E1BF /* renameFile.swift */,
-				8C4647DC27C682CA0007E1BF /* backupEFI.swift */,
-				8CDA0DA727C7986000229E2C /* getFilesFrom.swift */,
-				8CDA0DA927C7987F00229E2C /* getGHDownloadLink.swift */,
-				8CDA0DAB27C7989A00229E2C /* getOCVersionFromCache.swift */,
-			);
-			path = Tools;
-			sourceTree = "<group>";
-		};
-		8C5F6C5326C1CE5B009F1BCC /* Main View */ = {
-			isa = PBXGroup;
-			children = (
-				A70B6235237AF87000A2BA73 /* ContentView.swift */,
-				8C89FC032623347D00C0C69E /* ListView.swift */,
-				8C5F6C5426C1D7B9009F1BCC /* HDUpdateView.swift */,
-			);
-			path = "Main View";
-			sourceTree = "<group>";
-		};
-		8C94A0F326BD8605005E70FA /* CreateEFI */ = {
-			isa = PBXGroup;
-			children = (
-				8C80EFBA25DC6CA300DEC8D5 /* CreateEFI.swift */,
-			);
-			path = CreateEFI;
-			sourceTree = "<group>";
-		};
-		8CB1784226C70E9F0014A179 /* Editor Views */ = {
-			isa = PBXGroup;
-			children = (
-				8CCEED10263D7ECC00D10B0B /* StringListView.swift */,
-			);
-			path = "Editor Views";
-			sourceTree = "<group>";
-		};
-		8CB1784326C70ECF0014A179 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				8CA272E5263E1A0100B5F402 /* HAPlist.swift */,
-				8CE439E127CA38100056034E /* Encoder */,
-				8CE439E027CA38010056034E /* Decoder */,
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
-		8CE439E027CA38010056034E /* Decoder */ = {
-			isa = PBXGroup;
-			children = (
-				8CB1784626C7146A0014A179 /* getHAPlist.swift */,
-				8CB1784426C712590014A179 /* updateOCPlist.swift */,
-				8C54539326CD02C2003FD811 /* HAPlistContentHandler.swift */,
-			);
-			path = Decoder;
-			sourceTree = "<group>";
-		};
-		8CE439E127CA38100056034E /* Encoder */ = {
-			isa = PBXGroup;
-			children = (
-				8CE439E227CA38BA0056034E /* HAPlistEncoder.swift */,
-			);
-			path = Encoder;
-			sourceTree = "<group>";
-		};
-		A70B6227237AF87000A2BA73 = {
-			isa = PBXGroup;
-			children = (
-				8C20B619262AD8D300354B86 /* HackinDROMRelease.entitlements */,
-				A70B6232237AF87000A2BA73 /* HackinDROM */,
-				A70B6231237AF87000A2BA73 /* Products */,
-				8C310C3C25F37CFB0054D93D /* Frameworks */,
+				8CD2EF0727CA7FA700509485 /* HackinDROM */,
+				8CD2EF0627CA7FA700509485 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		A70B6231237AF87000A2BA73 /* Products */ = {
+		8CD2EF0627CA7FA700509485 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A70B6230237AF87000A2BA73 /* HackinDROM.app */,
+				8CD2EF0527CA7FA700509485 /* HackinDROM.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A70B6232237AF87000A2BA73 /* HackinDROM */ = {
+		8CD2EF0727CA7FA700509485 /* HackinDROM */ = {
 			isa = PBXGroup;
 			children = (
-				8C9F1B612796D87000C08775 /* macserial */,
-				8C0B135F276A8424009715E9 /* Controllers */,
-				8C0B135A276A80D4009715E9 /* Structs */,
-				A70B6233237AF87000A2BA73 /* AppDelegate.swift */,
-				8C0B135D276A8235009715E9 /* main.swift */,
-				8C0DFFE52631707F00E94142 /* PlistEditor */,
-				8C1BBA1227C3A0E600042A45 /* StandaloneUpdater */,
-				A70B6249237B000700A2BA73 /* Helpers */,
-				A70B6253237B081200A2BA73 /* Views */,
-				A70B623F237AF87700A2BA73 /* Info.plist */,
-				A70B6237237AF87700A2BA73 /* Assets.xcassets */,
-				A70B6239237AF87700A2BA73 /* Preview Content */,
+				8CD2EFE227CA858500509485 /* Info.plist */,
+				8CD2EFB127CA820D00509485 /* Controllers */,
+				8CD2EFA627CA820D00509485 /* PlistEditor */,
+				8CD2EF7627CA820D00509485 /* StandaloneUpdater */,
+				8CD2EF9027CA820D00509485 /* Structs */,
+				8CD2EF9227CA820D00509485 /* Views */,
+				8CD2EF3C27CA81E600509485 /* Helpers */,
+				8CD2EF3527CA813A00509485 /* AppDelegate.swift */,
+				8CD2EF3627CA813A00509485 /* main.swift */,
+				8CD2EF0C27CA7FA800509485 /* Assets.xcassets */,
+				8CD2EF1127CA7FA800509485 /* HackinDROM.entitlements */,
+				8CD2EF3227CA80FD00509485 /* macserial */,
+				8CD2EF0E27CA7FA800509485 /* Preview Content */,
+				8CD2EF3427CA813900509485 /* HackinDROM-Bridging-Header.h */,
+				8CD2EF3D27CA81E600509485 /* DiskMounter.m */,
+				8CD2EF4827CA81E600509485 /* Authorization.m */,
+				8CD2EF5127CA81E600509485 /* DiskMounter.h */,
+				8CD2EF5927CA81E600509485 /* Authorization.h */,
 			);
 			path = HackinDROM;
 			sourceTree = "<group>";
 		};
-		A70B6239237AF87700A2BA73 /* Preview Content */ = {
+		8CD2EF0E27CA7FA800509485 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				A70B623A237AF87700A2BA73 /* Preview Assets.xcassets */,
+				8CD2EF0F27CA7FA800509485 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		A70B6249237B000700A2BA73 /* Helpers */ = {
+		8CD2EF3C27CA81E600509485 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				8C97CD9525CA244700B6DE00 /* MainDataProvider.swift */,
-				8C3393F92623B59800CFA8BB /* Extensions.swift */,
-				8CA2CB48261F456400EA8949 /* AppStorageforCatalina.swift */,
-				A70B624B237B003900A2BA73 /* StatusBarController.swift */,
-				8C2827B125CB736600CF0D82 /* DiskAtrib.swift */,
-				8C8AF5A825CCC302003A10DD /* Downloader.swift */,
-				8C8AF5B125CD6F03003A10DD /* SystemInfo.swift */,
-				8CF043A925D055E30090C41F /* GitHub.swift */,
-				8C70956B25E542AA007C08DC /* Login.swift */,
-				8C310C3A25F2E38F0054D93D /* ChartsView.swift */,
-				8C51A01525CECEE2009C9AE2 /* func.swift */,
-				8CDD37B1262D671600387608 /* structs.swift */,
-				8CF1ADFD25FB92DB003E89F3 /* SheetView.swift */,
-				8CB1784826C71DF40014A179 /* getEFIList.swift */,
-				8C6413832645F49800C034D8 /* DragAndDropViewConstructor.swift */,
-				8C83F4A42655608600DBDD3B /* HDToggleView.swift */,
-				8C83F4A92655C93000DBDD3B /* TagCloudView.swift */,
-				8C5ED1C926597884003A6226 /* testingFunc.swift */,
-				8C989F99265DB90500B798B5 /* BluetoothDevices.swift */,
-				8C097A4426C6058A001A4378 /* filesHandlers.swift */,
-				8C4EACF827C10A1600E7DCC4 /* AMDCoresCount.swift */,
-				8CB1783C26C6DAD30014A179 /* DiskMounter.h */,
-				8CB1783A26C6D9160014A179 /* DiskMounter.m */,
-				8CB1783E26C6DC7E0014A179 /* Authorization.h */,
-				8CB1784026C6DD020014A179 /* Authorization.m */,
-				8CB1783926C6D9150014A179 /* HackinDROM-Bridging-Header.h */,
-				8CC005E5270F4DDB00A21669 /* IndexedCollection.swift */,
-				8C1BBA2B27C4C74000042A45 /* cleanDir.swift */,
-				8C1BBA2D27C4CA7E00042A45 /* copyMissingFiles.swift */,
+				8CD2EF3E27CA81E600509485 /* IndexedCollection.swift */,
+				8CD2EF3F27CA81E600509485 /* DiskAtrib.swift */,
+				8CD2EF4027CA81E600509485 /* cleanDir.swift */,
+				8CD2EF4127CA81E600509485 /* TagCloudView.swift */,
+				8CD2EF4227CA81E600509485 /* MainDataProvider.swift */,
+				8CD2EF4327CA81E600509485 /* Downloader.swift */,
+				8CD2EF4427CA81E600509485 /* Login.swift */,
+				8CD2EF4527CA81E600509485 /* SystemInfo.swift */,
+				8CD2EF4627CA81E600509485 /* StatusBarController.swift */,
+				8CD2EF4727CA81E600509485 /* AMDCoresCount.swift */,
+				8CD2EF4927CA81E600509485 /* AskPasswordPopover.swift */,
+				8CD2EF4A27CA81E600509485 /* Extensions.swift */,
+				8CD2EF4B27CA81E600509485 /* testingFunc.swift */,
+				8CD2EF4C27CA81E600509485 /* func.swift */,
+				8CD2EF4D27CA81E600509485 /* ChartsView.swift */,
+				8CD2EF4E27CA81E600509485 /* BluetoothDevices.swift */,
+				8CD2EF4F27CA81E600509485 /* HDToggleView.swift */,
+				8CD2EF5027CA81E600509485 /* structs.swift */,
+				8CD2EF5227CA81E600509485 /* DragAndDropViewConstructor.swift */,
+				8CD2EF5327CA81E600509485 /* AppStorageforCatalina.swift */,
+				8CD2EF5427CA81E600509485 /* copyMissingFiles.swift */,
+				8CD2EF5527CA81E600509485 /* GitHub.swift */,
+				8CD2EF5627CA81E600509485 /* filesHandlers.swift */,
+				8CD2EF5727CA81E600509485 /* SheetView.swift */,
+				8CD2EF5A27CA81E600509485 /* getEFIList.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		A70B6253237B081200A2BA73 /* Views */ = {
+		8CD2EF7627CA820D00509485 /* StandaloneUpdater */ = {
 			isa = PBXGroup;
 			children = (
-				8C8AF5AE25CD56EB003A10DD /* ViewsDispatcher.swift */,
-				8C5F6C5326C1CE5B009F1BCC /* Main View */,
-				8C94A0F326BD8605005E70FA /* CreateEFI */,
-				8C0302D226B9847100E6935D /* UpdateEFI */,
-				8C0302D326B984CC00E6935D /* admin */,
-				8CF043A725CF6EFD0090C41F /* SettingsView.swift */,
-				8C70956925E53E30007C08DC /* LoginView.swift */,
+				8CD2EF7727CA820D00509485 /* Tools */,
+				8CD2EF8027CA820D00509485 /* getLatestOCPath.swift */,
+				8CD2EF8127CA820D00509485 /* standaloneToolsUpdater.swift */,
+				8CD2EF8227CA820D00509485 /* standaloneUpdateResources.swift */,
+				8CD2EF8327CA820D00509485 /* KextsUpdater */,
+				8CD2EF8A27CA820D00509485 /* DriversUpdater */,
+				8CD2EF8F27CA820D00509485 /* cleandownloadedDir.swift */,
+			);
+			path = StandaloneUpdater;
+			sourceTree = "<group>";
+		};
+		8CD2EF7727CA820D00509485 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				8CD2EF7827CA820D00509485 /* additionalOCFixes.swift */,
+				8CD2EF7927CA820D00509485 /* asyncZip.swift */,
+				8CD2EF7A27CA820D00509485 /* updateEFI.swift */,
+				8CD2EF7B27CA820D00509485 /* getGHDownloadLink.swift */,
+				8CD2EF7C27CA820D00509485 /* getOCVersionFromCache.swift */,
+				8CD2EF7D27CA820D00509485 /* getFilesFrom.swift */,
+				8CD2EF7E27CA820D00509485 /* renameFile.swift */,
+				8CD2EF7F27CA820D00509485 /* backupEFI.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		8CD2EF8327CA820D00509485 /* KextsUpdater */ = {
+			isa = PBXGroup;
+			children = (
+				8CD2EF8427CA820D00509485 /* getLatestKextPath.swift */,
+				8CD2EF8527CA820D00509485 /* kextLists.swift */,
+				8CD2EF8627CA820D00509485 /* standaloneUpdateKexts.swift */,
+				8CD2EF8727CA820D00509485 /* updateCachedKext.swift */,
+				8CD2EF8827CA820D00509485 /* findLatestKext.swift */,
+				8CD2EF8927CA820D00509485 /* shouldUpdateLocalKext.swift */,
+			);
+			path = KextsUpdater;
+			sourceTree = "<group>";
+		};
+		8CD2EF8A27CA820D00509485 /* DriversUpdater */ = {
+			isa = PBXGroup;
+			children = (
+				8CD2EF8B27CA820D00509485 /* findDriverPath.swift */,
+				8CD2EF8C27CA820D00509485 /* downloadDriver.swift */,
+				8CD2EF8D27CA820D00509485 /* getDriverDownloadLink.swift */,
+				8CD2EF8E27CA820D00509485 /* standaloneUpdateDrivers.swift */,
+			);
+			path = DriversUpdater;
+			sourceTree = "<group>";
+		};
+		8CD2EF9027CA820D00509485 /* Structs */ = {
+			isa = PBXGroup;
+			children = (
+				8CD2EF9127CA820D00509485 /* EFI.swift */,
+			);
+			path = Structs;
+			sourceTree = "<group>";
+		};
+		8CD2EF9227CA820D00509485 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8CD2EF9327CA820D00509485 /* SettingsView.swift */,
+				8CD2EF9427CA820D00509485 /* ViewsDispatcher.swift */,
+				8CD2EF9527CA820D00509485 /* LoginView.swift */,
+				8CD2EF9627CA820D00509485 /* admin */,
+				8CD2EF9A27CA820D00509485 /* UpdateEFI */,
+				8CD2EFA027CA820D00509485 /* Main View */,
+				8CD2EFA427CA820D00509485 /* CreateEFI */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		8CD2EF9627CA820D00509485 /* admin */ = {
+			isa = PBXGroup;
+			children = (
+				8CD2EF9727CA820D00509485 /* LeaderStartView.swift */,
+				8CD2EF9827CA820D00509485 /* BuildDetailView.swift */,
+				8CD2EF9927CA820D00509485 /* UploadNewBuild.swift */,
+			);
+			path = admin;
+			sourceTree = "<group>";
+		};
+		8CD2EF9A27CA820D00509485 /* UpdateEFI */ = {
+			isa = PBXGroup;
+			children = (
+				8CD2EF9B27CA820D00509485 /* KextsView.swift */,
+				8CD2EF9C27CA820D00509485 /* ACPIView.swift */,
+				8CD2EF9D27CA820D00509485 /* UpdateView.swift */,
+				8CD2EF9E27CA820D00509485 /* PlatformInfo.swift */,
+				8CD2EF9F27CA820D00509485 /* DriversView.swift */,
+			);
+			path = UpdateEFI;
+			sourceTree = "<group>";
+		};
+		8CD2EFA027CA820D00509485 /* Main View */ = {
+			isa = PBXGroup;
+			children = (
+				8CD2EFA127CA820D00509485 /* ListView.swift */,
+				8CD2EFA227CA820D00509485 /* HDUpdateView.swift */,
+				8CD2EFA327CA820D00509485 /* ContentView.swift */,
+			);
+			path = "Main View";
+			sourceTree = "<group>";
+		};
+		8CD2EFA427CA820D00509485 /* CreateEFI */ = {
+			isa = PBXGroup;
+			children = (
+				8CD2EFA527CA820D00509485 /* CreateEFI.swift */,
+			);
+			path = CreateEFI;
+			sourceTree = "<group>";
+		};
+		8CD2EFA627CA820D00509485 /* PlistEditor */ = {
+			isa = PBXGroup;
+			children = (
+				8CD2EFA727CA820D00509485 /* Core */,
+				8CD2EFAF27CA820D00509485 /* Editor Views */,
+			);
+			path = PlistEditor;
+			sourceTree = "<group>";
+		};
+		8CD2EFA727CA820D00509485 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				8CD2EFA827CA820D00509485 /* Encoder */,
+				8CD2EFAA27CA820D00509485 /* Decoder */,
+				8CD2EFAE27CA820D00509485 /* HAPlist.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		8CD2EFA827CA820D00509485 /* Encoder */ = {
+			isa = PBXGroup;
+			children = (
+				8CD2EFA927CA820D00509485 /* HAPlistEncoder.swift */,
+			);
+			path = Encoder;
+			sourceTree = "<group>";
+		};
+		8CD2EFAA27CA820D00509485 /* Decoder */ = {
+			isa = PBXGroup;
+			children = (
+				8CD2EFAB27CA820D00509485 /* updateOCPlist.swift */,
+				8CD2EFAC27CA820D00509485 /* getHAPlist.swift */,
+				8CD2EFAD27CA820D00509485 /* HAPlistContentHandler.swift */,
+			);
+			path = Decoder;
+			sourceTree = "<group>";
+		};
+		8CD2EFAF27CA820D00509485 /* Editor Views */ = {
+			isa = PBXGroup;
+			children = (
+				8CD2EFB027CA820D00509485 /* StringListView.swift */,
+			);
+			path = "Editor Views";
+			sourceTree = "<group>";
+		};
+		8CD2EFB127CA820D00509485 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8CD2EFB227CA820D00509485 /* PopoverContentController.swift */,
+				8CD2EFB327CA820D00509485 /* TopToolbarView.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A70B622F237AF87000A2BA73 /* HackinDROM */ = {
+		8CD2EF0427CA7FA700509485 /* HackinDROM */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A70B6243237AF87700A2BA73 /* Build configuration list for PBXNativeTarget "HackinDROM" */;
+			buildConfigurationList = 8CD2EF1427CA7FA800509485 /* Build configuration list for PBXNativeTarget "HackinDROM" */;
 			buildPhases = (
-				A70B622C237AF87000A2BA73 /* Sources */,
-				A70B622D237AF87000A2BA73 /* Frameworks */,
-				A70B622E237AF87000A2BA73 /* Resources */,
-				8C8EB2A125C9DE15005E9332 /* Run Script */,
+				8CD2EF0127CA7FA700509485 /* Sources */,
+				8CD2EF0227CA7FA700509485 /* Frameworks */,
+				8CD2EF0327CA7FA700509485 /* Resources */,
 			);
 			buildRules = (
-				8C3EFD6925DF3CC6005C21FE /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
 			name = HackinDROM;
 			packageProductDependencies = (
-				8C8EB29E25C9DDFE005E9332 /* LaunchAtLogin */,
-				8CF9ED7225E722A000CAB276 /* Introspect */,
-				8CEEE90C25EDB2D100921AA4 /* Zip */,
-				8C79122226586C2700C29FE6 /* Version */,
-				8C4EACFB27C1394500E7DCC4 /* FeedKit */,
+				8CD2EF2427CA807600509485 /* LaunchAtLogin */,
+				8CD2EF2727CA808B00509485 /* Introspect */,
+				8CD2EF2A27CA809900509485 /* Version */,
+				8CD2EF2D27CA80A800509485 /* FeedKit */,
+				8CD2EFE427CA99C700509485 /* Zip */,
 			);
-			productName = Ambar;
-			productReference = A70B6230237AF87000A2BA73 /* HackinDROM.app */;
+			productName = HackinDROM;
+			productReference = 8CD2EF0527CA7FA700509485 /* HackinDROM.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		A70B6228237AF87000A2BA73 /* Project object */ = {
+		8CD2EEFD27CA7FA700509485 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1110;
-				LastUpgradeCheck = 1250;
-				ORGANIZATIONNAME = Inqnuam;
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
 				TargetAttributes = {
-					A70B622F237AF87000A2BA73 = {
-						CreatedOnToolsVersion = 11.1;
-						LastSwiftMigration = 1300;
+					8CD2EF0427CA7FA700509485 = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
 					};
 				};
 			};
-			buildConfigurationList = A70B622B237AF87000A2BA73 /* Build configuration list for PBXProject "HackinDROM" */;
-			compatibilityVersion = "Xcode 9.3";
+			buildConfigurationList = 8CD2EF0027CA7FA700509485 /* Build configuration list for PBXProject "HackinDROM" */;
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = A70B6227237AF87000A2BA73;
+			mainGroup = 8CD2EEFC27CA7FA700509485;
 			packageReferences = (
-				8C8EB29D25C9DDFE005E9332 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
-				8CF9ED7125E722A000CAB276 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
-				8CEEE90B25EDB2D100921AA4 /* XCRemoteSwiftPackageReference "Zip" */,
-				8C79122126586C2700C29FE6 /* XCRemoteSwiftPackageReference "Version" */,
-				8C4EACFA27C1394500E7DCC4 /* XCRemoteSwiftPackageReference "FeedKit" */,
+				8CD2EF2327CA807600509485 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
+				8CD2EF2627CA808B00509485 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+				8CD2EF2927CA809900509485 /* XCRemoteSwiftPackageReference "Version" */,
+				8CD2EF2C27CA80A800509485 /* XCRemoteSwiftPackageReference "FeedKit" */,
+				8CD2EFE327CA99C700509485 /* XCRemoteSwiftPackageReference "Zip" */,
 			);
-			productRefGroup = A70B6231237AF87000A2BA73 /* Products */;
+			productRefGroup = 8CD2EF0627CA7FA700509485 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A70B622F237AF87000A2BA73 /* HackinDROM */,
+				8CD2EF0427CA7FA700509485 /* HackinDROM */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		A70B622E237AF87000A2BA73 /* Resources */ = {
+		8CD2EF0327CA7FA700509485 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C9F1B622796D87000C08775 /* macserial in Resources */,
-				A70B623B237AF87700A2BA73 /* Preview Assets.xcassets in Resources */,
-				A70B6238237AF87700A2BA73 /* Assets.xcassets in Resources */,
+				8CD2EF3327CA80FD00509485 /* macserial in Resources */,
+				8CD2EF1027CA7FA800509485 /* Preview Assets.xcassets in Resources */,
+				8CD2EF0D27CA7FA800509485 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		8C8EB2A125C9DE15005E9332 /* Run Script */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Run Script";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${BUILT_PRODUCTS_DIR}/LaunchAtLogin_LaunchAtLogin.bundle/Contents/Resources/copy-helper-swiftpm.sh\"\n#if which swiftlint >/dev/null; then\n#swiftlint\n#else\n#echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n#fi\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		A70B622C237AF87000A2BA73 /* Sources */ = {
+		8CD2EF0127CA7FA700509485 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CA272E6263E1A0100B5F402 /* HAPlist.swift in Sources */,
-				8C1BBA1A27C3B54200042A45 /* standaloneUpdateKexts.swift in Sources */,
-				8C1BBA2127C43BEA00042A45 /* getDriverDownloadLink.swift in Sources */,
-				8C70956625E52CAE007C08DC /* LeaderStartView.swift in Sources */,
-				8CB1784926C71DF40014A179 /* getEFIList.swift in Sources */,
-				8CDD37B2262D671600387608 /* structs.swift in Sources */,
-				8C4647DD27C682CA0007E1BF /* backupEFI.swift in Sources */,
-				8C1BBA2327C43C0C00042A45 /* downloadDriver.swift in Sources */,
-				8CF043AA25D055E30090C41F /* GitHub.swift in Sources */,
-				A70B6236237AF87000A2BA73 /* ContentView.swift in Sources */,
-				8C51A01625CECEE2009C9AE2 /* func.swift in Sources */,
-				8C1BBA1F27C4191000042A45 /* standaloneUpdateDrivers.swift in Sources */,
-				8C8AF5AF25CD56EB003A10DD /* ViewsDispatcher.swift in Sources */,
-				8CDA0DAA27C7987F00229E2C /* getGHDownloadLink.swift in Sources */,
-				8C3393FA2623B59800CFA8BB /* Extensions.swift in Sources */,
-				8C97CD9625CA244700B6DE00 /* MainDataProvider.swift in Sources */,
-				8C1BBA1127C3A0BE00042A45 /* getLatestOCPath.swift in Sources */,
-				8C70956A25E53E30007C08DC /* LoginView.swift in Sources */,
-				8C1BBA2E27C4CA7E00042A45 /* copyMissingFiles.swift in Sources */,
-				8C1BBA1C27C3B5BE00042A45 /* findLatestKext.swift in Sources */,
-				8CDA0DAE27C799C700229E2C /* updateCachedKext.swift in Sources */,
-				8CC005E6270F4DDB00A21669 /* IndexedCollection.swift in Sources */,
-				8C1BBA1427C3A14A00042A45 /* cleandownloadedDir.swift in Sources */,
-				8C70956825E52E05007C08DC /* BuildDetailView.swift in Sources */,
-				8C89FC042623347D00C0C69E /* ListView.swift in Sources */,
-				8CDA0DA827C7986000229E2C /* getFilesFrom.swift in Sources */,
-				8CB1783D26C6DAD30014A179 /* DiskMounter.h in Sources */,
-				8CDA0DA627C782AF00229E2C /* kextLists.swift in Sources */,
-				8CB1784126C6DD020014A179 /* Authorization.m in Sources */,
-				8C80EFBB25DC6CA300DEC8D5 /* CreateEFI.swift in Sources */,
-				8C310C3B25F2E38F0054D93D /* ChartsView.swift in Sources */,
-				8C0B135C276A80F0009715E9 /* EFI.swift in Sources */,
-				8C83F4AA2655C93000DBDD3B /* TagCloudView.swift in Sources */,
-				8CB1784526C712590014A179 /* updateOCPlist.swift in Sources */,
-				8C1D098925D28751003CE546 /* ACPIView.swift in Sources */,
-				8C8AF5B225CD6F03003A10DD /* SystemInfo.swift in Sources */,
-				8C1BBA2A27C4C32D00042A45 /* standaloneToolsUpdater.swift in Sources */,
-				8C0B135E276A8235009715E9 /* main.swift in Sources */,
-				8CF1ADFE25FB92DB003E89F3 /* SheetView.swift in Sources */,
-				8CAC9289276B61F400916A94 /* TopToolbarView.swift in Sources */,
-				A70B624C237B003900A2BA73 /* StatusBarController.swift in Sources */,
-				8C5ED1CA26597884003A6226 /* testingFunc.swift in Sources */,
-				8C1BBA2C27C4C74000042A45 /* cleanDir.swift in Sources */,
-				8CF043A825CF6EFD0090C41F /* SettingsView.swift in Sources */,
-				8C6413842645F49800C034D8 /* DragAndDropViewConstructor.swift in Sources */,
-				8C0B1361276A8457009715E9 /* PopoverContentController.swift in Sources */,
-				8CCEED11263D7ECC00D10B0B /* StringListView.swift in Sources */,
-				8C1BBA2527C43C2E00042A45 /* findDriverPath.swift in Sources */,
-				8C1BBA0F27C3A01300042A45 /* getLatestKextPath.swift in Sources */,
-				8C3B19FC25DAB97300039267 /* DriversView.swift in Sources */,
-				8C4647D927C682760007E1BF /* asyncZip.swift in Sources */,
-				8C989F9A265DB90500B798B5 /* BluetoothDevices.swift in Sources */,
-				8C54539426CD02C2003FD811 /* HAPlistContentHandler.swift in Sources */,
-				8C4647DF27C682E10007E1BF /* updateEFI.swift in Sources */,
-				8C4EACF927C10A1600E7DCC4 /* AMDCoresCount.swift in Sources */,
-				8C8AF5A925CCC302003A10DD /* Downloader.swift in Sources */,
-				8CA2CB49261F456400EA8949 /* AppStorageforCatalina.swift in Sources */,
-				8C8AF5AC25CCD12E003A10DD /* UpdateView.swift in Sources */,
-				8CB1783F26C6DC7E0014A179 /* Authorization.h in Sources */,
-				8CB1783B26C6D9160014A179 /* DiskMounter.m in Sources */,
-				8C82752E25E144730073616D /* UploadNewBuild.swift in Sources */,
-				8CE439E327CA38BA0056034E /* HAPlistEncoder.swift in Sources */,
-				8C83F4A52655608600DBDD3B /* HDToggleView.swift in Sources */,
-				8C4647D727C682430007E1BF /* additionalOCFixes.swift in Sources */,
-				8C1BBA2827C43EF100042A45 /* standaloneUpdateResources.swift in Sources */,
-				A70B6234237AF87000A2BA73 /* AppDelegate.swift in Sources */,
-				8C097A4526C6058A001A4378 /* filesHandlers.swift in Sources */,
-				8C1BBA1627C3B33900042A45 /* shouldUpdateLocalKext.swift in Sources */,
-				8C5F6C5526C1D7B9009F1BCC /* HDUpdateView.swift in Sources */,
-				8C70956C25E542AA007C08DC /* Login.swift in Sources */,
-				8CDA0DAC27C7989A00229E2C /* getOCVersionFromCache.swift in Sources */,
-				8C4647DB27C682AD0007E1BF /* renameFile.swift in Sources */,
-				8CF043AE25D0BC620090C41F /* KextsView.swift in Sources */,
-				8CB1784726C7146A0014A179 /* getHAPlist.swift in Sources */,
-				8CF043AC25D0B46C0090C41F /* PlatformInfo.swift in Sources */,
-				8C2827B225CB736600CF0D82 /* DiskAtrib.swift in Sources */,
+				8CD2EF6727CA81E600509485 /* AskPasswordPopover.swift in Sources */,
+				8CD2EF6127CA81E600509485 /* Downloader.swift in Sources */,
+				8CD2EFC727CA820D00509485 /* getDriverDownloadLink.swift in Sources */,
+				8CD2EFDF27CA820D00509485 /* StringListView.swift in Sources */,
+				8CD2EF6C27CA81E600509485 /* BluetoothDevices.swift in Sources */,
+				8CD2EFDD27CA820D00509485 /* HAPlistContentHandler.swift in Sources */,
+				8CD2EF3827CA813A00509485 /* main.swift in Sources */,
+				8CD2EFB927CA820D00509485 /* getFilesFrom.swift in Sources */,
+				8CD2EFB827CA820D00509485 /* getOCVersionFromCache.swift in Sources */,
+				8CD2EFDE27CA820D00509485 /* HAPlist.swift in Sources */,
+				8CD2EF5C27CA81E600509485 /* IndexedCollection.swift in Sources */,
+				8CD2EFCF27CA820D00509485 /* BuildDetailView.swift in Sources */,
+				8CD2EF6427CA81E600509485 /* StatusBarController.swift in Sources */,
+				8CD2EF5B27CA81E600509485 /* DiskMounter.m in Sources */,
+				8CD2EFC527CA820D00509485 /* findDriverPath.swift in Sources */,
+				8CD2EFD127CA820D00509485 /* KextsView.swift in Sources */,
+				8CD2EF6327CA81E600509485 /* SystemInfo.swift in Sources */,
+				8CD2EFD427CA820D00509485 /* PlatformInfo.swift in Sources */,
+				8CD2EFC827CA820D00509485 /* standaloneUpdateDrivers.swift in Sources */,
+				8CD2EFC027CA820D00509485 /* kextLists.swift in Sources */,
+				8CD2EFBC27CA820D00509485 /* getLatestOCPath.swift in Sources */,
+				8CD2EF6B27CA81E600509485 /* ChartsView.swift in Sources */,
+				8CD2EF5F27CA81E600509485 /* TagCloudView.swift in Sources */,
+				8CD2EFD327CA820D00509485 /* UpdateView.swift in Sources */,
+				8CD2EF5D27CA81E600509485 /* DiskAtrib.swift in Sources */,
+				8CD2EFD027CA820D00509485 /* UploadNewBuild.swift in Sources */,
+				8CD2EF7127CA81E600509485 /* copyMissingFiles.swift in Sources */,
+				8CD2EF3727CA813A00509485 /* AppDelegate.swift in Sources */,
+				8CD2EFB627CA820D00509485 /* updateEFI.swift in Sources */,
+				8CD2EFCC27CA820D00509485 /* ViewsDispatcher.swift in Sources */,
+				8CD2EFD627CA820D00509485 /* ListView.swift in Sources */,
+				8CD2EFCD27CA820D00509485 /* LoginView.swift in Sources */,
+				8CD2EFD727CA820D00509485 /* HDUpdateView.swift in Sources */,
+				8CD2EFCB27CA820D00509485 /* SettingsView.swift in Sources */,
+				8CD2EF7527CA81E600509485 /* getEFIList.swift in Sources */,
+				8CD2EF5E27CA81E600509485 /* cleanDir.swift in Sources */,
+				8CD2EF7327CA81E600509485 /* filesHandlers.swift in Sources */,
+				8CD2EFB727CA820D00509485 /* getGHDownloadLink.swift in Sources */,
+				8CD2EFBA27CA820D00509485 /* renameFile.swift in Sources */,
+				8CD2EFE127CA820D00509485 /* TopToolbarView.swift in Sources */,
+				8CD2EF7227CA81E600509485 /* GitHub.swift in Sources */,
+				8CD2EFD927CA820D00509485 /* CreateEFI.swift in Sources */,
+				8CD2EF6627CA81E600509485 /* Authorization.m in Sources */,
+				8CD2EFD827CA820D00509485 /* ContentView.swift in Sources */,
+				8CD2EF7027CA81E600509485 /* AppStorageforCatalina.swift in Sources */,
+				8CD2EFE027CA820D00509485 /* PopoverContentController.swift in Sources */,
+				8CD2EFD527CA820D00509485 /* DriversView.swift in Sources */,
+				8CD2EF6A27CA81E600509485 /* func.swift in Sources */,
+				8CD2EFBE27CA820D00509485 /* standaloneUpdateResources.swift in Sources */,
+				8CD2EF6D27CA81E600509485 /* HDToggleView.swift in Sources */,
+				8CD2EFB427CA820D00509485 /* additionalOCFixes.swift in Sources */,
+				8CD2EFC627CA820D00509485 /* downloadDriver.swift in Sources */,
+				8CD2EF6227CA81E600509485 /* Login.swift in Sources */,
+				8CD2EF6827CA81E600509485 /* Extensions.swift in Sources */,
+				8CD2EFC327CA820D00509485 /* findLatestKext.swift in Sources */,
+				8CD2EFDB27CA820D00509485 /* updateOCPlist.swift in Sources */,
+				8CD2EFBB27CA820D00509485 /* backupEFI.swift in Sources */,
+				8CD2EF6027CA81E600509485 /* MainDataProvider.swift in Sources */,
+				8CD2EFCE27CA820D00509485 /* LeaderStartView.swift in Sources */,
+				8CD2EFBF27CA820D00509485 /* getLatestKextPath.swift in Sources */,
+				8CD2EFB527CA820D00509485 /* asyncZip.swift in Sources */,
+				8CD2EFC927CA820D00509485 /* cleandownloadedDir.swift in Sources */,
+				8CD2EFC127CA820D00509485 /* standaloneUpdateKexts.swift in Sources */,
+				8CD2EF7427CA81E600509485 /* SheetView.swift in Sources */,
+				8CD2EFC427CA820D00509485 /* shouldUpdateLocalKext.swift in Sources */,
+				8CD2EFDA27CA820D00509485 /* HAPlistEncoder.swift in Sources */,
+				8CD2EF6F27CA81E600509485 /* DragAndDropViewConstructor.swift in Sources */,
+				8CD2EF6927CA81E600509485 /* testingFunc.swift in Sources */,
+				8CD2EFDC27CA820D00509485 /* getHAPlist.swift in Sources */,
+				8CD2EFCA27CA820D00509485 /* EFI.swift in Sources */,
+				8CD2EFD227CA820D00509485 /* ACPIView.swift in Sources */,
+				8CD2EF6E27CA81E600509485 /* structs.swift in Sources */,
+				8CD2EFBD27CA820D00509485 /* standaloneToolsUpdater.swift in Sources */,
+				8CD2EFC227CA820D00509485 /* updateCachedKext.swift in Sources */,
+				8CD2EF6527CA81E600509485 /* AMDCoresCount.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		A70B6241237AF87700A2BA73 /* Debug */ = {
+		8CD2EF1227CA7FA800509485 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -694,10 +645,8 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -718,24 +667,22 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_SWIFT_FLAGS = "";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		A70B6242237AF87700A2BA73 /* Release */ = {
+		8CD2EF1327CA7FA800509485 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -759,13 +706,10 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_HARDENED_RUNTIME = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -777,78 +721,67 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				OTHER_SWIFT_FLAGS = "";
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
-		A70B6244237AF87700A2BA73 /* Debug */ = {
+		8CD2EF1527CA7FA800509485 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = HackinDROMRelease.entitlements;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
+				CODE_SIGN_ENTITLEMENTS = HackinDROM/HackinDROM.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 0;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"HackinDROM/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
-				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HackinDROM/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "2021 HackinDROM";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 2.1;
-				MTL_ENABLE_DEBUG_INFO = "";
-				ODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = NO;
-				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = Inqnuam.HackinDROM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "HackinDROM/Helpers/HackinDROM-Bridging-Header.h";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "HackinDROM/HackinDROM-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		A70B6245237AF87700A2BA73 /* Release */ = {
+		8CD2EF1627CA7FA800509485 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = HackinDROMRelease.entitlements;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
+				CODE_SIGN_ENTITLEMENTS = HackinDROM/HackinDROM.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 0;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"HackinDROM/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
-				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HackinDROM/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "2021 HackinDROM";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 2.1;
-				ODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = NO;
-				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = Inqnuam.HackinDROM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "HackinDROM/Helpers/HackinDROM-Bridging-Header.h";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "HackinDROM/HackinDROM-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -856,20 +789,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A70B622B237AF87000A2BA73 /* Build configuration list for PBXProject "HackinDROM" */ = {
+		8CD2EF0027CA7FA700509485 /* Build configuration list for PBXProject "HackinDROM" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A70B6241237AF87700A2BA73 /* Debug */,
-				A70B6242237AF87700A2BA73 /* Release */,
+				8CD2EF1227CA7FA800509485 /* Debug */,
+				8CD2EF1327CA7FA800509485 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A70B6243237AF87700A2BA73 /* Build configuration list for PBXNativeTarget "HackinDROM" */ = {
+		8CD2EF1427CA7FA800509485 /* Build configuration list for PBXNativeTarget "HackinDROM" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A70B6244237AF87700A2BA73 /* Debug */,
-				A70B6245237AF87700A2BA73 /* Release */,
+				8CD2EF1527CA7FA800509485 /* Debug */,
+				8CD2EF1627CA7FA800509485 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -877,15 +810,23 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		8C4EACFA27C1394500E7DCC4 /* XCRemoteSwiftPackageReference "FeedKit" */ = {
+		8CD2EF2327CA807600509485 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/nmdias/FeedKit.git";
+			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
+				branch = main;
+				kind = branch;
 			};
 		};
-		8C79122126586C2700C29FE6 /* XCRemoteSwiftPackageReference "Version" */ = {
+		8CD2EF2627CA808B00509485 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.4;
+			};
+		};
+		8CD2EF2927CA809900509485 /* XCRemoteSwiftPackageReference "Version" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mxcl/Version";
 			requirement = {
@@ -893,15 +834,15 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		8C8EB29D25C9DDFE005E9332 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */ = {
+		8CD2EF2C27CA80A800509485 /* XCRemoteSwiftPackageReference "FeedKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin";
+			repositoryURL = "https://github.com/nmdias/FeedKit.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 4.1.0;
+				minimumVersion = 9.0.0;
 			};
 		};
-		8CEEE90B25EDB2D100921AA4 /* XCRemoteSwiftPackageReference "Zip" */ = {
+		8CD2EFE327CA99C700509485 /* XCRemoteSwiftPackageReference "Zip" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/marmelroy/Zip";
 			requirement = {
@@ -909,43 +850,35 @@
 				revision = 059e7346082d02de16220cd79df7db18ddeba8c3;
 			};
 		};
-		8CF9ED7125E722A000CAB276 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.3;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		8C4EACFB27C1394500E7DCC4 /* FeedKit */ = {
+		8CD2EF2427CA807600509485 /* LaunchAtLogin */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8C4EACFA27C1394500E7DCC4 /* XCRemoteSwiftPackageReference "FeedKit" */;
-			productName = FeedKit;
-		};
-		8C79122226586C2700C29FE6 /* Version */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8C79122126586C2700C29FE6 /* XCRemoteSwiftPackageReference "Version" */;
-			productName = Version;
-		};
-		8C8EB29E25C9DDFE005E9332 /* LaunchAtLogin */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8C8EB29D25C9DDFE005E9332 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */;
+			package = 8CD2EF2327CA807600509485 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */;
 			productName = LaunchAtLogin;
 		};
-		8CEEE90C25EDB2D100921AA4 /* Zip */ = {
+		8CD2EF2727CA808B00509485 /* Introspect */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8CEEE90B25EDB2D100921AA4 /* XCRemoteSwiftPackageReference "Zip" */;
-			productName = Zip;
-		};
-		8CF9ED7225E722A000CAB276 /* Introspect */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8CF9ED7125E722A000CAB276 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			package = 8CD2EF2627CA808B00509485 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
 			productName = Introspect;
+		};
+		8CD2EF2A27CA809900509485 /* Version */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8CD2EF2927CA809900509485 /* XCRemoteSwiftPackageReference "Version" */;
+			productName = Version;
+		};
+		8CD2EF2D27CA80A800509485 /* FeedKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8CD2EF2C27CA80A800509485 /* XCRemoteSwiftPackageReference "FeedKit" */;
+			productName = FeedKit;
+		};
+		8CD2EFE427CA99C700509485 /* Zip */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8CD2EFE327CA99C700509485 /* XCRemoteSwiftPackageReference "Zip" */;
+			productName = Zip;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = A70B6228237AF87000A2BA73 /* Project object */;
+	rootObject = 8CD2EEFD27CA7FA700509485 /* Project object */;
 }
