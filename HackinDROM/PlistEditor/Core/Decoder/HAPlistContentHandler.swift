@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Scout
 class HAPlistContent: ObservableObject {
     
     @Published var originalPath: String = ""
@@ -27,7 +26,7 @@ class HAPlistContent: ObservableObject {
                 self.pContent = plist
                 self.isTemplate = isTemplate
                
-                
+               
                 //                if let FirstDictIndex =  self.plistContent.Childs.firstIndex(where: {$0.type == "dict"}) {
                 //
                 //                }
@@ -40,20 +39,9 @@ class HAPlistContent: ObservableObject {
     func saveplist(newPath: String? = nil)-> Bool {
         pContent.Childs.removeAll(where: {$0.name.hasPrefix("#WARNING")})
         
-        do {
-            var PlistExpl = PathExplorers.Plist(value: .dictionary([:]))
-            try PlistExpl.add(createScoutExplValfromHDDict(hdItem: pContent))
-            let readydata = try PlistExpl.get().exportData()
-            try readydata.write(to: URL(fileURLWithPath: newPath ?? originalPath))
-            originalContent = pContent
-            
-            if newPath != nil {
-                originalPath = newPath!
-            }
-            return true
-        } catch {
-            print(error)
-            return false
-        }
+        
+        haPlistEncode(pContent, newPath ?? originalPath)
+        
+        return true
     }
 }

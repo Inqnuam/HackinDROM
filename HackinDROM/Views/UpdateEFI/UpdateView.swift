@@ -8,7 +8,6 @@
 
 import Foundation
 import SwiftUI
-import Scout
 import Zip
 
 struct InstallView: View {
@@ -1068,26 +1067,20 @@ struct InstallView: View {
         var PlatformInfo = MyHackDataStrc(MLB: "", ROM: "", SystemUUID: "", BootArgs: "", SystemSerialNumber: "", SystemProductName: "", OCV: "0.0.0", SIP: "")
         let config = EFIs[sharedData.CurrentEFI].mounted + "/EFI/OC/config.plist"
         
-        guard  let xml = fileManager.contents(atPath: config) else { return PlatformInfo} // A VERIFIER CAR SI ON SUPPRIME LE DOSSIER MANUELEMENT ICI CA CRACHE
-        do {
-            let json = try PathExplorers.Plist(data: xml)
-            
-            PlatformInfo.MLB = try json.get("PlatformInfo", "Generic", "MLB").string ?? ""
-            
-            PlatformInfo.ROM = Base64toHex(try json.get("PlatformInfo", "Generic", "ROM").data?.base64EncodedString()  ?? "")
-            
-            PlatformInfo.SystemProductName = try json.get("PlatformInfo", "Generic", "SystemProductName").string ?? ""
-            PlatformInfo.SystemSerialNumber = try json.get("PlatformInfo", "Generic", "SystemSerialNumber").string ?? ""
-            PlatformInfo.SystemUUID = try json.get("PlatformInfo", "Generic", "SystemUUID").string ?? ""
+        
+        
+        getHAPlistFrom(config) { plist in
+            PlatformInfo.MLB =  plist.get(["PlatformInfo", "Generic", "MLB"])?.StringValue ?? ""
+            PlatformInfo.SystemProductName = plist.get(["PlatformInfo", "Generic", "SystemProductName"])?.StringValue ?? ""
+            PlatformInfo.SystemSerialNumber = plist.get(["PlatformInfo", "Generic", "SystemSerialNumber"])?.StringValue ?? ""
+            PlatformInfo.SystemUUID = plist.get(["PlatformInfo", "Generic", "SystemUUID"])?.StringValue ?? ""
+            PlatformInfo.BootArgs = plist.get(["NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "boot-args"])?.StringValue ?? ""
+            PlatformInfo.ROM = plist.get(["PlatformInfo", "Generic", "ROM"])?.StringValue ?? ""
+            PlatformInfo.SIP =  plist.get(["NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "csr-active-config"])?.StringValue ?? ""
             PlatformInfo.OCV = EFIs[sharedData.CurrentEFI].OCv
-            PlatformInfo.BootArgs = try json.get("NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "boot-args").string ?? ""
-            PlatformInfo.SIP = Base64toHex(try json.get("NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "csr-active-config").data?.base64EncodedString()  ?? "")
-            
-            return PlatformInfo
-            
-        } catch {
-            
         }
+        
+        
         return PlatformInfo
     }
     

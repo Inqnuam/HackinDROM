@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import Scout
 import Zip
 struct NewBuildView: View {
     @EnvironmentObject var sharedData: HASharedData
@@ -45,8 +44,8 @@ struct NewBuildView: View {
             }
             )
             
-                .padding(.leading, 15)
-                .padding(.top, 18)
+            .padding(.leading, 15)
+            .padding(.top, 18)
             
             Spacer()
             if isWorking {
@@ -264,7 +263,7 @@ struct NewBuildView: View {
                                     isWorking = false
                                     sharedData.currentview = 5
                                 }
-                               
+                                
                                 
                             }
                             
@@ -409,92 +408,71 @@ struct NewBuildView: View {
         
         group.enter()
         serialQueue.async {
-            
-            
             for plist in imageUrls {
-                if let plistData = fileManager.contents(atPath: plist.value.relativePath) {
-                    do {
+                getHAPlistFrom(plist.value.relativePath) { plistStruct in
+                    var plistStruct = plistStruct
+                    
+                    plistStruct.set(HAPlistStruct(StringValue: "** Enter Board Serial Number **"), to: ["PlatformInfo", "Generic", "MLB"])
+                    plistStruct.set(HAPlistStruct(StringValue: "** Enter Serial Number **"), to: ["PlatformInfo", "Generic", "SystemSerialNumber"])
+                    plistStruct.set(HAPlistStruct(StringValue: "** Enter System UUID **"), to: ["PlatformInfo", "Generic", "SystemUUID"])
+                    plistStruct.set(HAPlistStruct(StringValue: UploadNewBuild.SPN), to: ["PlatformInfo", "Generic", "SystemProductName"])
+                    plistStruct.set(HAPlistStruct(StringValue: "Cw53kXtk"), to: ["PlatformInfo", "Generic", "ROM"])
+                    let bootargs =   plistStruct.get(["NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "boot-args"])?.StringValue ?? ""
+                    haPlistEncode(plistStruct, plist.value.relativePath)
+                    
+                    var newPlist = NewConfigsData(link: plist.value.lastPathComponent, bootArgs: bootargs)
+                    
+                     if let KernelSection =  plistStruct.Childs.first(where: {$0.name == "Kernel"}) {
                         
-                        var json = try PathExplorers.Plist(data: plistData)
-                        
-                        try json.set("PlatformInfo", "Generic", "MLB", to: "** Enter Board Serial Number **")
-                        try json.set("PlatformInfo", "Generic", "SystemSerialNumber", to: "** Enter Serial Number **")
-                        try json.set("PlatformInfo", "Generic", "SystemUUID", to: "** Enter System UUID **")
-                        try json.set("PlatformInfo", "Generic", "SystemProductName", to: UploadNewBuild.SPN)
-                        try json.set("PlatformInfo", "Generic", "ROM", to: Data(base64Encoded: "Cw53kXtk".data(using: .base64)!.base64EncodedString())!)
-                        let bootargs =   try json.get("NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "boot-args").string ?? ""
-                        let readydata = try json.get().exportData()
-                        
-                        try readydata.write(to: URL(fileURLWithPath: "\(tmp)/HDWorkingFolder/OC/\(plist.value.lastPathComponent)"))
-                        
-                        var newPlist = NewConfigsData(link: plist.value.lastPathComponent, bootArgs: bootargs)
-                        getHAPlistFrom(plist.value.relativePath) { plist in
+                        if let PatchSection =  KernelSection.Childs.first(where: {$0.name == "Patch"}) {
                             
-                            
-                            
-                            
-                            if let KernelSection =  plist.Childs.first(where: {$0.name == "Kernel"}) {
+                            for kentry in PatchSection.Childs {
                                 
-                                if let PatchSection =  KernelSection.Childs.first(where: {$0.name == "Patch"}) {
-                                    
-                                    for kentry in PatchSection.Childs {
+                                var isFound:Bool = false
+                                if !isFound {
+                                    for eField in kentry.Childs {
                                         
-                                        var isFound:Bool = false
-                                        if !isFound {
-                                            for eField in kentry.Childs {
-                                                
-                                                if (eField.name == "Replace" && eField.type == "data") && (eField.StringValue.localizedCaseInsensitiveCompare("B8CC00000000") == .orderedSame
-                                                                                                           || eField.StringValue.localizedCaseInsensitiveCompare("BACC00000000") == .orderedSame
-                                                                                                           || eField.StringValue.localizedCaseInsensitiveCompare("BACC00000090") == .orderedSame) {
-                                                    
-                                                    
-                                                    
-                                                    isFound = true
-                                                    UploadNewBuild.config.amdosx = true
-                                                    
-                                                    break
-                                                    
-                                                }
-                                            }
-                                        } else {
+                                        if (eField.name == "Replace" && eField.type == "data") && (eField.StringValue.localizedCaseInsensitiveCompare("B8CC00000000") == .orderedSame
+                                                                                                   || eField.StringValue.localizedCaseInsensitiveCompare("BACC00000000") == .orderedSame
+                                                                                                   || eField.StringValue.localizedCaseInsensitiveCompare("BACC00000090") == .orderedSame) {
+                                            
+                                            
+                                            
+                                            isFound = true
+                                            UploadNewBuild.config.amdosx = true
+                                            
                                             break
+                                            
                                         }
                                     }
+                                } else {
+                                    break
                                 }
                             }
-                            
                         }
-                        
-                        
-                        
-                        if plist.key == 1 {
-                            newPlist.Name = "Broadcom"
-                            UploadNewBuild.config.AMDGPU.append(newPlist)
-                            
-                        }
-                        if plist.key == 2 {
-                            newPlist.Name = "Intel Wifi"
-                            UploadNewBuild.config.AMDGPU.append(newPlist)
-                        }
-                        if plist.key == 3 {
-                            newPlist.Name = "Broadcom"
-                            UploadNewBuild.config.IntelGPU.append(newPlist)
-                            
-                        }
-                        
-                        if plist.key == 4 {
-                            newPlist.Name = "Intel Wifi"
-                            UploadNewBuild.config.IntelGPU.append(newPlist)
-                        }
-                        
-                        
-                        
-                    } catch {
-                        
-                        print("Error---- \(error)")
+                    }
+                    
+                    if plist.key == 1 {
+                        newPlist.Name = "Broadcom"
+                        UploadNewBuild.config.AMDGPU.append(newPlist)
                         
                     }
+                    if plist.key == 2 {
+                        newPlist.Name = "Intel Wifi"
+                        UploadNewBuild.config.AMDGPU.append(newPlist)
+                    }
+                    if plist.key == 3 {
+                        newPlist.Name = "Broadcom"
+                        UploadNewBuild.config.IntelGPU.append(newPlist)
+                        
+                    }
+                    
+                    if plist.key == 4 {
+                        newPlist.Name = "Intel Wifi"
+                        UploadNewBuild.config.IntelGPU.append(newPlist)
+                    }
                 }
+                
             }
             group.leave()
         }

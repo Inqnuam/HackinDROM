@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import Scout
 
 struct CreateEFI: View {
     @EnvironmentObject var sharedData: HASharedData
@@ -1188,17 +1187,9 @@ struct CreateEFI: View {
                     }
                 }
                 
-                
-                do {
-                    var PlistExpl = PathExplorers.Plist(value: .dictionary([:]))
-                    try PlistExpl.add(createScoutExplValfromHDDict(hdItem: plist))
-                    let readydata = try PlistExpl.get().exportData()
-                    try readydata.write(to: URL(fileURLWithPath: "\(tmp)/tmp/\(CaseysFolder)/OC/configo.plist"))
-                    group.leave()
-                } catch {
-                    print(error)
-                    CancelMe = true
-                }
+                haPlistEncode(plist, "\(tmp)/tmp/\(CaseysFolder)/OC/configo.plist")
+                group.leave()
+              
                 
             }
            
@@ -1210,45 +1201,31 @@ struct CreateEFI: View {
             group.wait()
                group.enter()
             if CancelMe { return}
-            do {
+           
+               getHAPlistFrom("\(tmp)/tmp/\(CaseysFolder)/OC/configo.plist") { plist in
+                    var plist = plist
+                    
+                    plist.set(HAPlistStruct(StringValue: mycustomdata.MLB), to: ["PlatformInfo", "Generic", "MLB"])
+                    plist.set(HAPlistStruct(StringValue: mycustomdata.SystemSerialNumber), to: ["PlatformInfo", "Generic", "SystemSerialNumber"])
+                    plist.set(HAPlistStruct(StringValue: mycustomdata.SystemProductName.removeWhitespace()), to: ["PlatformInfo", "Generic", "SystemProductName"])
+                    plist.set(HAPlistStruct(StringValue: mycustomdata.SystemUUID), to: ["PlatformInfo", "Generic", "SystemUUID"])
+                    plist.set(HAPlistStruct(StringValue: mycustomdata.ROM, type: "data"), to: ["PlatformInfo", "Generic", "ROM"])
+                    plist.set(HAPlistStruct(StringValue: mycustomdata.SIP, type: "data"), to: ["NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "csr-active-config"]) // #FIXME: check if will work when target is nil
+                    
+                    plist.set(HAPlistStruct(StringValue: BootArgs.joined(separator: " "), type: "string"), to: ["NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "boot-args"])
+                    
+                    let path = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("workingHDx.plist")
+                    haPlistEncode(plist, path.relativePath)
+                    
+                    shell("mv '\(path.relativePath)' '\(tmp)/tmp/\(CaseysFolder)/OC/\(PlistToEdit)'") { req, _ in
 
-                let plist = fileManager.contents(atPath: "\(tmp)/tmp/\(CaseysFolder)/OC/configo.plist")!
-                var json = try PathExplorers.Plist(data: plist)
+                        shell("rm '\(tmp)/tmp/\(CaseysFolder)/OC/configo.plist'") { _, _ in
 
-                try json.set("PlatformInfo", "Generic", "MLB", to: mycustomdata.MLB)
-                try json.set("PlatformInfo", "Generic", "SystemSerialNumber", to: mycustomdata.SystemSerialNumber)
-                try json.set("PlatformInfo", "Generic", "SystemProductName", to: mycustomdata.SystemProductName.removeWhitespace())
-                try json.set("PlatformInfo", "Generic", "SystemUUID", to: mycustomdata.SystemUUID)
-                try json.set("PlatformInfo", "Generic", "ROM", to: Data(base64Encoded: mycustomdata.ROM.data(using: .bytesHexLiteral)!.base64EncodedString())!)
+                            group.leave()
+                        }
 
-                try json.set(Path("NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "csr-active-config"), to: Data(base64Encoded: mycustomdata.SIP.data(using: .bytesHexLiteral)!.base64EncodedString())!)
-                
-               // try json.set("NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "boot-args", to: BootArgs.joined(separator: " "))
-
-                try json.set(Path("NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "boot-args"), to: BootArgs.joined(separator: " "))
-                
-                let encoder = PropertyListEncoder()
-                encoder.outputFormat = .xml
-                if CancelMe { return}
-                let path = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("workingHDx.plist")
-
-                let readydata = try json.get().exportData()
-                try readydata.write(to: path)
-                if CancelMe { return}
-                shell("mv '\(path.relativePath)' '\(tmp)/tmp/\(CaseysFolder)/OC/\(PlistToEdit)'") { req, _ in
-
-                    shell("rm '\(tmp)/tmp/\(CaseysFolder)/OC/configo.plist'") { _, _ in
-
-                        group.leave()
                     }
-
                 }
-
-            } catch {
-
-                print(error)
-
-            }
 
         }
 

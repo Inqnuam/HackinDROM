@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Scout
+
 import SwiftUI
 import Zip
 import UserNotifications

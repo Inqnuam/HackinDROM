@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Scout
 import Zip
 import Version
 import SwiftUI
@@ -28,7 +27,6 @@ class HASharedData: ObservableObject {
     @AppStorageCompat("isOnline") var isOnline: Bool = false
     @AppStorageCompat("FirstOpen") var FirstOpen = true
     @AppStorageCompat("LastDelNotDate") var LastDelNotDate = ""
-    @Published var PlistExpl = PathExplorers.Plist(stringLiteral: "")
     @Published var ocTemplatesHD: [String: HAPlistStruct] = [:]
     @Published var CPlist = HAPlistStruct()
     @Published var sectionIndex: Int = 0
@@ -69,7 +67,7 @@ class HASharedData: ObservableObject {
     @Published var OSInfo: String = "macOS \(procesinfo.operatingSystemVersion.majorVersion).\(procesinfo.operatingSystemVersion.minorVersion).\(procesinfo.operatingSystemVersion.patchVersion) - \(procesinfo.operatingSystemVersionString.slice(from: "Build ", to: ")") ?? "")"
     @Published var whoami: String = NSUserName()
     @Published var Mypwd: String = ""
-    @Published var dortConfig: [DortaniaJSON] = []
+ 
     @Published var RunningKexts: [RunningKextsStruct] = runningkexts()
     @Published var initialEFIs: [EFI] = []
     let nvram = NVRAM()

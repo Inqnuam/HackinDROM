@@ -7,13 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8C082B2F264D941500C3B0AB /* addingNewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C082B2E264D941500C3B0AB /* addingNewItem.swift */; };
-		8C082B33264DDAE700C3B0AB /* DictDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C082B32264DDAE700C3B0AB /* DictDetailsView.swift */; };
 		8C097A4526C6058A001A4378 /* filesHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C097A4426C6058A001A4378 /* filesHandlers.swift */; };
 		8C0B135C276A80F0009715E9 /* EFI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0B135B276A80F0009715E9 /* EFI.swift */; };
 		8C0B135E276A8235009715E9 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0B135D276A8235009715E9 /* main.swift */; };
 		8C0B1361276A8457009715E9 /* PopoverContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0B1360276A8457009715E9 /* PopoverContentController.swift */; };
-		8C1A0CD325D17ABA00D3D85D /* Scout in Frameworks */ = {isa = PBXBuildFile; productRef = 8C1A0CD225D17ABA00D3D85D /* Scout */; };
 		8C1BBA0F27C3A01300042A45 /* getLatestKextPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA0E27C3A01300042A45 /* getLatestKextPath.swift */; };
 		8C1BBA1127C3A0BE00042A45 /* getLatestOCPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA1027C3A0BE00042A45 /* getLatestOCPath.swift */; };
 		8C1BBA1427C3A14A00042A45 /* cleandownloadedDir.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBA1327C3A14A00042A45 /* cleandownloadedDir.swift */; };
@@ -42,8 +39,6 @@
 		8C4EACFC27C1394500E7DCC4 /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8C4EACFB27C1394500E7DCC4 /* FeedKit */; };
 		8C51A01625CECEE2009C9AE2 /* func.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C51A01525CECEE2009C9AE2 /* func.swift */; };
 		8C54539426CD02C2003FD811 /* HAPlistContentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C54539326CD02C2003FD811 /* HAPlistContentHandler.swift */; };
-		8C54539626CD115F003FD811 /* PlistEditorHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C54539526CD115F003FD811 /* PlistEditorHeader.swift */; };
-		8C57885B26CC3F9900F877AA /* ExyteGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 8C57885A26CC3F9900F877AA /* ExyteGrid */; };
 		8C5ED1CA26597884003A6226 /* testingFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5ED1C926597884003A6226 /* testingFunc.swift */; };
 		8C5F6C5526C1D7B9009F1BCC /* HDUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5F6C5426C1D7B9009F1BCC /* HDUpdateView.swift */; };
 		8C6413842645F49800C034D8 /* DragAndDropViewConstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6413832645F49800C034D8 /* DragAndDropViewConstructor.swift */; };
@@ -65,7 +60,6 @@
 		8C97CD9625CA244700B6DE00 /* MainDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C97CD9525CA244700B6DE00 /* MainDataProvider.swift */; };
 		8C989F9A265DB90500B798B5 /* BluetoothDevices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C989F99265DB90500B798B5 /* BluetoothDevices.swift */; };
 		8C9F1B622796D87000C08775 /* macserial in Resources */ = {isa = PBXBuildFile; fileRef = 8C9F1B612796D87000C08775 /* macserial */; };
-		8CA1189F26CE91A500839E7E /* ToolbarButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA1189E26CE91A500839E7E /* ToolbarButtons.swift */; };
 		8CA272E6263E1A0100B5F402 /* HAPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA272E5263E1A0100B5F402 /* HAPlist.swift */; };
 		8CA2CB49261F456400EA8949 /* AppStorageforCatalina.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA2CB48261F456400EA8949 /* AppStorageforCatalina.swift */; };
 		8CAC9289276B61F400916A94 /* TopToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAC9288276B61F400916A94 /* TopToolbarView.swift */; };
@@ -76,9 +70,7 @@
 		8CB1784526C712590014A179 /* updateOCPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB1784426C712590014A179 /* updateOCPlist.swift */; };
 		8CB1784726C7146A0014A179 /* getHAPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB1784626C7146A0014A179 /* getHAPlist.swift */; };
 		8CB1784926C71DF40014A179 /* getEFIList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB1784826C71DF40014A179 /* getEFIList.swift */; };
-		8CBE18682687BDDE00085EEA /* AppKitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBE18672687BDDE00085EEA /* AppKitTest.swift */; };
 		8CC005E6270F4DDB00A21669 /* IndexedCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC005E5270F4DDB00A21669 /* IndexedCollection.swift */; };
-		8CCEED0F263D660000D10B0B /* BoolListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCEED0E263D660000D10B0B /* BoolListView.swift */; };
 		8CCEED11263D7ECC00D10B0B /* StringListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCEED10263D7ECC00D10B0B /* StringListView.swift */; };
 		8CD5E6112627D26600B0395B /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD5E60F2627CFCB00B0395B /* AuthenticationServices.framework */; };
 		8CDA0DA627C782AF00229E2C /* kextLists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA0DA527C782AF00229E2C /* kextLists.swift */; };
@@ -87,20 +79,13 @@
 		8CDA0DAC27C7989A00229E2C /* getOCVersionFromCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA0DAB27C7989A00229E2C /* getOCVersionFromCache.swift */; };
 		8CDA0DAE27C799C700229E2C /* updateCachedKext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA0DAD27C799C700229E2C /* updateCachedKext.swift */; };
 		8CDD37B2262D671600387608 /* structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDD37B1262D671600387608 /* structs.swift */; };
-		8CEA92E7264AA21300C9082E /* DictView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEA92E6264AA21300C9082E /* DictView.swift */; };
-		8CEA92E9264B525C00C9082E /* ArrayStringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEA92E8264B525C00C9082E /* ArrayStringView.swift */; };
-		8CEC523C269F344000851D15 /* DortaniaJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEC523B269F344000851D15 /* DortaniaJSON.swift */; };
-		8CEE31E6263AC7CD00881FCB /* PlistEditorMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEE31E5263AC7CD00881FCB /* PlistEditorMainView.swift */; };
-		8CEE31E8263ACBE900881FCB /* PlistEditorSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEE31E7263ACBE900881FCB /* PlistEditorSectionView.swift */; };
-		8CEE31EA263C07DF00881FCB /* PlistSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEE31E9263C07DF00881FCB /* PlistSheetView.swift */; };
+		8CE439E327CA38BA0056034E /* HAPlistEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE439E227CA38BA0056034E /* HAPlistEncoder.swift */; };
 		8CEEE90D25EDB2D100921AA4 /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = 8CEEE90C25EDB2D100921AA4 /* Zip */; };
 		8CF043A825CF6EFD0090C41F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF043A725CF6EFD0090C41F /* SettingsView.swift */; };
 		8CF043AA25D055E30090C41F /* GitHub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF043A925D055E30090C41F /* GitHub.swift */; };
 		8CF043AC25D0B46C0090C41F /* PlatformInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF043AB25D0B46C0090C41F /* PlatformInfo.swift */; };
 		8CF043AE25D0BC620090C41F /* KextsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF043AD25D0BC620090C41F /* KextsView.swift */; };
 		8CF1ADFE25FB92DB003E89F3 /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF1ADFD25FB92DB003E89F3 /* SheetView.swift */; };
-		8CF2D80D264386240078B287 /* ArrayDictNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF2D80C264386240078B287 /* ArrayDictNameView.swift */; };
-		8CF2D80F264392C10078B287 /* ArrayDictView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF2D80E264392C10078B287 /* ArrayDictView.swift */; };
 		8CF9ED7325E722A000CAB276 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 8CF9ED7225E722A000CAB276 /* Introspect */; };
 		A70B6234237AF87000A2BA73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70B6233237AF87000A2BA73 /* AppDelegate.swift */; };
 		A70B6236237AF87000A2BA73 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70B6235237AF87000A2BA73 /* ContentView.swift */; };
@@ -124,8 +109,6 @@
 /* End PBXBuildRule section */
 
 /* Begin PBXFileReference section */
-		8C082B2E264D941500C3B0AB /* addingNewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addingNewItem.swift; sourceTree = "<group>"; };
-		8C082B32264DDAE700C3B0AB /* DictDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictDetailsView.swift; sourceTree = "<group>"; };
 		8C097A4426C6058A001A4378 /* filesHandlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = filesHandlers.swift; sourceTree = "<group>"; };
 		8C0B135B276A80F0009715E9 /* EFI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFI.swift; sourceTree = "<group>"; };
 		8C0B135D276A8235009715E9 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -158,7 +141,6 @@
 		8C4EACF827C10A1600E7DCC4 /* AMDCoresCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMDCoresCount.swift; sourceTree = "<group>"; };
 		8C51A01525CECEE2009C9AE2 /* func.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = func.swift; sourceTree = "<group>"; };
 		8C54539326CD02C2003FD811 /* HAPlistContentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HAPlistContentHandler.swift; sourceTree = "<group>"; };
-		8C54539526CD115F003FD811 /* PlistEditorHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlistEditorHeader.swift; sourceTree = "<group>"; };
 		8C5ED1C926597884003A6226 /* testingFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testingFunc.swift; sourceTree = "<group>"; };
 		8C5F6C5426C1D7B9009F1BCC /* HDUpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDUpdateView.swift; sourceTree = "<group>"; };
 		8C6413832645F49800C034D8 /* DragAndDropViewConstructor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragAndDropViewConstructor.swift; sourceTree = "<group>"; };
@@ -178,7 +160,6 @@
 		8C97CD9525CA244700B6DE00 /* MainDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDataProvider.swift; sourceTree = "<group>"; };
 		8C989F99265DB90500B798B5 /* BluetoothDevices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothDevices.swift; sourceTree = "<group>"; };
 		8C9F1B612796D87000C08775 /* macserial */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = macserial; sourceTree = "<group>"; };
-		8CA1189E26CE91A500839E7E /* ToolbarButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarButtons.swift; sourceTree = "<group>"; };
 		8CA272E5263E1A0100B5F402 /* HAPlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HAPlist.swift; sourceTree = "<group>"; };
 		8CA2CB48261F456400EA8949 /* AppStorageforCatalina.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStorageforCatalina.swift; sourceTree = "<group>"; };
 		8CAC9288276B61F400916A94 /* TopToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopToolbarView.swift; sourceTree = "<group>"; };
@@ -190,9 +171,7 @@
 		8CB1784426C712590014A179 /* updateOCPlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = updateOCPlist.swift; sourceTree = "<group>"; };
 		8CB1784626C7146A0014A179 /* getHAPlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getHAPlist.swift; sourceTree = "<group>"; };
 		8CB1784826C71DF40014A179 /* getEFIList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getEFIList.swift; sourceTree = "<group>"; };
-		8CBE18672687BDDE00085EEA /* AppKitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppKitTest.swift; sourceTree = "<group>"; };
 		8CC005E5270F4DDB00A21669 /* IndexedCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexedCollection.swift; sourceTree = "<group>"; };
-		8CCEED0E263D660000D10B0B /* BoolListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolListView.swift; sourceTree = "<group>"; };
 		8CCEED10263D7ECC00D10B0B /* StringListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringListView.swift; sourceTree = "<group>"; };
 		8CD5E60F2627CFCB00B0395B /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		8CDA0DA527C782AF00229E2C /* kextLists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kextLists.swift; sourceTree = "<group>"; };
@@ -201,19 +180,12 @@
 		8CDA0DAB27C7989A00229E2C /* getOCVersionFromCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getOCVersionFromCache.swift; sourceTree = "<group>"; };
 		8CDA0DAD27C799C700229E2C /* updateCachedKext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = updateCachedKext.swift; sourceTree = "<group>"; };
 		8CDD37B1262D671600387608 /* structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = structs.swift; sourceTree = "<group>"; };
-		8CEA92E6264AA21300C9082E /* DictView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictView.swift; sourceTree = "<group>"; };
-		8CEA92E8264B525C00C9082E /* ArrayStringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayStringView.swift; sourceTree = "<group>"; };
-		8CEC523B269F344000851D15 /* DortaniaJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DortaniaJSON.swift; sourceTree = "<group>"; };
-		8CEE31E5263AC7CD00881FCB /* PlistEditorMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlistEditorMainView.swift; sourceTree = "<group>"; };
-		8CEE31E7263ACBE900881FCB /* PlistEditorSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlistEditorSectionView.swift; sourceTree = "<group>"; };
-		8CEE31E9263C07DF00881FCB /* PlistSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlistSheetView.swift; sourceTree = "<group>"; };
+		8CE439E227CA38BA0056034E /* HAPlistEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HAPlistEncoder.swift; sourceTree = "<group>"; };
 		8CF043A725CF6EFD0090C41F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		8CF043A925D055E30090C41F /* GitHub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHub.swift; sourceTree = "<group>"; };
 		8CF043AB25D0B46C0090C41F /* PlatformInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformInfo.swift; sourceTree = "<group>"; };
 		8CF043AD25D0BC620090C41F /* KextsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KextsView.swift; sourceTree = "<group>"; };
 		8CF1ADFD25FB92DB003E89F3 /* SheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetView.swift; sourceTree = "<group>"; };
-		8CF2D80C264386240078B287 /* ArrayDictNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayDictNameView.swift; sourceTree = "<group>"; };
-		8CF2D80E264392C10078B287 /* ArrayDictView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayDictView.swift; sourceTree = "<group>"; };
 		A70B6230237AF87000A2BA73 /* HackinDROM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackinDROM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A70B6233237AF87000A2BA73 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A70B6235237AF87000A2BA73 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -234,8 +206,6 @@
 				8C4EACFC27C1394500E7DCC4 /* FeedKit in Frameworks */,
 				8CF9ED7325E722A000CAB276 /* Introspect in Frameworks */,
 				8CEEE90D25EDB2D100921AA4 /* Zip in Frameworks */,
-				8C57885B26CC3F9900F877AA /* ExyteGrid in Frameworks */,
-				8C1A0CD325D17ABA00D3D85D /* Scout in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,7 +256,6 @@
 			children = (
 				8CB1784326C70ECF0014A179 /* Core */,
 				8CB1784226C70E9F0014A179 /* Editor Views */,
-				8CBE18672687BDDE00085EEA /* AppKitTest.swift */,
 			);
 			path = PlistEditor;
 			sourceTree = "<group>";
@@ -373,19 +342,7 @@
 		8CB1784226C70E9F0014A179 /* Editor Views */ = {
 			isa = PBXGroup;
 			children = (
-				8CEE31E5263AC7CD00881FCB /* PlistEditorMainView.swift */,
-				8CEE31E7263ACBE900881FCB /* PlistEditorSectionView.swift */,
-				8CEE31E9263C07DF00881FCB /* PlistSheetView.swift */,
-				8CEA92E6264AA21300C9082E /* DictView.swift */,
-				8CF2D80E264392C10078B287 /* ArrayDictView.swift */,
 				8CCEED10263D7ECC00D10B0B /* StringListView.swift */,
-				8CCEED0E263D660000D10B0B /* BoolListView.swift */,
-				8C082B2E264D941500C3B0AB /* addingNewItem.swift */,
-				8C082B32264DDAE700C3B0AB /* DictDetailsView.swift */,
-				8CF2D80C264386240078B287 /* ArrayDictNameView.swift */,
-				8CEA92E8264B525C00C9082E /* ArrayStringView.swift */,
-				8C54539526CD115F003FD811 /* PlistEditorHeader.swift */,
-				8CA1189E26CE91A500839E7E /* ToolbarButtons.swift */,
 			);
 			path = "Editor Views";
 			sourceTree = "<group>";
@@ -394,11 +351,28 @@
 			isa = PBXGroup;
 			children = (
 				8CA272E5263E1A0100B5F402 /* HAPlist.swift */,
+				8CE439E127CA38100056034E /* Encoder */,
+				8CE439E027CA38010056034E /* Decoder */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		8CE439E027CA38010056034E /* Decoder */ = {
+			isa = PBXGroup;
+			children = (
 				8CB1784626C7146A0014A179 /* getHAPlist.swift */,
 				8CB1784426C712590014A179 /* updateOCPlist.swift */,
 				8C54539326CD02C2003FD811 /* HAPlistContentHandler.swift */,
 			);
-			path = Core;
+			path = Decoder;
+			sourceTree = "<group>";
+		};
+		8CE439E127CA38100056034E /* Encoder */ = {
+			isa = PBXGroup;
+			children = (
+				8CE439E227CA38BA0056034E /* HAPlistEncoder.swift */,
+			);
+			path = Encoder;
 			sourceTree = "<group>";
 		};
 		A70B6227237AF87000A2BA73 = {
@@ -468,7 +442,6 @@
 				8C83F4A92655C93000DBDD3B /* TagCloudView.swift */,
 				8C5ED1C926597884003A6226 /* testingFunc.swift */,
 				8C989F99265DB90500B798B5 /* BluetoothDevices.swift */,
-				8CEC523B269F344000851D15 /* DortaniaJSON.swift */,
 				8C097A4426C6058A001A4378 /* filesHandlers.swift */,
 				8C4EACF827C10A1600E7DCC4 /* AMDCoresCount.swift */,
 				8CB1783C26C6DAD30014A179 /* DiskMounter.h */,
@@ -517,11 +490,9 @@
 			name = HackinDROM;
 			packageProductDependencies = (
 				8C8EB29E25C9DDFE005E9332 /* LaunchAtLogin */,
-				8C1A0CD225D17ABA00D3D85D /* Scout */,
 				8CF9ED7225E722A000CAB276 /* Introspect */,
 				8CEEE90C25EDB2D100921AA4 /* Zip */,
 				8C79122226586C2700C29FE6 /* Version */,
-				8C57885A26CC3F9900F877AA /* ExyteGrid */,
 				8C4EACFB27C1394500E7DCC4 /* FeedKit */,
 			);
 			productName = Ambar;
@@ -555,11 +526,9 @@
 			mainGroup = A70B6227237AF87000A2BA73;
 			packageReferences = (
 				8C8EB29D25C9DDFE005E9332 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
-				8C1A0CD125D17ABA00D3D85D /* XCRemoteSwiftPackageReference "scout" */,
 				8CF9ED7125E722A000CAB276 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				8CEEE90B25EDB2D100921AA4 /* XCRemoteSwiftPackageReference "Zip" */,
 				8C79122126586C2700C29FE6 /* XCRemoteSwiftPackageReference "Version" */,
-				8C57885926CC3F9900F877AA /* XCRemoteSwiftPackageReference "Grid" */,
 				8C4EACFA27C1394500E7DCC4 /* XCRemoteSwiftPackageReference "FeedKit" */,
 			);
 			productRefGroup = A70B6231237AF87000A2BA73 /* Products */;
@@ -614,7 +583,6 @@
 				8C1BBA1A27C3B54200042A45 /* standaloneUpdateKexts.swift in Sources */,
 				8C1BBA2127C43BEA00042A45 /* getDriverDownloadLink.swift in Sources */,
 				8C70956625E52CAE007C08DC /* LeaderStartView.swift in Sources */,
-				8CBE18682687BDDE00085EEA /* AppKitTest.swift in Sources */,
 				8CB1784926C71DF40014A179 /* getEFIList.swift in Sources */,
 				8CDD37B2262D671600387608 /* structs.swift in Sources */,
 				8C4647DD27C682CA0007E1BF /* backupEFI.swift in Sources */,
@@ -623,8 +591,6 @@
 				A70B6236237AF87000A2BA73 /* ContentView.swift in Sources */,
 				8C51A01625CECEE2009C9AE2 /* func.swift in Sources */,
 				8C1BBA1F27C4191000042A45 /* standaloneUpdateDrivers.swift in Sources */,
-				8CEC523C269F344000851D15 /* DortaniaJSON.swift in Sources */,
-				8C54539626CD115F003FD811 /* PlistEditorHeader.swift in Sources */,
 				8C8AF5AF25CD56EB003A10DD /* ViewsDispatcher.swift in Sources */,
 				8CDA0DAA27C7987F00229E2C /* getGHDownloadLink.swift in Sources */,
 				8C3393FA2623B59800CFA8BB /* Extensions.swift in Sources */,
@@ -632,8 +598,6 @@
 				8C1BBA1127C3A0BE00042A45 /* getLatestOCPath.swift in Sources */,
 				8C70956A25E53E30007C08DC /* LoginView.swift in Sources */,
 				8C1BBA2E27C4CA7E00042A45 /* copyMissingFiles.swift in Sources */,
-				8CF2D80F264392C10078B287 /* ArrayDictView.swift in Sources */,
-				8CCEED0F263D660000D10B0B /* BoolListView.swift in Sources */,
 				8C1BBA1C27C3B5BE00042A45 /* findLatestKext.swift in Sources */,
 				8CDA0DAE27C799C700229E2C /* updateCachedKext.swift in Sources */,
 				8CC005E6270F4DDB00A21669 /* IndexedCollection.swift in Sources */,
@@ -641,7 +605,6 @@
 				8C70956825E52E05007C08DC /* BuildDetailView.swift in Sources */,
 				8C89FC042623347D00C0C69E /* ListView.swift in Sources */,
 				8CDA0DA827C7986000229E2C /* getFilesFrom.swift in Sources */,
-				8CEE31E8263ACBE900881FCB /* PlistEditorSectionView.swift in Sources */,
 				8CB1783D26C6DAD30014A179 /* DiskMounter.h in Sources */,
 				8CDA0DA627C782AF00229E2C /* kextLists.swift in Sources */,
 				8CB1784126C6DD020014A179 /* Authorization.m in Sources */,
@@ -659,12 +622,8 @@
 				A70B624C237B003900A2BA73 /* StatusBarController.swift in Sources */,
 				8C5ED1CA26597884003A6226 /* testingFunc.swift in Sources */,
 				8C1BBA2C27C4C74000042A45 /* cleanDir.swift in Sources */,
-				8CEA92E9264B525C00C9082E /* ArrayStringView.swift in Sources */,
-				8CEA92E7264AA21300C9082E /* DictView.swift in Sources */,
 				8CF043A825CF6EFD0090C41F /* SettingsView.swift in Sources */,
 				8C6413842645F49800C034D8 /* DragAndDropViewConstructor.swift in Sources */,
-				8CEE31EA263C07DF00881FCB /* PlistSheetView.swift in Sources */,
-				8C082B2F264D941500C3B0AB /* addingNewItem.swift in Sources */,
 				8C0B1361276A8457009715E9 /* PopoverContentController.swift in Sources */,
 				8CCEED11263D7ECC00D10B0B /* StringListView.swift in Sources */,
 				8C1BBA2527C43C2E00042A45 /* findDriverPath.swift in Sources */,
@@ -674,7 +633,6 @@
 				8C989F9A265DB90500B798B5 /* BluetoothDevices.swift in Sources */,
 				8C54539426CD02C2003FD811 /* HAPlistContentHandler.swift in Sources */,
 				8C4647DF27C682E10007E1BF /* updateEFI.swift in Sources */,
-				8CF2D80D264386240078B287 /* ArrayDictNameView.swift in Sources */,
 				8C4EACF927C10A1600E7DCC4 /* AMDCoresCount.swift in Sources */,
 				8C8AF5A925CCC302003A10DD /* Downloader.swift in Sources */,
 				8CA2CB49261F456400EA8949 /* AppStorageforCatalina.swift in Sources */,
@@ -682,13 +640,11 @@
 				8CB1783F26C6DC7E0014A179 /* Authorization.h in Sources */,
 				8CB1783B26C6D9160014A179 /* DiskMounter.m in Sources */,
 				8C82752E25E144730073616D /* UploadNewBuild.swift in Sources */,
-				8CA1189F26CE91A500839E7E /* ToolbarButtons.swift in Sources */,
-				8C082B33264DDAE700C3B0AB /* DictDetailsView.swift in Sources */,
+				8CE439E327CA38BA0056034E /* HAPlistEncoder.swift in Sources */,
 				8C83F4A52655608600DBDD3B /* HDToggleView.swift in Sources */,
 				8C4647D727C682430007E1BF /* additionalOCFixes.swift in Sources */,
 				8C1BBA2827C43EF100042A45 /* standaloneUpdateResources.swift in Sources */,
 				A70B6234237AF87000A2BA73 /* AppDelegate.swift in Sources */,
-				8CEE31E6263AC7CD00881FCB /* PlistEditorMainView.swift in Sources */,
 				8C097A4526C6058A001A4378 /* filesHandlers.swift in Sources */,
 				8C1BBA1627C3B33900042A45 /* shouldUpdateLocalKext.swift in Sources */,
 				8C5F6C5526C1D7B9009F1BCC /* HDUpdateView.swift in Sources */,
@@ -921,28 +877,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		8C1A0CD125D17ABA00D3D85D /* XCRemoteSwiftPackageReference "scout" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ABridoux/scout";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.4;
-			};
-		};
 		8C4EACFA27C1394500E7DCC4 /* XCRemoteSwiftPackageReference "FeedKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/nmdias/FeedKit.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 9.0.0;
-			};
-		};
-		8C57885926CC3F9900F877AA /* XCRemoteSwiftPackageReference "Grid" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/exyte/Grid";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
 			};
 		};
 		8C79122126586C2700C29FE6 /* XCRemoteSwiftPackageReference "Version" */ = {
@@ -980,20 +920,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		8C1A0CD225D17ABA00D3D85D /* Scout */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8C1A0CD125D17ABA00D3D85D /* XCRemoteSwiftPackageReference "scout" */;
-			productName = Scout;
-		};
 		8C4EACFB27C1394500E7DCC4 /* FeedKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8C4EACFA27C1394500E7DCC4 /* XCRemoteSwiftPackageReference "FeedKit" */;
 			productName = FeedKit;
-		};
-		8C57885A26CC3F9900F877AA /* ExyteGrid */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8C57885926CC3F9900F877AA /* XCRemoteSwiftPackageReference "Grid" */;
-			productName = ExyteGrid;
 		};
 		8C79122226586C2700C29FE6 /* Version */ = {
 			isa = XCSwiftPackageProductDependency;

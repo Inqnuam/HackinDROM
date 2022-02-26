@@ -15,9 +15,6 @@ struct ContentView: View {
     @State var CPlist: [HAPlistStruct] = []
     @State var selectedFile = ""
     @State var query:String = ""
-    
-    //@StateObject var HAPlist = HAPlistContent() // Xcode 13 can't detect StateOject as unavailble on Catalina
-   // @State var BridgeWin: BridgeNSWindow?
     var body: some View {
 
         VStack {
@@ -144,7 +141,7 @@ struct ContentView: View {
                     
                     OpenSafari("https://www.tonymacx86.com/threads/hackindrom-app-for-opencore-efi-creation-and-update.312176/") // BETA
                 }
-                Text("v\(sharedData.CurrentBuildVersion) Beta")
+                Text("v\(sharedData.CurrentBuildVersion) Beta 2")
                     .bold()
                     .padding([.top, .bottom], 8)
                     .onTapGesture(count: 5) {

@@ -7,31 +7,21 @@
 //
 
 import Foundation
-import Scout
 
 struct HAPlistStruct: Identifiable, Equatable {
     var id = UUID()
     var name = ""
     var StringValue: String = "" {
-        
-        
         didSet(oldValue) {
-            
             if type == "int" {
-                
                 var  filtered = StringValue.filter { $0.isNumber }
-                
                 if StringValue.contains("-") {
                     filtered.insert("-", at: filtered.startIndex)
                 }
-                
                 StringValue = filtered
-                
-                
             } else if type == "data" {
                 if StringValue.uppercased().filter({ "ABCDEF0123456789".contains($0) }).data(using: .bytesHexLiteral) != nil {
                     StringValue = StringValue.uppercased().filter { "ABCDEF0123456789".contains($0) }
-                    
                 }
             } else if type == "string" && name == "Comment" {
                 StringValue.removeAll(where: {$0.asciiValue == nil})
@@ -51,8 +41,7 @@ struct HAPlistStruct: Identifiable, Equatable {
         } else if let indeX = Childs.firstIndex(where: {$0.type == "string" && $0.name == "Comment"}) {
             newVal = Childs[indeX].StringValue
         }
-        
-        return newVal
+         return newVal
     }
     
 }
@@ -101,61 +90,6 @@ func createDictFrom(_ hap: HAPlistStruct) {
 }
 
 
-
-func createScoutExplValfromHDDict(hdItem: HAPlistStruct) -> ExplorerValue {
-    
-    var scoutExplVal: ExplorerValue = [:]
-    
-    if hdItem.type == "string" {
-        
-        return .string(hdItem.StringValue)
-        
-    } else if hdItem.type == "bool" {
-        
-        return .bool(hdItem.BoolValue)
-        
-    } else if hdItem.type == "int" {
-        
-        return .int(Int(hdItem.StringValue)!)
-        
-    }  else if hdItem.type == "data" {
-        
-        
-        if let HexToData =   Data(hexString: hdItem.StringValue) {
-            return .data(HexToData)
-        } else {
-            return .data(Data())
-        }
-        
-    } else if hdItem.type == "dict" {
-        
-        
-        for itm in hdItem.Childs {
-            
-            
-            do {
-                try  scoutExplVal.add(createScoutExplValfromHDDict(hdItem: itm), at: PathElement(stringLiteral: itm.name))
-                
-            } catch {
-                print(error)
-            }
-        }
-        
-        
-    } else if hdItem.type == "array" {
-        
-        var scoutarray:ExplorerValue = []
-        for (n, itm) in hdItem.Childs.enumerated() {
-            
-            try! scoutarray.add(createScoutExplValfromHDDict(hdItem: itm), at: PathElement(integerLiteral: n))
-            
-        }
-        return scoutarray
-    }
-    
-    
-    return scoutExplVal
-}
 
 struct HAPMultiOptions:Identifiable, Hashable {
     var id = UUID()

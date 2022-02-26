@@ -105,3 +105,24 @@ struct UpateViewTableHeader: View {
     }
     
 }
+
+
+
+struct LoaderView: View {
+    var body: some View {
+        
+        HStack{
+            Spacer()
+            if #available(macOS 11.0, *) {
+                
+                ProgressView()
+                
+            } else {
+                
+                Text("Loading")
+                
+            }
+            Spacer()
+        }
+    }
+}

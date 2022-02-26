@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Scout
 import FeedKit
 import Version
 func CreateTodayDate() -> String {
@@ -329,7 +328,7 @@ func getGitReleasesVersions(_ username:String, _ repo: String, _ onlyFirst:Bool 
 
 
 extension URLSession {
-    @available(iOS, deprecated: 15.0, message: "This extension is no longer necessary. Use API built into SDK")
+    @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     func data(for request: URLRequest) async throws -> (Data, URLResponse) {
         try await withCheckedThrowingContinuation { continuation in
             let task = self.dataTask(with: request) { data, response, error in
@@ -345,7 +344,7 @@ extension URLSession {
         }
     }
     
-    
+    @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     func data(from url: URL) async throws -> (Data, URLResponse) {
         try await withCheckedThrowingContinuation { continuation in
             let task = self.dataTask(with: url) { data, response, error in

@@ -411,6 +411,19 @@ extension HAPlistStruct {
     
 }
 extension Binding {
+    /// When the `Binding`'s `wrappedValue` changes, the given closure is executed.
+    /// - Parameter closure: Chunk of code to execute whenever the value changes.
+    /// - Returns: New `Binding`.
+    func onUpdate(_ closure: @escaping () -> Void) -> Binding<Value> {
+        Binding(get: {
+            wrappedValue
+        }, set: { newValue in
+            wrappedValue = newValue
+            closure()
+        })
+    }
+    
+    
     func toggled(_ hav: Int, _ name:String, _ handler: @escaping (ToggleChanged) -> Void) -> Binding<Value> {
         
         Binding(
@@ -540,86 +553,9 @@ extension FloatingPoint {
     var isInteger: Bool { rounded() == self }
 }
 
-class BridgeNSWindow: ObservableObject {
-    @ObservedObject var sharedData: HASharedData
-    @ObservedObject var HAPlist: HAPlistContent
-    var win: NSWindow
-    
-    
-    init (HAPlist: HAPlistContent, sharedData: HASharedData) {
-        self.sharedData = sharedData
-        self.HAPlist = HAPlist
-        win = NSWindow()
-        let controller = NSHostingController(rootView: PlistEditorMainView(HAPlist: self.HAPlist).environmentObject(self.sharedData))
-        self.win.contentViewController = controller
-        
-        
-        
-        let toolbarButtons = NSHostingView(rootView: ToolbarButtons(HAPlist: HAPlist).environmentObject(sharedData))
-        toolbarButtons.frame.size = toolbarButtons.fittingSize
-        
-        let titlebarAccessory = NSTitlebarAccessoryViewController()
-        titlebarAccessory.view = toolbarButtons
-        titlebarAccessory.layoutAttribute = .trailing
-        
-        win.styleMask = [.titled,
-                         .unifiedTitleAndToolbar,
-                         .closable,
-                         .miniaturizable,
-                         .resizable,
-                         .fullSizeContentView]
-        win.backingType = .buffered
-        win.titleVisibility = .hidden
-        win.addTitlebarAccessoryViewController(titlebarAccessory)
-        win.makeMain()
-        win.makeFirstResponder(nil)
-        
-        
-        win.appearance =  NSAppearance(named: .vibrantLight)
-        win.setContentSize(NSSize(width: 800, height: 700))
-        win.title = "Plist Editor"
-        win.makeKeyAndOrderFront(nil)
-        
-    }
-    
-    
-    func toggleWindow()-> NSWindow {
-        !win.isVisible ? win.makeKeyAndOrderFront(nil) : nil
-        return win
-    }
-}
 
 func openIn(HAPlist: HAPlistContent, sharedData: HASharedData) {
     
     
-    let controller = NSHostingController(rootView:PlistEditorMainView(HAPlist: HAPlist).environmentObject(sharedData))
-    let win = NSWindow(contentViewController: controller)
-    
-    
-    
-    let toolbarButtons = NSHostingView(rootView: ToolbarButtons(HAPlist: HAPlist).environmentObject(sharedData))
-    toolbarButtons.frame.size = toolbarButtons.fittingSize
-    
-    let titlebarAccessory = NSTitlebarAccessoryViewController()
-    titlebarAccessory.view = toolbarButtons
-    titlebarAccessory.layoutAttribute = .trailing
-    
-    win.styleMask = [.titled,
-                     .unifiedTitleAndToolbar,
-                     .closable,
-                     .miniaturizable,
-                     .resizable,
-                     .fullSizeContentView]
-    win.backingType = .buffered
-    win.titleVisibility = .hidden
-    win.addTitlebarAccessoryViewController(titlebarAccessory)
-    win.makeMain()
-    win.makeFirstResponder(nil)
-    
-    
-    win.appearance =  NSAppearance(named: .vibrantLight)
-    win.setContentSize(NSSize(width: 800, height: 700))
-    win.title = "Plist Editor"
-    win.makeKeyAndOrderFront(nil)
-    
+   
 }

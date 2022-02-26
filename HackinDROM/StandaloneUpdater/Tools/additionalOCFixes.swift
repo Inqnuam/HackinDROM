@@ -8,7 +8,7 @@
 
 import Foundation
 
-let possibleExtraItems:[Array] = [
+let possibleExtraItems:[[String]] = [
     ["PlatformInfo", "PlatformNVRAM"],
     ["PlatformInfo", "Memory"],
     ["PlatformInfo", "SMBIOS"],

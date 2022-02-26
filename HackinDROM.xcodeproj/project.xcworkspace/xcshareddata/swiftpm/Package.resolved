@@ -1,24 +1,6 @@
 {
   "pins" : [
     {
-      "identity" : "aexml",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/tadija/AEXML.git",
-      "state" : {
-        "revision" : "38f7d00b23ecd891e1ee656fa6aeebd6ba04ecc3",
-        "version" : "4.6.1"
-      }
-    },
-    {
-      "identity" : "booleanexpressionevaluation",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/ABridoux/BooleanExpressionEvaluation",
-      "state" : {
-        "revision" : "0af945fffa42447e455620ccaaa26d80528e3884",
-        "version" : "2.0.1"
-      }
-    },
-    {
       "identity" : "feedkit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/nmdias/FeedKit.git",
@@ -28,75 +10,12 @@
       }
     },
     {
-      "identity" : "grid",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/exyte/Grid",
-      "state" : {
-        "revision" : "a9b8e48897dcb2d27ba040bb33fa34bc2776f9f0",
-        "version" : "1.4.1"
-      }
-    },
-    {
       "identity" : "launchatlogin",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/sindresorhus/LaunchAtLogin",
       "state" : {
         "revision" : "e8171b3e38a2816f579f58f3dac1522aa39efe41",
         "version" : "4.2.0"
-      }
-    },
-    {
-      "identity" : "lux",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/ABridoux/lux",
-      "state" : {
-        "revision" : "ec1cb60275bce9fc1398cd70e0eb8dc98842dd56",
-        "version" : "0.5.0"
-      }
-    },
-    {
-      "identity" : "scout",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/ABridoux/scout",
-      "state" : {
-        "revision" : "49587c0822b975898d181e2aad896e894bed6963",
-        "version" : "4.0.4"
-      }
-    },
-    {
-      "identity" : "splash",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/JohnSundell/Splash",
-      "state" : {
-        "revision" : "7f4df436eb78fe64fe2c32c58006e9949fa28ad8",
-        "version" : "0.16.0"
-      }
-    },
-    {
-      "identity" : "swift-argument-parser",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-argument-parser",
-      "state" : {
-        "revision" : "6b2aa2748a7881eebb9f84fb10c01293e15b52ca",
-        "version" : "0.5.0"
-      }
-    },
-    {
-      "identity" : "swiftcsv",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/swiftcsv/SwiftCSV",
-      "state" : {
-        "revision" : "039cc273dcc91f4c9d85e05a2514bbe63e7dde60",
-        "version" : "0.6.1"
-      }
-    },
-    {
-      "identity" : "swiftsoup",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/scinfu/SwiftSoup.git",
-      "state" : {
-        "revision" : "11da8c685ddde2d519fad04a7daf8485bbbc773e",
-        "version" : "1.7.5"
       }
     },
     {
@@ -115,15 +34,6 @@
       "state" : {
         "revision" : "1fe824b80d89201652e7eca7c9252269a1d85e25",
         "version" : "2.0.1"
-      }
-    },
-    {
-      "identity" : "yams",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/jpsim/Yams.git",
-      "state" : {
-        "revision" : "9ff1cc9327586db4e0c8f46f064b6a82ec1566fa",
-        "version" : "4.0.6"
       }
     },
     {

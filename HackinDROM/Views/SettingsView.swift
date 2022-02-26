@@ -8,7 +8,6 @@
 
 import SwiftUI
 import LaunchAtLogin
-//import Scout
 import UserNotifications
 struct SettingsView: View {
     @EnvironmentObject var sharedData: HASharedData

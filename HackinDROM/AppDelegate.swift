@@ -67,6 +67,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         _ = PlistDocumentController()
         
+       
+        
         // SwiftUI Bridge
         let myRootView = StartView(EFIs: getEFIList()).environmentObject(self.sharedData)
         self.popover.contentViewController = NSViewController()
