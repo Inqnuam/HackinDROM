@@ -13,7 +13,7 @@ import Foundation
 func backupEFI(backedUpPath: String, canBackUp:Bool, savingPath: String) {
     var fileName = URL(fileURLWithPath: backedUpPath).lastPathComponent
     if canBackUp {
-   
+        
         
         if fileManager.fileExists(atPath: savingPath + "/\(fileName)") {
             
@@ -36,20 +36,21 @@ func backupEFI(backedUpPath: String, canBackUp:Bool, savingPath: String) {
         // if not ask for new backup dir
         
         let hasSelectedBackupDir = UserDefaults.standard.bool(forKey: "BackUpToFolder")
-        let customBackupdir = UserDefaults.standard.string(forKey: "BackUpsCustomFolder")
+        if let customBackupdir = UserDefaults.standard.string(forKey: "BackUpsCustomFolder") {
         
-        if hasSelectedBackupDir && customBackupdir != nil {
+        if hasSelectedBackupDir && fileManager.fileExists(atPath: customBackupdir) {
             
             
             do {
                 let backedUpFileName = URL(fileURLWithPath: backedUpPath).lastPathComponent
-                try fileManager.moveItem(atPath: backedUpPath, toPath: customBackupdir! + "/\(backedUpFileName)")
+                try fileManager.moveItem(atPath: backedUpPath, toPath: customBackupdir + "/\(backedUpFileName)")
             } catch {
                 print(error)
                 print("cant move backedUp archive to saving Path")
             }
             
-        } else {
+        }
+        else {
             // present file selector for custom dir
             // #FIXME: opening file selector dialog crashs the app from async func...
             //
@@ -71,5 +72,6 @@ func backupEFI(backedUpPath: String, canBackUp:Bool, savingPath: String) {
             //            }
             
         }
+    }
     }
 }

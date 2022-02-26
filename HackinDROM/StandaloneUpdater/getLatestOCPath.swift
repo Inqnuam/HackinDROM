@@ -38,7 +38,7 @@ func getLatestOCPath()  async -> String? {
             
             if latestOCVersion! > localOCVersion! {
                 let oldOCPath = latestFolder + "/oc/" + localOCVersion!.description
-                print("oldOCPath", oldOCPath)
+              
                 try fileManager.removeItem(atPath: oldOCPath) // -> previously latestOCFolder
                 try fileManager.createDirectory(atPath: latestOCFolder, withIntermediateDirectories: true, attributes: nil)
                 

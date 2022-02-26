@@ -13,9 +13,6 @@ func findDriverPath(_ driver: String,  commitDate: Date?) async -> String? {
   
     let cachedDriversDir =  "\(latestOCFolder)/X64/EFI/OC/Drivers"
     let cachedDriverPath = cachedDriversDir + "/\(driver).efi"
-    
-    
-    print("findDriverPath \(driver)")
     guard let cachedDrivers = getFilesFrom(cachedDriversDir) else { return await  downloadDriver(driver, cachedDriverPath)}
     
     if cachedDrivers.contains(driver) {
@@ -26,7 +23,7 @@ func findDriverPath(_ driver: String,  commitDate: Date?) async -> String? {
         var shouldUpdate:Bool = false
         if let attr = try? fileManager.attributesOfItem(atPath: cachedDriverPath) {
             if let modifiedDate = attr[.modificationDate] as? Date {
-                print("DRIVER MODIFED DATE:", modifiedDate)
+               
                 if let commitDate = commitDate,  commitDate > modifiedDate{
                     shouldUpdate = true
                 }

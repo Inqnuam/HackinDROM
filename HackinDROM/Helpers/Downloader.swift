@@ -20,11 +20,9 @@ class FileDownloader {
             
         }
         if fileManager.fileExists(atPath: destinationUrl.path) {
-            print("File already exists [\(destinationUrl.path)]")
             completion(destinationUrl.path, nil)
         } else if let dataFromURL = NSData(contentsOf: url) {
             if dataFromURL.write(to: destinationUrl, atomically: true) {
-                print("file saved [\(destinationUrl.path)]")
                 completion(destinationUrl.path, nil)
             } else {
                 print("error saving file")
@@ -47,7 +45,6 @@ class FileDownloader {
             
         }
         if fileManager.fileExists(atPath: destinationUrl.path) {
-            print("File already exists [\(destinationUrl.path)]")
             completion(destinationUrl.path, nil)
         } else {
             let session = URLSession(configuration: URLSessionConfiguration.default, delegate: nil, delegateQueue: nil)

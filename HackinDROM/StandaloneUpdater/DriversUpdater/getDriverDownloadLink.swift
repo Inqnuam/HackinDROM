@@ -25,14 +25,8 @@ let driverGitHubLinks: [GitHubInfo] = [
 func getDriverDownloadLink(_ driver: String) -> String? {
     
     let comparingName = driver.lowercased()
-    
-    
-    
     if let foundDriver =  driverGitHubLinks.first(where: { $0.name.lowercased() == comparingName
     }) {
-        print("FOUND DRIVER DOWNLOAD LINK")
         return foundDriver.downloadName
     } else {return nil}
-    
-
 }

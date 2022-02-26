@@ -13,8 +13,6 @@ import Foundation
 func updateEFI(canUpdate: Bool, savingPath:String) -> String? {
     
     if canUpdate {
-    
-        
         do {
             try fileManager.moveItem(atPath: standaloneUpdateDir + "/EFI", toPath: savingPath)
             return savingPath
@@ -31,7 +29,7 @@ func updateEFI(canUpdate: Bool, savingPath:String) -> String? {
     } else {
         print("❌ CAN'T Update")
         
-        // show file selector
+        // #TODO: show file selector
         return nil
     }
 }

@@ -498,7 +498,7 @@ func GetExtDisk(_ disk: DADisk) -> ExternalDisks {
 
     var FoundDisk = ExternalDisks(location: "", name: "", size: "", SSD: "")
 
-    let desc = DADiskCopyDescription(disk) as! [String: CFTypeRef]
+    guard  let desc = DADiskCopyDescription(disk) as? [String: CFTypeRef] else {return FoundDisk}
 
     var size = desc["DAMediaSize"]! as! Int
     size = size/1000000000

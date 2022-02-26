@@ -13,7 +13,6 @@ import IOBluetooth
 func pairedDevices() -> [BTDevices] {
   var connectedDevices:[BTDevices] = []
   guard let devices = IOBluetoothDevice.pairedDevices() else {
-    //print("No devices")
     return []
   }
     

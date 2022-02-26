@@ -284,8 +284,6 @@ struct NewBuildView: View {
                             
                         }
                     } else {
-                        
-                        print("error")
                         isWorking = false
                     }
                     

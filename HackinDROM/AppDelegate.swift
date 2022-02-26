@@ -12,7 +12,7 @@ import DiskArbitration
 import LaunchAtLogin
 import UserNotifications
 import Version
-//@NSApplicationMain
+
 class AppDelegate: NSObject, NSApplicationDelegate {
     @ObservedObject var sharedData: HASharedData = HASharedData()
     var statusBar: StatusBarController?
@@ -93,6 +93,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         self.statusBar = StatusBarController(self.popover)
         Task {
+           // await helloAsync()
             await self.sharedData.getOCLastSamples()
         }
          
@@ -196,4 +197,9 @@ class PlistDocumentController: NSDocumentController {
     override func documentClass(forType typeName: String) -> AnyClass? {
         return PlistDocument.self
     }
+}
+
+
+func helloAsync() async {
+    print("Hello World")
 }

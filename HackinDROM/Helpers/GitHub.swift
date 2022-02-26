@@ -218,8 +218,6 @@ func OpenCoreGitHubReleases() {
         guard let data = data else {return}
         
         do {
-            
-            //  print("Response data:\n \(todoItemModel.firstname)")
             if let httpResponse = response as? HTTPURLResponse {
                 
                 if (httpResponse.statusCode) == 200 {

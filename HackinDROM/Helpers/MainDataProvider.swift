@@ -74,27 +74,19 @@ class HASharedData: ObservableObject {
     
     
     init() {
-        
-        
         do {
-           
-            try fileManager.createDirectory(atPath: tmp+"/tmp", withIntermediateDirectories: true, attributes: nil)
-            
-           
+           try fileManager.createDirectory(atPath: tmp+"/tmp", withIntermediateDirectories: true, attributes: nil)
         } catch {
-            
             print(error)
         }
         
         
         imOnline() { my in
-            
             if my.online {
-                
-                 if Version(self.CurrentBuildVersion)! < Version(my.version)! {
+                if Version(self.CurrentBuildVersion)! < Version(my.version)! {
                      self.newAppVersion = my.version
-                    
-                } else {
+                }
+                
                     self.GetAllBuildsAndConfigure()
                     //                    OpenCoreGitHubReleases()
                     self.OpenCoreDownloadLink = GetGitHubDownloadLink("OpenCorePkg")
@@ -112,7 +104,7 @@ class HASharedData: ObservableObject {
                     }
                     
                     
-                }
+                
                 
             } else {
                 self.isOnline = false
@@ -136,7 +128,6 @@ class HASharedData: ObservableObject {
     
     
     func GetAllBuildsAndConfigure() {
-        
         if fileManager.fileExists(atPath: tmp, isDirectory: nil) {
             GetAllBuilds() { [self] Builds in
                 
@@ -347,24 +338,5 @@ let MyHackData = MyHackDataStrc(MLB: nvram.GetOFVariable("4D1EDE05-38C7-4A6A-9CC
 
 @discardableResult
 func asyncUnzip (from: String, to: String) async -> String {
-    print("asyncUnzip", from, "to", to)
-    
     return await shellAsync("unzip -o '\(from)' -d '\(to)'")
-    
-    
-//    do {
-//
-//        try Zip.unzipFile(URL(fileURLWithPath: from), destination: URL(fileURLWithPath: to), overwrite: true, password: nil, progress:  { completed in
-//
-//            if completed == 1.0 {
-//
-//                return
-//            }
-//
-//        })
-//    } catch let err {
-//
-//        print(err)
-//
-//    }
 }

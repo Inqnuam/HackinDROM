@@ -101,8 +101,6 @@ struct HDUpdateView: View {
                                     
                                 }
                             }
-                            
-                            print("Save toooooo")
                         }
                         
                         Button("Update anyway") {

@@ -107,22 +107,19 @@ func getEFIList() -> [EFI] {
                                                     foundEFI.BackUpSize = sizeOnDisk
                                                 }
                                                 
-                                                
-                                                do {
-                                                    let FindPlists = try fileManager.contentsOfDirectory(at: URL(fileURLWithPath: "\(foundEFI.mounted)/EFI/OC"), includingPropertiesForKeys: nil)
-                                                    let plists =  FindPlists.filter { $0.pathExtension == "plist" }
-                                                    
-                                                    
-                                                    for plist in plists {
+                                                if fileManager.fileExists(atPath: "\(foundEFI.mounted)/EFI/OC") {
+                                                    do {
+                                                        let FindPlists = try fileManager.contentsOfDirectory(at: URL(fileURLWithPath: "\(foundEFI.mounted)/EFI/OC"), includingPropertiesForKeys: nil)
+                                                        let plists =  FindPlists.filter { $0.pathExtension == "plist" }
                                                         
                                                         
-                                                        foundEFI.plists.append(plist.lastPathComponent)
-                                                        
+                                                        for plist in plists {
+                                                            foundEFI.plists.append(plist.lastPathComponent)
+                                                        }
+                                                    } catch {
+                                                        print(error)
                                                     }
-                                                } catch {
-                                                    print(error)
                                                 }
-                                                
                                                 let  OCEFIPath = "\(foundEFI.mounted)/EFI/OC/OpenCore.efi"
                                                 let  PlistPath = "\(foundEFI.mounted)/EFI/OC/config.plist"
                                                 
