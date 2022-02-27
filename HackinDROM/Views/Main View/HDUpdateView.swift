@@ -24,7 +24,7 @@ struct HDUpdateView: View {
     @State var sheetIsPresented: GitHubJSON?
     @State var ocvalidateOutput:String?
     @State var copyableOCVoutput: String = ""
-    
+    @State var progressText: String = "Please wait"
     var body: some View {
         HStack {
             Color.red
@@ -94,7 +94,7 @@ struct HDUpdateView: View {
                             let selectedPath = FileSelector(allowedFileTypes: [], canCreateDirectories: true, canChooseFiles: false, canChooseDirectories: true, customTitle: "Custom folder")
                             
                             if !selectedPath.isEmpty && selectedPath != "nul" {
-                                
+                                progressText = "Saving to \(selectedPath)"
                                 ocvalidateOutput = nil
                                 Task {
                                     await moveStandaloneToEFI(selectedPath)
@@ -149,10 +149,15 @@ struct HDUpdateView: View {
                 
             }
         
+        VStack {
+            
+            if #available(macOS 11.0, *) {
+                ProgressView()
+            }
+            
+            Text(progressText)
+        }.padding()
         
-        if #available(macOS 11.0, *) {
-            ProgressView()
-        }
         
         
         
@@ -238,17 +243,24 @@ struct HDUpdateView: View {
             // Copy latest OC EFI into standalone dir.
             
             do {
+                progressText = "Updating core files..."
                 try fileManager.copyItem(atPath: latestOCFolder + "/X64/EFI/", toPath: standaloneUpdateDir + "/EFI/")
                 setProgress(0.3)
+                progressText = "Updating AML files"
                 moveAMLBinariesToStandalone(latestOCFolder, EFI.mounted + "/EFI/OC/ACPI")
                 setProgress(0.4)
+                progressText = "Updating OC Tools"
                 standaloneToolsUpdater(EFI.mounted + "/EFI/OC/Tools")
                 setProgress(0.5)
+                progressText = "Updating OC Resources"
                 standaloneUpdateResources(EFI.mounted + "/EFI/OC/Resources")
                 setProgress(0.6)
+                
             }
             catch {
-                print("Can't Update OpenCore ")
+                updatingColor = .red
+                progressText = "Can't Update OpenCore"
+                
                 print(error)
             }
             
@@ -258,7 +270,7 @@ struct HDUpdateView: View {
             var stableRelease: GitHubJSON?
             
             if var userKexts = getFilesFrom(kextDir) {
-                
+                progressText = "Updating Kexts, be patient..."
                 // Check if user use OpenInelWirelss WiFi
                 if let foundIndex = userKexts.firstIndex(where: {$0.lowercased() == "airportitlwm"}) {
                     shouldUpdateAirportItlwm = true
@@ -285,11 +297,10 @@ struct HDUpdateView: View {
                     }
                 }
                 
-               
+                
                 
                 // Update every kext but AirportItlm
                 if await standaloneUpdateKexts(kextDir, userKexts, stableRelease) {
-                   
                     setProgress(0.7)
                 }
                 
@@ -299,13 +310,17 @@ struct HDUpdateView: View {
                 cleanDir(kextDir)
             }
             
-            
+            progressText = "Updating OC Drivers"
             await standaloneUpdateDrivers(EFI.mounted + "/EFI/OC/Drivers")
+            setProgress(0.8)
+            progressText = "Copying missing files"
             copyMissingFiles(from: EFI.mounted + "/EFI", to: standaloneUpdateDir + "/EFI")
+            setProgress(0.82)
             copyMissingFiles(from: EFI.mounted + "/EFI/BOOT", to: standaloneUpdateDir + "/EFI/BOOT")
+            setProgress(0.85)
             copyMissingFiles(from: EFI.mounted + "/EFI/OC", to: standaloneUpdateDir + "/EFI/OC")
             
-            
+            setProgress(0.9)
             
             // Show options to select correct kext for AirportItlwm
             if shouldUpdateAirportItlwm {
@@ -317,9 +332,11 @@ struct HDUpdateView: View {
             }
             
         } else {
-            print("Can't update :( ")
-            EFI.isUpdating = false
-            EFI.updateProgress = 0.0
+            updatingColor = .red
+            progressText = "Can't Update OpenCore. Please check if you can visit GitHub website"
+            
+            
+            EFI.updateProgress = 1.0
         }
         
         
@@ -369,6 +386,8 @@ struct HDUpdateView: View {
     
     
     func moveStandaloneToEFI(_ customDir: String? = nil) async {
+        progressText = "Copying into EFI partition"
+        
         let savingPath:String = customDir ?? EFI.mounted
         var canBackUp:Bool = false
         var canUpdate:Bool = customDir == nil ? false : true // will be computed later
@@ -410,17 +429,24 @@ struct HDUpdateView: View {
         
         
         if backedUpPath != nil {
+            progressText = "Backup..."
             backupEFI(backedUpPath: backedUpPath!, canBackUp:canBackUp, savingPath: savingPath)
+        } else {
+            progressText = "Can't Backup..."
         }
         
-        
+        progressText = "Final step..."
         if let savedPath =  updateEFI(canUpdate: canUpdate, savingPath:savingPath + "/EFI") {
             
             // Notify about savedPath and close HDUpdateview
             setProgress(1.0)
             EFI.isUpdating = false
             SetNotif("Your EFI is ready!", "Just updated OpenCore on \(savedPath)")
-            print(savedPath)
+            NSWorkspace.shared.open(URL(fileURLWithPath: savedPath, isDirectory: true))
+            
+        } else {
+            updatingColor = .red
+            progressText = "Update failed, please make space into EFI partition and try again. Empty bin if needed."
         }
         
     }

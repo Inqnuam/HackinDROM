@@ -11,17 +11,22 @@ import Foundation
 func haPlistEncode(_ haPlist: HAPlistStruct, _ filePath: String) {
     
     let rawOutput = haPlistEncoder(haPlist)
+    
+    // remove first empty <key></key> which is genereated at serialization when plist is loaded
+    let plistNodes = rawOutput.dropFirst(12)
+    
     let fileContent = """
      <?xml version="1.0" encoding="UTF-8"?>
      <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-     <plist version="1.0">\(rawOutput.dropFirst(12))
+     <plist version="1.0">\(plistNodes)
      </plist>
      """
     let data = Data(fileContent.utf8)
     
-    
     do {
-      try data.write(to: URL(fileURLWithPath: filePath))
+        let serilizedPlist = try PropertyListSerialization.propertyList(from: data, format: nil)
+        let newPlist = try PropertyListSerialization.data(fromPropertyList: serilizedPlist, format: .xml, options:0)
+        try newPlist.write(to: URL(fileURLWithPath: filePath))
     } catch {
         print(error)
     }

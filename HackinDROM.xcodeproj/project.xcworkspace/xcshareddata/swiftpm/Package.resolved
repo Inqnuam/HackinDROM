@@ -1,52 +1,49 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "FeedKit",
-        "repositoryURL": "https://github.com/nmdias/FeedKit.git",
-        "state": {
-          "branch": null,
-          "revision": "68493a33d862c33c9a9f67ec729b3b7df1b20ade",
-          "version": "9.1.2"
-        }
-      },
-      {
-        "package": "LaunchAtLogin",
-        "repositoryURL": "https://github.com/sindresorhus/LaunchAtLogin",
-        "state": {
-          "branch": "main",
-          "revision": "e8171b3e38a2816f579f58f3dac1522aa39efe41",
-          "version": null
-        }
-      },
-      {
-        "package": "Introspect",
-        "repositoryURL": "https://github.com/siteline/SwiftUI-Introspect",
-        "state": {
-          "branch": null,
-          "revision": "f2616860a41f9d9932da412a8978fec79c06fe24",
-          "version": "0.1.4"
-        }
-      },
-      {
-        "package": "Version",
-        "repositoryURL": "https://github.com/mxcl/Version",
-        "state": {
-          "branch": null,
-          "revision": "1fe824b80d89201652e7eca7c9252269a1d85e25",
-          "version": "2.0.1"
-        }
-      },
-      {
-        "package": "Zip",
-        "repositoryURL": "https://github.com/marmelroy/Zip",
-        "state": {
-          "branch": null,
-          "revision": "059e7346082d02de16220cd79df7db18ddeba8c3",
-          "version": null
-        }
+  "pins" : [
+    {
+      "identity" : "feedkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/nmdias/FeedKit.git",
+      "state" : {
+        "revision" : "68493a33d862c33c9a9f67ec729b3b7df1b20ade",
+        "version" : "9.1.2"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "launchatlogin",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sindresorhus/LaunchAtLogin",
+      "state" : {
+        "branch" : "main",
+        "revision" : "e8171b3e38a2816f579f58f3dac1522aa39efe41"
+      }
+    },
+    {
+      "identity" : "swiftui-introspect",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/siteline/SwiftUI-Introspect",
+      "state" : {
+        "revision" : "f2616860a41f9d9932da412a8978fec79c06fe24",
+        "version" : "0.1.4"
+      }
+    },
+    {
+      "identity" : "version",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mxcl/Version",
+      "state" : {
+        "revision" : "1fe824b80d89201652e7eca7c9252269a1d85e25",
+        "version" : "2.0.1"
+      }
+    },
+    {
+      "identity" : "zip",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/marmelroy/Zip",
+      "state" : {
+        "revision" : "059e7346082d02de16220cd79df7db18ddeba8c3"
+      }
+    }
+  ],
+  "version" : 2
 }

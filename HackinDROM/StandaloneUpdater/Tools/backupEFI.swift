@@ -42,7 +42,11 @@ func backupEFI(backedUpPath: String, canBackUp:Bool, savingPath: String) {
             
             
             do {
-                let backedUpFileName = URL(fileURLWithPath: backedUpPath).lastPathComponent
+                var backedUpFileName = URL(fileURLWithPath: backedUpPath).lastPathComponent
+                if fileManager.fileExists(atPath: customBackupdir + "/\(backedUpFileName)") {
+                    backedUpFileName = backedUpFileName.replacingOccurrences(of: ".zip", with: "\(CreateTodayDate()).zip")
+                }
+                
                 try fileManager.moveItem(atPath: backedUpPath, toPath: customBackupdir + "/\(backedUpFileName)")
             } catch {
                 print(error)

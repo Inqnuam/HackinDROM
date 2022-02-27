@@ -115,8 +115,24 @@ func updateOCPlist(_ reference: HAPlistStruct, _ findIn: HAPlistStruct) -> HAPli
     return returningItem
 }
 
-func generateNewDriverStructType(template: HAPlistStruct, driverPath: String)-> HAPlistStruct {
-    var cleanedDriverTemplate = cleanHAPlistStruct(template)
+func generateNewDriverStructType(template: HAPlistStruct? = nil , driverPath: String)-> HAPlistStruct {
+    
+    var driverTemplate:HAPlistStruct {
+        if template != nil {return template!}
+        else {
+            var foundDriverTemplate = HAPlistStruct()
+            getHAPlistFrom(latestOCFolder + "/Docs/SampleCustom.plist") { plist in
+                if let allDrivers = plist.get(["UEFI", "Drivers"]) {
+                    if !allDrivers.Childs.isEmpty {
+                        foundDriverTemplate = allDrivers.Childs.first!
+                    }
+                }
+            }
+            return foundDriverTemplate
+        }
+    }
+    
+    var cleanedDriverTemplate = cleanHAPlistStruct(driverTemplate)
     
     if let foundPathIndex = cleanedDriverTemplate.Childs.firstIndex(where: {$0.name == "Path"}) {
         

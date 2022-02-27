@@ -76,20 +76,17 @@ class FileDownloader {
 }
 
 func downloadtoHD(url: URL) async -> String? {
-    
-    
     let destinationUrl = URL(fileURLWithPath: tmp + "/" + url.lastPathComponent)
     
-    do {
-        try  fileManager.removeItem(at: URL(fileURLWithPath: destinationUrl.path))
-    } catch {
-        
-    }
+   
     if fileManager.fileExists(atPath: destinationUrl.path) {
-        print("File already exists [\(destinationUrl.path)]")
-        return destinationUrl.path
-        
-    } else {
+        do {
+            try  fileManager.removeItem(at: URL(fileURLWithPath: destinationUrl.path))
+        } catch {
+            print(error)
+        }
+    }
+    
         let session = URLSession(configuration: URLSessionConfiguration.default, delegate: nil, delegateQueue: nil)
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -107,11 +104,8 @@ func downloadtoHD(url: URL) async -> String? {
                 return nil
             }
         } catch {
+            print(error)
             return nil
         }
-        
-        
-        
-        
-    }
+      
 }

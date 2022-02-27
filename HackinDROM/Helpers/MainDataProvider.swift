@@ -338,5 +338,6 @@ let MyHackData = MyHackDataStrc(MLB: nvram.GetOFVariable("4D1EDE05-38C7-4A6A-9CC
 
 @discardableResult
 func asyncUnzip (from: String, to: String) async -> String {
+    print("asyncUnzip to \(to)")
     return await shellAsync("unzip -o '\(from)' -d '\(to)'")
 }

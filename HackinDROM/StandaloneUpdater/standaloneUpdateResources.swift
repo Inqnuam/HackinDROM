@@ -11,18 +11,22 @@ import Foundation
 func standaloneUpdateResources(_ usersResourcesDir: String) {
    let resourcesDir =  standaloneUpdateDir + "/EFI/OC/Resources"
     
-    if fileManager.fileExists(atPath: resourcesDir) {
+    if fileManager.fileExists(atPath: usersResourcesDir) {
+        if fileManager.fileExists(atPath: resourcesDir) {
+            
+            do {
+                try fileManager.removeItem(atPath: resourcesDir)
+            } catch {
+                print(error)
+            }
+        }
         
         do {
-            try fileManager.removeItem(atPath: resourcesDir)
+            try fileManager.copyItem(atPath: usersResourcesDir, toPath: resourcesDir)
         } catch {
             print(error)
         }
     }
     
-    do {
-        try fileManager.copyItem(atPath: usersResourcesDir, toPath: resourcesDir)
-    } catch {
-        print(error)
-    }
+    
 }

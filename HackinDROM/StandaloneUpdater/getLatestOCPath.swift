@@ -15,9 +15,12 @@ func getLatestOCPath()  async -> String? {
         let latestOcUrl = URL(string: "https://github.com/acidanthera/OpenCorePkg/releases/download/\(gitOCReleasesVersions.first!)/OpenCore-\(gitOCReleasesVersions.first!)-RELEASE.zip")!
         let latestOCFolder = latestFolder + "/oc/" + gitOCReleasesVersions.first!
         
-        
+        if !fileManager.fileExists(atPath: latestFolder + "/oc") {
+            try fileManager.createDirectory(atPath: latestFolder + "/oc", withIntermediateDirectories: true, attributes: nil)
+        }
         let filesOfDir = try fileManager.contentsOfDirectory(at: URL(fileURLWithPath: latestFolder + "/oc"), includingPropertiesForKeys: nil, options: [.skipsHiddenFiles])
         if filesOfDir.isEmpty {
+            
             try fileManager.createDirectory(atPath: latestOCFolder, withIntermediateDirectories: true, attributes: nil)
             // download
             guard  let downloadedPath = await downloadtoHD(url: latestOcUrl) else {
@@ -28,14 +31,13 @@ func getLatestOCPath()  async -> String? {
             await asyncUnzip(from: downloadedPath, to: latestOCFolder)
             try fileManager.removeItem(atPath: downloadedPath)
             
-            /// COPY ACPI
-          
             return latestOCFolder
             
             
         } else  {
+       
             let localOCVersion = Version(filesOfDir[0].lastPathComponent)
-            
+           
             if latestOCVersion! > localOCVersion! {
                 let oldOCPath = latestFolder + "/oc/" + localOCVersion!.description
               

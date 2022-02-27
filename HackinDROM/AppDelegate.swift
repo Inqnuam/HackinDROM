@@ -92,10 +92,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         nc.addObserver(self, selector: #selector(self.ClosePopover(_:)), name: NSNotification.Name(rawValue: "ClosePopover"), object: nil)
         
         self.statusBar = StatusBarController(self.popover)
-        Task {
-           // await helloAsync()
-            await self.sharedData.getOCLastSamples()
-        }
          
     }
     

@@ -11,6 +11,11 @@ import Foundation
 
 
 func updateEFI(canUpdate: Bool, savingPath:String) -> String? {
+    var savingPath = savingPath
+    
+    if fileManager.fileExists(atPath: savingPath) {
+        savingPath = URL(fileURLWithPath: savingPath).deletingLastPathComponent().relativePath + "/EFI_\(CreateTodayDate())"
+    }
     
     if canUpdate {
         do {

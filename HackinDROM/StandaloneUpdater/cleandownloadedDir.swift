@@ -9,42 +9,37 @@
 import Foundation
 
 func checkAndCleanStandaloneDir () {
-    
-    do {
-        if !fileManager.fileExists(atPath: standaloneUpdateDir) {
-            
-            try fileManager.createDirectory(atPath: standaloneUpdateDir, withIntermediateDirectories: true, attributes: nil)
-            
-            
-        }
-        else {
-            
+    if fileManager.fileExists(atPath: standaloneUpdateDir) {
+        do {
             try fileManager.removeItem(atPath: standaloneUpdateDir)
-            try fileManager.createDirectory(atPath: standaloneUpdateDir, withIntermediateDirectories: true, attributes: nil)
-            
+        } catch {
+            print(error)
         }
     }
-    catch {
-        
+    
+    do {
+        try fileManager.createDirectory(atPath: standaloneUpdateDir, withIntermediateDirectories: true, attributes: nil)
+    } catch {
+        print(error)
     }
 }
 
 func cleanDownloadedLatestKext(_ latestKextDir: String) {
     if latestKextDir.contains("VirtualSMC") {
-       cleanDownloadedVirtualSCMDir(latestKextDir)
+        cleanDownloadedVirtualSCMDir(latestKextDir)
     }
-        do {
-            let dirItems = try fileManager.contentsOfDirectory(at: URL(fileURLWithPath: latestKextDir), includingPropertiesForKeys: nil, options: [.skipsHiddenFiles])
-            
-            let filesToDelete = dirItems.filter { $0.pathExtension != "kext" }
-            
-            for itm in filesToDelete {
-                try fileManager.removeItem(at: itm)
-            }
-            
-        } catch {
-            print(error)
+    do {
+        let dirItems = try fileManager.contentsOfDirectory(at: URL(fileURLWithPath: latestKextDir), includingPropertiesForKeys: nil, options: [.skipsHiddenFiles])
+        
+        let filesToDelete = dirItems.filter { $0.pathExtension != "kext" }
+        
+        for itm in filesToDelete {
+            try fileManager.removeItem(at: itm)
         }
+        
+    } catch {
+        print(error)
+    }
     
     
 }

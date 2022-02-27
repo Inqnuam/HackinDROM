@@ -90,6 +90,10 @@
 		8CD2EFE027CA820D00509485 /* PopoverContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EFB227CA820D00509485 /* PopoverContentController.swift */; };
 		8CD2EFE127CA820D00509485 /* TopToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EFB327CA820D00509485 /* TopToolbarView.swift */; };
 		8CD2EFE527CA99C700509485 /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = 8CD2EFE427CA99C700509485 /* Zip */; };
+		8CE439E627CC0CAB0056034E /* fixOpenRuntimeEfiDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE439E527CC0CAB0056034E /* fixOpenRuntimeEfiDriver.swift */; };
+		8CE439E827CC0CEC0056034E /* requiresOpenRuntimeEfi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE439E727CC0CEC0056034E /* requiresOpenRuntimeEfi.swift */; };
+		8CE439EA27CC0D100056034E /* fixOCFilePathErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE439E927CC0D100056034E /* fixOCFilePathErrors.swift */; };
+		8CE439EC27CC0DDA0056034E /* fixPossibleExtraItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE439EB27CC0DDA0056034E /* fixPossibleExtraItems.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -177,6 +181,10 @@
 		8CD2EFB227CA820D00509485 /* PopoverContentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverContentController.swift; sourceTree = "<group>"; };
 		8CD2EFB327CA820D00509485 /* TopToolbarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopToolbarView.swift; sourceTree = "<group>"; };
 		8CD2EFE227CA858500509485 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8CE439E527CC0CAB0056034E /* fixOpenRuntimeEfiDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fixOpenRuntimeEfiDriver.swift; sourceTree = "<group>"; };
+		8CE439E727CC0CEC0056034E /* requiresOpenRuntimeEfi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = requiresOpenRuntimeEfi.swift; sourceTree = "<group>"; };
+		8CE439E927CC0D100056034E /* fixOCFilePathErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fixOCFilePathErrors.swift; sourceTree = "<group>"; };
+		8CE439EB27CC0DDA0056034E /* fixPossibleExtraItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fixPossibleExtraItems.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -293,7 +301,7 @@
 		8CD2EF7727CA820D00509485 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				8CD2EF7827CA820D00509485 /* additionalOCFixes.swift */,
+				8CE439E427CB93620056034E /* additionalFixes */,
 				8CD2EF7927CA820D00509485 /* asyncZip.swift */,
 				8CD2EF7A27CA820D00509485 /* updateEFI.swift */,
 				8CD2EF7B27CA820D00509485 /* getGHDownloadLink.swift */,
@@ -445,6 +453,18 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		8CE439E427CB93620056034E /* additionalFixes */ = {
+			isa = PBXGroup;
+			children = (
+				8CD2EF7827CA820D00509485 /* additionalOCFixes.swift */,
+				8CE439E527CC0CAB0056034E /* fixOpenRuntimeEfiDriver.swift */,
+				8CE439E727CC0CEC0056034E /* requiresOpenRuntimeEfi.swift */,
+				8CE439E927CC0D100056034E /* fixOCFilePathErrors.swift */,
+				8CE439EB27CC0DDA0056034E /* fixPossibleExtraItems.swift */,
+			);
+			path = additionalFixes;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -544,6 +564,7 @@
 				8CD2EF5C27CA81E600509485 /* IndexedCollection.swift in Sources */,
 				8CD2EFCF27CA820D00509485 /* BuildDetailView.swift in Sources */,
 				8CD2EF6427CA81E600509485 /* StatusBarController.swift in Sources */,
+				8CE439EA27CC0D100056034E /* fixOCFilePathErrors.swift in Sources */,
 				8CD2EF5B27CA81E600509485 /* DiskMounter.m in Sources */,
 				8CD2EFC527CA820D00509485 /* findDriverPath.swift in Sources */,
 				8CD2EFD127CA820D00509485 /* KextsView.swift in Sources */,
@@ -568,6 +589,7 @@
 				8CD2EF7527CA81E600509485 /* getEFIList.swift in Sources */,
 				8CD2EF5E27CA81E600509485 /* cleanDir.swift in Sources */,
 				8CD2EF7327CA81E600509485 /* filesHandlers.swift in Sources */,
+				8CE439E627CC0CAB0056034E /* fixOpenRuntimeEfiDriver.swift in Sources */,
 				8CD2EFB727CA820D00509485 /* getGHDownloadLink.swift in Sources */,
 				8CD2EFBA27CA820D00509485 /* renameFile.swift in Sources */,
 				8CD2EFE127CA820D00509485 /* TopToolbarView.swift in Sources */,
@@ -575,6 +597,7 @@
 				8CD2EFD927CA820D00509485 /* CreateEFI.swift in Sources */,
 				8CD2EF6627CA81E600509485 /* Authorization.m in Sources */,
 				8CD2EFD827CA820D00509485 /* ContentView.swift in Sources */,
+				8CE439EC27CC0DDA0056034E /* fixPossibleExtraItems.swift in Sources */,
 				8CD2EF7027CA81E600509485 /* AppStorageforCatalina.swift in Sources */,
 				8CD2EFE027CA820D00509485 /* PopoverContentController.swift in Sources */,
 				8CD2EFD527CA820D00509485 /* DriversView.swift in Sources */,
@@ -589,6 +612,7 @@
 				8CD2EFDB27CA820D00509485 /* updateOCPlist.swift in Sources */,
 				8CD2EFBB27CA820D00509485 /* backupEFI.swift in Sources */,
 				8CD2EF6027CA81E600509485 /* MainDataProvider.swift in Sources */,
+				8CE439E827CC0CEC0056034E /* requiresOpenRuntimeEfi.swift in Sources */,
 				8CD2EFCE27CA820D00509485 /* LeaderStartView.swift in Sources */,
 				8CD2EFBF27CA820D00509485 /* getLatestKextPath.swift in Sources */,
 				8CD2EFB527CA820D00509485 /* asyncZip.swift in Sources */,

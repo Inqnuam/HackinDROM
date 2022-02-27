@@ -6,9 +6,12 @@
 //  Copyright © 2022 Inqnuam. All rights reserved.
 //
 
-// FIXME: These 
 
 
+// list of kexts on GitHub with stable downloading archive names where only version change at every release
+// # in downloadName = github tag (ex: v2.1.4, or 0.4.3, etc.)
+// This is acidenthara style
+// but OpenIntelWireless uses this style for IntelBluetoothFirmware but not for AirportItlwm
 let gitHubKexts: [GitHubInfo] = [
     
     GitHubInfo(owner: "acidanthera", repo: "Lilu", name: "Lilu", downloadName: "Lilu-#-RELEASE.zip"),
@@ -57,36 +60,14 @@ let gitHubKexts: [GitHubInfo] = [
     
     GitHubInfo(owner: "OpenIntelWireless", repo: "IntelBluetoothFirmware", name: "IntelBluetoothFirmware", downloadName: "IntelBluetoothFirmware-#.zip"),
     GitHubInfo(owner: "OpenIntelWireless", repo: "IntelBluetoothFirmware", name: "IntelBluetoothInjector", downloadName: "IntelBluetoothFirmware-#.zip"),
-    
-    GitHubInfo(owner: "OpenIntelWireless", repo: "itlwm", name: "itlwm", downloadName: "itlwm_#_stable.kext.zip"),
-    
-    GitHubInfo(owner: "OpenIntelWireless", repo: "itlwm", name: "AirportItlwmMonterey", downloadName: "AirportItlwm_#_stable_Monterey.kext.zip"),
-    GitHubInfo(owner: "OpenIntelWireless", repo: "itlwm", name: "AirportItlwm_Monterey", downloadName: "AirportItlwm_#_stable_Monterey.kext.zip"),
-    GitHubInfo(owner: "OpenIntelWireless", repo: "itlwm", name: "AirportItlwm-Monterey", downloadName: "AirportItlwm_#_stable_Monterey.kext.zip"),
-    
-    GitHubInfo(owner: "OpenIntelWireless", repo: "itlwm", name: "AirportItlwmBigSur", downloadName: "AirportItlwm_#_stable_BigSur.kext.zip"),
-    GitHubInfo(owner: "OpenIntelWireless", repo: "itlwm", name: "AirportItlwm_BigSur", downloadName: "AirportItlwm_#_stable_BigSur.kext.zip"),
-    GitHubInfo(owner: "OpenIntelWireless", repo: "itlwm", name: "AirportItlwm-BigSur", downloadName: "AirportItlwm_#_stable_BigSur.kext.zip"),
-    
-    GitHubInfo(owner: "OpenIntelWireless", repo: "itlwm", name: "AirportItlwmCatalina", downloadName: "AirportItlwm_#_stable_Catalina.kext.zip"),
-    GitHubInfo(owner: "OpenIntelWireless", repo: "itlwm", name: "AirportItlwm_Catalina", downloadName: "AirportItlwm_#_stable_Catalina.kext.zip"),
-    GitHubInfo(owner: "OpenIntelWireless", repo: "itlwm", name: "AirportItlwm-Catalina", downloadName: "AirportItlwm_#_stable_Catalina.kext.zip"),
-    
-    GitHubInfo(owner: "OpenIntelWireless", repo: "itlwm", name: "AirportItlwmMojave", downloadName: "AirportItlwm_#_stable_Mojave.kext.zip"),
-    GitHubInfo(owner: "OpenIntelWireless", repo: "itlwm", name: "AirportItlwm_Mojave", downloadName: "AirportItlwm_#_stable_Mojave.kext.zip"),
-    GitHubInfo(owner: "OpenIntelWireless", repo: "itlwm", name: "AirportItlwm-Mojave", downloadName: "AirportItlwm_#_stable_Mojave.kext.zip"),
-    
-    GitHubInfo(owner: "OpenIntelWireless", repo: "itlwm", name: "AirportItlwmHighSierra", downloadName: "AirportItlwm_#_stable_HighSierra.kext.zip"),
-    GitHubInfo(owner: "OpenIntelWireless", repo: "itlwm", name: "AirportItlwm_HighSierra", downloadName: "AirportItlwm_#_stable_HighSierra.kext.zip"),
-    GitHubInfo(owner: "OpenIntelWireless", repo: "itlwm", name: "AirportItlwm-HighSierra", downloadName: "AirportItlwm_#_stable_HighSierra.kext.zip"),
 ]
 
 
 
 struct AirportItlwmCustomName {
-    var localName: String
-    var customNames: [String]
-    var remoteNames: [String] // will check if remote file name contains one of these strings
+    var localName: String // kext file name in cache
+    var customNames: [String] // values user may use
+    var remoteNames: [String] // will check if remote file name contains one of these strings -> determine macOS x target kext
 }
 
 let airportItlwmCustomNames: [AirportItlwmCustomName] = [
