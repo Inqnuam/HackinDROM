@@ -8,23 +8,22 @@
 
 import Foundation
 
+
+// reference = SampleCustom.plist
+// findIn = user's config.plist
 func updateOCPlist(_ reference: HAPlistStruct, _ findIn: HAPlistStruct) -> HAPlistStruct {
     
     var returningItem = HAPlistStruct()
     
     if reference.type == "string" || reference.type == "bool" || reference.type == "int" || reference.type == "data" {
-        
-        
-        
+       
         
         if reference.type == findIn.type {
-            
             returningItem = findIn
             //  #FIXME: Create an external function to handle custom vlues when the type is the same but accepted values are different from older version
             // If possible check authorized values in OC documentation -> failsafe value is used when old value isnt supported anymore
         } else {
-            returningItem = reference
-  
+            returningItem = getValueWhenTypeDiffers(reference, findIn)
         }
         
         if returningItem.name == "Comment" {
@@ -32,7 +31,6 @@ func updateOCPlist(_ reference: HAPlistStruct, _ findIn: HAPlistStruct) -> HAPli
         }
         
         if returningItem.type == "string" && (returningItem.name == "Path" || returningItem.name == "BundlePath") {
-            
             returningItem.StringValue = returningItem.StringValue.removeWhitespace().replacingOccurrences(of: ",", with: "_")
         }
         
@@ -58,17 +56,15 @@ func updateOCPlist(_ reference: HAPlistStruct, _ findIn: HAPlistStruct) -> HAPli
         else {
             
             for item in reference.Childs {
-                
-                
                 if let foundIndex = findIn.Childs.firstIndex(where: {$0.name == item.name}) {
-                    
-                    returningItem.Childs.append(updateOCPlist(item, findIn.Childs[foundIndex]))
+                   returningItem.Childs.append(updateOCPlist(item, findIn.Childs[foundIndex]))
                 } else {
                     if item.name == "Arch" && item.type == "string" && (reference.ParentName == "Add" || reference.ParentName == "Block" || reference.ParentName == "Force" || reference.ParentName == "Patch") && (item.StringValue == "x86_64" || item.StringValue == "i386") {
                         var child = item
                         child.StringValue = "Any"
                         returningItem.Childs.append(child)
-                    } else {
+                    }
+                    else {
                         returningItem.Childs.append(item)
                     }
                     
@@ -115,38 +111,4 @@ func updateOCPlist(_ reference: HAPlistStruct, _ findIn: HAPlistStruct) -> HAPli
     return returningItem
 }
 
-func generateNewDriverStructType(template: HAPlistStruct? = nil , driverPath: String)-> HAPlistStruct {
-    
-    var driverTemplate:HAPlistStruct {
-        if template != nil {return template!}
-        else {
-            var foundDriverTemplate = HAPlistStruct()
-            getHAPlistFrom(latestOCFolder + "/Docs/SampleCustom.plist") { plist in
-                if let allDrivers = plist.get(["UEFI", "Drivers"]) {
-                    if !allDrivers.Childs.isEmpty {
-                        foundDriverTemplate = allDrivers.Childs.first!
-                    }
-                }
-            }
-            return foundDriverTemplate
-        }
-    }
-    
-    var cleanedDriverTemplate = cleanHAPlistStruct(driverTemplate)
-    
-    if let foundPathIndex = cleanedDriverTemplate.Childs.firstIndex(where: {$0.name == "Path"}) {
-        
-        cleanedDriverTemplate.Childs[foundPathIndex].StringValue = driverPath.replacingOccurrences(of: "#", with: "")
-    }
-    
-    
-    
-    if let foundEnabledIndex = cleanedDriverTemplate.Childs.firstIndex(where: {$0.name == "Enabled"}) {
-        
-        cleanedDriverTemplate.Childs[foundEnabledIndex].BoolValue = driverPath.hasPrefix("#") ? false : true
-    }
-    
-    
-    
-    return cleanedDriverTemplate
-}
+

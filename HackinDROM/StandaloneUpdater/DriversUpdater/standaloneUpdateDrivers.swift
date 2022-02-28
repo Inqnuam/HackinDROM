@@ -58,14 +58,12 @@ func standaloneUpdateDrivers(_ usersDriversDir: String) async {
         } else {
             // check if we can find the driver in cache or on internet
             if let foundPath = await findDriverPath(driver, commitDate: commitDate) {
-                
                 do {
                     try fileManager.copyItem(atPath: foundPath, toPath: localDriversDir + "/\(driver).efi")
                 } catch {
                     print(error)
                 }
             } else {
-                print("copy driver from users EFI \(driver)")
                 // copy from users EFI drivers
                 do {
                     try fileManager.copyItem(atPath: usersDriversDir + "/\(driver).efi", toPath: localDriversDir + "/\(driver).efi")

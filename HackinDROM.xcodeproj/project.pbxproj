@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C7841D127CCCCA5008C8E2A /* generateNewDriverStructType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7841D027CCCCA5008C8E2A /* generateNewDriverStructType.swift */; };
+		8C7841D327CD4D10008C8E2A /* getValueWhenTypeDiffers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7841D227CD4D10008C8E2A /* getValueWhenTypeDiffers.swift */; };
 		8CD2EF0D27CA7FA800509485 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CD2EF0C27CA7FA800509485 /* Assets.xcassets */; };
 		8CD2EF1027CA7FA800509485 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CD2EF0F27CA7FA800509485 /* Preview Assets.xcassets */; };
 		8CD2EF2527CA807600509485 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 8CD2EF2427CA807600509485 /* LaunchAtLogin */; };
@@ -97,6 +99,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8C7841D027CCCCA5008C8E2A /* generateNewDriverStructType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = generateNewDriverStructType.swift; sourceTree = "<group>"; };
+		8C7841D227CD4D10008C8E2A /* getValueWhenTypeDiffers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getValueWhenTypeDiffers.swift; sourceTree = "<group>"; };
 		8CD2EF0527CA7FA700509485 /* HackinDROM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackinDROM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CD2EF0C27CA7FA800509485 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8CD2EF0F27CA7FA800509485 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -203,6 +207,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8C7841CF27CCCBE4008C8E2A /* PlistUpdater */ = {
+			isa = PBXGroup;
+			children = (
+				8CD2EFAB27CA820D00509485 /* updateOCPlist.swift */,
+				8C7841D027CCCCA5008C8E2A /* generateNewDriverStructType.swift */,
+				8C7841D227CD4D10008C8E2A /* getValueWhenTypeDiffers.swift */,
+			);
+			path = PlistUpdater;
+			sourceTree = "<group>";
+		};
 		8CD2EEFC27CA7FA700509485 = {
 			isa = PBXGroup;
 			children = (
@@ -411,6 +425,7 @@
 		8CD2EFA727CA820D00509485 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				8C7841CF27CCCBE4008C8E2A /* PlistUpdater */,
 				8CD2EFA827CA820D00509485 /* Encoder */,
 				8CD2EFAA27CA820D00509485 /* Decoder */,
 				8CD2EFAE27CA820D00509485 /* HAPlist.swift */,
@@ -429,7 +444,6 @@
 		8CD2EFAA27CA820D00509485 /* Decoder */ = {
 			isa = PBXGroup;
 			children = (
-				8CD2EFAB27CA820D00509485 /* updateOCPlist.swift */,
 				8CD2EFAC27CA820D00509485 /* getHAPlist.swift */,
 				8CD2EFAD27CA820D00509485 /* HAPlistContentHandler.swift */,
 			);
@@ -579,6 +593,7 @@
 				8CD2EF5D27CA81E600509485 /* DiskAtrib.swift in Sources */,
 				8CD2EFD027CA820D00509485 /* UploadNewBuild.swift in Sources */,
 				8CD2EF7127CA81E600509485 /* copyMissingFiles.swift in Sources */,
+				8C7841D127CCCCA5008C8E2A /* generateNewDriverStructType.swift in Sources */,
 				8CD2EF3727CA813A00509485 /* AppDelegate.swift in Sources */,
 				8CD2EFB627CA820D00509485 /* updateEFI.swift in Sources */,
 				8CD2EFCC27CA820D00509485 /* ViewsDispatcher.swift in Sources */,
@@ -627,6 +642,7 @@
 				8CD2EFCA27CA820D00509485 /* EFI.swift in Sources */,
 				8CD2EFD227CA820D00509485 /* ACPIView.swift in Sources */,
 				8CD2EF6E27CA81E600509485 /* structs.swift in Sources */,
+				8C7841D327CD4D10008C8E2A /* getValueWhenTypeDiffers.swift in Sources */,
 				8CD2EFBD27CA820D00509485 /* standaloneToolsUpdater.swift in Sources */,
 				8CD2EFC227CA820D00509485 /* updateCachedKext.swift in Sources */,
 				8CD2EF6527CA81E600509485 /* AMDCoresCount.swift in Sources */,
