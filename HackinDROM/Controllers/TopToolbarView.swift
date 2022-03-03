@@ -29,6 +29,7 @@ class TopToolbarView: NSView {
         
 
         let tb = NSStackView(views: [configBtn, adminBtn, exitBtn])
+        
         tb.orientation = .horizontal
        
         tb.edgeInsets = NSEdgeInsets(top: 0, left: 5, bottom: 200, right: 5)

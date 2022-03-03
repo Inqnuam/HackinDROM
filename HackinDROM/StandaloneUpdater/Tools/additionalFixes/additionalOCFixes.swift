@@ -8,6 +8,8 @@
 
 import Foundation
 
+// fixingPlist = updated config.plist based on user's old config.plist
+// refPlist = user's old config.plist which is used for additional tweaks
 func additionalOCFixes(fixingPlist: HAPlistStruct, refPlist: HAPlistStruct)-> HAPlistStruct {
     var fixingPlist = fixingPlist
     
@@ -51,20 +53,7 @@ func additionalOCFixes(fixingPlist: HAPlistStruct, refPlist: HAPlistStruct)-> HA
     }
     
     
-    
-    // if KeySupport is enabled then we disable OpenUsbKbDxe.efi as they should never be used together
-    if let keySupport = fixingPlist.get(["UEFI", "Input", "KeySupport"]) {
-        if keySupport.BoolValue {
-           if let allDrivers = fixingPlist.get(["UEFI", "Drivers"]) {
-               if let openUsbKbDxeParentIndex = allDrivers.Childs.firstIndex(where: { par in
-                    par.Childs.firstIndex(where: {$0.StringValue == "OpenUsbKbDxe.efi" }) != nil
-                    
-                }) {
-                    fixingPlist.set(HAPlistStruct(BoolValue: false), to: ["UEFI", "Drivers", openUsbKbDxeParentIndex, "Enabled"])
-                }
-            }
-        }
-    }
+    fixKeySupport(&fixingPlist)
     
     
     // Enable and import OpenRuntime.efi if it is required

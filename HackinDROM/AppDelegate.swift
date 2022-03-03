@@ -69,16 +69,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
        
         
-        // SwiftUI Bridge
+        // MARK: SwiftUI Bridge
         let myRootView = StartView(EFIs: getEFIList()).environmentObject(self.sharedData)
         self.popover.contentViewController = NSViewController()
         self.popover.contentViewController?.view = NSHostingView(rootView: myRootView)
         
         // as SwiftUI isn't very stable i'm going to try to switch to AppKit (without StoryBoard),
         // also the app will be compatible with older versions of macOS too
+        // MARK: AppKit Bridge
         // Uncomment next line to see AppKit side progress
         //  self.popover.contentViewController = PopoverContentController(sharedData: sharedData)
         // self.popover.contentViewController?.view.window?.level = NSWindow.Level(rawValue: 16)
+        
         
         NSWorkspace.shared.notificationCenter.addObserver(
             self,
