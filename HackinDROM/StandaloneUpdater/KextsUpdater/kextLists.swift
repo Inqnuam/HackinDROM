@@ -11,7 +11,7 @@
 // list of kexts on GitHub with stable downloading archive names where only version change at every release
 // # in downloadName = github tag (ex: v2.1.4, or 0.4.3, etc.)
 // This is acidenthara style
-// but OpenIntelWireless uses this style for IntelBluetoothFirmware but not for AirportItlwm
+// OpenIntelWireless uses this style for IntelBluetoothFirmware but not for AirportItlwm
 let gitHubKexts: [GitHubInfo] = [
     
     GitHubInfo(owner: "acidanthera", repo: "Lilu", name: "Lilu", downloadName: "Lilu-#-RELEASE.zip"),
@@ -71,33 +71,53 @@ struct AirportItlwmCustomName {
 }
 
 let airportItlwmCustomNames: [AirportItlwmCustomName] = [
-    AirportItlwmCustomName(localName: "AirportItlwmMonterey", customNames: ["AirportItlwmMonterey", "AirportItlwm_Monterey", "AirportItlwm-Monterey"], remoteNames: ["Monterey"]),
-    AirportItlwmCustomName(localName: "AirportItlwmCatalina", customNames: ["AirportItlwmCatalina", "AirportItlwm_Catalina", "AirportItlwm-Catalina"], remoteNames: ["Catalina"]),
-    AirportItlwmCustomName(localName: "AirportItlwmMojave", customNames: ["AirportItlwmMojave", "AirportItlwm_Mojave", "AirportItlwm-Mojave"], remoteNames: ["Mojave"]),
-    AirportItlwmCustomName(localName: "AirportItlwmBigSur", customNames: [
-        "AirportItlwmBigSur",
-        "AirportItlwmBig_Sur",
-        "AirportItlwmBig-Sur",
-        "AirportItlwm_BigSur",
-        "AirportItlwm_Big_Sur",
-        "AirportItlwm_Big-Sur",
-        "AirportItlwm-BigSur",
-        "AirportItlwm-Big-Sur",
-        "AirportItlwm-Big_Sur",
-        
-    ], remoteNames: ["BigSur", "Big_Sur", "Big-Sur"]),
-    AirportItlwmCustomName(localName: "AirportItlwmHighSierra", customNames: [
-        "AirportItlwmHighSierra",
-        "AirportItlwmHigh_Sierra",
-        "AirportItlwmHigh-Sierra",
-        "AirportItlwm_HighSierra",
-        "AirportItlwm_High_Sierra",
-        "AirportItlwm_High-Sierra",
-        "AirportItlwm-HighSierra",
-        "AirportItlwm-High-Sierra",
-        "AirportItlwm-High_Sierra",
-       
-    ], remoteNames: ["HighSierra", "High_Sierra", "High-Sierra"]),
+    AirportItlwmCustomName(localName: "AirportItlwmMonterey",
+                           customNames: [
+                            "AirportItlwmMonterey",
+                            "AirportItlwm_Monterey",
+                            "AirportItlwm-Monterey"
+                           ],
+                           remoteNames: ["Monterey"]),
+    AirportItlwmCustomName(localName: "AirportItlwmCatalina",
+                           customNames: [
+                            "AirportItlwmCatalina",
+                            "AirportItlwm_Catalina",
+                            "AirportItlwm-Catalina"
+                           ], remoteNames: ["Catalina"]),
+    AirportItlwmCustomName(localName: "AirportItlwmMojave",
+                           customNames: [
+                            "AirportItlwmMojave",
+                            "AirportItlwm_Mojave",
+                            "AirportItlwm-Mojave"
+                           ], remoteNames: ["Mojave"]),
+    AirportItlwmCustomName(localName: "AirportItlwmBigSur",
+                           customNames: [
+                            "AirportItlwmBigSur",
+                            "AirportItlwmBig_Sur",
+                            "AirportItlwmBig-Sur",
+                            "AirportItlwm_BigSur",
+                            "AirportItlwm_Big_Sur",
+                            "AirportItlwm_Big-Sur",
+                            "AirportItlwm-BigSur",
+                            "AirportItlwm-Big-Sur",
+                            "AirportItlwm-Big_Sur",
+                            
+                           ],
+                           remoteNames: ["BigSur", "Big_Sur", "Big-Sur"]),
+    AirportItlwmCustomName(localName: "AirportItlwmHighSierra",
+                           customNames: [
+                            "AirportItlwmHighSierra",
+                            "AirportItlwmHigh_Sierra",
+                            "AirportItlwmHigh-Sierra",
+                            "AirportItlwm_HighSierra",
+                            "AirportItlwm_High_Sierra",
+                            "AirportItlwm_High-Sierra",
+                            "AirportItlwm-HighSierra",
+                            "AirportItlwm-High-Sierra",
+                            "AirportItlwm-High_Sierra",
+                            
+                           ],
+                           remoteNames: ["HighSierra", "High_Sierra", "High-Sierra"]),
     
 ]
 

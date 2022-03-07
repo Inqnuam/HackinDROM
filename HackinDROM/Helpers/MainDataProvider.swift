@@ -13,8 +13,10 @@ import SwiftUI
 let fileManager = FileManager()
 let tmp = fileManager.temporaryDirectory.relativePath + "/HackinDROM"
 let procesinfo = ProcessInfo()
-let latestFolder = tmp + "/latest"
+let cacheDir = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)
+let latestFolder = cacheDir.first!.relativePath + "/Inqnuam.HackinDROM/latest"
 let standaloneUpdateDir = tmp + "/standalone"
+
 
 class HASharedData: ObservableObject {
     @AppStorageCompat("CurrentUser") var CurrentUser = ""

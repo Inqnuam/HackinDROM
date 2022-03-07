@@ -324,42 +324,6 @@ func getGitReleasesVersions(_ username:String, _ repo: String, _ onlyFirst:Bool 
     }
 }
 
-
-extension URLSession {
-    @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
-    func data(for request: URLRequest) async throws -> (Data, URLResponse) {
-        try await withCheckedThrowingContinuation { continuation in
-            let task = self.dataTask(with: request) { data, response, error in
-                guard let data = data, let response = response else {
-                    let error = error ?? URLError(.badServerResponse)
-                    return continuation.resume(throwing: error)
-                }
-                
-                continuation.resume(returning: (data, response))
-            }
-            
-            task.resume()
-        }
-    }
-    
-    @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
-    func data(from url: URL) async throws -> (Data, URLResponse) {
-        try await withCheckedThrowingContinuation { continuation in
-            let task = self.dataTask(with: url) { data, response, error in
-                guard let data = data, let response = response else {
-                    let error = error ?? URLError(.badServerResponse)
-                    return continuation.resume(throwing: error)
-                }
-                
-                continuation.resume(returning: (data, response))
-            }
-            
-            task.resume()
-        }
-    }
-}
-
-
 func getRepoDataFromGhAPI(_ repoOwner: String, _ repoName: String) async -> [GitHubJSON]? {
     
     guard  let link = URL(string: "https://api.github.com/repos/\(repoOwner)/\(repoName)/releases")  else {return nil }
