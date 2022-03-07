@@ -12,7 +12,6 @@ import DiskArbitration
 import LaunchAtLogin
 import UserNotifications
 import Version
-
 class AppDelegate: NSObject, NSApplicationDelegate {
     @ObservedObject var sharedData: HASharedData = HASharedData()
     var statusBar: StatusBarController?

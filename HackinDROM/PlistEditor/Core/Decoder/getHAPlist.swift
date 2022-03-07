@@ -39,14 +39,14 @@ func isNSString(_ t:String) -> Bool {
 }
 
 func isNSDict(_ t:String) -> Bool {
-    if t == "__NSDictionaryM" || t == "__NSDictionaryI" {
+    if t == "__NSDictionaryM" || t == "__NSDictionaryI" || t == "__NSDictionary0" {
         return true
     }
     return false
 }
 
 func isNSArray(_ t:String) -> Bool {
-    if t == "__NSArrayM" || t == "__NSArray0" {
+    if t == "__NSArrayM" || t == "__NSArray0" || t == "__NSArrayI" {
         return true
     }
     return false
