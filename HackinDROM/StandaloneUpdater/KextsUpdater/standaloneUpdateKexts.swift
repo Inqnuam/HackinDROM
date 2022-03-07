@@ -8,7 +8,7 @@
 
 import Foundation
 import Version
-func standaloneUpdateKexts(_ kextsDir: String, _ userKexts: [String], _ stableRelease:GitHubJSON? = nil) async -> Bool {
+func standaloneUpdateKexts(_ kextsDir: String, _ userKexts: [String], _ stableRelease:GitHubJSON? = nil, progress: @escaping(String)-> ()) async {
     // if user uses intel wifi handle it
     
     var userKexts = await updateIntelwm(kextsDir, userKexts, stableRelease)
@@ -16,6 +16,7 @@ func standaloneUpdateKexts(_ kextsDir: String, _ userKexts: [String], _ stableRe
     userKexts = await updateAirportintelwmWithCustomName(kextsDir, userKexts, stableRelease)
     
     for kext in userKexts {
+        progress(kext)
         if let kextPath =  await findLatestKext(kext) {
             do {
                 try fileManager.copyItem(at: kextPath, to: URL(fileURLWithPath: standaloneUpdateDir + "/EFI/OC/Kexts/\(kext).kext"))
@@ -26,8 +27,6 @@ func standaloneUpdateKexts(_ kextsDir: String, _ userKexts: [String], _ stableRe
             copyFromUsersEFI(kextsDir, kext)
         }
     }
-    return true
-    
 }
 
 

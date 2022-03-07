@@ -8,13 +8,13 @@
 
 import Foundation
 
-func standaloneToolsUpdater(_ usersToolsDir: String) {
+func standaloneToolsUpdater(_ usersToolsDir: String, progress: @escaping(String)-> ()) {
     let toolsDir =  standaloneUpdateDir + "/EFI/OC/Tools"
     guard let standaloneTools = getFilesFrom(toolsDir), let usersTools = getFilesFrom(usersToolsDir) else {return}
     for tool in standaloneTools {
         let originalToolPath = toolsDir + "/\(tool).efi"
         if let foundTool = usersTools.first(where: {$0.lowercased() == tool.lowercased()}) {
-            
+            progress("Updating \(tool)")
             do {
                 // rename file to be insure case insensitivity
                 try fileManager.moveItem(atPath: originalToolPath, toPath:  toolsDir + "/\(foundTool).efi")
@@ -36,6 +36,7 @@ func standaloneToolsUpdater(_ usersToolsDir: String) {
     if let updatedStandaloneToolsList = getFilesFrom(toolsDir) {
         for tool in usersTools {
             if !updatedStandaloneToolsList.contains(tool) {
+                progress("Copying \(tool)")
                 do {
                     try fileManager.copyItem(atPath: usersToolsDir + "/\(tool).efi", toPath: toolsDir + "/\(tool).efi")
                 } catch {

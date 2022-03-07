@@ -35,12 +35,12 @@ func getLatestOCPath()  async -> String? {
             
             
         } else  {
-       
+            
             let localOCVersion = Version(filesOfDir[0].lastPathComponent)
-           
+            
             if latestOCVersion! > localOCVersion! {
                 let oldOCPath = latestFolder + "/oc/" + localOCVersion!.description
-              
+                
                 try fileManager.removeItem(atPath: oldOCPath) // -> previously latestOCFolder
                 try fileManager.createDirectory(atPath: latestOCFolder, withIntermediateDirectories: true, attributes: nil)
                 
@@ -52,7 +52,7 @@ func getLatestOCPath()  async -> String? {
                 
                 await asyncUnzip(from: downloadedPath, to: latestOCFolder)
                 try fileManager.removeItem(atPath: downloadedPath)
-              
+                
                 return latestOCFolder
                 
                 
@@ -66,34 +66,4 @@ func getLatestOCPath()  async -> String? {
         print(error)
         return nil
     }
-}
-
-
-func moveAMLBinariesToStandalone(_ latestOCFolder: String, _ usersAMLDir: String)  {
-  
-    let binDir = latestOCFolder +  "/Docs/AcpiSamples/Binaries"
-   
-    let standaloneAMLs =  standaloneUpdateDir + "/EFI/OC/ACPI"
- 
-    if let usersAML = try? fileManager.contentsOfDirectory(atPath: usersAMLDir) {
-        
-        for aml in usersAML {
-            
-            var copyingFilePath:String = ""
-            if fileManager.fileExists(atPath: binDir + "/\(aml)") {
-                copyingFilePath = binDir + "/\(aml)"
-                
-            } else {
-                copyingFilePath = usersAMLDir + "/\(aml)"
-            }
-            
-            
-            do {
-                try fileManager.copyItem(atPath: copyingFilePath, toPath: standaloneAMLs + "/\(aml)")
-            } catch {
-               print(error)
-            }
-        }
-    }
-    
 }

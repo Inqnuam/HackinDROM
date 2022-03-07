@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C58A65D27D620BC0081FABC /* moveAMLBinariesToStandalone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C58A65C27D620BC0081FABC /* moveAMLBinariesToStandalone.swift */; };
 		8C7841D127CCCCA5008C8E2A /* generateNewDriverStructType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7841D027CCCCA5008C8E2A /* generateNewDriverStructType.swift */; };
 		8C7841D327CD4D10008C8E2A /* getValueWhenTypeDiffers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7841D227CD4D10008C8E2A /* getValueWhenTypeDiffers.swift */; };
 		8C7841D527CF9D02008C8E2A /* fixKeySupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7841D427CF9D02008C8E2A /* fixKeySupport.swift */; };
@@ -100,6 +101,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8C58A65C27D620BC0081FABC /* moveAMLBinariesToStandalone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = moveAMLBinariesToStandalone.swift; sourceTree = "<group>"; };
 		8C7841D027CCCCA5008C8E2A /* generateNewDriverStructType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = generateNewDriverStructType.swift; sourceTree = "<group>"; };
 		8C7841D227CD4D10008C8E2A /* getValueWhenTypeDiffers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getValueWhenTypeDiffers.swift; sourceTree = "<group>"; };
 		8C7841D427CF9D02008C8E2A /* fixKeySupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fixKeySupport.swift; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 				8CD2EF8327CA820D00509485 /* KextsUpdater */,
 				8CD2EF8A27CA820D00509485 /* DriversUpdater */,
 				8CD2EF8F27CA820D00509485 /* cleandownloadedDir.swift */,
+				8C58A65C27D620BC0081FABC /* moveAMLBinariesToStandalone.swift */,
 			);
 			path = StandaloneUpdater;
 			sourceTree = "<group>";
@@ -631,6 +634,7 @@
 				8CD2EFDB27CA820D00509485 /* updateOCPlist.swift in Sources */,
 				8CD2EFBB27CA820D00509485 /* backupEFI.swift in Sources */,
 				8CD2EF6027CA81E600509485 /* MainDataProvider.swift in Sources */,
+				8C58A65D27D620BC0081FABC /* moveAMLBinariesToStandalone.swift in Sources */,
 				8CE439E827CC0CEC0056034E /* requiresOpenRuntimeEfi.swift in Sources */,
 				8CD2EFCE27CA820D00509485 /* LeaderStartView.swift in Sources */,
 				8CD2EFBF27CA820D00509485 /* getLatestKextPath.swift in Sources */,

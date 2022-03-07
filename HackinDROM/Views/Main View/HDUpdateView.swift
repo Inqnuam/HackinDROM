@@ -247,10 +247,14 @@ struct HDUpdateView: View {
                 try fileManager.copyItem(atPath: latestOCFolder + "/X64/EFI/", toPath: standaloneUpdateDir + "/EFI/")
                 setProgress(0.3)
                 progressText = "Updating AML files"
-                moveAMLBinariesToStandalone(latestOCFolder, EFI.mounted + "/EFI/OC/ACPI")
+                moveAMLBinariesToStandalone(latestOCFolder, EFI.mounted + "/EFI/OC/ACPI")  { txt in
+                    progressText = txt
+                }
                 setProgress(0.4)
                 progressText = "Updating OC Tools"
-                standaloneToolsUpdater(EFI.mounted + "/EFI/OC/Tools")
+                standaloneToolsUpdater(EFI.mounted + "/EFI/OC/Tools") { txt in
+                    progressText = txt
+                }
                 setProgress(0.5)
                 progressText = "Updating OC Resources"
                 standaloneUpdateResources(EFI.mounted + "/EFI/OC/Resources")
@@ -300,9 +304,11 @@ struct HDUpdateView: View {
                 
                 
                 // Update every kext but AirportItlm
-                if await standaloneUpdateKexts(kextDir, userKexts, stableRelease) {
-                    setProgress(0.7)
+                await standaloneUpdateKexts(kextDir, userKexts, stableRelease) { kext in
+                    progressText = "Updating \(kext)"
                 }
+                setProgress(0.7)
+                
                 
             }
             else {
@@ -360,13 +366,15 @@ struct HDUpdateView: View {
         
         let sampleConfigPlist = HAPlistContent()
         sampleConfigPlist.loadPlist(filePath: sampleConfigPlistPath, isTemplate: true)
-        
+        progressText = "Updating config.plist"
         let updatedPlist =  updateOCPlist(sampleConfigPlist.originalContent, usersConfigPlist.originalContent)
-        
+        progressText = "config.plist additional fixes"
         sampleConfigPlist.pContent = additionalOCFixes(fixingPlist: updatedPlist, refPlist: usersConfigPlist.originalContent)
         let savedPath = standaloneUpdateDir + "/EFI/OC/config.plist"
         if sampleConfigPlist.saveplist(newPath: savedPath) {
             let ocvalidatePath = latestOCFolder + "/Utilities/ocvalidate/ocvalidate"
+            
+            progressText = "config.plist checking with ocvalidate"
             let output = await shellAsync(" '\(ocvalidatePath)' '\(savedPath)'")
             
             

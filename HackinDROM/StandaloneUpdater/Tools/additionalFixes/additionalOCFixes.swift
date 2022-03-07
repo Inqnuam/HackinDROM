@@ -16,7 +16,7 @@ func additionalOCFixes(fixingPlist: HAPlistStruct, refPlist: HAPlistStruct)-> HA
     
     // by defaut SampleCustom.plist (config.plist) provides PlatformNVRAM, Memory, SMBIOS, DataHub etc.
     // there are user who use them but others don't
-    // we check and remove when it is not used
+    // we check and remove when they are not used
     fixPossibleExtraItems(&fixingPlist, refPlist)
     
     // Fix for duplicated UIScale value
@@ -67,6 +67,7 @@ func additionalOCFixes(fixingPlist: HAPlistStruct, refPlist: HAPlistStruct)-> HA
     // TODO: ask to the community about this
     // check config.plist file entires for AMLs, Kexts, Drivers and Tools
     // if no file is present in EFI folder then remove these entries from config.plist
+    // or if they are enabled then download them
     // END
     
     
