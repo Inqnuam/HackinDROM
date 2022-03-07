@@ -27,7 +27,7 @@ func additionalOCFixes(fixingPlist: HAPlistStruct, refPlist: HAPlistStruct)-> HA
     
     // Fix NVRAM Add fields for csr-active-config and nvda_drv when they are set without values
     if let nvramAdd = fixingPlist.get(["NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82"]) {
-       for item in nvramAdd.Childs {
+        for item in nvramAdd.Childs {
             if item.type == "data" {
                 if item.name == "csr-active-config" {
                     if item.StringValue.isEmpty {
@@ -35,7 +35,7 @@ func additionalOCFixes(fixingPlist: HAPlistStruct, refPlist: HAPlistStruct)-> HA
                     }
                 } else if item.name == "nvda_drv" {
                     if item.StringValue.isEmpty {
-                       fixingPlist.remove(["NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "nvda_drv"])
+                        fixingPlist.remove(["NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "nvda_drv"])
                     }
                 }
             }
@@ -62,8 +62,12 @@ func additionalOCFixes(fixingPlist: HAPlistStruct, refPlist: HAPlistStruct)-> HA
             fixingPlist.set(fixedDrivers, to: ["UEFI", "Drivers"])
         }
     }
-   
-
+    
+    
+    
+    // When OpenCanopy is used then we must set PickerMode to external
+    fixPickerMode(&fixingPlist)
+    
     // TODO: ask to the community about this
     // check config.plist file entires for AMLs, Kexts, Drivers and Tools
     // if no file is present in EFI folder then remove these entries from config.plist

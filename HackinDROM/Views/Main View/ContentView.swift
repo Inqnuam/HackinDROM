@@ -8,7 +8,6 @@ struct ContentView: View {
     
     @EnvironmentObject var sharedData: HASharedData
     @Environment(\.managedObjectContext) private var viewContext
-    
     @Binding var EFIs: [EFI]
     @Binding var isCharging: Bool
     @AppStorageCompat("MyBuildID") var MyBuildID = ""
@@ -19,11 +18,8 @@ struct ContentView: View {
     var body: some View {
         
         VStack {
-            
             HStack {
-                
                 if self.sharedData.AllBuilds.firstIndex(where: { $0.id == self.MyBuildID}) == nil && sharedData.isOnline && !sharedData.AllBuilds.isEmpty {
-                    
                     Button(action: {
                         DispatchQueue.main.async {
                             sharedData.currentview = 3
@@ -35,7 +31,6 @@ struct ContentView: View {
                     Text("Select a Motherboard to receive updates")
                     
                 } else {
-                    
                     Button(action: {
                         DispatchQueue.main.async {
                             sharedData.currentview = 3
@@ -44,9 +39,7 @@ struct ContentView: View {
                            label: {
                         if #available(OSX 11.0, *) {
                             Image(systemName: "desktopcomputer")
-                            
                         } else {
-                            
                             Image("desktopcomputer")
                                 .resizable()
                                 .scaledToFit()
@@ -57,18 +50,13 @@ struct ContentView: View {
                     )
                     .toolTip("Settings")
                     .padding(.leading, 4)
-                    
-                    
                 }
                 
                 if sharedData.isOnline && sharedData.ConnectedUser != "" {
-                    
                     Button(action: {
-                        
                         sharedData.currentview = 5
                     }, label: {
                         if #available(OSX 11.0, *) {
-                            
                             Image(systemName: "list.dash")
                         } else {
                             Image("list.dash")
@@ -76,7 +64,6 @@ struct ContentView: View {
                                 .scaledToFit()
                                 .frame(width: 18, height: 18)
                         }
-                        
                     }
                     )
                     .toolTip("Manage My Builds")
@@ -85,15 +72,6 @@ struct ContentView: View {
                 
                 Spacer()
                 
-                //                    Button("Plist Editor") {
-                //
-                //                       // sharedData.currentview = 10
-                //                       // PlistEditorMainView(HAPlist: HAPlist).environmentObject(sharedData).
-                //                   //     BridgeWin?.toggleWindow()
-                //                        openIn(HAPlist: HAPlist, sharedData: sharedData)
-                //                        nc.post(name: Notification.Name("ClosePopover"), object: nil)
-                //                    }
-                
                 Button(action: {
                     isCharging = true
                     EFIs = getEFIList()
@@ -101,12 +79,9 @@ struct ContentView: View {
                     
                 }, label: {
                     if #available(OSX 11.0, *) {
-                        
                         Image(systemName: "arrow.clockwise.circle")
-                        
                     } else {
                         Image(nsImage: NSImage(named: NSImage.refreshTemplateName)!)
-                        
                     }
                 })
                 .disabled(isCharging)
@@ -126,14 +101,9 @@ struct ContentView: View {
             Divider()
             ScrollView {
                 ForEach(EFIs.indexed(), id:\.element.id) { (idx, anEFI) in
-                    
-                    
-                    
                     ListView(EFI: anEFI, CurrentEFIIndex: idx, isCharging: $isCharging)
-                    
                     Divider()
                 }
-                
             }
             
             Spacer()
@@ -149,7 +119,6 @@ struct ContentView: View {
                     }
                 
                 if sharedData.newAppVersion != "" {
-                    
                     if isDownloading {
                         Text("Downloading...")
                     } else {
@@ -163,15 +132,12 @@ struct ContentView: View {
                             }
                         }
                     }
-                    
                 }
                 
                 if !sharedData.isOnline {
-                    
                     Text("offline")
                         .bold()
                         .foregroundColor(.red)
-                    
                 }
                 
                 if self.isCharging {
@@ -181,46 +147,32 @@ struct ContentView: View {
                         } else {
                             Text("Working....")
                         }
-                        
                     }
-                    
                 }
                 Spacer()
                 
                 if sharedData.isOnline {
                     Button(action: {
                         sharedData.Updating = "Update"
-                        
                         sharedData.currentview = 4
-                        
                     }, label: {
-                        
                         Text("Create EFI")
-                        
                     })
                 }
                 
                 Button("Unmount All") {
-                    
                     self.isCharging = true
                     DispatchQueue.global().async {
-                        
                         for (index, _) in EFIs.enumerated() {
-                            
                             if EFIs[index].mounted.contains("/") {
                                 umount(EFIs[index].location, false)
-                                
                             }
                         }
                         self.isCharging = false
                     }
                 }
-                
             }
-            
         }
-        
         .padding(10)
-        
     }
 }

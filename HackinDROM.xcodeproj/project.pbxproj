@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8C58A65D27D620BC0081FABC /* moveAMLBinariesToStandalone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C58A65C27D620BC0081FABC /* moveAMLBinariesToStandalone.swift */; };
+		8C58A65F27D642EF0081FABC /* fixPickerMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C58A65E27D642EF0081FABC /* fixPickerMode.swift */; };
 		8C7841D127CCCCA5008C8E2A /* generateNewDriverStructType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7841D027CCCCA5008C8E2A /* generateNewDriverStructType.swift */; };
 		8C7841D327CD4D10008C8E2A /* getValueWhenTypeDiffers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7841D227CD4D10008C8E2A /* getValueWhenTypeDiffers.swift */; };
 		8C7841D527CF9D02008C8E2A /* fixKeySupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7841D427CF9D02008C8E2A /* fixKeySupport.swift */; };
@@ -102,6 +103,7 @@
 
 /* Begin PBXFileReference section */
 		8C58A65C27D620BC0081FABC /* moveAMLBinariesToStandalone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = moveAMLBinariesToStandalone.swift; sourceTree = "<group>"; };
+		8C58A65E27D642EF0081FABC /* fixPickerMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fixPickerMode.swift; sourceTree = "<group>"; };
 		8C7841D027CCCCA5008C8E2A /* generateNewDriverStructType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = generateNewDriverStructType.swift; sourceTree = "<group>"; };
 		8C7841D227CD4D10008C8E2A /* getValueWhenTypeDiffers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getValueWhenTypeDiffers.swift; sourceTree = "<group>"; };
 		8C7841D427CF9D02008C8E2A /* fixKeySupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fixKeySupport.swift; sourceTree = "<group>"; };
@@ -481,6 +483,7 @@
 				8CE439E927CC0D100056034E /* fixOCFilePathErrors.swift */,
 				8CE439EB27CC0DDA0056034E /* fixPossibleExtraItems.swift */,
 				8C7841D427CF9D02008C8E2A /* fixKeySupport.swift */,
+				8C58A65E27D642EF0081FABC /* fixPickerMode.swift */,
 			);
 			path = additionalFixes;
 			sourceTree = "<group>";
@@ -627,6 +630,7 @@
 				8CD2EFBE27CA820D00509485 /* standaloneUpdateResources.swift in Sources */,
 				8CD2EF6D27CA81E600509485 /* HDToggleView.swift in Sources */,
 				8CD2EFB427CA820D00509485 /* additionalOCFixes.swift in Sources */,
+				8C58A65F27D642EF0081FABC /* fixPickerMode.swift in Sources */,
 				8CD2EFC627CA820D00509485 /* downloadDriver.swift in Sources */,
 				8CD2EF6227CA81E600509485 /* Login.swift in Sources */,
 				8CD2EF6827CA81E600509485 /* Extensions.swift in Sources */,
