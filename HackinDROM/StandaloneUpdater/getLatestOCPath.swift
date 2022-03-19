@@ -32,21 +32,18 @@ func getLatestOCPath()  async -> String? {
             try fileManager.removeItem(atPath: downloadedPath)
             
             return latestOCFolder
-            
-            
         } else  {
-            
             let localOCVersion = Version(filesOfDir[0].lastPathComponent)
-            
             if latestOCVersion! > localOCVersion! {
                 let oldOCPath = latestFolder + "/oc/" + localOCVersion!.description
                 
                 try fileManager.removeItem(atPath: oldOCPath) // -> previously latestOCFolder
                 try fileManager.createDirectory(atPath: latestOCFolder, withIntermediateDirectories: true, attributes: nil)
                 
-                // download
+                
                 guard  let downloadedPath = await downloadtoHD(url: latestOcUrl) else {
                     try fileManager.removeItem(atPath: latestOCFolder)
+                    // TODO: add callback to tell about this error, OC not compiled yet...
                     return nil
                 }
                 

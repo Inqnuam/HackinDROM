@@ -188,23 +188,33 @@ func getEFIList() -> [EFI] {
                                                                     
                                                                     if let APFSVolumes = apfsDisk.Childs.first(where: {$0.name == "APFSVolumes"}) {
                                                                         
-                                                                        
-                                                                        if let VolName = APFSVolumes.Childs.first(where: {$0.Childs.first(where: {$00.name == "VolumeName"
-                                                                            && $00.StringValue != "VM"
-                                                                            && $00.StringValue != "Update"
-                                                                            && $00.StringValue != "Preboot"
-                                                                            && $00.StringValue != "Recovery"
+                                                                       // dump(APFSVolumes.Childs)
+                                                                        var volNames:[String] = []
+                                                                        for vol in APFSVolumes.Childs {
                                                                             
-                                                                        }) != nil})?.Childs.first(where: {$0.name == "VolumeName"}) {
-                                                                            
-                                                                            foundEFI.SSD = VolName.StringValue.replacingOccurrences(of: " - Data", with: "")
-                                                                                .replacingOccurrences(of: " - Données", with: "")
-                                                                                .replacingOccurrences(of: " - Gegevens", with: "")
-                                                                                .replacingOccurrences(of: " - Dados", with: "")
-                                                                                .replacingOccurrences(of: " - Datos", with: "")
-                                                                                .replacingOccurrences(of: " - Dati", with: "")
+                                                                            if let foundVolName = vol.Childs.first(where: {$0.name == "VolumeName"}) {
+                                                                                
+                                                                                if foundVolName.StringValue != "VM"
+                                                                                    && foundVolName.StringValue != "Update"
+                                                                                    && foundVolName.StringValue != "Preboot"
+                                                                                    && foundVolName.StringValue != "Recovery"
+                                                                                {
+                                                                                    
+                                                                                    let volName = foundVolName.StringValue.replacingOccurrences(of: " - Data", with: "")
+                                                                                        .replacingOccurrences(of: " - Données", with: "")
+                                                                                        .replacingOccurrences(of: " - Gegevens", with: "")
+                                                                                        .replacingOccurrences(of: " - Dados", with: "")
+                                                                                        .replacingOccurrences(of: " - Datos", with: "")
+                                                                                        .replacingOccurrences(of: " - Dati", with: "")
+                                                                                    
+                                                                                    if !volNames.contains(volName) {
+                                                                                        volNames.append(volName)
+                                                                                    }
+                                                                                }
+                                                                                
+                                                                            }
                                                                         }
-                                                                        
+                                                                        foundEFI.SSD = volNames.joined(separator: ", ")
                                                                     }
                                                                     
                                                                 }

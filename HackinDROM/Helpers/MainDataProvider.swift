@@ -296,20 +296,6 @@ class HASharedData: ObservableObject {
         
         
     }
-    
-    
-    
-    func getOCLastSamples() async {
-        let ocDir = latestFolder + "/oc"
-        if !fileManager.fileExists(atPath: ocDir) {
-            do {
-                try fileManager.createDirectory(atPath: ocDir, withIntermediateDirectories: true, attributes: nil)
-            } catch {
-                print(error)
-            }
-        }
-      let _ =  await getLatestOCPath()
-    }
 }
 func currentOCv() -> String {
     var Getocv = nvram.GetOFVariable("4D1FDA02-38C7-4A6A-9CC6-4BCCA8B30102:opencore-version").slice(from: "-", to: "-") ?? "0.0.0"
