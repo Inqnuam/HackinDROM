@@ -195,8 +195,3 @@ class PlistDocumentController: NSDocumentController {
         return PlistDocument.self
     }
 }
-
-
-func helloAsync() async {
-    print("Hello World")
-}

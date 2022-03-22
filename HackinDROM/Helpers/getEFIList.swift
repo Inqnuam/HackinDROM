@@ -188,7 +188,7 @@ func getEFIList() -> [EFI] {
                                                                     
                                                                     if let APFSVolumes = apfsDisk.Childs.first(where: {$0.name == "APFSVolumes"}) {
                                                                         
-                                                                       // dump(APFSVolumes.Childs)
+                                                                      
                                                                         var volNames:[String] = []
                                                                         for vol in APFSVolumes.Childs {
                                                                             

@@ -107,6 +107,7 @@
 		8C7841D027CCCCA5008C8E2A /* generateNewDriverStructType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = generateNewDriverStructType.swift; sourceTree = "<group>"; };
 		8C7841D227CD4D10008C8E2A /* getValueWhenTypeDiffers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getValueWhenTypeDiffers.swift; sourceTree = "<group>"; };
 		8C7841D427CF9D02008C8E2A /* fixKeySupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fixKeySupport.swift; sourceTree = "<group>"; };
+		8C83C96327EA0F12000429A9 /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 		8CD2EF0527CA7FA700509485 /* HackinDROM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackinDROM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CD2EF0C27CA7FA800509485 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8CD2EF0F27CA7FA800509485 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -226,6 +227,7 @@
 		8CD2EEFC27CA7FA700509485 = {
 			isa = PBXGroup;
 			children = (
+				8C83C96327EA0F12000429A9 /* Readme.md */,
 				8CD2EF0727CA7FA700509485 /* HackinDROM */,
 				8CD2EF0627CA7FA700509485 /* Products */,
 			);
