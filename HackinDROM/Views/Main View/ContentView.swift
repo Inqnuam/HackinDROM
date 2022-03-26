@@ -165,7 +165,7 @@ struct ContentView: View {
                     DispatchQueue.global().async {
                         for (index, _) in EFIs.enumerated() {
                             if EFIs[index].mounted.contains("/") {
-                                umount(EFIs[index].location, false)
+                                umount(EFIs[index].path, false)
                             }
                         }
                         self.isCharging = false

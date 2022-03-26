@@ -32,7 +32,7 @@ struct TagCloudView: View {
         var height = CGFloat.zero
         
         return ZStack(alignment: .topLeading) {
-            ForEach(sectionEl.Childs.indexed(), id:\.element.id) { (idx, tag) in
+            ForEach(sectionEl.childs.indexed(), id:\.element.id) { (idx, tag) in
                 
                 if types.contains(tag.type) {
                     self.item(for: tag)
@@ -44,7 +44,7 @@ struct TagCloudView: View {
                             height -= d.height
                         }
                         let result = width
-                        if tag == self.sectionEl.Childs.filter({types.contains($0.type)}).last! {
+                        if tag == self.sectionEl.childs.filter({types.contains($0.type)}).last! {
                             width = 0 //last item
                         } else {
                             width -= d.width
@@ -53,7 +53,7 @@ struct TagCloudView: View {
                     })
                     .alignmentGuide(.top, computeValue: {d in
                         let result = height
-                        if tag == self.sectionEl.Childs.filter({types.contains($0.type)}).last! {
+                        if tag == self.sectionEl.childs.filter({types.contains($0.type)}).last! {
                             height = 0 // last item
                         }
                         return result
@@ -67,7 +67,7 @@ struct TagCloudView: View {
     
     private func item(for item: HAPlistStruct) -> some View {
         
-        if let IndeX = sectionEl.Childs.firstIndex(where: {$0 == item}) {
+        if let IndeX = sectionEl.childs.firstIndex(where: {$0 == item}) {
             return Button(sectionEl.type == "array" ? "Item \(IndeX)" : item.name) {
                 sharedData.sectionIndex = sectionIndex
                 sharedData.selectedChild = IndeX

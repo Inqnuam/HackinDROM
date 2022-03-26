@@ -36,12 +36,12 @@ struct ListView: View {
                 VStack {
                     if #available(OSX 11.0, *) {
                         let imageName: String = {
-                            if EFI.Name == "Apple Disk Image" {
+                            if EFI.name == "Apple Disk Image" {
                                 
                                 return "externaldrive.badge.timemachine"
                             } else {
                                 
-                                if EFI.Where == "External" {
+                                if EFI.location == "External" {
                                     
                                     return "externaldrive"
                                 } else {
@@ -58,12 +58,12 @@ struct ListView: View {
                         
                     } else {
                         let imageName: String = {
-                            if EFI.Name == "Apple Disk Image" {
+                            if EFI.name == "Apple Disk Image" {
                                 
                                 return "timemachine"
                             } else {
                                 
-                                if EFI.Where == "External" {
+                                if EFI.location == "External" {
                                     
                                     return "externaldrive"
                                 } else {
@@ -80,7 +80,7 @@ struct ListView: View {
                             .opacity(hovered ? 1 : 0.9)
                         
                     }
-                    Text(EFI.Where)
+                    Text(EFI.location)
                     if EFI.OC && EFI.OCv != "0.0.0" {
                         
                         Text("OC \(EFI.OCv)")
@@ -92,13 +92,13 @@ struct ListView: View {
                         }
                         
                     } else {
-                        if EFI.Where == "External" {
+                        if EFI.location == "External" {
                             
                             Button("Eject") {
                                 DispatchQueue.global().async {
                                     isCharging = true
                                     
-                                    shell("diskutil eject /dev/\(EFI.Parent)") {_, _ in
+                                    shell("diskutil eject /dev/\(EFI.parent)") {_, _ in
                                         
                                         isCharging = false
                                     }
@@ -128,10 +128,10 @@ struct ListView: View {
                         .opacity(hovered ? 1 : 0.9)
                         .disabled(!ismounted)
                     
-                    Text(EFI.Name)
+                    Text(EFI.name)
                     
                     HStack {
-                        Text(EFI.location)
+                        Text(EFI.path)
                             .underline(true, color: Color(.systemBrown).opacity(0.1))
                             .opacity(hovered ? 1 : 0.9)
                         Text("|")

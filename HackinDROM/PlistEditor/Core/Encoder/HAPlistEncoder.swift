@@ -44,13 +44,13 @@ func haPlistEncoder(_ haPlist: HAPlistStruct, _ parentIsArray: Bool = false) -> 
             if parentIsArray {
                 text = """
             
-                       <string>\(haPlist.StringValue)</string>
+                       <string>\(haPlist.stringValue)</string>
             """
             } else {
             text = """
                     
                     <key>\(haPlist.name)</key>
-                    <string>\(haPlist.StringValue)</string>
+                    <string>\(haPlist.stringValue)</string>
                     """
             }
             break
@@ -60,13 +60,13 @@ func haPlistEncoder(_ haPlist: HAPlistStruct, _ parentIsArray: Bool = false) -> 
             if parentIsArray {
                 text = """
             
-                       <integer>\(haPlist.StringValue)</integer>
+                       <integer>\(haPlist.stringValue)</integer>
             """
             } else {
             text = """
                     
                     <key>\(haPlist.name)</key>
-                    <integer>\(haPlist.StringValue)</integer>
+                    <integer>\(haPlist.stringValue)</integer>
                     """
     }
             break
@@ -74,7 +74,7 @@ func haPlistEncoder(_ haPlist: HAPlistStruct, _ parentIsArray: Bool = false) -> 
         case "data":
             
             var base64String = ""
-            if let base64encoded = haPlist.StringValue.data(using: .bytesHexLiteral)?.base64EncodedString() {
+            if let base64encoded = haPlist.stringValue.data(using: .bytesHexLiteral)?.base64EncodedString() {
                 base64String = base64encoded
                 
             }
@@ -97,13 +97,13 @@ func haPlistEncoder(_ haPlist: HAPlistStruct, _ parentIsArray: Bool = false) -> 
             if parentIsArray {
                 text = """
             
-                       \(haPlist.BoolValue ? "<true/>" : "<false/>")
+                       \(haPlist.boolValue ? "<true/>" : "<false/>")
             """
             }
             text = """
                     
                     <key>\(haPlist.name)</key>
-                    \(haPlist.BoolValue ? "<true/>" : "<false/>")
+                    \(haPlist.boolValue ? "<true/>" : "<false/>")
                     """
             break
             
@@ -111,11 +111,11 @@ func haPlistEncoder(_ haPlist: HAPlistStruct, _ parentIsArray: Bool = false) -> 
         case "dict":
             var dictString:String = ""
             
-            if haPlist.Childs.isEmpty {
+            if haPlist.childs.isEmpty {
                 dictString = "<dict/>"
             } else {
                 dictString = "<dict>"
-                for pChild in haPlist.Childs {
+                for pChild in haPlist.childs {
                     
                     dictString += haPlistEncoder(pChild)
                 }
@@ -140,12 +140,12 @@ func haPlistEncoder(_ haPlist: HAPlistStruct, _ parentIsArray: Bool = false) -> 
         case "array":
             var arrayString:String = ""
             
-            if haPlist.Childs.isEmpty {
+            if haPlist.childs.isEmpty {
                 arrayString = "<array/>"
             } else {
                 arrayString = "<array>"
                 
-                for pChild in haPlist.Childs {
+                for pChild in haPlist.childs {
                     
                     arrayString += haPlistEncoder(pChild, true)
                 }

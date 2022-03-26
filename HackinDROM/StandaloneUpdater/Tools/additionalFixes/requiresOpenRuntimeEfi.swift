@@ -17,7 +17,7 @@ let configRequiringOpenRuntimeEfi: [[String]] = [
 func requiresOpenRuntimeEfi(_ fixingPlist: HAPlistStruct)-> Bool {
     for config in configRequiringOpenRuntimeEfi {
        if let foundItem = fixingPlist.get(config) {
-            if foundItem.BoolValue {
+            if foundItem.boolValue {
                 return true
             }
         }

@@ -164,11 +164,11 @@ struct CreateEFI: View {
                                         .foregroundColor(Color("MountedNameDisk"))
                                         .cornerRadius(7.0)
 
-                                    Text("\(EFIs[index].location) | " + EFIs[index].mounted.replacingOccurrences(of: "/Volumes/", with: ""))
+                                    Text("\(EFIs[index].path) | " + EFIs[index].mounted.replacingOccurrences(of: "/Volumes/", with: ""))
                                         .foregroundColor(Color("CustomEFIName"))
 
                                     Spacer()
-                                    Text("\(EFIs[index].type) | \(EFIs[index].Name)")
+                                    Text("\(EFIs[index].type) | \(EFIs[index].name)")
                                         .lineLimit(1)
 
                             }
@@ -1082,7 +1082,7 @@ struct CreateEFI: View {
 
                         if CancelMe { return}
                         StatusText = "Erasing done!"
-                        if let index = EFIs.firstIndex(where: { $0.Parent == selectedDrive.location.replacingOccurrences(of: "/dev/", with: "")}) {
+                        if let index = EFIs.firstIndex(where: { $0.parent == selectedDrive.location.replacingOccurrences(of: "/dev/", with: "")}) {
 
                             EFIs.remove(at: index)
 
@@ -1163,22 +1163,22 @@ struct CreateEFI: View {
                 var plist = plist
                 
               
-                if let KernelSection =  plist.Childs.firstIndex(where: {$0.name == "Kernel"}) {
+                if let KernelSection =  plist.childs.firstIndex(where: {$0.name == "Kernel"}) {
                   
-                    if let PatchSection =  plist.Childs[KernelSection].Childs.firstIndex(where: {$0.name == "Patch"}) {
+                    if let PatchSection =  plist.childs[KernelSection].childs.firstIndex(where: {$0.name == "Patch"}) {
                        
-                        for (ki, kentry) in plist.Childs[KernelSection].Childs[PatchSection].Childs.enumerated() {
+                        for (ki, kentry) in plist.childs[KernelSection].childs[PatchSection].childs.enumerated() {
                             
                             
-                            for (fi, eField) in kentry.Childs.enumerated() {
+                            for (fi, eField) in kentry.childs.enumerated() {
                                     
-                                    if (eField.name == "Replace" && eField.type == "data") && (eField.StringValue.localizedCaseInsensitiveCompare("B8CC00000000") == .orderedSame
-                                                                                               || eField.StringValue.localizedCaseInsensitiveCompare("BACC00000000") == .orderedSame
-                                                                                               || eField.StringValue.localizedCaseInsensitiveCompare("BACC00000090") == .orderedSame) {
+                                    if (eField.name == "Replace" && eField.type == "data") && (eField.stringValue.localizedCaseInsensitiveCompare("B8CC00000000") == .orderedSame
+                                                                                               || eField.stringValue.localizedCaseInsensitiveCompare("BACC00000000") == .orderedSame
+                                                                                               || eField.stringValue.localizedCaseInsensitiveCompare("BACC00000090") == .orderedSame) {
                                         
                                         
                                         
-                                        plist.Childs[KernelSection].Childs[PatchSection].Childs[ki].Childs[fi].StringValue = eField.StringValue.replace(string: "CC", replacement: selectedCore)
+                                        plist.childs[KernelSection].childs[PatchSection].childs[ki].childs[fi].stringValue = eField.stringValue.replace(string: "CC", replacement: selectedCore)
                                         
                                     }
                                 }
@@ -1205,14 +1205,14 @@ struct CreateEFI: View {
                getHAPlistFrom("\(tmp)/tmp/\(CaseysFolder)/OC/configo.plist") { plist in
                     var plist = plist
                     
-                    plist.set(HAPlistStruct(StringValue: mycustomdata.MLB), to: ["PlatformInfo", "Generic", "MLB"])
-                    plist.set(HAPlistStruct(StringValue: mycustomdata.SystemSerialNumber), to: ["PlatformInfo", "Generic", "SystemSerialNumber"])
-                    plist.set(HAPlistStruct(StringValue: mycustomdata.SystemProductName.removeWhitespace()), to: ["PlatformInfo", "Generic", "SystemProductName"])
-                    plist.set(HAPlistStruct(StringValue: mycustomdata.SystemUUID), to: ["PlatformInfo", "Generic", "SystemUUID"])
-                    plist.set(HAPlistStruct(StringValue: mycustomdata.ROM, type: "data"), to: ["PlatformInfo", "Generic", "ROM"])
-                    plist.set(HAPlistStruct(StringValue: mycustomdata.SIP, type: "data"), to: ["NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "csr-active-config"]) // #FIXME: check if will work when target is nil
+                    plist.set(HAPlistStruct(stringValue: mycustomdata.MLB), to: ["PlatformInfo", "Generic", "MLB"])
+                    plist.set(HAPlistStruct(stringValue: mycustomdata.SystemSerialNumber), to: ["PlatformInfo", "Generic", "SystemSerialNumber"])
+                    plist.set(HAPlistStruct(stringValue: mycustomdata.SystemProductName.removeWhitespace()), to: ["PlatformInfo", "Generic", "SystemProductName"])
+                    plist.set(HAPlistStruct(stringValue: mycustomdata.SystemUUID), to: ["PlatformInfo", "Generic", "SystemUUID"])
+                    plist.set(HAPlistStruct(stringValue: mycustomdata.ROM, type: "data"), to: ["PlatformInfo", "Generic", "ROM"])
+                    plist.set(HAPlistStruct(stringValue: mycustomdata.SIP, type: "data"), to: ["NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "csr-active-config"]) // #FIXME: check if will work when target is nil
                     
-                    plist.set(HAPlistStruct(StringValue: BootArgs.joined(separator: " "), type: "string"), to: ["NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "boot-args"])
+                    plist.set(HAPlistStruct(stringValue: BootArgs.joined(separator: " "), type: "string"), to: ["NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "boot-args"])
                     
                     let path = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("workingHDx.plist")
                     haPlistEncode(plist, path.relativePath)
@@ -1317,7 +1317,7 @@ struct CreateEFI: View {
                     notifmsg = "Just installed OC \(selectedConfig.ocvs) into \(selectedDrive.name)"
                 } else if sharedData.Updating.contains("Install") {
 
-                    notifmsg = "Just installed OC \(selectedConfig.ocvs) into \(EFIs[sharedData.CurrentEFI].Name)"
+                    notifmsg = "Just installed OC \(selectedConfig.ocvs) into \(EFIs[sharedData.CurrentEFI].name)"
 
                 }
                 SetNotif("Your EFI is ready!", notifmsg)

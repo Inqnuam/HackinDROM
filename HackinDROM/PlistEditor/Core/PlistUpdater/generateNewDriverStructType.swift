@@ -15,8 +15,8 @@ func generateNewDriverStructType(template: HAPlistStruct? = nil , driverPath: St
             var foundDriverTemplate = HAPlistStruct()
             getHAPlistFrom(latestOCFolder + "/Docs/SampleCustom.plist") { plist in
                 if let allDrivers = plist.get(["UEFI", "Drivers"]) {
-                    if !allDrivers.Childs.isEmpty {
-                        foundDriverTemplate = allDrivers.Childs.first!
+                    if !allDrivers.childs.isEmpty {
+                        foundDriverTemplate = allDrivers.childs.first!
                     }
                 }
             }
@@ -26,16 +26,16 @@ func generateNewDriverStructType(template: HAPlistStruct? = nil , driverPath: St
     
     var cleanedDriverTemplate = cleanHAPlistStruct(driverTemplate)
     
-    if let foundPathIndex = cleanedDriverTemplate.Childs.firstIndex(where: {$0.name == "Path"}) {
+    if let foundPathIndex = cleanedDriverTemplate.childs.firstIndex(where: {$0.name == "Path"}) {
         
-        cleanedDriverTemplate.Childs[foundPathIndex].StringValue = driverPath.replacingOccurrences(of: "#", with: "")
+        cleanedDriverTemplate.childs[foundPathIndex].stringValue = driverPath.replacingOccurrences(of: "#", with: "")
     }
     
     
     
-    if let foundEnabledIndex = cleanedDriverTemplate.Childs.firstIndex(where: {$0.name == "Enabled"}) {
+    if let foundEnabledIndex = cleanedDriverTemplate.childs.firstIndex(where: {$0.name == "Enabled"}) {
         
-        cleanedDriverTemplate.Childs[foundEnabledIndex].BoolValue = driverPath.hasPrefix("#") ? false : true
+        cleanedDriverTemplate.childs[foundEnabledIndex].boolValue = driverPath.hasPrefix("#") ? false : true
     }
     
     

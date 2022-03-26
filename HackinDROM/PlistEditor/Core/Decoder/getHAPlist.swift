@@ -68,24 +68,24 @@ func HAPlistConstructor(_ item: [String: AnyObject], _ parent:HAPlistStruct) -> 
         let MiniChildType = String(describing: type(of: MiniChild.value) as Any)
         
         MiniChilItem.name = MiniChild.key
-        MiniChilItem.ParentName = parent.name.isEmpty ? parent.ParentName : parent.name
+        MiniChilItem.parentName = parent.name.isEmpty ? parent.parentName : parent.name
         
         if MiniChildType == "__NSCFBoolean" {
             MiniChilItem.type = "bool"
-            MiniChilItem.BoolValue = MiniChild.value as! Bool
+            MiniChilItem.boolValue = MiniChild.value as! Bool
         } else if isNSString(MiniChildType) {
-            MiniChilItem.StringValue = MiniChild.value as! String
+            MiniChilItem.stringValue = MiniChild.value as! String
             MiniChilItem.type = "string"
             
         } else if MiniChildType == "__NSCFNumber" {
             
-            MiniChilItem.StringValue = String(MiniChild.value as! Int)
+            MiniChilItem.stringValue = String(MiniChild.value as! Int)
             MiniChilItem.type = "int"
             
         } else if MiniChildType == "__NSCFData" {
             
             let DataRawValue = MiniChild.value as! Data
-            MiniChilItem.StringValue = DataRawValue.hexEncodedString()
+            MiniChilItem.stringValue = DataRawValue.hexEncodedString()
             MiniChilItem.type = "data"
             
         }
@@ -93,7 +93,7 @@ func HAPlistConstructor(_ item: [String: AnyObject], _ parent:HAPlistStruct) -> 
             
             if let OCSecondChild = item[MiniChild.key] as? [String: AnyObject] {
                 MiniChilItem.type = "dict"
-                MiniChilItem.Childs = HAPlistConstructor(OCSecondChild, MiniChilItem).Childs
+                MiniChilItem.childs = HAPlistConstructor(OCSecondChild, MiniChilItem).childs
                 
             }
         }
@@ -102,20 +102,20 @@ func HAPlistConstructor(_ item: [String: AnyObject], _ parent:HAPlistStruct) -> 
             
             if let arrayItems = item[MiniChild.key] as? [[String: AnyObject]] {
                 for OCSecondChild in arrayItems {
-                    let microchild = HAPlistConstructor(OCSecondChild, HAPlistStruct(type:"dict", ParentName: MiniChilItem.name))
-                    MiniChilItem.Childs.append(microchild)
+                    let microchild = HAPlistConstructor(OCSecondChild, HAPlistStruct(type:"dict", parentName: MiniChilItem.name))
+                    MiniChilItem.childs.append(microchild)
                 }
-            } else if let OCSecondChilds = item[MiniChild.key] as? [String] {
-                for StringItem in OCSecondChilds {
-                    MiniChilItem.Childs.append(HAPlistStruct(name: MiniChild.key, StringValue: StringItem, isOn: !StringItem.hasPrefix("#"), type: "string", ParentName: MiniChilItem.ParentName))
+            } else if let OCSecondchilds = item[MiniChild.key] as? [String] {
+                for StringItem in OCSecondchilds {
+                    MiniChilItem.childs.append(HAPlistStruct(name: MiniChild.key, stringValue: StringItem, isOn: !StringItem.hasPrefix("#"), type: "string", parentName: MiniChilItem.parentName))
                 }
             }
         }
-        OCSecondChildItems.Childs.append(MiniChilItem)
+        OCSecondChildItems.childs.append(MiniChilItem)
     }
     
     if OCSecondChildItems.type == "dict"{
-        OCSecondChildItems.Childs.sort(by: { $0.name < $1.name })
+        OCSecondChildItems.childs.sort(by: { $0.name < $1.name })
     }
     
     return OCSecondChildItems

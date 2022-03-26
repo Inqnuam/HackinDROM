@@ -318,7 +318,7 @@ public extension View {
 }
 extension HAPlistStruct {
     func find(_ findingName: String) -> HAPlistStruct {
-        return self.Childs.first(where: {$0.name == findingName}) ?? HAPlistStruct()
+        return self.childs.first(where: {$0.name == findingName}) ?? HAPlistStruct()
     }
     
     
@@ -332,15 +332,15 @@ extension HAPlistStruct {
             
             if valType is String.Type {
                 if foundElement != nil {
-                    if let gevor = foundElement!.Childs.first(where: {$0.name == val as! String}) {
+                    if let gevor = foundElement!.childs.first(where: {$0.name == val as! String}) {
                         foundElement = gevor
                     } else {return nil}
                 } else {return nil}
                 
             } else if valType is Int.Type {
                 if foundElement != nil {
-                    if  self.Childs.indices.contains(val as! Int) {
-                        foundElement =  foundElement!.Childs[val as! Int]
+                    if  self.childs.indices.contains(val as! Int) {
+                        foundElement =  foundElement!.childs[val as! Int]
                     } else {return nil}
                 } else {return nil}
             }
@@ -360,16 +360,16 @@ extension HAPlistStruct {
             
             if valType is String.Type {
                 
-                if let gevor = foundElement.Childs.firstIndex(where: {$0.name == key as! String}) {
+                if let gevor = foundElement.childs.firstIndex(where: {$0.name == key as! String}) {
                     indexs.append(gevor)
-                    foundElement = foundElement.Childs[gevor]
+                    foundElement = foundElement.childs[gevor]
                 } else {return []}
                 
             } else if valType is Int.Type {
                 
-                if  foundElement.Childs.indices.contains(key as! Int) {
+                if  foundElement.childs.indices.contains(key as! Int) {
                     indexs.append(key as! Int)
-                    foundElement = foundElement.Childs[key as! Int]
+                    foundElement = foundElement.childs[key as! Int]
                 } else {return []}
                 
             }
@@ -385,13 +385,13 @@ extension HAPlistStruct {
         var indexs:[Int] = getHAPlistPath(from: to)
         
         if !indexs.isEmpty {
-            var settingPath: WritableKeyPath = \HAPlistStruct.Childs[indexs[0]]
+            var settingPath: WritableKeyPath = \HAPlistStruct.childs[indexs[0]]
             indexs.removeFirst()
             for ind in indexs {
-                settingPath =  settingPath.appending(path: \.Childs[ind])
+                settingPath =  settingPath.appending(path: \.childs[ind])
             }
             
-            settingValue.ParentName = self[keyPath: settingPath].ParentName
+            settingValue.parentName = self[keyPath: settingPath].parentName
             
             if settingValue.type.isEmpty {
                 settingValue.type = self[keyPath: settingPath].type
@@ -417,21 +417,21 @@ extension HAPlistStruct {
         var indexs:[Int] = getHAPlistPath(from: from)
         
         if !indexs.isEmpty {
-            var settingPath: WritableKeyPath = \HAPlistStruct.Childs[indexs[0]]
+            var settingPath: WritableKeyPath = \HAPlistStruct.childs[indexs[0]]
             indexs.removeFirst()
             for ind in indexs {
-                settingPath =  settingPath.appending(path: \.Childs[ind])
+                settingPath =  settingPath.appending(path: \.childs[ind])
             }
             let valType =  Swift.type(of: deletingValue)
             
             if valType is String.Type {
-                if let foundIndex = self[keyPath: settingPath].Childs.firstIndex(where: {$0.name == deletingValue as! String}) {
-                    self[keyPath: settingPath].Childs.remove(at: foundIndex)
+                if let foundIndex = self[keyPath: settingPath].childs.firstIndex(where: {$0.name == deletingValue as! String}) {
+                    self[keyPath: settingPath].childs.remove(at: foundIndex)
                     return true
                 } else { return false }
             }  else if valType is Int.Type {
-                if self[keyPath: settingPath].Childs.indices.contains(deletingValue as! Int) {
-                    self[keyPath: settingPath].Childs.remove(at: deletingValue as! Int)
+                if self[keyPath: settingPath].childs.indices.contains(deletingValue as! Int) {
+                    self[keyPath: settingPath].childs.remove(at: deletingValue as! Int)
                     
                     return true
                 } else { return false }

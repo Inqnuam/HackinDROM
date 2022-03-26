@@ -27,7 +27,7 @@ class HAPlistContent: ObservableObject {
                 self.isTemplate = isTemplate
                
                
-                //                if let FirstDictIndex =  self.plistContent.Childs.firstIndex(where: {$0.type == "dict"}) {
+                //                if let FirstDictIndex =  self.plistContent.childs.firstIndex(where: {$0.type == "dict"}) {
                 //
                 //                }
                 nc.post(name: Notification.Name("plistLoaded"), object: self.pContent)
@@ -37,7 +37,7 @@ class HAPlistContent: ObservableObject {
         } else {return false}
     }
     func saveplist(newPath: String? = nil)-> Bool {
-        pContent.Childs.removeAll(where: {$0.name.hasPrefix("#WARNING")})
+        pContent.childs.removeAll(where: {$0.name.hasPrefix("#WARNING")})
         
         
         haPlistEncode(pContent, newPath ?? originalPath)

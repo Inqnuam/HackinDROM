@@ -22,19 +22,19 @@ func additionalOCFixes(fixingPlist: HAPlistStruct, refPlist: HAPlistStruct)-> HA
     // Fix for duplicated UIScale value
     // if UIScale is set as NVRAM variable then we disable UIScale in UEFI > Output
     if refPlist.get(["NVRAM", "Add", "4D1EDE05-38C7-4A6A-9CC6-4BCCA8B38C14", "UIScale"]) != nil{
-        fixingPlist.set(HAPlistStruct(name:"UIScale", StringValue: "-1", type: "int"), to: ["UEFI", "Output", "UIScale"])
+        fixingPlist.set(HAPlistStruct(name:"UIScale", stringValue: "-1", type: "int"), to: ["UEFI", "Output", "UIScale"])
     }
     
     // Fix NVRAM Add fields for csr-active-config and nvda_drv when they are set without values
     if let nvramAdd = fixingPlist.get(["NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82"]) {
-        for item in nvramAdd.Childs {
+        for item in nvramAdd.childs {
             if item.type == "data" {
                 if item.name == "csr-active-config" {
-                    if item.StringValue.isEmpty {
-                        fixingPlist.set(HAPlistStruct(StringValue:"00000000"), to: ["NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "csr-active-config"])
+                    if item.stringValue.isEmpty {
+                        fixingPlist.set(HAPlistStruct(stringValue:"00000000"), to: ["NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "csr-active-config"])
                     }
                 } else if item.name == "nvda_drv" {
-                    if item.StringValue.isEmpty {
+                    if item.stringValue.isEmpty {
                         fixingPlist.remove(["NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "nvda_drv"])
                     }
                 }
@@ -46,8 +46,8 @@ func additionalOCFixes(fixingPlist: HAPlistStruct, refPlist: HAPlistStruct)-> HA
     // if EnableSafeModeSlide is enabled we check and enable ProvideCustomSlide
     if let booterQuirks = fixingPlist.get(["Booter", "Quirks"]) {
         if let enableSafeModeSlide = booterQuirks.get(["EnableSafeModeSlide"]) {
-            if enableSafeModeSlide.BoolValue {
-                fixingPlist.set(HAPlistStruct(BoolValue: true), to: ["Booter", "Quirks", "ProvideCustomSlide"])
+            if enableSafeModeSlide.boolValue {
+                fixingPlist.set(HAPlistStruct(boolValue: true), to: ["Booter", "Quirks", "ProvideCustomSlide"])
             }
         }
     }

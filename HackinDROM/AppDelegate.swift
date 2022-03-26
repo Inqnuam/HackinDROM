@@ -35,7 +35,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         DARegisterDiskDisappearedCallback(session!, self.matching, diskDisappeard, nil)
         DARegisterDiskMountApprovalCallback(session!, self.matching, approveDiskMount, nil)
         DARegisterDiskUnmountApprovalCallback(session!, self.matching, approveDiskUnmount, nil)
-        
     }
     
     func unregister() {

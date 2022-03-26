@@ -256,14 +256,14 @@ func ImportFromFile(completion : @escaping (MyHackDataStrc)->()) {
             isClover =  result.trimmingCharacters(in: .whitespacesAndNewlines) == "<key>SmUUID</key>"
  getHAPlistFrom(filePath) { plist in
                 
-             PlatformInfo.MLB =  plist.get( isClover ? ["SMBIOS", "BoardSerialNumber"] : ["PlatformInfo", "Generic", "MLB"])?.StringValue ?? ""
-                PlatformInfo.ROM =  plist.get(isClover ? ["RtVariables", "ROM"] : [])?.StringValue ?? ""
-                PlatformInfo.SystemProductName = plist.get(isClover ?  ["SMBIOS", "ProductName"] : ["PlatformInfo", "Generic", "MLB"])?.StringValue ?? ""
-                PlatformInfo.SystemSerialNumber =  plist.get(isClover ? ["SMBIOS", "SerialNumber"]: ["PlatformInfo", "Generic", "SystemSerialNumber"])?.StringValue ?? ""
-                PlatformInfo.SystemUUID =  plist.get(isClover ? ["SMBIOS", "SmUUID"]: ["PlatformInfo", "Generic", "SystemUUID"])?.StringValue ?? ""
+             PlatformInfo.MLB =  plist.get( isClover ? ["SMBIOS", "BoardSerialNumber"] : ["PlatformInfo", "Generic", "MLB"])?.stringValue ?? ""
+                PlatformInfo.ROM =  plist.get(isClover ? ["RtVariables", "ROM"] : [])?.stringValue ?? ""
+                PlatformInfo.SystemProductName = plist.get(isClover ?  ["SMBIOS", "ProductName"] : ["PlatformInfo", "Generic", "MLB"])?.stringValue ?? ""
+                PlatformInfo.SystemSerialNumber =  plist.get(isClover ? ["SMBIOS", "SerialNumber"]: ["PlatformInfo", "Generic", "SystemSerialNumber"])?.stringValue ?? ""
+                PlatformInfo.SystemUUID =  plist.get(isClover ? ["SMBIOS", "SmUUID"]: ["PlatformInfo", "Generic", "SystemUUID"])?.stringValue ?? ""
                 
                 if isClover {
-                    PlatformInfo.SIP = plist.get(["NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "csr-active-config"])?.StringValue ?? ""
+                    PlatformInfo.SIP = plist.get(["NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "csr-active-config"])?.stringValue ?? ""
                 }
      completion(PlatformInfo)
             }

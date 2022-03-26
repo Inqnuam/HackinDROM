@@ -15,28 +15,28 @@ func getEFIList() -> [EFI] {
         //"/Users/lian/Downloads/alldisks-4.plist"
         getHAPlistFrom(plistpath) { HAPEFI in
             
-            if let AllDisksAndPartitions = HAPEFI.Childs.first(where: {$0.name == "AllDisksAndPartitions"}) {
+            if let AllDisksAndPartitions = HAPEFI.childs.first(where: {$0.name == "AllDisksAndPartitions"}) {
                 
-                for disk in AllDisksAndPartitions.Childs {
+                for disk in AllDisksAndPartitions.childs {
                     
-                    if disk.Childs.first(where: {$0.name == "Content" && $0.StringValue == "GUID_partition_scheme"}) != nil {
+                    if disk.childs.first(where: {$0.name == "Content" && $0.stringValue == "GUID_partition_scheme"}) != nil {
                         
-                        if let partitions = disk.Childs.first(where: {$0.name == "Partitions" && $0.type == "array" }) {
+                        if let partitions = disk.childs.first(where: {$0.name == "Partitions" && $0.type == "array" }) {
                             
-                            for part in partitions.Childs {
+                            for part in partitions.childs {
                                 
-                                if  part.Childs.first(where: {$0.name == "Content" && $0.StringValue == "EFI"}) != nil {
-                                    var foundEFI = EFI(Name: "0.0.0", type: "Virtual",  Where: "Virtual", SSD: "NO NAME \(EFILIST.count)")
+                                if  part.childs.first(where: {$0.name == "Content" && $0.stringValue == "EFI"}) != nil {
+                                    var foundEFI = EFI(name: "0.0.0", type: "Virtual",  location: "Virtual", SSD: "NO NAME \(EFILIST.count)")
                                     
-                                    if let diskIdentifier = part.Childs.first(where: {$0.name == "DeviceIdentifier" && $0.type == "string"}) {
+                                    if let diskIdentifier = part.childs.first(where: {$0.name == "DeviceIdentifier" && $0.type == "string"}) {
                                         
-                                        foundEFI.location = diskIdentifier.StringValue
+                                        foundEFI.path = diskIdentifier.stringValue
                                         
-                                        if let parent = disk.Childs.first(where: {$0.name == "DeviceIdentifier" && $0.type == "string"}) {
-                                            foundEFI.Parent = parent.StringValue
+                                        if let parent = disk.childs.first(where: {$0.name == "DeviceIdentifier" && $0.type == "string"}) {
+                                            foundEFI.parent = parent.stringValue
                                             
                                             
-                                            if let IODet = DADiskCreateFromBSDName(kCFAllocatorDefault, session!, "/dev/\(foundEFI.location)") {
+                                            if let IODet = DADiskCreateFromBSDName(kCFAllocatorDefault, session!, "/dev/\(foundEFI.path)") {
                                                 let IODetPar =  DADiskCopyWholeDisk(IODet)
                                                 if IODetPar != nil {
                                                     let ReqDADATAPar = DADiskCopyDescription(IODetPar!)
@@ -50,12 +50,12 @@ func getEFIList() -> [EFI] {
                                                         
                                                         if DeviceModel != nil && DeviceModel as! String != "" {
                                                             
-                                                            foundEFI.Name = (DeviceModel as! String).trimmingCharacters(in: .whitespacesAndNewlines)
+                                                            foundEFI.name = (DeviceModel as! String).trimmingCharacters(in: .whitespacesAndNewlines)
                                                             
                                                         }
                                                         if VendorName != nil && VendorName as! String != "" {
                                                             
-                                                            foundEFI.Name.insert(contentsOf: (VendorName as! String).trimmingCharacters(in: .whitespacesAndNewlines) + " ", at: String.Index(utf16Offset: 0, in: foundEFI.Name)) // =
+                                                            foundEFI.name.insert(contentsOf: (VendorName as! String).trimmingCharacters(in: .whitespacesAndNewlines) + " ", at: String.Index(utf16Offset: 0, in: foundEFI.name)) // =
                                                         }
                                                         
                                                         if desc2["DADeviceProtocol"] != nil {
@@ -65,27 +65,27 @@ func getEFIList() -> [EFI] {
                                                             
                                                         }
                                                         if desc2["DADeviceInternal"] != nil {
-                                                            foundEFI.Where =  desc2["DADeviceInternal"]! as! Int == 0 ? "External" : "Internal"
+                                                            foundEFI.location =  desc2["DADeviceInternal"]! as! Int == 0 ? "External" : "Internal"
                                                         } else {
-                                                            foundEFI.Where = "Virtual"
+                                                            foundEFI.location = "Virtual"
                                                             
                                                         }
                                                     } else {
                                                         foundEFI.type =  "Virtual"
-                                                        foundEFI.Name = "Virtual"
-                                                        foundEFI.Where = "Virtual"
+                                                        foundEFI.name = "Virtual"
+                                                        foundEFI.location = "Virtual"
                                                     }
                                                 } else {
                                                     foundEFI.type =  "Virtual"
-                                                    foundEFI.Name = "Virtual"
-                                                    foundEFI.Where = "Virtual"
+                                                    foundEFI.name = "Virtual"
+                                                    foundEFI.location = "Virtual"
                                                 }
                                             }
                                             
                                         }
                                         
-                                        if let mountPoint = part.Childs.first(where: {$0.name == "MountPoint" && $0.type == "string"}) {
-                                            foundEFI.mounted = mountPoint.StringValue
+                                        if let mountPoint = part.childs.first(where: {$0.name == "MountPoint" && $0.type == "string"}) {
+                                            foundEFI.mounted = mountPoint.stringValue
                                             
                                             if fileManager.fileExists(atPath: foundEFI.mounted, isDirectory: nil) {
                                                 
@@ -143,64 +143,64 @@ func getEFIList() -> [EFI] {
                                         }
                                         // Find OS Name
                                         
-                                        if let firstRelatedPartition = partitions.Childs.first(where: {$0 != part}) {
-                                            if let foundOSPartition = firstRelatedPartition.Childs.first(where: {$0.name == "Content"}) {
+                                        if let firstRelatedPartition = partitions.childs.first(where: {$0 != part}) {
+                                            if let foundOSPartition = firstRelatedPartition.childs.first(where: {$0.name == "Content"}) {
                                                 
-                                                if foundOSPartition.StringValue.localizedCaseInsensitiveContains("Linux") {
+                                                if foundOSPartition.stringValue.localizedCaseInsensitiveContains("Linux") {
                                                     foundEFI.SSD = "Linux 🐧"
-                                                } else if foundOSPartition.StringValue.localizedCaseInsensitiveContains("Microsoft")
-                                                            || foundOSPartition.StringValue.localizedCaseInsensitiveContains("Windows") {
+                                                } else if foundOSPartition.stringValue.localizedCaseInsensitiveContains("Microsoft")
+                                                            || foundOSPartition.stringValue.localizedCaseInsensitiveContains("Windows") {
                                                     
                                                     // Trying to find a VolumeName to give as name
-                                                    if let foundAName = firstRelatedPartition.Childs.first(where: {$0.name == "VolumeName" && !$0.StringValue.isEmpty}) {
+                                                    if let foundAName = firstRelatedPartition.childs.first(where: {$0.name == "VolumeName" && !$0.stringValue.isEmpty}) {
                                                         
-                                                        foundEFI.SSD = foundAName.StringValue
+                                                        foundEFI.SSD = foundAName.stringValue
                                                     } else {
                                                         foundEFI.SSD = "Windows 🤔"
                                                         
-                                                        let otherPartitions = partitions.Childs.filter{$0 != part && $0 != firstRelatedPartition}
+                                                        let otherPartitions = partitions.childs.filter{$0 != part && $0 != firstRelatedPartition}
                                                         
                                                         for otherPart in otherPartitions {
-                                                            if let VolName = otherPart.Childs.first(where: {$0.name == "VolumeName" && !$0.StringValue.isEmpty}) {
-                                                                foundEFI.SSD = VolName.StringValue
+                                                            if let VolName = otherPart.childs.first(where: {$0.name == "VolumeName" && !$0.stringValue.isEmpty}) {
+                                                                foundEFI.SSD = VolName.stringValue
                                                             }
                                                         }
                                                     }
                                                     
-                                                } else if foundOSPartition.StringValue.localizedCaseInsensitiveContains("Apple_HFS") {
+                                                } else if foundOSPartition.stringValue.localizedCaseInsensitiveContains("Apple_HFS") {
                                                     
-                                                    if let VolName = firstRelatedPartition.Childs.first(where: {$0.name == "VolumeName"}) {
+                                                    if let VolName = firstRelatedPartition.childs.first(where: {$0.name == "VolumeName"}) {
                                                         
-                                                        foundEFI.SSD = VolName.StringValue
+                                                        foundEFI.SSD = VolName.stringValue
                                                     }
                                                     
-                                                } else if foundOSPartition.StringValue.localizedCaseInsensitiveContains("Apple_APFS") {
-                                                    if let DeviceId = firstRelatedPartition.Childs.first(where: {$0.name == "DeviceIdentifier"})?.StringValue {
+                                                } else if foundOSPartition.stringValue.localizedCaseInsensitiveContains("Apple_APFS") {
+                                                    if let DeviceId = firstRelatedPartition.childs.first(where: {$0.name == "DeviceIdentifier"})?.stringValue {
                                                         
                                                         
                                                         
                                                         
-                                                        for apfsDisk in AllDisksAndPartitions.Childs.filter({$0.Childs.first(where: {$0.name == "Content" && $0.StringValue == "EF57347C-0000-11AA-AA11-00306543ECAC"}) != nil}) {
+                                                        for apfsDisk in AllDisksAndPartitions.childs.filter({$0.childs.first(where: {$0.name == "Content" && $0.stringValue == "EF57347C-0000-11AA-AA11-00306543ECAC"}) != nil}) {
                                                             
-                                                            if let APFSPhysicalStores = apfsDisk.Childs.first(where: {$0.name == "APFSPhysicalStores"}) {
+                                                            if let APFSPhysicalStores = apfsDisk.childs.first(where: {$0.name == "APFSPhysicalStores"}) {
                                                                 
-                                                                if APFSPhysicalStores.Childs.first?.Childs.first?.StringValue == DeviceId {
+                                                                if APFSPhysicalStores.childs.first?.childs.first?.stringValue == DeviceId {
                                                                     
-                                                                    if let APFSVolumes = apfsDisk.Childs.first(where: {$0.name == "APFSVolumes"}) {
+                                                                    if let APFSVolumes = apfsDisk.childs.first(where: {$0.name == "APFSVolumes"}) {
                                                                         
                                                                       
                                                                         var volNames:[String] = []
-                                                                        for vol in APFSVolumes.Childs {
+                                                                        for vol in APFSVolumes.childs {
                                                                             
-                                                                            if let foundVolName = vol.Childs.first(where: {$0.name == "VolumeName"}) {
+                                                                            if let foundVolName = vol.childs.first(where: {$0.name == "VolumeName"}) {
                                                                                 
-                                                                                if foundVolName.StringValue != "VM"
-                                                                                    && foundVolName.StringValue != "Update"
-                                                                                    && foundVolName.StringValue != "Preboot"
-                                                                                    && foundVolName.StringValue != "Recovery"
+                                                                                if foundVolName.stringValue != "VM"
+                                                                                    && foundVolName.stringValue != "Update"
+                                                                                    && foundVolName.stringValue != "Preboot"
+                                                                                    && foundVolName.stringValue != "Recovery"
                                                                                 {
                                                                                     
-                                                                                    let volName = foundVolName.StringValue.replacingOccurrences(of: " - Data", with: "")
+                                                                                    let volName = foundVolName.stringValue.replacingOccurrences(of: " - Data", with: "")
                                                                                         .replacingOccurrences(of: " - Données", with: "")
                                                                                         .replacingOccurrences(of: " - Gegevens", with: "")
                                                                                         .replacingOccurrences(of: " - Dados", with: "")

@@ -128,7 +128,7 @@ func GetKexts(_ plist: HAPlistStruct) -> [Kexts] {
     if let allKexts =  plist.get(["Kernel", "Add"]) {
         
         
-        for kxt in allKexts.Childs {
+        for kxt in allKexts.childs {
             
             let dArch =  kxt.get(["Arch"])
             let dBundlePath =  kxt.get(["BundlePath"])
@@ -139,14 +139,14 @@ func GetKexts(_ plist: HAPlistStruct) -> [Kexts] {
             let dMinKernel =  kxt.get(["MinKernel"])
             let dPlistPath =  kxt.get(["PlistPath"])
             
-            AllKexts.append(Kexts(Arch: dArch?.StringValue ?? "",
-                                  BundlePath: dBundlePath?.StringValue ?? "",
-                                  Comment: dComment?.StringValue ?? "",
-                                  Enabled: dEnabled?.BoolValue ?? false,
-                                  ExecutablePath: dExecutablePath?.StringValue ?? "",
-                                  MaxKernel: dMaxKernel?.StringValue ?? "",
-                                  MinKernel: dMinKernel?.StringValue ?? "",
-                                  PlistPath: dPlistPath?.StringValue ?? "")
+            AllKexts.append(Kexts(Arch: dArch?.stringValue ?? "",
+                                  BundlePath: dBundlePath?.stringValue ?? "",
+                                  Comment: dComment?.stringValue ?? "",
+                                  Enabled: dEnabled?.boolValue ?? false,
+                                  ExecutablePath: dExecutablePath?.stringValue ?? "",
+                                  MaxKernel: dMaxKernel?.stringValue ?? "",
+                                  MinKernel: dMinKernel?.stringValue ?? "",
+                                  PlistPath: dPlistPath?.stringValue ?? "")
             )
         }
         
@@ -161,18 +161,18 @@ func GetAMLs(_ plist: HAPlistStruct) -> [AMLs] {
         if let allALMS =  plist.get(["ACPI", "Add"]) {
             
             
-            for driv in allALMS.Childs {
+            for driv in allALMS.childs {
                 
                 let dPath = driv.get(["Path"])
                 let dEnabled = driv.get(["Enabled"])
                 let dComment = driv.get(["Comment"])
                 
-                if !(dPath?.StringValue.isEmpty)! {
+                if !(dPath?.stringValue.isEmpty)! {
                     
                     AllAMLs.append(AMLs(
-                                    Comment: dComment?.StringValue ?? "",
-                                    Enabled: dEnabled?.BoolValue ?? false,
-                                    Path: dPath?.StringValue ?? "")
+                                    Comment: dComment?.stringValue ?? "",
+                                    Enabled: dEnabled?.boolValue ?? false,
+                                    Path: dPath?.stringValue ?? "")
                     )
                 }
                 
@@ -188,15 +188,15 @@ func GetDrivers(_ plist: HAPlistStruct, updateTo:String? = nil) -> [Drivers] {
     
    // var mutatingPlist = plist
         if let DriversEl =  plist.get(["UEFI", "Drivers"]) {
-            if !DriversEl.Childs.isEmpty {
-            if DriversEl.Childs[0].type == "string" {
-                        for driv in DriversEl.Childs {
-                            AllDrivers.append( Drivers(Path: driv.StringValue, Enabled: !driv.StringValue.hasPrefix("#")))
+            if !DriversEl.childs.isEmpty {
+            if DriversEl.childs[0].type == "string" {
+                        for driv in DriversEl.childs {
+                            AllDrivers.append( Drivers(Path: driv.stringValue, Enabled: !driv.stringValue.hasPrefix("#")))
                         }
                     }
-            else if DriversEl.Childs[0].type == "dict" {
+            else if DriversEl.childs[0].type == "dict" {
                         
-                        for driv in DriversEl.Childs {
+                        for driv in DriversEl.childs {
                             
                             let dPath = driv.get(["Path"])
                             let dEnabled = driv.get(["Enabled"])
@@ -209,22 +209,22 @@ func GetDrivers(_ plist: HAPlistStruct, updateTo:String? = nil) -> [Drivers] {
                             if let updateTo = updateTo {
                                 
                                 drv = Drivers(
-                                    Path: dPath?.StringValue ?? "",
-                                    Arguments: dArguments?.StringValue ?? "",
+                                    Path: dPath?.stringValue ?? "",
+                                    Arguments: dArguments?.stringValue ?? "",
                                     
-                                    Enabled: dEnabled?.BoolValue ?? false
+                                    Enabled: dEnabled?.boolValue ?? false
                                 )
                                 if Version(updateTo)! > Version("0.7.3")!{
-                                    drv.Comment = dComment?.StringValue ?? ""
+                                    drv.Comment = dComment?.stringValue ?? ""
                                 }
                                 
                             } else {
                                 drv = Drivers(
-                                    Path: dPath?.StringValue ?? "",
-                                    Arguments: dArguments?.StringValue ?? "",
-                                    Comment: dComment?.StringValue ?? "",
+                                    Path: dPath?.stringValue ?? "",
+                                    Arguments: dArguments?.stringValue ?? "",
+                                    Comment: dComment?.stringValue ?? "",
                                    
-                                    Enabled: dEnabled?.BoolValue ?? false
+                                    Enabled: dEnabled?.boolValue ?? false
                                 )
                             }
                             AllDrivers.append(drv)

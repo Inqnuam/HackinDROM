@@ -118,7 +118,7 @@ struct SingleRawStringView: View {
                         
                         
                     }
-                    else if Dict.name == "DmgLoading" && Dict.type == "string" && Dict.ParentName == "Security" {
+                    else if Dict.name == "DmgLoading" && Dict.type == "string" && Dict.parentName == "Security" {
                         
                         Picker(selection: $selectedPicker.pickerChanged(setDmgLoading), label: Text("")) {
                             
@@ -131,7 +131,7 @@ struct SingleRawStringView: View {
                         }.labelsHidden()
                         
                     }
-                    else if Dict.name == "ExposeSensitiveData" && Dict.type == "int" && Dict.ParentName == "Security" {
+                    else if Dict.name == "ExposeSensitiveData" && Dict.type == "int" && Dict.parentName == "Security" {
 
                         Button("Select") {
                             isShowingPopover.toggle()
@@ -139,7 +139,7 @@ struct SingleRawStringView: View {
                         } .popover(isPresented: $isShowingPopover, arrowEdge: .bottom) {
                           
                                 
-                            PopoverForOptions(value: $Dict.StringValue, selectingOptions: [HAPMultiOptions(value: 1, isSelected: false, info: "Expose the printable booter path as an UEFI variable."),
+                            PopoverForOptions(value: $Dict.stringValue, selectingOptions: [HAPMultiOptions(value: 1, isSelected: false, info: "Expose the printable booter path as an UEFI variable."),
                                                                                          HAPMultiOptions(value: 2, isSelected: false, info: "Expose the OpenCore version as an UEFI variable."),
                                                                                          HAPMultiOptions(value: 4, isSelected: false, info: "Expose the OpenCore version in the OpenCore picker menu title."),
                                                                                          HAPMultiOptions(value: 8, isSelected: false, info: "Expose OEM information as a set of UEFI variables.")])
@@ -148,7 +148,7 @@ struct SingleRawStringView: View {
                         }
                         
                     }
-                    else if Dict.name == "ScanPolicy" && Dict.type == "int" && Dict.ParentName == "Security" {
+                    else if Dict.name == "ScanPolicy" && Dict.type == "int" && Dict.parentName == "Security" {
 
                         Button("Select") {
                             isShowingPopover.toggle()
@@ -156,7 +156,7 @@ struct SingleRawStringView: View {
                         } .popover(isPresented: $isShowingPopover, arrowEdge: .bottom) {
                           
                                 
-                            PopoverForOptions(value: $Dict.StringValue, selectingOptions: [HAPMultiOptions(value: 1, isSelected: false, info: "Restricts scanning to only known file systems defined as a part of this policy..."),
+                            PopoverForOptions(value: $Dict.stringValue, selectingOptions: [HAPMultiOptions(value: 1, isSelected: false, info: "Restricts scanning to only known file systems defined as a part of this policy..."),
                                                                                            HAPMultiOptions(value: 2, isSelected: false, info: "Restricts scanning to only known device types defined as a part of this policy..."),
                                                                                            HAPMultiOptions(value: 256, isSelected: false, info: "Allows scanning of APFS file system."),
                                                                                            HAPMultiOptions(value: 512, isSelected: false, info: "Allows scanning of HFS file system."),
@@ -177,7 +177,7 @@ struct SingleRawStringView: View {
                         }
                         
                     }
-                    else if Dict.name == "Vault" && Dict.type == "string" && Dict.ParentName == "Security" {
+                    else if Dict.name == "Vault" && Dict.type == "string" && Dict.parentName == "Security" {
                         
                         Picker(selection: $selectedPicker.pickerChanged(setVault), label: Text("")) {
                             
@@ -190,7 +190,7 @@ struct SingleRawStringView: View {
                         }.labelsHidden()
                         
                     }
-                    else if Dict.name == "SecureBootModel" && Dict.type == "string" && Dict.ParentName == "Security" {
+                    else if Dict.name == "SecureBootModel" && Dict.type == "string" && Dict.parentName == "Security" {
                         
                         Picker(selection: $selectedPicker.pickerChanged(SetSecureBootModel), label: Text("")) {
                             ForEach(SecureBootModels.indices, id: \.self) { i in
@@ -203,17 +203,17 @@ struct SingleRawStringView: View {
                         }.labelsHidden()
                         
                     }
-                    else if Dict.name == "ConsoleAttributes" && Dict.type == "int" && Dict.ParentName == "Boot" {
-                        ConsoleAttributesView(StringValue: $Dict.StringValue)
+                    else if Dict.name == "ConsoleAttributes" && Dict.type == "int" && Dict.parentName == "Boot" {
+                        ConsoleAttributesView(stringValue: $Dict.stringValue)
                     }
-                    else if Dict.name == "PickerAttributes" && Dict.type == "int" && Dict.ParentName == "Boot" {
+                    else if Dict.name == "PickerAttributes" && Dict.type == "int" && Dict.parentName == "Boot" {
                         
                         Button("Select") {
                             isShowingPopover.toggle()
 
                         } .popover(isPresented: $isShowingPopover, arrowEdge: .bottom) {
                             
-                            PopoverForOptions(value: $Dict.StringValue, selectingOptions: [
+                            PopoverForOptions(value: $Dict.stringValue, selectingOptions: [
                                 HAPMultiOptions(value: 1, isSelected: false, info: "Provides custom icons for boot entries:..."),
                                 HAPMultiOptions(value: 2, isSelected: false, info: "Provides custom prerendered titles for boot entries from .disk_label (.disk_label_2x) file next to the bootloader for all filesystems..."),
                                 HAPMultiOptions(value: 4, isSelected: false, info: "Provides predefined label images for boot entries without custom entries. This may however give less detail for the actual boot entry."),
@@ -227,7 +227,7 @@ struct SingleRawStringView: View {
                         }
                         
                     }
-                    else if Dict.name == "PickerMode" && Dict.type == "string" && Dict.ParentName == "Boot" {
+                    else if Dict.name == "PickerMode" && Dict.type == "string" && Dict.parentName == "Boot" {
                         
                         Picker(selection: $selectedPicker.pickerChanged(setPickerMode), label: Text("")) {
                             
@@ -240,7 +240,7 @@ struct SingleRawStringView: View {
                         }.labelsHidden()
                         
                     }
-                    else if Dict.name == "PickerVariant" && Dict.type == "string" && Dict.ParentName == "Boot" {
+                    else if Dict.name == "PickerVariant" && Dict.type == "string" && Dict.parentName == "Boot" {
                         
                         Picker(selection: $selectedPicker.pickerChanged(setPickerVariant), label: Text("")) {
                             
@@ -254,7 +254,7 @@ struct SingleRawStringView: View {
                         }.labelsHidden()
                         
                     }
-                    else if Dict.name == "HibernateMode" && Dict.type == "string" && Dict.ParentName == "Boot" {
+                    else if Dict.name == "HibernateMode" && Dict.type == "string" && Dict.parentName == "Boot" {
                         
                         Picker(selection: $selectedPicker.pickerChanged(setHibernateMode), label: Text("")) {
                             
@@ -268,7 +268,7 @@ struct SingleRawStringView: View {
                         }.labelsHidden()
                         
                     }
-                    else if Dict.name == "LauncherOption" && Dict.type == "string" && Dict.ParentName == "Boot" {
+                    else if Dict.name == "LauncherOption" && Dict.type == "string" && Dict.parentName == "Boot" {
                         
                         Picker(selection: $selectedPicker.pickerChanged(setLauncherOption), label: Text("")) {
                             
@@ -282,7 +282,7 @@ struct SingleRawStringView: View {
                         }.labelsHidden()
                         
                     }
-                    else if Dict.name == "KernelArch" && Dict.type == "string" && Dict.ParentName == "Scheme" {
+                    else if Dict.name == "KernelArch" && Dict.type == "string" && Dict.parentName == "Scheme" {
                         
                         Picker(selection: $selectedPicker.pickerChanged(setKernelArch), label: Text("")) {
                             
@@ -296,7 +296,7 @@ struct SingleRawStringView: View {
                         }.labelsHidden()
                         
                     }
-                    else if Dict.name == "KernelCache" && Dict.type == "string" && Dict.ParentName == "Scheme" {
+                    else if Dict.name == "KernelCache" && Dict.type == "string" && Dict.parentName == "Scheme" {
                         
                         Picker(selection: $selectedPicker.pickerChanged(setKernelCache), label: Text("")) {
                             
@@ -310,7 +310,7 @@ struct SingleRawStringView: View {
                         }.labelsHidden()
                         
                     }
-                    else if Dict.name == "Resolution" && Dict.type == "string" && Dict.ParentName == "Output" {
+                    else if Dict.name == "Resolution" && Dict.type == "string" && Dict.parentName == "Output" {
                         
                         Picker(selection: $selectedPicker.pickerChanged(setOutputResolution), label: Text("")) {
                             
@@ -325,7 +325,7 @@ struct SingleRawStringView: View {
                         }.labelsHidden()
                         
                     }
-                    else if Dict.name == "GopPassThrough" && Dict.type == "string" && Dict.ParentName == "Output" {
+                    else if Dict.name == "GopPassThrough" && Dict.type == "string" && Dict.parentName == "Output" {
                        
                        Picker(selection: $selectedPicker.pickerChanged(setOutputGopPassThrough), label: Text("")) {
                            
@@ -338,7 +338,7 @@ struct SingleRawStringView: View {
                        }.labelsHidden()
                        
                    }
-                    else if Dict.name == "AppleEvent" && Dict.type == "string" && Dict.ParentName == "AppleInput" {
+                    else if Dict.name == "AppleEvent" && Dict.type == "string" && Dict.parentName == "AppleInput" {
                         
                         Picker("", selection: $selectedPicker.pickerChanged(setAppleEvent)) {
                             
@@ -351,7 +351,7 @@ struct SingleRawStringView: View {
                         }.labelsHidden()
                         
                     }
-                    else if Dict.name == "PlayChime" && Dict.type == "string" && Dict.ParentName == "Audio" {
+                    else if Dict.name == "PlayChime" && Dict.type == "string" && Dict.parentName == "Audio" {
                         
                         Picker("", selection: $selectedPicker.pickerChanged(setPlayChime)) {
                             
@@ -364,7 +364,7 @@ struct SingleRawStringView: View {
                         }.labelsHidden()
                         
                     }
-                    else if Dict.name == "KeySupportMode" && Dict.type == "string" && Dict.ParentName == "Input" {
+                    else if Dict.name == "KeySupportMode" && Dict.type == "string" && Dict.parentName == "Input" {
                         
                         Picker("", selection: $selectedPicker.pickerChanged(setKeySupportMode)) {
                             
@@ -378,7 +378,7 @@ struct SingleRawStringView: View {
                         }.labelsHidden()
                         
                     }
-                    else if Dict.name == "TextRenderer" && Dict.type == "string" && Dict.ParentName == "Output" {
+                    else if Dict.name == "TextRenderer" && Dict.type == "string" && Dict.parentName == "Output" {
                         
                         Picker("", selection: $selectedPicker.pickerChanged(setTextRenderer)) {
                             
@@ -393,7 +393,7 @@ struct SingleRawStringView: View {
                         }.labelsHidden()
                         
                     }
-                    else if Dict.name == "UpdateSMBIOSMode" && Dict.type == "string" && Dict.ParentName == "PlatformInfo" {
+                    else if Dict.name == "UpdateSMBIOSMode" && Dict.type == "string" && Dict.parentName == "PlatformInfo" {
                         
                         Picker("", selection: $selectedPicker.pickerChanged(setUpdateSMBIOSMode)) {
                             
@@ -407,7 +407,7 @@ struct SingleRawStringView: View {
                         }.labelsHidden()
                         
                     }
-                    else if Dict.name == "SystemMemoryStatus" && Dict.type == "string" && Dict.ParentName == "Generic" {
+                    else if Dict.name == "SystemMemoryStatus" && Dict.type == "string" && Dict.parentName == "Generic" {
                         
                         Picker("", selection: $selectedPicker.pickerChanged(setSystemMemoryStatus)) {
                             
@@ -421,7 +421,7 @@ struct SingleRawStringView: View {
                        
                         
                     }
-                    else if Dict.name == "Type" && Dict.type == "string" && Dict.ParentName == "ReservedMemory" {
+                    else if Dict.name == "Type" && Dict.type == "string" && Dict.parentName == "ReservedMemory" {
                         
                         Picker("", selection: $selectedPicker.pickerChanged(setReservedMemory)) {
                             
@@ -436,7 +436,7 @@ struct SingleRawStringView: View {
                        
                         
                     }
-                    else if Dict.name == "MinVersion" && Dict.type == "int" && Dict.ParentName == "APFS" {
+                    else if Dict.name == "MinVersion" && Dict.type == "int" && Dict.parentName == "APFS" {
                         
                         Picker("", selection: $selectedPicker.pickerChanged(setAPFSMinVersion)) {
                             
@@ -451,7 +451,7 @@ struct SingleRawStringView: View {
                        
                         
                     }
-                    else if Dict.name == "MinDate" && Dict.type == "int" && Dict.ParentName == "APFS" {
+                    else if Dict.name == "MinDate" && Dict.type == "int" && Dict.parentName == "APFS" {
                         
                         Picker("", selection: $selectedPicker.pickerChanged(setAPFSMinDate)) {
                             
@@ -470,16 +470,16 @@ struct SingleRawStringView: View {
                     else {
                         if Dict.type == "bool" { //&& Dict.name != "Enabled" {
                             
-                            Toggle("", isOn: $Dict.BoolValue)
+                            Toggle("", isOn: $Dict.boolValue)
                                 .labelsHidden()
                             Spacer()
                         } else {
                             
                             if !showbase64 {
                                 
-                                TextField(Dict.type == "data" ? "Data (Hex)" : Dict.type == "int" ? "Number" : "String" , text: $Dict.StringValue, onEditingChanged: { isTaping in
+                                TextField(Dict.type == "data" ? "Data (Hex)" : Dict.type == "int" ? "Number" : "String" , text: $Dict.stringValue, onEditingChanged: { isTaping in
                                     if !isTaping {
-                                        checkAndFix(to: StringChanged(which: 0, what: Dict.StringValue))
+                                        checkAndFix(to: StringChanged(which: 0, what: Dict.stringValue))
                                     }
                                 })
                                   .textFieldStyle(RoundedBorderTextFieldStyle()) //
@@ -510,9 +510,9 @@ struct SingleRawStringView: View {
                         
                         if !showbase64 {
                             if Dict.type != "bool" {
-                                TextField(Dict.type == "string" ? "String" : Dict.type == "int" ? "Number" : "Data (Hex)", text: $Dict.StringValue, onEditingChanged: { isTaping in
+                                TextField(Dict.type == "string" ? "String" : Dict.type == "int" ? "Number" : "Data (Hex)", text: $Dict.stringValue, onEditingChanged: { isTaping in
                                     if !isTaping {
-                                        checkAndFix(to: StringChanged(which: 0, what: Dict.StringValue))
+                                        checkAndFix(to: StringChanged(which: 0, what: Dict.stringValue))
                                     }
                                 })
                                 .frame(width: 110)
@@ -569,7 +569,7 @@ struct SingleRawStringView: View {
         
          if Dict.type == "data" {
              
-             base64value = Dict.StringValue.data(using: .bytesHexLiteral)?.base64EncodedString() ?? ""
+             base64value = Dict.stringValue.data(using: .bytesHexLiteral)?.base64EncodedString() ?? ""
          }
          
          
@@ -580,98 +580,98 @@ struct SingleRawStringView: View {
          } else if Dict.name == "Arch" && Dict.type == "string" {
              
              findArch()
-         } else if Dict.name == "SystemProductName" && Dict.type == "string" && Dict.ParentName == "Generic" {
+         } else if Dict.name == "SystemProductName" && Dict.type == "string" && Dict.parentName == "Generic" {
              findMacsSystemProductName()
              
-         } else if Dict.name == "SystemMemoryStatus" && Dict.type == "string" && Dict.ParentName == "Generic" {
+         } else if Dict.name == "SystemMemoryStatus" && Dict.type == "string" && Dict.parentName == "Generic" {
             findSystemMemoryStatus()
             
          }
-        else if Dict.name == "ExposeSensitiveData" || Dict.name == "ScanPolicy" && (Dict.type == "int" && Dict.ParentName == "Security") {
+        else if Dict.name == "ExposeSensitiveData" || Dict.name == "ScanPolicy" && (Dict.type == "int" && Dict.parentName == "Security") {
              
           
             selectedPicker = 199
              
          }
-        else if Dict.name == "DmgLoading" && Dict.type == "string" && Dict.ParentName == "Security" {
+        else if Dict.name == "DmgLoading" && Dict.type == "string" && Dict.parentName == "Security" {
              
              findDmgLoading()
              
-         }  else if Dict.name == "SecureBootModel" && Dict.type == "string" && Dict.ParentName == "Security" {
+         }  else if Dict.name == "SecureBootModel" && Dict.type == "string" && Dict.parentName == "Security" {
              
              findSecureBootModel()
              
-         } else if Dict.name == "Vault" && Dict.type == "string" && Dict.ParentName == "Security" {
+         } else if Dict.name == "Vault" && Dict.type == "string" && Dict.parentName == "Security" {
              
              findVault()
              
-         } else if Dict.name == "PickerMode" && Dict.type == "string" && Dict.ParentName == "Boot" {
+         } else if Dict.name == "PickerMode" && Dict.type == "string" && Dict.parentName == "Boot" {
              
              findPickerMode()
              
          }
-        else if Dict.name == "PickerAttributes" && Dict.type == "int" && Dict.ParentName == "Boot" {
+        else if Dict.name == "PickerAttributes" && Dict.type == "int" && Dict.parentName == "Boot" {
             
             selectedPicker = 199
             
         }
-        else if Dict.name == "PickerVariant" && Dict.type == "string" && Dict.ParentName == "Boot" {
+        else if Dict.name == "PickerVariant" && Dict.type == "string" && Dict.parentName == "Boot" {
              
             findPickerVariant()
              
-         }  else if Dict.name == "HibernateMode" && Dict.type == "string" && Dict.ParentName == "Boot" {
+         }  else if Dict.name == "HibernateMode" && Dict.type == "string" && Dict.parentName == "Boot" {
              
              findHibernateMode()
               
-          }  else if Dict.name == "LauncherOption" && Dict.type == "string" && Dict.ParentName == "Boot" {
+          }  else if Dict.name == "LauncherOption" && Dict.type == "string" && Dict.parentName == "Boot" {
              
             findLauncherOption()
               
-          }  else if Dict.name == "KernelArch" && Dict.type == "string" && Dict.ParentName == "Scheme" {
+          }  else if Dict.name == "KernelArch" && Dict.type == "string" && Dict.parentName == "Scheme" {
             
              findKernelArch()
              
-         } else if Dict.name == "KernelCache" && Dict.type == "string" && Dict.ParentName == "Scheme" {
+         } else if Dict.name == "KernelCache" && Dict.type == "string" && Dict.parentName == "Scheme" {
              
              findKernelCache()
              
-         } else if Dict.name == "AppleEvent" && Dict.type == "string" && Dict.ParentName == "AppleInput" {
+         } else if Dict.name == "AppleEvent" && Dict.type == "string" && Dict.parentName == "AppleInput" {
              
              findAppleEvent()
              
-         } else if Dict.name == "PlayChime" && Dict.type == "string" && Dict.ParentName == "Audio" {
+         } else if Dict.name == "PlayChime" && Dict.type == "string" && Dict.parentName == "Audio" {
              
              findPlayChime()
              
-         } else if Dict.name == "KeySupportMode" && Dict.type == "string" && Dict.ParentName == "Input" {
+         } else if Dict.name == "KeySupportMode" && Dict.type == "string" && Dict.parentName == "Input" {
              
              findKeySupportMode()
              
-         } else if Dict.name == "TextRenderer" && Dict.type == "string" && Dict.ParentName == "Output" {
+         } else if Dict.name == "TextRenderer" && Dict.type == "string" && Dict.parentName == "Output" {
              
              findTextRenderer()
              
-         }  else if Dict.name == "UpdateSMBIOSMode" && Dict.type == "string" && Dict.ParentName == "PlatformInfo" {
+         }  else if Dict.name == "UpdateSMBIOSMode" && Dict.type == "string" && Dict.parentName == "PlatformInfo" {
              
              findUpdateSMBIOSMode()
              
-         }  else if Dict.name == "Resolution" && Dict.type == "string" && Dict.ParentName == "Output" {
+         }  else if Dict.name == "Resolution" && Dict.type == "string" && Dict.parentName == "Output" {
             
             findoutputResolution()
             
-        } else if Dict.name == "Type" && Dict.type == "string" && Dict.ParentName == "ReservedMemory" {
+        } else if Dict.name == "Type" && Dict.type == "string" && Dict.parentName == "ReservedMemory" {
             
             findReservedMemory()
             
-        } else if Dict.name == "GopPassThrough" && Dict.type == "string" && Dict.ParentName == "Output" {
+        } else if Dict.name == "GopPassThrough" && Dict.type == "string" && Dict.parentName == "Output" {
             
             findOutputGopPassThrough()
             
-        } else if Dict.name == "MinVersion" && Dict.type == "int" && Dict.ParentName == "APFS" {
+        } else if Dict.name == "MinVersion" && Dict.type == "int" && Dict.parentName == "APFS" {
             
             findAPFSMinVersion()
             
-        } else if Dict.name == "MinDate" && Dict.type == "int" && Dict.ParentName == "APFS" {
+        } else if Dict.name == "MinDate" && Dict.type == "int" && Dict.parentName == "APFS" {
             
             findAPFSMinDate()
             
@@ -683,11 +683,11 @@ struct SingleRawStringView: View {
     
     func findSystemMemoryStatus(){
         
-        if Dict.StringValue == "Auto" {
+        if Dict.stringValue == "Auto" {
             selectedPicker = 0
-        } else  if Dict.StringValue == "Upgradable" {
+        } else  if Dict.stringValue == "Upgradable" {
             selectedPicker = 1
-        }  else  if Dict.StringValue == "Soldered" {
+        }  else  if Dict.stringValue == "Soldered" {
             selectedPicker = 2
         }  else {
             selectedPicker = 199
@@ -697,13 +697,13 @@ struct SingleRawStringView: View {
     func setSystemMemoryStatus(to value: Int) {
         
         if value == 0 {
-            Dict.StringValue = "Auto"
+            Dict.stringValue = "Auto"
         } else if value == 1 {
-            Dict.StringValue = "Upgradable"
+            Dict.stringValue = "Upgradable"
         } else if value == 2 {
-            Dict.StringValue = "Soldered"
+            Dict.stringValue = "Soldered"
         } else if value == 199 {
-            Dict.StringValue = "Auto"
+            Dict.stringValue = "Auto"
         }
         
     }
@@ -711,7 +711,7 @@ struct SingleRawStringView: View {
     
    func findReservedMemory() {
         
-    if let index = ReservedMemory.firstIndex(where: {$0.value == Dict.StringValue}) {
+    if let index = ReservedMemory.firstIndex(where: {$0.value == Dict.stringValue}) {
         
         selectedPicker = index
     } else {
@@ -725,10 +725,10 @@ struct SingleRawStringView: View {
         
        if ind != 199 {
            
-            Dict.StringValue = ReservedMemory[ind].value
+            Dict.stringValue = ReservedMemory[ind].value
        } else {
       
-        Dict.StringValue = "Reserved"
+        Dict.stringValue = "Reserved"
        }
         
         
@@ -737,7 +737,7 @@ struct SingleRawStringView: View {
     
     func findAPFSMinVersion() {
          
-     if let index = APFSMinVersion.firstIndex(where: {$0.value == Dict.StringValue}) {
+     if let index = APFSMinVersion.firstIndex(where: {$0.value == Dict.stringValue}) {
          
          selectedPicker = index
      } else {
@@ -750,17 +750,17 @@ struct SingleRawStringView: View {
         
         if ind != 199 {
             
-             Dict.StringValue = APFSMinVersion[ind].value
+             Dict.stringValue = APFSMinVersion[ind].value
         } else {
        
-         Dict.StringValue = "0"
+         Dict.stringValue = "0"
         }
         
     }
     
     func findAPFSMinDate() {
          
-     if let index = APFSMinVersion.firstIndex(where: {$0.aux! == Dict.StringValue}) {
+     if let index = APFSMinVersion.firstIndex(where: {$0.aux! == Dict.stringValue}) {
          
          selectedPicker = index
      } else {
@@ -773,22 +773,22 @@ struct SingleRawStringView: View {
         
         if ind != 199 {
             
-             Dict.StringValue = APFSMinVersion[ind].aux!
+             Dict.stringValue = APFSMinVersion[ind].aux!
         } else {
        
-         Dict.StringValue = "0"
+         Dict.stringValue = "0"
         }
         
     }
     func findUpdateSMBIOSMode(){
         
-        if Dict.StringValue == "TryOverwrite" {
+        if Dict.stringValue == "TryOverwrite" {
             selectedPicker = 0
-        } else  if Dict.StringValue == "Create" {
+        } else  if Dict.stringValue == "Create" {
             selectedPicker = 1
-        }  else  if Dict.StringValue == "Overwrite" {
+        }  else  if Dict.stringValue == "Overwrite" {
             selectedPicker = 2
-        }  else  if Dict.StringValue == "Custom" {
+        }  else  if Dict.stringValue == "Custom" {
             selectedPicker = 3
         }  else {
             selectedPicker = 199
@@ -798,15 +798,15 @@ struct SingleRawStringView: View {
     func setUpdateSMBIOSMode(to value: Int) {
         
         if value == 0 {
-            Dict.StringValue = "TryOverwrite"
+            Dict.stringValue = "TryOverwrite"
         } else if value == 1 {
-            Dict.StringValue = "Create"
+            Dict.stringValue = "Create"
         } else if value == 2 {
-            Dict.StringValue = "Overwrite"
+            Dict.stringValue = "Overwrite"
         }  else if value == 3 {
-            Dict.StringValue = "Custom"
+            Dict.stringValue = "Custom"
         } else if value == 199 {
-            Dict.StringValue = "Create"
+            Dict.stringValue = "Create"
         }
         
     }
@@ -814,15 +814,15 @@ struct SingleRawStringView: View {
     
     func findTextRenderer(){
         
-        if Dict.StringValue == "BuiltinGraphics" {
+        if Dict.stringValue == "BuiltinGraphics" {
             selectedPicker = 0
-        } else  if Dict.StringValue == "BuiltinText" {
+        } else  if Dict.stringValue == "BuiltinText" {
             selectedPicker = 1
-        }  else  if Dict.StringValue == "SystemGraphics" {
+        }  else  if Dict.stringValue == "SystemGraphics" {
             selectedPicker = 2
-        }  else  if Dict.StringValue == "SystemText" {
+        }  else  if Dict.stringValue == "SystemText" {
             selectedPicker = 3
-        }  else  if Dict.StringValue == "SystemGeneric" {
+        }  else  if Dict.stringValue == "SystemGeneric" {
             selectedPicker = 4
         } else {
             selectedPicker = 199
@@ -832,17 +832,17 @@ struct SingleRawStringView: View {
     func setTextRenderer(to value: Int) {
         
         if value == 0 {
-            Dict.StringValue = "BuiltinGraphics"
+            Dict.stringValue = "BuiltinGraphics"
         } else if value == 1 {
-            Dict.StringValue = "BuiltinText"
+            Dict.stringValue = "BuiltinText"
         } else if value == 2 {
-            Dict.StringValue = "SystemGraphics"
+            Dict.stringValue = "SystemGraphics"
         }  else if value == 3 {
-            Dict.StringValue = "SystemText"
+            Dict.stringValue = "SystemText"
         }  else if value == 4 {
-            Dict.StringValue = "SystemGeneric"
+            Dict.stringValue = "SystemGeneric"
         }  else if value == 199 {
-            Dict.StringValue = "BuiltinGraphics"
+            Dict.stringValue = "BuiltinGraphics"
         }
         
     }
@@ -850,13 +850,13 @@ struct SingleRawStringView: View {
     
     func findKeySupportMode(){
         
-        if Dict.StringValue == "Auto" {
+        if Dict.stringValue == "Auto" {
             selectedPicker = 0
-        } else  if Dict.StringValue == "V1" {
+        } else  if Dict.stringValue == "V1" {
             selectedPicker = 1
-        }  else  if Dict.StringValue == "V2" {
+        }  else  if Dict.stringValue == "V2" {
             selectedPicker = 2
-        }  else  if Dict.StringValue == "AMI" {
+        }  else  if Dict.stringValue == "AMI" {
             selectedPicker = 3
         }  else {
             selectedPicker = 199
@@ -866,15 +866,15 @@ struct SingleRawStringView: View {
     func setKeySupportMode(to value: Int) {
         
         if value == 0 {
-            Dict.StringValue = "Auto"
+            Dict.stringValue = "Auto"
         } else if value == 1 {
-            Dict.StringValue = "V1"
+            Dict.stringValue = "V1"
         } else if value == 2 {
-            Dict.StringValue = "V2"
+            Dict.stringValue = "V2"
         }  else if value == 3 {
-            Dict.StringValue = "AMI"
+            Dict.stringValue = "AMI"
         } else if value == 199 {
-            Dict.StringValue = "Auto"
+            Dict.stringValue = "Auto"
         }
         
         
@@ -883,11 +883,11 @@ struct SingleRawStringView: View {
     
     func findPlayChime(){
         
-        if Dict.StringValue == "Auto" {
+        if Dict.stringValue == "Auto" {
             selectedPicker = 0
-        } else  if Dict.StringValue == "Enabled" {
+        } else  if Dict.stringValue == "Enabled" {
             selectedPicker = 1
-        }  else  if Dict.StringValue == "Disabled" {
+        }  else  if Dict.stringValue == "Disabled" {
             selectedPicker = 2
         }  else {
             selectedPicker = 199
@@ -897,24 +897,24 @@ struct SingleRawStringView: View {
     func setPlayChime(to value: Int) {
         
         if value == 0 {
-            Dict.StringValue = "Auto"
+            Dict.stringValue = "Auto"
         } else if value == 1 {
-            Dict.StringValue = "Enabled"
+            Dict.stringValue = "Enabled"
         } else if value == 2 {
-            Dict.StringValue = "Disabled"
+            Dict.stringValue = "Disabled"
         } else if value == 199 {
-            Dict.StringValue = "Auto"
+            Dict.stringValue = "Auto"
         }
         
         
     }
     func findAppleEvent(){
         
-        if Dict.StringValue == "Auto" {
+        if Dict.stringValue == "Auto" {
             selectedPicker = 0
-        } else  if Dict.StringValue == "Builtin" {
+        } else  if Dict.stringValue == "Builtin" {
             selectedPicker = 1
-        }  else  if Dict.StringValue == "OEM" {
+        }  else  if Dict.stringValue == "OEM" {
             selectedPicker = 2
         }  else {
             selectedPicker = 199
@@ -924,26 +924,26 @@ struct SingleRawStringView: View {
     func setAppleEvent(to value: Int) {
         
         if value == 0 {
-            Dict.StringValue = "Auto"
+            Dict.stringValue = "Auto"
         } else if value == 1 {
-            Dict.StringValue = "Builtin"
+            Dict.stringValue = "Builtin"
         } else if value == 2 {
-            Dict.StringValue = "OEM"
+            Dict.stringValue = "OEM"
         } else if value == 199 {
-            Dict.StringValue = "Auto"
+            Dict.stringValue = "Auto"
         }
         
     }
     
     func findKernelCache(){
         
-        if Dict.StringValue == "Auto" {
+        if Dict.stringValue == "Auto" {
             selectedPicker = 0
-        } else  if Dict.StringValue == "Cacheless" {
+        } else  if Dict.stringValue == "Cacheless" {
             selectedPicker = 1
-        }  else  if Dict.StringValue == "Mkext" {
+        }  else  if Dict.stringValue == "Mkext" {
             selectedPicker = 2
-        }  else  if Dict.StringValue == "Prelinked" {
+        }  else  if Dict.stringValue == "Prelinked" {
             selectedPicker = 3
         }  else {
             selectedPicker = 199
@@ -953,15 +953,15 @@ struct SingleRawStringView: View {
     func setKernelCache(to value: Int) {
         
         if value == 0 {
-            Dict.StringValue = "Auto"
+            Dict.stringValue = "Auto"
         } else if value == 1 {
-            Dict.StringValue = "Cacheless"
+            Dict.stringValue = "Cacheless"
         } else if value == 2 {
-            Dict.StringValue = "Mkext"
+            Dict.stringValue = "Mkext"
         }  else if value == 3 {
-            Dict.StringValue = "Prelinked"
+            Dict.stringValue = "Prelinked"
         } else if value == 199 {
-            Dict.StringValue = "Auto"
+            Dict.stringValue = "Auto"
         }
         
         
@@ -971,9 +971,9 @@ struct SingleRawStringView: View {
     func setOutputResolution(to value: Int) {
         
         if value == 199 {
-            Dict.StringValue = "Max"
+            Dict.stringValue = "Max"
         } else {
-            Dict.StringValue = outputResolutions[value].name
+            Dict.stringValue = outputResolutions[value].name
         }
         
         
@@ -981,11 +981,11 @@ struct SingleRawStringView: View {
     }
     func findOutputGopPassThrough() {
         
-        if Dict.StringValue == "Apple" {
+        if Dict.stringValue == "Apple" {
             selectedPicker = 0
-        } else if Dict.StringValue == "Disabled" {
+        } else if Dict.stringValue == "Disabled" {
             selectedPicker = 1
-        }  else if Dict.StringValue == "Enabled" {
+        }  else if Dict.stringValue == "Enabled" {
             selectedPicker = 2
         } else {
             selectedPicker = 199
@@ -995,14 +995,14 @@ struct SingleRawStringView: View {
         
         
         if value == 199 {
-            Dict.StringValue = "Disabled"
+            Dict.stringValue = "Disabled"
             
         } else if value == 0 {
-            Dict.StringValue = "Apple"
+            Dict.stringValue = "Apple"
         } else if value == 1 {
-            Dict.StringValue = "Disabled"
+            Dict.stringValue = "Disabled"
         } else if value == 2 {
-            Dict.StringValue = "Enabled"
+            Dict.stringValue = "Enabled"
         }
         
         
@@ -1010,7 +1010,7 @@ struct SingleRawStringView: View {
     }
     func findoutputResolution(){
         
-        if let index = outputResolutions.firstIndex(where: {$0.name == Dict.StringValue}) {
+        if let index = outputResolutions.firstIndex(where: {$0.name == Dict.stringValue}) {
             
             selectedPicker = index
         } else {
@@ -1021,13 +1021,13 @@ struct SingleRawStringView: View {
     }
     func findKernelArch(){
         
-        if Dict.StringValue == "Auto" {
+        if Dict.stringValue == "Auto" {
             selectedPicker = 0
-        } else  if Dict.StringValue == "i386" {
+        } else  if Dict.stringValue == "i386" {
             selectedPicker = 1
-        }  else  if Dict.StringValue == "i386-user32" {
+        }  else  if Dict.stringValue == "i386-user32" {
             selectedPicker = 2
-        }  else  if Dict.StringValue == "x86_64" {
+        }  else  if Dict.stringValue == "x86_64" {
             selectedPicker = 3
         }  else {
             selectedPicker = 199
@@ -1037,15 +1037,15 @@ struct SingleRawStringView: View {
     func setKernelArch(to value: Int) {
         
         if value == 0 {
-            Dict.StringValue = "Auto"
+            Dict.stringValue = "Auto"
         } else if value == 1 {
-            Dict.StringValue = "i386"
+            Dict.stringValue = "i386"
         } else if value == 2 {
-            Dict.StringValue = "i386-user32"
+            Dict.stringValue = "i386-user32"
         }  else if value == 3 {
-            Dict.StringValue = "x86_64"
+            Dict.stringValue = "x86_64"
         } else if value == 199 {
-            Dict.StringValue = "Auto"
+            Dict.stringValue = "Auto"
         }
         
     }
@@ -1053,13 +1053,13 @@ struct SingleRawStringView: View {
     
     func findLauncherOption(){
         
-        if Dict.StringValue == "Disabled" {
+        if Dict.stringValue == "Disabled" {
             selectedPicker = 0
-        } else  if Dict.StringValue == "Full" {
+        } else  if Dict.stringValue == "Full" {
             selectedPicker = 1
-        }  else  if Dict.StringValue == "Short" {
+        }  else  if Dict.stringValue == "Short" {
             selectedPicker = 2
-        }  else  if Dict.StringValue == "System" {
+        }  else  if Dict.stringValue == "System" {
             selectedPicker = 3
         }  else {
             selectedPicker = 199
@@ -1069,15 +1069,15 @@ struct SingleRawStringView: View {
     func setLauncherOption(to value: Int) {
         
         if value == 0 {
-            Dict.StringValue = "Disabled"
+            Dict.stringValue = "Disabled"
         } else if value == 1 {
-            Dict.StringValue = "Full"
+            Dict.stringValue = "Full"
         } else if value == 2 {
-            Dict.StringValue = "Short"
+            Dict.stringValue = "Short"
         }  else if value == 3 {
-            Dict.StringValue = "System"
+            Dict.stringValue = "System"
         } else if value == 199 {
-            Dict.StringValue = "Disabled"
+            Dict.stringValue = "Disabled"
         }
         
     }
@@ -1087,10 +1087,10 @@ struct SingleRawStringView: View {
         // Scout set
         if value != 199 {
             
-            Dict.StringValue = TableSignature[value].value
+            Dict.stringValue = TableSignature[value].value
             base64value = TableSignature[value].value.data(using: .bytesHexLiteral)?.base64EncodedString() ?? ""
             
-            if let HexToData =  Dict.StringValue.uppercased().filter({ "ABCDEF0123456789".contains($0) }).data(using: .bytesHexLiteral) {
+            if let HexToData =  Dict.stringValue.uppercased().filter({ "ABCDEF0123456789".contains($0) }).data(using: .bytesHexLiteral) {
                 
                 base64value = HexToData.base64EncodedString()
             }
@@ -1099,7 +1099,7 @@ struct SingleRawStringView: View {
     }
     func findTableSigData(){
         
-        if let IndeX = TableSignature.firstIndex(where: {$0.value == Dict.StringValue}) {
+        if let IndeX = TableSignature.firstIndex(where: {$0.value == Dict.stringValue}) {
             
             selectedPicker = IndeX
         } else {
@@ -1109,7 +1109,7 @@ struct SingleRawStringView: View {
     
     func findSecureBootModel(){
         
-        if let IndeX = SecureBootModels.firstIndex(where: {$0.value == Dict.StringValue}) {
+        if let IndeX = SecureBootModels.firstIndex(where: {$0.value == Dict.stringValue}) {
             
             selectedPicker = IndeX
         } else {
@@ -1120,7 +1120,7 @@ struct SingleRawStringView: View {
     func SetMacsSystemProductName(to value: Int) {
         
         if value != 199 {
-            Dict.StringValue = Macs[value]
+            Dict.stringValue = Macs[value]
             
             
             
@@ -1129,19 +1129,19 @@ struct SingleRawStringView: View {
     func SetSecureBootModel(to value: Int) {
         
         if value != 199 {
-            Dict.StringValue = SecureBootModels[value].value
+            Dict.stringValue = SecureBootModels[value].value
             
             
         } else {
             
-            Dict.StringValue = "Default"
+            Dict.stringValue = "Default"
         }
         
         
     }
     func findMacsSystemProductName(){
         
-        if let IndeX = Macs.firstIndex(where: {$0 == Dict.StringValue}) {
+        if let IndeX = Macs.firstIndex(where: {$0 == Dict.stringValue}) {
             
             selectedPicker = IndeX
         } else {
@@ -1152,11 +1152,11 @@ struct SingleRawStringView: View {
     func setArchVal(to value: Int) {
         
         if value == 0 {
-            Dict.StringValue = "Any"
+            Dict.stringValue = "Any"
         } else if value == 1 {
-            Dict.StringValue = "i386"
+            Dict.stringValue = "i386"
         } else if value == 2 {
-            Dict.StringValue = "x86_64"
+            Dict.stringValue = "x86_64"
         }
         
         
@@ -1167,13 +1167,13 @@ struct SingleRawStringView: View {
     func setDmgLoading(to value: Int) {
         
         if value == 0 {
-            Dict.StringValue = "Any"
+            Dict.stringValue = "Any"
         } else if value == 1 {
-            Dict.StringValue = "Disabled"
+            Dict.stringValue = "Disabled"
         } else if value == 2 {
-            Dict.StringValue = "Signed"
+            Dict.stringValue = "Signed"
         } else if value == 199 {
-            Dict.StringValue = "Signed"
+            Dict.stringValue = "Signed"
         }
         
         
@@ -1181,12 +1181,12 @@ struct SingleRawStringView: View {
     
     func findDmgLoading(){
         
-        if Dict.StringValue == "Any" {
+        if Dict.stringValue == "Any" {
             
             selectedPicker = 0
-        } else  if Dict.StringValue == "Disabled" {
+        } else  if Dict.stringValue == "Disabled" {
             selectedPicker = 1
-        }  else  if Dict.StringValue == "Signed" {
+        }  else  if Dict.stringValue == "Signed" {
             selectedPicker = 2
         } else  {
             selectedPicker = 199
@@ -1196,12 +1196,12 @@ struct SingleRawStringView: View {
     
     func findVault(){
         
-        if Dict.StringValue == "Optional" {
+        if Dict.stringValue == "Optional" {
             
             selectedPicker = 0
-        } else  if Dict.StringValue == "Basic" {
+        } else  if Dict.stringValue == "Basic" {
             selectedPicker = 1
-        }  else  if Dict.StringValue == "Secure" {
+        }  else  if Dict.stringValue == "Secure" {
             selectedPicker = 2
         }   else {
             selectedPicker = 199
@@ -1212,13 +1212,13 @@ struct SingleRawStringView: View {
     func setVault(to value: Int) {
         
         if value == 0 {
-            Dict.StringValue = "Optional"
+            Dict.stringValue = "Optional"
         } else if value == 1 {
-            Dict.StringValue = "Basic"
+            Dict.stringValue = "Basic"
         } else if value == 2 {
-            Dict.StringValue = "Secure"
+            Dict.stringValue = "Secure"
         } else if value == 199 {
-            Dict.StringValue = "Secure"
+            Dict.stringValue = "Secure"
         }
         
         
@@ -1226,12 +1226,12 @@ struct SingleRawStringView: View {
 
     func findPickerMode(){
         
-        if Dict.StringValue == "Builtin" {
+        if Dict.stringValue == "Builtin" {
             
             selectedPicker = 0
-        } else  if Dict.StringValue == "External" {
+        } else  if Dict.stringValue == "External" {
             selectedPicker = 1
-        }  else  if Dict.StringValue == "Apple" {
+        }  else  if Dict.stringValue == "Apple" {
             selectedPicker = 2
         }   else {
             selectedPicker = 199
@@ -1241,14 +1241,14 @@ struct SingleRawStringView: View {
     
     func findPickerVariant(){
         
-        if Dict.StringValue == "Auto" {
+        if Dict.stringValue == "Auto" {
             
             selectedPicker = 0
-        } else  if Dict.StringValue == "Default" {
+        } else  if Dict.stringValue == "Default" {
             selectedPicker = 1
-        }  else  if Dict.StringValue == "Old" {
+        }  else  if Dict.stringValue == "Old" {
             selectedPicker = 2
-        }  else  if Dict.StringValue == "Modern" {
+        }  else  if Dict.stringValue == "Modern" {
             selectedPicker = 3
         }  else {
             selectedPicker = 199
@@ -1258,15 +1258,15 @@ struct SingleRawStringView: View {
     func setPickerVariant(to value: Int) {
         
         if value == 0 {
-            Dict.StringValue = "Auto"
+            Dict.stringValue = "Auto"
         } else if value == 1 {
-            Dict.StringValue = "Default"
+            Dict.stringValue = "Default"
         } else if value == 2 {
-            Dict.StringValue = "Old"
+            Dict.stringValue = "Old"
         }  else if value == 3 {
-            Dict.StringValue = "Modern"
+            Dict.stringValue = "Modern"
         } else if value == 199 {
-            Dict.StringValue = "Custom"
+            Dict.stringValue = "Custom"
         }
         
         
@@ -1274,13 +1274,13 @@ struct SingleRawStringView: View {
     
     func findHibernateMode(){
         
-        if Dict.StringValue == "None" {
+        if Dict.stringValue == "None" {
             selectedPicker = 0
-        } else  if Dict.StringValue == "Auto" {
+        } else  if Dict.stringValue == "Auto" {
             selectedPicker = 1
-        }  else  if Dict.StringValue == "RTC" {
+        }  else  if Dict.stringValue == "RTC" {
             selectedPicker = 2
-        }  else  if Dict.StringValue == "NVRAM" {
+        }  else  if Dict.stringValue == "NVRAM" {
             selectedPicker = 3
         }  else {
             selectedPicker = 199
@@ -1290,15 +1290,15 @@ struct SingleRawStringView: View {
     func setHibernateMode(to value: Int) {
         
         if value == 0 {
-            Dict.StringValue = "None"
+            Dict.stringValue = "None"
         } else if value == 1 {
-            Dict.StringValue = "Auto"
+            Dict.stringValue = "Auto"
         } else if value == 2 {
-            Dict.StringValue = "RTC"
+            Dict.stringValue = "RTC"
         }  else if value == 3 {
-            Dict.StringValue = "NVRAM"
+            Dict.stringValue = "NVRAM"
         } else if value == 199 {
-            Dict.StringValue = "None"
+            Dict.stringValue = "None"
         }
         
         
@@ -1308,13 +1308,13 @@ struct SingleRawStringView: View {
     func setPickerMode(to value: Int) {
         
         if value == 0 {
-            Dict.StringValue = "Builtin"
+            Dict.stringValue = "Builtin"
         } else if value == 1 {
-            Dict.StringValue = "External"
+            Dict.stringValue = "External"
         } else if value == 2 {
-            Dict.StringValue = "Apple"
+            Dict.stringValue = "Apple"
         } else if value == 199 {
-            Dict.StringValue = "Builtin"
+            Dict.stringValue = "Builtin"
         }
         
      
@@ -1322,12 +1322,12 @@ struct SingleRawStringView: View {
     
     func findArch(){
         
-        if Dict.StringValue == "Any" {
+        if Dict.stringValue == "Any" {
             
             selectedPicker = 0
-        } else  if Dict.StringValue == "i386" {
+        } else  if Dict.stringValue == "i386" {
             selectedPicker = 1
-        }  else  if Dict.StringValue == "x86_64" {
+        }  else  if Dict.stringValue == "x86_64" {
             selectedPicker = 2
         }
         
@@ -1342,8 +1342,8 @@ struct SingleRawStringView: View {
             if value.what.contains("-") {
                 filtered.insert("-", at: filtered.startIndex)
             }
-            if Dict.StringValue != filtered {
-                Dict.StringValue = filtered
+            if Dict.stringValue != filtered {
+                Dict.stringValue = filtered
             }
      
         } else  if  Dict.type == "data" {
@@ -1353,7 +1353,7 @@ struct SingleRawStringView: View {
                     if let HexToData =  value.what.uppercased().filter({ "ABCDEF0123456789".contains($0) }).data(using: .bytesHexLiteral) {
 
                      
-                        Dict.StringValue = value.what.uppercased().filter { "ABCDEF0123456789".contains($0) }
+                        Dict.stringValue = value.what.uppercased().filter { "ABCDEF0123456789".contains($0) }
                         base64value = HexToData.base64EncodedString()
                     }
                     
@@ -1361,7 +1361,7 @@ struct SingleRawStringView: View {
                   
                     let convertedVal = Base64toHex(base64value)
                  
-                    Dict.StringValue = convertedVal
+                    Dict.stringValue = convertedVal
                 }
 
          }
@@ -1379,11 +1379,11 @@ struct SingleRawStringView: View {
             Dict.type = "bool"
         } else if value == 2 {
             Dict.type = "int"
-            checkAndFix(to: StringChanged(which: 0, what: Dict.StringValue))
+            checkAndFix(to: StringChanged(which: 0, what: Dict.stringValue))
             
         }  else if value == 3 {
             Dict.type = "data"
-            checkAndFix(to: StringChanged(which: 0, what: Dict.StringValue))
+            checkAndFix(to: StringChanged(which: 0, what: Dict.stringValue))
             
         }
         
@@ -1532,7 +1532,7 @@ struct PopoverForOptions: View {
 }
 
 struct ConsoleAttributesView: View {
-    @Binding var StringValue: String
+    @Binding var stringValue: String
     @State var selectedForeground: Int = 0
     @State var selectedBackground: Int = 0
     
@@ -1581,12 +1581,12 @@ struct ConsoleAttributesView: View {
                 }
                 Text("Sum:")
                   
-                TextField("Number", text: $StringValue)
+                TextField("Number", text: $stringValue)
                 
                 
                     
             } else {
-                Picker(selection: $selectedForeground.pickerChanged(setStringValue), label: Text("")) {
+                Picker(selection: $selectedForeground.pickerChanged(setstringValue), label: Text("")) {
                     
                     ForEach(foregrounds, id:\.self) { foreground in
                         
@@ -1599,7 +1599,7 @@ struct ConsoleAttributesView: View {
                 }.labelsHidden()
                   
                
-                Picker(selection: $selectedBackground.pickerChanged(setStringValue), label: Text("")) {
+                Picker(selection: $selectedBackground.pickerChanged(setstringValue), label: Text("")) {
                     
                     ForEach(backgrounds, id:\.self) { background in
                         
@@ -1614,9 +1614,9 @@ struct ConsoleAttributesView: View {
                 
                     .onAppear {
                         
-                        if Int(StringValue) != nil && Int(StringValue)! > 16 {
+                        if Int(stringValue) != nil && Int(stringValue)! > 16 {
                             
-                            let foundValues = calculateSelected(Int(StringValue)!, [
+                            let foundValues = calculateSelected(Int(stringValue)!, [
                                 HAPMultiOptions(value: 1, isSelected: false, info: "EFI_BLUE"),
                                 HAPMultiOptions(value: 2, isSelected: false, info: "EFI_GREEN"),
                                 HAPMultiOptions(value: 3, isSelected: false, info: "EFI_CYAN"),
@@ -1663,9 +1663,9 @@ struct ConsoleAttributesView: View {
         
     }
     
-    func setStringValue(to value: Int) {
+    func setstringValue(to value: Int) {
         if value != 199 {
-            StringValue = String(selectedForeground + selectedBackground)
+            stringValue = String(selectedForeground + selectedBackground)
             customValue = false
             
         } else {

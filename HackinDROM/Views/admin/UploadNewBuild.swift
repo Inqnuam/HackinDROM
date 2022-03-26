@@ -410,29 +410,29 @@ struct NewBuildView: View {
                 getHAPlistFrom(plist.value.relativePath) { plistStruct in
                     var plistStruct = plistStruct
                     
-                    plistStruct.set(HAPlistStruct(StringValue: "** Enter Board Serial Number **"), to: ["PlatformInfo", "Generic", "MLB"])
-                    plistStruct.set(HAPlistStruct(StringValue: "** Enter Serial Number **"), to: ["PlatformInfo", "Generic", "SystemSerialNumber"])
-                    plistStruct.set(HAPlistStruct(StringValue: "** Enter System UUID **"), to: ["PlatformInfo", "Generic", "SystemUUID"])
-                    plistStruct.set(HAPlistStruct(StringValue: UploadNewBuild.SPN), to: ["PlatformInfo", "Generic", "SystemProductName"])
-                    plistStruct.set(HAPlistStruct(StringValue: "Cw53kXtk"), to: ["PlatformInfo", "Generic", "ROM"])
-                    let bootargs =   plistStruct.get(["NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "boot-args"])?.StringValue ?? ""
+                    plistStruct.set(HAPlistStruct(stringValue: "** Enter Board Serial Number **"), to: ["PlatformInfo", "Generic", "MLB"])
+                    plistStruct.set(HAPlistStruct(stringValue: "** Enter Serial Number **"), to: ["PlatformInfo", "Generic", "SystemSerialNumber"])
+                    plistStruct.set(HAPlistStruct(stringValue: "** Enter System UUID **"), to: ["PlatformInfo", "Generic", "SystemUUID"])
+                    plistStruct.set(HAPlistStruct(stringValue: UploadNewBuild.SPN), to: ["PlatformInfo", "Generic", "SystemProductName"])
+                    plistStruct.set(HAPlistStruct(stringValue: "Cw53kXtk"), to: ["PlatformInfo", "Generic", "ROM"])
+                    let bootargs =   plistStruct.get(["NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "boot-args"])?.stringValue ?? ""
                     haPlistEncode(plistStruct, plist.value.relativePath)
                     
                     var newPlist = NewConfigsData(link: plist.value.lastPathComponent, bootArgs: bootargs)
                     
-                     if let KernelSection =  plistStruct.Childs.first(where: {$0.name == "Kernel"}) {
+                     if let KernelSection =  plistStruct.childs.first(where: {$0.name == "Kernel"}) {
                         
-                        if let PatchSection =  KernelSection.Childs.first(where: {$0.name == "Patch"}) {
+                        if let PatchSection =  KernelSection.childs.first(where: {$0.name == "Patch"}) {
                             
-                            for kentry in PatchSection.Childs {
+                            for kentry in PatchSection.childs {
                                 
                                 var isFound:Bool = false
                                 if !isFound {
-                                    for eField in kentry.Childs {
+                                    for eField in kentry.childs {
                                         
-                                        if (eField.name == "Replace" && eField.type == "data") && (eField.StringValue.localizedCaseInsensitiveCompare("B8CC00000000") == .orderedSame
-                                                                                                   || eField.StringValue.localizedCaseInsensitiveCompare("BACC00000000") == .orderedSame
-                                                                                                   || eField.StringValue.localizedCaseInsensitiveCompare("BACC00000090") == .orderedSame) {
+                                        if (eField.name == "Replace" && eField.type == "data") && (eField.stringValue.localizedCaseInsensitiveCompare("B8CC00000000") == .orderedSame
+                                                                                                   || eField.stringValue.localizedCaseInsensitiveCompare("BACC00000000") == .orderedSame
+                                                                                                   || eField.stringValue.localizedCaseInsensitiveCompare("BACC00000090") == .orderedSame) {
                                             
                                             
                                             

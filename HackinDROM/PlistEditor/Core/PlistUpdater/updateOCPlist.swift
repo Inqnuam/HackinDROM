@@ -27,11 +27,11 @@ func updateOCPlist(_ reference: HAPlistStruct, _ findIn: HAPlistStruct) -> HAPli
         }
         
         if returningItem.name == "Comment" {
-            returningItem.StringValue.removeAll(where: {$0.asciiValue == nil})
+            returningItem.stringValue.removeAll(where: {$0.asciiValue == nil})
         }
         
         if returningItem.type == "string" && (returningItem.name == "Path" || returningItem.name == "BundlePath") {
-            returningItem.StringValue = returningItem.StringValue.removeWhitespace().replacingOccurrences(of: ",", with: "_")
+            returningItem.stringValue = returningItem.stringValue.removeWhitespace().replacingOccurrences(of: ",", with: "_")
         }
         
     }
@@ -39,33 +39,33 @@ func updateOCPlist(_ reference: HAPlistStruct, _ findIn: HAPlistStruct) -> HAPli
         
         returningItem.type = "dict"
         returningItem.name = findIn.name
-        returningItem.ParentName = findIn.ParentName
+        returningItem.parentName = findIn.parentName
         
         
-        if returningItem.ParentName == "DeviceProperties" && (returningItem.name == "Add" || returningItem.name == "Delete") {
-            returningItem.Childs = findIn.Childs
+        if returningItem.parentName == "DeviceProperties" && (returningItem.name == "Add" || returningItem.name == "Delete") {
+            returningItem.childs = findIn.childs
             
             // fix borked PCI path error
-            for (ind, itm) in returningItem.Childs.enumerated() {
-              returningItem.Childs[ind].name = itm.name.removeWhitespace()
+            for (ind, itm) in returningItem.childs.enumerated() {
+              returningItem.childs[ind].name = itm.name.removeWhitespace()
               
             }
-        } else  if returningItem.ParentName == "NVRAM" && (returningItem.name == "Add" || returningItem.name == "Delete" || returningItem.name == "LegacySchema") {
-            returningItem.Childs = findIn.Childs
+        } else  if returningItem.parentName == "NVRAM" && (returningItem.name == "Add" || returningItem.name == "Delete" || returningItem.name == "LegacySchema") {
+            returningItem.childs = findIn.childs
         }
         else {
             
-            for item in reference.Childs {
-                if let foundIndex = findIn.Childs.firstIndex(where: {$0.name == item.name}) {
-                   returningItem.Childs.append(updateOCPlist(item, findIn.Childs[foundIndex]))
+            for item in reference.childs {
+                if let foundIndex = findIn.childs.firstIndex(where: {$0.name == item.name}) {
+                   returningItem.childs.append(updateOCPlist(item, findIn.childs[foundIndex]))
                 } else {
-                    if item.name == "Arch" && item.type == "string" && (reference.ParentName == "Add" || reference.ParentName == "Block" || reference.ParentName == "Force" || reference.ParentName == "Patch") && (item.StringValue == "x86_64" || item.StringValue == "i386") {
+                    if item.name == "Arch" && item.type == "string" && (reference.parentName == "Add" || reference.parentName == "Block" || reference.parentName == "Force" || reference.parentName == "Patch") && (item.stringValue == "x86_64" || item.stringValue == "i386") {
                         var child = item
-                        child.StringValue = "Any"
-                        returningItem.Childs.append(child)
+                        child.stringValue = "Any"
+                        returningItem.childs.append(child)
                     }
                     else {
-                        returningItem.Childs.append(item)
+                        returningItem.childs.append(item)
                     }
                     
                 }
@@ -78,26 +78,26 @@ func updateOCPlist(_ reference: HAPlistStruct, _ findIn: HAPlistStruct) -> HAPli
         
         returningItem.type = "array"
         returningItem.name = findIn.name
-        returningItem.ParentName = findIn.ParentName
-        if !findIn.Childs.isEmpty {
+        returningItem.parentName = findIn.parentName
+        if !findIn.childs.isEmpty {
             
             // Trying to create Template from Reference file
-            let template = reference.Childs.isEmpty ? HAPlistStruct() : reference.Childs.first!
+            let template = reference.childs.isEmpty ? HAPlistStruct() : reference.childs.first!
             
-            for item in findIn.Childs {
+            for item in findIn.childs {
                 if template.type.isEmpty {
-                    returningItem.Childs.append(item)
+                    returningItem.childs.append(item)
                 } else {
                     
-                    if template.ParentName == "Drivers" && item.type == "string" {
+                    if template.parentName == "Drivers" && item.type == "string" {
                         
-                        let newDriverStruct =  generateNewDriverStructType(template: template, driverPath: item.StringValue)
-                        returningItem.Childs.append(newDriverStruct)
+                        let newDriverStruct =  generateNewDriverStructType(template: template, driverPath: item.stringValue)
+                        returningItem.childs.append(newDriverStruct)
                         
                         
                         
                     } else {
-                        returningItem.Childs.append(updateOCPlist(template, item))
+                        returningItem.childs.append(updateOCPlist(template, item))
                     }
                     
                     

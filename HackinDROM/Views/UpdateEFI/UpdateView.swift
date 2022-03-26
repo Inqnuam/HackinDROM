@@ -369,20 +369,20 @@ struct InstallView: View {
             let myPlist = HAPlistContent()
             if myPlist.loadPlist(filePath: "\(CurrentEFI)/EFI/OC/config.plist", isTemplate: false) {
                 
-                let _ =  myPlist.pContent.set(HAPlistStruct(name:"MLB", StringValue: mycustomdata.MLB, type: "string"), to: ["PlatformInfo", "Generic", "MLB"])
+                let _ =  myPlist.pContent.set(HAPlistStruct(name:"MLB", stringValue: mycustomdata.MLB, type: "string"), to: ["PlatformInfo", "Generic", "MLB"])
                 
-                let _ =  myPlist.pContent.set(HAPlistStruct(name:"SystemSerialNumber", StringValue: mycustomdata.SystemSerialNumber, type: "string"), to: ["PlatformInfo", "Generic", "SystemSerialNumber"])
+                let _ =  myPlist.pContent.set(HAPlistStruct(name:"SystemSerialNumber", stringValue: mycustomdata.SystemSerialNumber, type: "string"), to: ["PlatformInfo", "Generic", "SystemSerialNumber"])
 
-                let _ =  myPlist.pContent.set(HAPlistStruct(name:"SystemProductName", StringValue: mycustomdata.SystemProductName, type: "string"), to: ["PlatformInfo", "Generic", "SystemProductName"])
+                let _ =  myPlist.pContent.set(HAPlistStruct(name:"SystemProductName", stringValue: mycustomdata.SystemProductName, type: "string"), to: ["PlatformInfo", "Generic", "SystemProductName"])
                 
-                let _ =  myPlist.pContent.set(HAPlistStruct(name:"SystemUUID", StringValue: mycustomdata.SystemUUID, type: "string"), to: ["PlatformInfo", "Generic", "SystemUUID"])
+                let _ =  myPlist.pContent.set(HAPlistStruct(name:"SystemUUID", stringValue: mycustomdata.SystemUUID, type: "string"), to: ["PlatformInfo", "Generic", "SystemUUID"])
                 
                 
-                let _ = myPlist.pContent.set(HAPlistStruct(name:"boot-args", StringValue: mycustomdata.BootArgs, type: "string"), to: ["NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "boot-args"])
+                let _ = myPlist.pContent.set(HAPlistStruct(name:"boot-args", stringValue: mycustomdata.BootArgs, type: "string"), to: ["NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "boot-args"])
                 
-                let _ = myPlist.pContent.set(HAPlistStruct(name:"ROM", StringValue: mycustomdata.ROM, type: "data"), to: ["PlatformInfo", "Generic", "ROM"])
+                let _ = myPlist.pContent.set(HAPlistStruct(name:"ROM", stringValue: mycustomdata.ROM, type: "data"), to: ["PlatformInfo", "Generic", "ROM"])
                 
-                let _ = myPlist.pContent.set(HAPlistStruct(name:"csr-active-config", StringValue: mycustomdata.SIP, type: "data"), to: ["NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "csr-active-config"])
+                let _ = myPlist.pContent.set(HAPlistStruct(name:"csr-active-config", stringValue: mycustomdata.SIP, type: "data"), to: ["NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "csr-active-config"])
                 
                 let pathik = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("workingHD.plist")
                 pathu = pathik.relativePath
@@ -897,7 +897,7 @@ struct InstallView: View {
                 
                 NSWorkspace.shared.open(URL(fileURLWithPath: CurrentEFI, isDirectory: true))
             }
-            SetNotif("Your EFI is ready!", "Just installed OC \(sharedData.OCv) on \(EFIs[sharedData.CurrentEFI].Name)")
+            SetNotif("Your EFI is ready!", "Just installed OC \(sharedData.OCv) on \(EFIs[sharedData.CurrentEFI].name)")
             group.leave()
             
         }
@@ -1070,13 +1070,13 @@ struct InstallView: View {
         
         
         getHAPlistFrom(config) { plist in
-            PlatformInfo.MLB =  plist.get(["PlatformInfo", "Generic", "MLB"])?.StringValue ?? ""
-            PlatformInfo.SystemProductName = plist.get(["PlatformInfo", "Generic", "SystemProductName"])?.StringValue ?? ""
-            PlatformInfo.SystemSerialNumber = plist.get(["PlatformInfo", "Generic", "SystemSerialNumber"])?.StringValue ?? ""
-            PlatformInfo.SystemUUID = plist.get(["PlatformInfo", "Generic", "SystemUUID"])?.StringValue ?? ""
-            PlatformInfo.BootArgs = plist.get(["NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "boot-args"])?.StringValue ?? ""
-            PlatformInfo.ROM = plist.get(["PlatformInfo", "Generic", "ROM"])?.StringValue ?? ""
-            PlatformInfo.SIP =  plist.get(["NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "csr-active-config"])?.StringValue ?? ""
+            PlatformInfo.MLB =  plist.get(["PlatformInfo", "Generic", "MLB"])?.stringValue ?? ""
+            PlatformInfo.SystemProductName = plist.get(["PlatformInfo", "Generic", "SystemProductName"])?.stringValue ?? ""
+            PlatformInfo.SystemSerialNumber = plist.get(["PlatformInfo", "Generic", "SystemSerialNumber"])?.stringValue ?? ""
+            PlatformInfo.SystemUUID = plist.get(["PlatformInfo", "Generic", "SystemUUID"])?.stringValue ?? ""
+            PlatformInfo.BootArgs = plist.get(["NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "boot-args"])?.stringValue ?? ""
+            PlatformInfo.ROM = plist.get(["PlatformInfo", "Generic", "ROM"])?.stringValue ?? ""
+            PlatformInfo.SIP =  plist.get(["NVRAM", "Add", "7C436110-AB2A-4BBB-A880-FE41995C9F82", "csr-active-config"])?.stringValue ?? ""
             PlatformInfo.OCV = EFIs[sharedData.CurrentEFI].OCv
         }
         

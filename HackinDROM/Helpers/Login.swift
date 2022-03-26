@@ -81,9 +81,6 @@ func logged() -> HTTPCookie {
         
         if cookie.name == "HDSESS" {
             cookieVal = cookie
-            
-            
-            
         }
     }
     

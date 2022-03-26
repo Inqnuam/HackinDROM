@@ -11,35 +11,35 @@ import Foundation
 struct HAPlistStruct: Identifiable, Equatable {
     var id = UUID()
     var name = ""
-    var StringValue: String = "" {
+    var stringValue: String = "" {
         didSet(oldValue) {
             if type == "int" {
-                var  filtered = StringValue.filter { $0.isNumber }
-                if StringValue.contains("-") {
+                var  filtered = stringValue.filter { $0.isNumber }
+                if stringValue.contains("-") {
                     filtered.insert("-", at: filtered.startIndex)
                 }
-                StringValue = filtered
+                stringValue = filtered
             } else if type == "data" {
-                if StringValue.uppercased().filter({ "ABCDEF0123456789".contains($0) }).data(using: .bytesHexLiteral) != nil {
-                    StringValue = StringValue.uppercased().filter { "ABCDEF0123456789".contains($0) }
+                let dataString = stringValue.uppercased().filter({ "ABCDEF0123456789".contains($0) })
+                if dataString.data(using: .bytesHexLiteral) != nil {
+                    stringValue = dataString
                 }
             } else if type == "string" && name == "Comment" {
-                StringValue.removeAll(where: {$0.asciiValue == nil})
+                stringValue.removeAll(where: {$0.asciiValue == nil})
             }
         }
     }
-    var BoolValue: Bool = false, isEditing: Bool = false, isShowing: Bool = false, isOn: Bool = false
-    var type = ""
-    var ParentName = ""
-    var Childs: [HAPlistStruct] = []
+    var boolValue: Bool = false, isEditing: Bool = false, isShowing: Bool = false, isOn: Bool = false
+    var type:String = "", parentName:String = ""
+    var childs: [HAPlistStruct] = []
     var customName: String {
         var newVal = ""
-        if let indeX = Childs.firstIndex(where: {$0.type == "string" && $0.name == "Path"}) {
-            newVal = Childs[indeX].StringValue.replacingOccurrences(of: ".aml", with: "", options: .caseInsensitive).replacingOccurrences(of: ".efi", with: "", options: .caseInsensitive)
-        } else if let indeX = Childs.firstIndex(where: {$0.type == "string" && $0.name == "BundlePath"}) {
-            newVal = Childs[indeX].StringValue.replacingOccurrences(of: ".kext", with: "", options: .caseInsensitive)
-        } else if let indeX = Childs.firstIndex(where: {$0.type == "string" && $0.name == "Comment"}) {
-            newVal = Childs[indeX].StringValue
+        if let indeX = childs.firstIndex(where: {$0.type == "string" && $0.name == "Path"}) {
+            newVal = childs[indeX].stringValue.replacingOccurrences(of: ".aml", with: "", options: .caseInsensitive).replacingOccurrences(of: ".efi", with: "", options: .caseInsensitive)
+        } else if let indeX = childs.firstIndex(where: {$0.type == "string" && $0.name == "BundlePath"}) {
+            newVal = childs[indeX].stringValue.replacingOccurrences(of: ".kext", with: "", options: .caseInsensitive)
+        } else if let indeX = childs.firstIndex(where: {$0.type == "string" && $0.name == "Comment"}) {
+            newVal = childs[indeX].stringValue
         }
          return newVal
     }
@@ -55,21 +55,21 @@ func cleanHAPlistStruct(_ originalItem: HAPlistStruct) -> HAPlistStruct {
     var cleanItem = originalItem
     cleanItem.id = UUID()
     if cleanItem.type == "int" {
-        cleanItem.StringValue = "0"
+        cleanItem.stringValue = "0"
     } else {
-        cleanItem.StringValue = ""
+        cleanItem.stringValue = ""
     }
     
     if cleanItem.name == "Enabled"{
-        cleanItem.BoolValue = true
+        cleanItem.boolValue = true
     } else {
-        cleanItem.BoolValue = false
+        cleanItem.boolValue = false
     }
     
-    for indeX in cleanItem.Childs.indices {
+    for indeX in cleanItem.childs.indices {
         
         
-        cleanItem.Childs[indeX] = cleanHAPlistStruct(cleanItem.Childs[indeX])
+        cleanItem.childs[indeX] = cleanHAPlistStruct(cleanItem.childs[indeX])
     }
     return cleanItem
 }
@@ -85,11 +85,6 @@ struct AnyEncodable: Encodable {
         try _encode(encoder)
     }
 }
-func createDictFrom(_ hap: HAPlistStruct) {
-
-}
-
-
 
 struct HAPMultiOptions:Identifiable, Hashable {
     var id = UUID()
