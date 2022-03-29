@@ -50,15 +50,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             Task {
                 let notifCenter = UNUserNotificationCenter.current()
                 let settings =  await notifCenter.notificationSettings()
-                print(settings)
                 let authorizationOptions: UNAuthorizationOptions = [.alert, .sound, .badge]
                 if settings.authorizationStatus != .authorized {
                     let authorizationGranted = try await notifCenter.requestAuthorization(options: authorizationOptions)
                     if authorizationGranted {
                         print("All set!")
                     }
-                    
-                    
                 }
             }
             

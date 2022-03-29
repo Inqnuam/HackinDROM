@@ -10,9 +10,9 @@ import Foundation
 func fixOCFilePathErrors() {
     if let allKextFiles = try? fileManager.contentsOfDirectory(atPath: standaloneUpdateDir + "/EFI/OC/Kexts") {
         for kext in allKextFiles {
-            if kext.contains(",") || kext.contains(" ") {
+            if !kext.filter({!ocValidCharacters.contains($0)}).isEmpty  {
                 do {
-                    try fileManager.moveItem(atPath: standaloneUpdateDir + "/EFI/OC/Kexts/\(kext)", toPath: standaloneUpdateDir + "/EFI/OC/Kexts/\(kext.removeWhitespace().replacingOccurrences(of: ",", with: "_"))")
+                    try fileManager.moveItem(atPath: standaloneUpdateDir + "/EFI/OC/Kexts/\(kext)", toPath: standaloneUpdateDir + "/EFI/OC/Kexts/\(kext.filter{ocValidCharacters.contains($0)})")
                 } catch {
                     print(error)
                 }
@@ -23,10 +23,9 @@ func fixOCFilePathErrors() {
     
     if let allAMLFiles = try? fileManager.contentsOfDirectory(atPath: standaloneUpdateDir + "/EFI/OC/ACPI") {
         for aml in allAMLFiles {
-            if aml.contains(",") || aml.contains(" ") {
-                
+            if !aml.filter({!ocValidCharacters.contains($0)}).isEmpty  {
                 do {
-                    try fileManager.moveItem(atPath: standaloneUpdateDir + "/EFI/OC/ACPI/\(aml)", toPath: standaloneUpdateDir + "/EFI/OC/ACPI/\(aml.removeWhitespace().replacingOccurrences(of: ",", with: "_"))")
+                    try fileManager.moveItem(atPath: standaloneUpdateDir + "/EFI/OC/ACPI/\(aml)", toPath: standaloneUpdateDir + "/EFI/OC/ACPI/\(aml.filter{ocValidCharacters.contains($0)})")
                 } catch {
                     print(error)
                 }
@@ -37,9 +36,9 @@ func fixOCFilePathErrors() {
     
     if let allDriversFiles = try? fileManager.contentsOfDirectory(atPath: standaloneUpdateDir + "/EFI/OC/Drivers") {
         for driver in allDriversFiles {
-            if driver.contains(",") || driver.contains(" ") {
+            if !driver.filter({!ocValidCharacters.contains($0)}).isEmpty  {
                 do {
-                    try fileManager.moveItem(atPath: standaloneUpdateDir + "/EFI/OC/Drivers/\(driver)", toPath: standaloneUpdateDir + "/EFI/OC/Drivers/\(driver.removeWhitespace().replacingOccurrences(of: ",", with: "_"))")
+                    try fileManager.moveItem(atPath: standaloneUpdateDir + "/EFI/OC/Drivers/\(driver)", toPath: standaloneUpdateDir + "/EFI/OC/Drivers/\(driver.filter{ocValidCharacters.contains($0)})")
                 } catch {
                     print(error)
                 }

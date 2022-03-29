@@ -69,7 +69,7 @@ class HASharedData: ObservableObject {
     @Published var OSInfo: String = "macOS \(procesinfo.operatingSystemVersion.majorVersion).\(procesinfo.operatingSystemVersion.minorVersion).\(procesinfo.operatingSystemVersion.patchVersion) - \(procesinfo.operatingSystemVersionString.slice(from: "Build ", to: ")") ?? "")"
     @Published var whoami: String = NSUserName()
     @Published var Mypwd: String = ""
- 
+    
     @Published var RunningKexts: [RunningKextsStruct] = runningkexts()
     @Published var initialEFIs: [EFI] = []
     let nvram = NVRAM()
@@ -77,7 +77,7 @@ class HASharedData: ObservableObject {
     
     init() {
         do {
-           try fileManager.createDirectory(atPath: tmp+"/tmp", withIntermediateDirectories: true, attributes: nil)
+            try fileManager.createDirectory(atPath: tmp+"/tmp", withIntermediateDirectories: true, attributes: nil)
         } catch {
             print(error)
         }
@@ -86,27 +86,24 @@ class HASharedData: ObservableObject {
         imOnline() { my in
             if my.online {
                 if Version(self.CurrentBuildVersion)! < Version(my.version)! {
-                     self.newAppVersion = my.version
+                    self.newAppVersion = my.version
                 }
                 
-                    self.GetAllBuildsAndConfigure()
-                    //                    OpenCoreGitHubReleases()
-                    self.OpenCoreDownloadLink = GetGitHubDownloadLink("OpenCorePkg")
-                    self.isOnline = true
-                    
-                    if my.userid == "nul" {
-                        self.ConnectedUser = ""
-                        self.CurrentUser = ""
-                        self.UserID = ""
-                    }
-                    else {
-                        self.ConnectedUser = my.username
-                        self.CurrentUser = my.username
-                        self.UserID = my.userid
-                    }
-                    
-                    
+                self.GetAllBuildsAndConfigure()
+                //                    OpenCoreGitHubReleases()
+                self.OpenCoreDownloadLink = GetGitHubDownloadLink("OpenCorePkg")
+                self.isOnline = true
                 
+                if my.userid == "nul" {
+                    self.ConnectedUser = ""
+                    self.CurrentUser = ""
+                    self.UserID = ""
+                }
+                else {
+                    self.ConnectedUser = my.username
+                    self.CurrentUser = my.username
+                    self.UserID = my.userid
+                }
                 
             } else {
                 self.isOnline = false
@@ -153,14 +150,11 @@ class HASharedData: ObservableObject {
                                 self.vendors.append(self.AllBuilds[IndeX].vendor)
                             }
                         }
-                        
-                        
                     }
                     
                     self.vendors.sort {
                         $0 < $1
                     }
-                    
                 }
                 
                 if let index = self.AllBuilds.firstIndex(where: {$0.active && $0.id == self.MyBuildID}) {
@@ -171,18 +165,14 @@ class HASharedData: ObservableObject {
                     
                     
                     if self.GPU == 0 {
-                        
                         if self.Wifi == 0 {
-                            
                             if let index2 = self.AllBuilds[index].latest.AMDGPU.firstIndex(where: {$0.Name.contains("Broadcom")}) {
-                                
                                 configname =  self.AllBuilds[index].latest.AMDGPU[index2].link
                             }
                             
                         } else {
                             
                             if let index2 = self.AllBuilds[index].latest.AMDGPU.firstIndex(where: {$0.Name.contains("Intel")}) {
-                                
                                 configname =  self.AllBuilds[index].latest.AMDGPU[index2].link
                             }
                             
@@ -192,17 +182,13 @@ class HASharedData: ObservableObject {
                     else {
                         
                         if self.Wifi == 0 {
-                            
                             if let index2 = self.AllBuilds[index].latest.IntelGPU.firstIndex(where: {$0.Name.contains("Broadcom")}) {
-                                
                                 configname =  self.AllBuilds[index].latest.IntelGPU[index2].link
                             }
                             
                         }
                         else {
-                            
                             if let index2 = self.AllBuilds[index].latest.IntelGPU.firstIndex(where: {$0.Name.contains("Intel")}) {
-                                
                                 configname =  self.AllBuilds[index].latest.IntelGPU[index2].link
                             }
                             
@@ -211,11 +197,7 @@ class HASharedData: ObservableObject {
                     
                     
                     if configname != "" && downloadlink != "nul" {
-                        
                         self.OCv = self.AllBuilds[index].latest.ocvs
-                        
-                        
-                        
                         let pathu = "\(tmp)/HDdefault.plist"
                         shell("rm -rf '\(pathu)'") { result, error in
                             
@@ -249,9 +231,7 @@ class HASharedData: ObservableObject {
                                                 if FileNames.count > 0 {
                                                     
                                                     for KextName in FileNames {
-                                                        
                                                         CaseyKextsList.append(KextStructs(name: KextName, LocalV: "nul", GitHubV: "nul", DownloadLink: "nul"))
-                                                        
                                                     }
                                                 }
                                             } catch {
@@ -259,15 +239,9 @@ class HASharedData: ObservableObject {
                                             }
                                             
                                             shell("rm -rf '\(tmp)/extracting'") { result, error in
-                                                
                                                 shell("rm -rf '\(tmp)/\(downloadlink)'") { _, _ in
-                                                    
                                                     if Version(self.OCv)! > Version(MyHackData.OCV)! && MyHackData.OCV != "0.0.0" {
-                                                        
-                                                        
-                                                        
                                                         SetNotif("Update Available", "OpenCore \(self.OCv) is available!")
-                                                        
                                                     }
                                                 }
                                             }
@@ -326,6 +300,6 @@ let MyHackData = MyHackDataStrc(MLB: nvram.GetOFVariable("4D1EDE05-38C7-4A6A-9CC
 
 @discardableResult
 func asyncUnzip (from: String, to: String) async -> String {
-    print("asyncUnzip to \(to)")
+    // print("asyncUnzip to \(to)")
     return await shellAsync("unzip -o '\(from)' -d '\(to)'")
 }

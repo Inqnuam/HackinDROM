@@ -177,20 +177,14 @@ func mountEFI(UUID: String, NAME: String, user: String, pwd: String) -> String {
     
     var mountedEFIName = ""
     let disk = DADiskCreateFromBSDName(kCFAllocatorDefault, session!, "/dev/\(UUID)")!
-    
     let IODetPar =  DADiskCopyWholeDisk(disk)
     
     var name = ""
-    
-    
     if IODetPar != nil {
         let ReqDADATAPar = DADiskCopyDescription(IODetPar!)
         let desc2 = ReqDADATAPar as! [String: CFTypeRef]
         name = generateEFIName(desc2)
-        
     }
-    
-    
     
     var output:NSString?
     if launchCommandAsAdmin(UUID, &output) {

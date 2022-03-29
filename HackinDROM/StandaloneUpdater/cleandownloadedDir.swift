@@ -30,7 +30,6 @@ func cleanDownloadedLatestKext(_ latestKextDir: String) {
     }
     do {
         let dirItems = try fileManager.contentsOfDirectory(at: URL(fileURLWithPath: latestKextDir), includingPropertiesForKeys: nil, options: [.skipsHiddenFiles])
-        
         let filesToDelete = dirItems.filter { $0.pathExtension != "kext" }
         
         for itm in filesToDelete {
@@ -48,11 +47,15 @@ func cleanDownloadedVirtualSCMDir(_ latestKextDir: String) {
     
     do {
         let dirItems = try fileManager.contentsOfDirectory(at: URL(fileURLWithPath: latestKextDir + "/Kexts"), includingPropertiesForKeys: nil, options: [.skipsHiddenFiles])
-        
         let SMCPlugins = dirItems.filter { $0.pathExtension == "kext" }
         
         for itm in SMCPlugins {
-            try fileManager.moveItem(at: itm, to: URL(fileURLWithPath: latestKextDir + "/\(itm.lastPathComponent)" ))
+            let itmNewPath = latestKextDir + "/\(itm.lastPathComponent)"
+            if fileManager.fileExists(atPath: itmNewPath) {
+                try fileManager.removeItem(atPath: itmNewPath)
+            }
+            
+            try fileManager.moveItem(at: itm, to: URL(fileURLWithPath: itmNewPath ))
         }
         
     } catch {

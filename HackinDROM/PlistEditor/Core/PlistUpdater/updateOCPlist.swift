@@ -9,6 +9,8 @@
 import Foundation
 
 
+// Character Set is faster than regex
+let ocValidCharacters: Set<Character> = .init("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_./\\")
 // reference = SampleCustom.plist
 // findIn = user's config.plist
 func updateOCPlist(_ reference: HAPlistStruct, _ findIn: HAPlistStruct) -> HAPlistStruct {
@@ -16,7 +18,7 @@ func updateOCPlist(_ reference: HAPlistStruct, _ findIn: HAPlistStruct) -> HAPli
     var returningItem = HAPlistStruct()
     
     if reference.type == "string" || reference.type == "bool" || reference.type == "int" || reference.type == "data" {
-       
+        
         
         if reference.type == findIn.type {
             returningItem = findIn
@@ -31,7 +33,7 @@ func updateOCPlist(_ reference: HAPlistStruct, _ findIn: HAPlistStruct) -> HAPli
         }
         
         if returningItem.type == "string" && (returningItem.name == "Path" || returningItem.name == "BundlePath") {
-            returningItem.stringValue = returningItem.stringValue.removeWhitespace().replacingOccurrences(of: ",", with: "_")
+            returningItem.stringValue = returningItem.stringValue.filter{ocValidCharacters.contains($0)}
         }
         
     }
@@ -47,8 +49,8 @@ func updateOCPlist(_ reference: HAPlistStruct, _ findIn: HAPlistStruct) -> HAPli
             
             // fix borked PCI path error
             for (ind, itm) in returningItem.childs.enumerated() {
-              returningItem.childs[ind].name = itm.name.removeWhitespace()
-              
+                returningItem.childs[ind].name = itm.name.removeWhitespace()
+                
             }
         } else  if returningItem.parentName == "NVRAM" && (returningItem.name == "Add" || returningItem.name == "Delete" || returningItem.name == "LegacySchema") {
             returningItem.childs = findIn.childs
@@ -57,7 +59,7 @@ func updateOCPlist(_ reference: HAPlistStruct, _ findIn: HAPlistStruct) -> HAPli
             
             for item in reference.childs {
                 if let foundIndex = findIn.childs.firstIndex(where: {$0.name == item.name}) {
-                   returningItem.childs.append(updateOCPlist(item, findIn.childs[foundIndex]))
+                    returningItem.childs.append(updateOCPlist(item, findIn.childs[foundIndex]))
                 } else {
                     if item.name == "Arch" && item.type == "string" && (reference.parentName == "Add" || reference.parentName == "Block" || reference.parentName == "Force" || reference.parentName == "Patch") && (item.stringValue == "x86_64" || item.stringValue == "i386") {
                         var child = item
@@ -69,8 +71,6 @@ func updateOCPlist(_ reference: HAPlistStruct, _ findIn: HAPlistStruct) -> HAPli
                     }
                     
                 }
-                
-                
             }
         }
     }
@@ -83,31 +83,21 @@ func updateOCPlist(_ reference: HAPlistStruct, _ findIn: HAPlistStruct) -> HAPli
             
             // Trying to create Template from Reference file
             let template = reference.childs.isEmpty ? HAPlistStruct() : reference.childs.first!
-            
             for item in findIn.childs {
                 if template.type.isEmpty {
                     returningItem.childs.append(item)
                 } else {
-                    
                     if template.parentName == "Drivers" && item.type == "string" {
                         
                         let newDriverStruct =  generateNewDriverStructType(template: template, driverPath: item.stringValue)
                         returningItem.childs.append(newDriverStruct)
-                        
-                        
-                        
                     } else {
                         returningItem.childs.append(updateOCPlist(template, item))
                     }
-                    
-                    
                 }
-                
             }
         }
-        
     }
-    
     return returningItem
 }
 
