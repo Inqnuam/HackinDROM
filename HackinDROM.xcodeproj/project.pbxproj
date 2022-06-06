@@ -258,10 +258,10 @@
 				8CD2EF3227CA80FD00509485 /* macserial */,
 				8CD2EF0E27CA7FA800509485 /* Preview Content */,
 				8CD2EF3427CA813900509485 /* HackinDROM-Bridging-Header.h */,
-				8CD2EF3D27CA81E600509485 /* DiskMounter.m */,
+				8CD2EF5927CA81E600509485 /* Authorization.h */,
 				8CD2EF4827CA81E600509485 /* Authorization.m */,
 				8CD2EF5127CA81E600509485 /* DiskMounter.h */,
-				8CD2EF5927CA81E600509485 /* Authorization.h */,
+				8CD2EF3D27CA81E600509485 /* DiskMounter.m */,
 			);
 			path = HackinDROM;
 			sourceTree = "<group>";
@@ -790,7 +790,7 @@
 				CODE_SIGN_ENTITLEMENTS = HackinDROM/HackinDROM.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"HackinDROM/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -821,7 +821,7 @@
 				CODE_SIGN_ENTITLEMENTS = HackinDROM/HackinDROM.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"HackinDROM/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;

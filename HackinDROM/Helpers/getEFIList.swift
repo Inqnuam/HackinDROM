@@ -188,7 +188,7 @@ func getEFIList() -> [EFI] {
                                                                     
                                                                     if let APFSVolumes = apfsDisk.childs.first(where: {$0.name == "APFSVolumes"}) {
                                                                         
-                                                                      
+                                                                        
                                                                         var volNames:[String] = []
                                                                         for vol in APFSVolumes.childs {
                                                                             
@@ -243,11 +243,11 @@ func getEFIList() -> [EFI] {
 }
 
 let OCDateAndVersion = [
-    "2022-09": "0.8.5",
-    "2022-08": "0.8.4",
-    "2022-07": "0.8.3",
-    "2022-06": "0.8.2",
-    "2022-05": "0.8.1",
+    "2022-10": "0.8.6",
+    "2022-09": "0.8.4",
+    "2022-08": "0.8.3",
+    "2022-07": "0.8.2",
+    "2022-06": "0.8.1",
     "2022-04": "0.8.0",
     "2022-03": "0.7.9",
     "2022-02": "0.7.8",

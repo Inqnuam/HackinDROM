@@ -26,7 +26,7 @@ func haPlistEncode(_ haPlist: HAPlistStruct, _ filePath: String) {
     do {
         let serilizedPlist = try PropertyListSerialization.propertyList(from: data, format: nil)
         let newPlist = try PropertyListSerialization.data(fromPropertyList: serilizedPlist, format: .xml, options:0)
-        try newPlist.write(to: URL(fileURLWithPath: filePath))
+        try newPlist.write(to: URL(fileURLWithPath: filePath), options: .atomic)
     } catch {
         print(error)
     }
@@ -47,7 +47,7 @@ func haPlistEncoder(_ haPlist: HAPlistStruct, _ parentIsArray: Bool = false) -> 
                        <string>\(haPlist.stringValue)</string>
             """
             } else {
-            text = """
+                text = """
                     
                     <key>\(haPlist.name)</key>
                     <string>\(haPlist.stringValue)</string>
@@ -63,12 +63,12 @@ func haPlistEncoder(_ haPlist: HAPlistStruct, _ parentIsArray: Bool = false) -> 
                        <integer>\(haPlist.stringValue)</integer>
             """
             } else {
-            text = """
+                text = """
                     
                     <key>\(haPlist.name)</key>
                     <integer>\(haPlist.stringValue)</integer>
                     """
-    }
+            }
             break
             
         case "data":
@@ -84,8 +84,8 @@ func haPlistEncoder(_ haPlist: HAPlistStruct, _ parentIsArray: Bool = false) -> 
                        <data>\(base64String)</data>
             """
             } else {
-            
-            text = """
+                
+                text = """
                     
                     <key>\(haPlist.name)</key>
                     <data>\(base64String)</data>
@@ -128,8 +128,8 @@ func haPlistEncoder(_ haPlist: HAPlistStruct, _ parentIsArray: Bool = false) -> 
                        \(dictString)
             """
             } else {
-            
-            text = """
+                
+                text = """
                     
                     <key>\(haPlist.name)</key>
                     \(dictString)
@@ -160,7 +160,7 @@ func haPlistEncoder(_ haPlist: HAPlistStruct, _ parentIsArray: Bool = false) -> 
             """
                 
             } else {
-            text = """
+                text = """
                     
                     <key>\(haPlist.name)</key>
                     \(arrayString)

@@ -8,11 +8,14 @@
 
 import Foundation
 
-
 // Character Set is faster than regex
 let ocValidCharacters: Set<Character> = .init("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_./\\")
-// reference = SampleCustom.plist
-// findIn = user's config.plist
+
+///
+/// - Parameters:
+/// -  reference: reference fille (SampleCustom.plist)
+/// -  findIn: find in file (users config.plist)
+///
 func updateOCPlist(_ reference: HAPlistStruct, _ findIn: HAPlistStruct) -> HAPlistStruct {
     
     var returningItem = HAPlistStruct()
@@ -100,5 +103,3 @@ func updateOCPlist(_ reference: HAPlistStruct, _ findIn: HAPlistStruct) -> HAPli
     }
     return returningItem
 }
-
-

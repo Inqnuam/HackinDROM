@@ -41,7 +41,7 @@ struct HAPlistStruct: Identifiable, Equatable {
         } else if let indeX = childs.firstIndex(where: {$0.type == "string" && $0.name == "Comment"}) {
             newVal = childs[indeX].stringValue
         }
-         return newVal
+        return newVal
     }
     
 }
@@ -75,12 +75,12 @@ func cleanHAPlistStruct(_ originalItem: HAPlistStruct) -> HAPlistStruct {
 }
 
 struct AnyEncodable: Encodable {
-
+    
     private let _encode: (Encoder) throws -> Void
     public init<T: Encodable>(_ wrapped: T) {
         _encode = wrapped.encode
     }
-
+    
     func encode(to encoder: Encoder) throws {
         try _encode(encoder)
     }
@@ -95,7 +95,7 @@ struct HAPMultiOptions:Identifiable, Hashable {
 func calculateSelected(_ somme: Int, _ possibleNumbers:[HAPMultiOptions])-> [HAPMultiOptions] {
     var possibleNumbers = possibleNumbers
     var selectedOptions: [HAPMultiOptions] = []
-
+    
     var sommeOfSelectedOptions:Int = 0
     
     while !possibleNumbers.isEmpty && somme != sommeOfSelectedOptions {
@@ -107,8 +107,6 @@ func calculateSelected(_ somme: Int, _ possibleNumbers:[HAPMultiOptions])-> [HAP
         } else {
             possibleNumbers = possibleNumbers.dropLast()
         }
-       
-        
     }
     return selectedOptions
 }
