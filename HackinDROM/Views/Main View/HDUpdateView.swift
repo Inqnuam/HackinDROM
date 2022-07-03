@@ -208,8 +208,15 @@ struct HDUpdateView: View {
                 print(error)
             }
         }
+        
+    
         do {
-            try fileManager.copyItem(atPath: temporaryKextPath, toPath: standaloneUpdateDir + "/EFI/OC/Kexts/AirportItlwm.kext")
+            if let foundPath = recFindKextPath(temporaryKextPath) {
+                try fileManager.copyItem(atPath: foundPath, toPath: standaloneUpdateDir + "/EFI/OC/Kexts/AirportItlwm.kext")
+            } else {
+                throw NSError(domain: "Kext not found", code: 404)
+            }
+           
         } catch {
             print(error)
             
@@ -496,5 +503,20 @@ struct HDUpdateView: View {
         return (canBackUp, canUpdate)
         
     }
+    
+    
+    func recFindKextPath(_ kextRootPath: String) -> String? {
+        
+        let url = URL(fileURLWithPath: kextRootPath)
+        if let enumerator = fileManager.enumerator(at: url, includingPropertiesForKeys: [.isRegularFileKey], options: [.skipsHiddenFiles]) {
+            
+            for case let fileURL as URL in enumerator {
+                
+                if fileURL.lastPathComponent.hasSuffix(".kext") {
+                    return fileURL.relativePath
+                }
+            }
+        }
+        return nil
+    }
 }
-
