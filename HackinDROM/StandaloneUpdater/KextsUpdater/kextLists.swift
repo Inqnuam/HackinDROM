@@ -60,6 +60,12 @@ let gitHubKexts: [GitHubInfo] = [
     
     GitHubInfo(owner: "OpenIntelWireless", repo: "IntelBluetoothFirmware", name: "IntelBluetoothFirmware", downloadName: "IntelBluetoothFirmware-#.zip"),
     GitHubInfo(owner: "OpenIntelWireless", repo: "IntelBluetoothFirmware", name: "IntelBluetoothInjector", downloadName: "IntelBluetoothFirmware-#.zip"),
+    
+    GitHubInfo(owner: "aluveitie", repo: "RadeonSensor", name: "RadeonSensor", downloadName: "RadeonSensor-#.zip"),
+    GitHubInfo(owner: "aluveitie", repo: "RadeonSensor", name: "SMCRadeonGPU", downloadName: "RadeonSensor-#.zip"),
+    
+    GitHubInfo(owner: "trulyspinach", repo: "SMCAMDProcessor", name: "SMCAMDProcessor", downloadName: "SMCAMDProcessor.kext.zip"),
+    GitHubInfo(owner: "trulyspinach", repo: "SMCAMDProcessor", name: "AMDRyzenCPUPowerManagement", downloadName: "AMDRyzenCPUPowerManagement.kext.zip")
 ]
 
 

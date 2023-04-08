@@ -273,6 +273,11 @@ func getGitLatestCommitDate(_ link: String) -> Date? {
     
 }
 
+func extractTagFromId(id:String)-> String? {
+    let idComponents = id.components(separatedBy: "/")
+    return idComponents.last
+}
+
 func getGitReleasesVersions(_ username:String, _ repo: String, _ onlyFirst:Bool = false) -> [String]? {
  
     
@@ -288,17 +293,20 @@ func getGitReleasesVersions(_ username:String, _ repo: String, _ onlyFirst:Bool 
                 case let .atom(feed):
                     if let entries = feed.entries {
                         if onlyFirst {
-                            if !entries.isEmpty && entries[0].title != nil {
-                                gitOCReleasesVersions!.append(entries[0].title!)
+                            if !entries.isEmpty && entries[0].id != nil {
+                                if  let version = extractTagFromId(id: entries[0].id!) {
+                                    gitOCReleasesVersions!.append(version)
+                                }
                             }
                         } else {
                             for itm in entries {
-                                if itm.title != nil {
-                                    gitOCReleasesVersions!.append(itm.title!)
+                                if itm.id != nil {
+                                    if  let version = extractTagFromId(id: itm.id!) {
+                                        gitOCReleasesVersions!.append(version)
+                                    }
                                 }
                             }
                         }
-                        
                     }
                     break
                     
