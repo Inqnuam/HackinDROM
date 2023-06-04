@@ -77,6 +77,13 @@ struct AirportItlwmCustomName {
 }
 
 let airportItlwmCustomNames: [AirportItlwmCustomName] = [
+    AirportItlwmCustomName(localName: "AirportItlwmVentura",
+                           customNames: [
+                            "AirportItlwmVentura",
+                            "AirportItlwm_Ventura",
+                            "AirportItlwm-Ventura"
+                           ],
+                           remoteNames: ["Ventura"]),
     AirportItlwmCustomName(localName: "AirportItlwmMonterey",
                            customNames: [
                             "AirportItlwmMonterey",
