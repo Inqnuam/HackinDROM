@@ -12,7 +12,7 @@ a complete guide by @CaseySJ can be found on [tonymacx86's thread](https://www.t
 ### How to update OpenCore ?
 
 -   Option 1 [Update based on admin's EFI](https://www.tonymacx86.com/threads/hackindrom-app-for-opencore-efi-creation-and-update.312176/post-2242936)
--   Option 2 [Standalone update (any motherboard with OC 0.6.6 & +), based only on GitHub](https://www.tonymacx86.com/threads/success-gigabyte-designare-z390-thunderbolt-3-i7-9700k-amd-rx-580.316533/page-3524#post-2310939)
+-   Option 2 [Standalone update (any motherboard with OC 0.6.6 & +), based only on GitHub](https://www.tonymacx86.com/threads/success-gigabyte-designare-z390-thunderbolt-3-i7-9700k-amd-rx-580.316533/page-3516#post-2310939)
 
 ## Videos
 
