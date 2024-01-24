@@ -790,7 +790,7 @@
 				CODE_SIGN_ENTITLEMENTS = HackinDROM/HackinDROM.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_ASSET_PATHS = "\"HackinDROM/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -802,7 +802,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 2.1;
+				MARKETING_VERSION = 2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = Inqnuam.HackinDROM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -821,7 +821,7 @@
 				CODE_SIGN_ENTITLEMENTS = HackinDROM/HackinDROM.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_ASSET_PATHS = "\"HackinDROM/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -833,7 +833,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 2.1;
+				MARKETING_VERSION = 2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = Inqnuam.HackinDROM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

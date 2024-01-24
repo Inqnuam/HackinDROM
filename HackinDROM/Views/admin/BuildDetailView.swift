@@ -101,8 +101,8 @@ struct BuildDetailView: View {
                             )
 
                             Button(action: {
-                                ThisBuildConfigs.active.toggle()
                                 activate(id: ThisBuildConfigs.id, active: ThisBuildConfigs.active, type: "builds")
+                                ThisBuildConfigs.active.toggle()
 
                                // sharedData.AllBuilds[indeX].active = req
                             }) {

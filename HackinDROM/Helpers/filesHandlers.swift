@@ -101,20 +101,39 @@ func MakeReportZIP(_ folder: String, _ ocv: String, Kexts: [RunningKextsStruct],
 
 }
 
-func FileUpload(_ filepath: String) -> String {
 
-    var returnthis = "nul"
-    shell("curl -F 'archive=@\(filepath)' 'https://hackindrom.zapto.org/app/upload' --silent | awk '{print $1 \" \"  $2}'") { result, _ in
+let uploadLink = URL(string: "https://hackindrom.zapto.org/app/upload")
 
-        let req =  result.components(separatedBy: " ")
-        if req[0] == "uploadok" {
 
-            returnthis = req[1]
-        }
 
+func uploadArchive(_ filePath: String, cb: @escaping (String) -> Void) {
+    let fileURL = URL(fileURLWithPath: filePath)
+    
+    let boundary = "Boundary-\(UUID().uuidString)"
+    var request = URLRequest(url: uploadLink!)
+    request.httpMethod = "POST"
+    request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+    
+    var body = Data()
+    
+    body.append("--\(boundary)\r\n".data(using: .utf8)!)
+    body.append("Content-Disposition: form-data; name=\"archive\"; filename=\"\(fileURL.lastPathComponent)\"\r\n".data(using: .utf8)!)
+    body.append("Content-Type: application/zip\r\n\r\n".data(using: .utf8)!)
+    
+    if let fileData = try? Data(contentsOf: fileURL) {
+        body.append(fileData)
+        body.append("\r\n".data(using: .utf8)!)
     }
-
-    return returnthis
+    
+    body.append("--\(boundary)--\r\n".data(using: .utf8)!)
+    
+    request.httpBody = body
+    
+    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        cb(String(data: data!, encoding: .utf8)!)
+    }
+    
+    task.resume()
 }
 
 func FileSelector(allowedFileTypes: [String], canCreateDirectories: Bool, canChooseFiles: Bool, canChooseDirectories: Bool, customTitle:String? = "Select a file" ) -> String {

@@ -193,9 +193,9 @@ struct CreateEFI: View {
                         
                         Section {
                             Picker(selection: $selectedBuild.buildChanged(SetNewMlb), label: Text("Motherboard").fontWeight(.semibold)) {
-                                ForEach(sharedData.ConnectedUser.localizedCaseInsensitiveContains(selectedBuild.leader) ? sharedData.AllBuilds.filter({$0.vendor == selectedVendor}) : sharedData.AllBuilds.filter({$0.vendor == selectedVendor && $0.active})) { mlb in
+                                ForEach(!sharedData.ConnectedUser.isEmpty ? sharedData.AllBuilds.filter({$0.vendor == selectedVendor}) : sharedData.AllBuilds.filter({$0.vendor == selectedVendor && $0.active})) { mlb in
                                     
-                                    Text(mlb.name).tag(mlb)
+                                    Text(mlb.active ? mlb.name : "🔺 \(mlb.name)").tag(mlb)
                                     
                                 }
                             }
@@ -207,7 +207,7 @@ struct CreateEFI: View {
                         Section {
                             Picker(selection: $selectedConfig.configChanged(setSelectedConfig), label: Text("OpenCore")) {
                                 
-                                ForEach(sharedData.ConnectedUser.localizedCaseInsensitiveContains(selectedBuild.leader) ? selectedBuild.configs : selectedBuild.configs.filter({ $0.active == true }), id: \.self) { config in // .filter { $0.active == true }
+                                ForEach(!sharedData.ConnectedUser.isEmpty ? selectedBuild.configs : selectedBuild.configs.filter({ $0.active == true }), id: \.self) { config in
                                     
                                     Text(config.active ? config.ocvs : "🔺 \(config.ocvs)").tag(config)
                                 }

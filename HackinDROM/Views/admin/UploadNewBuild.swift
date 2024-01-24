@@ -260,12 +260,13 @@ struct NewBuildView: View {
                             if uploaded {
                                 DispatchQueue.main.async {
                                     sharedData.GetAllBuildsAndConfigure()
-                                    isWorking = false
+                                    
                                     sharedData.currentview = 5
                                 }
                                 
                                 
                             }
+                            isWorking = false
                             
                         }
                         
@@ -274,13 +275,15 @@ struct NewBuildView: View {
                         
                         pushBuildtoDB() { uploaded in
                             
-                            if uploaded {  DispatchQueue.main.async {
-                                
-                                sharedData.GetAllBuildsAndConfigure()
-                                isWorking = false
-                                sharedData.currentview = 5
+                            if uploaded {
+                                DispatchQueue.main.async {
+                                    
+                                    sharedData.GetAllBuildsAndConfigure()
+                                    
+                                    sharedData.currentview = 5
+                                }
                             }
-                            }
+                            isWorking = false
                             
                         }
                     } else {
@@ -403,7 +406,7 @@ struct NewBuildView: View {
         
         
         
-        
+        group.wait()
         group.enter()
         serialQueue.async {
             for plist in imageUrls {
@@ -420,7 +423,7 @@ struct NewBuildView: View {
                     
                     var newPlist = NewConfigsData(link: plist.value.lastPathComponent, bootArgs: bootargs)
                     
-                     if let KernelSection =  plistStruct.childs.first(where: {$0.name == "Kernel"}) {
+                    if let KernelSection =  plistStruct.childs.first(where: {$0.name == "Kernel"}) {
                         
                         if let PatchSection =  KernelSection.childs.first(where: {$0.name == "Patch"}) {
                             
@@ -488,16 +491,19 @@ struct NewBuildView: View {
                     
                     if progress == 1.0 {
                         
-                        UploadNewBuild.config.Archive = FileUpload("\(tmp)/HDWorkingFolder.zip").trimmingCharacters(in: .whitespacesAndNewlines)
-                        
-                        if  UploadNewBuild.config.Archive != "nul" && UploadNewBuild.config.Archive != "" {
+                        uploadArchive("\(tmp)/HDWorkingFolder.zip") { result in
+                            
+                            UploadNewBuild.config.Archive = result.components(separatedBy: " ")[1]
+                            
                             do {
                                 try fileManager.removeItem(at: URL(fileURLWithPath: "\(tmp)/HDWorkingFolder.zip"))
-                                try  fileManager.removeItem(at: URL(fileURLWithPath: "\(tmp)/HDWorkingFolder"))
+                                try fileManager.removeItem(at: URL(fileURLWithPath: "\(tmp)/HDWorkingFolder"))
                             } catch {
                                 print(error)
                                 
                             }
+                            group.leave()
+                            
                         }
                         
                     }
@@ -511,58 +517,47 @@ struct NewBuildView: View {
             }
             
             
-            group.leave()
         }
+        group.wait()
         
         
+        let url = URL(string: "https://hackindrom.zapto.org/app/builds?latest=\(setLatest.description)")
+        guard let requestUrl = url else { fatalError() }
         
-        group.enter()
-        serialQueue.async {
+        var request = URLRequest(url: requestUrl)
+        request.httpMethod = "POST"
+        
+        // Set HTTP Request Header
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let jsonData = try! JSONEncoder().encode(UploadNewBuild)
+        
+        request.httpBody = jsonData
+        
+        let task =  URLSession.shared.dataTask(with: request) { (_, response, error) in
             
-            
-            let url = URL(string: "https://hackindrom.zapto.org/app/builds?latest=\(setLatest.description)")
-            guard let requestUrl = url else { fatalError() }
-            
-            var request = URLRequest(url: requestUrl)
-            request.httpMethod = "POST"
-            
-            // Set HTTP Request Header
-            request.setValue("application/json", forHTTPHeaderField: "Accept")
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            
-            let jsonData = try! JSONEncoder().encode(UploadNewBuild)
-            
-            request.httpBody = jsonData
-            
-            let task =  URLSession.shared.dataTask(with: request) { (_, response, error) in
-                
-                if let error = error {
-                    print("Error took place \(error)")
-                    return
-                }
-                //  guard let data = data else {return}
-                
-                //  let _ = try JSONDecoder().decode(link.self, from: data)
-                if let httpResponse = response as? HTTPURLResponse {
-                    if (httpResponse.statusCode) == 200 {
-                        
-                        completion(true)
-                        
-                        
-                    } else {
-                        
-                        completion(false)
-                    }
-                    isWorking = false
+            if let error = error {
+                print("Error took place \(error)")
+                return
+            }
+
+            if let httpResponse = response as? HTTPURLResponse {
+                if (httpResponse.statusCode) == 200 {
                     
+                    completion(true)
+                    
+                    
+                } else {
+                    
+                    completion(false)
                 }
+                
                 
             }
-            task.resume()
             
-            group.leave()
         }
-        
+        task.resume()
         
     }
     
