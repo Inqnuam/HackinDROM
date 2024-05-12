@@ -38,7 +38,7 @@ OSErr getAuthorization(AuthorizationRef *authorization)
     return errAuthorizationSuccess;
 }
 
-OSErr requestAdministratorRights()
+OSErr requestAdministratorRights(void)
 {
     OSErr status;
     AuthorizationRef authorization = NULL;
@@ -72,7 +72,7 @@ void callAuthorizationGrantedCallback(OSErr status)
     m_callback(m_authorization, status, m_context);
 }
 
-OSErr freeAuthorization()
+OSErr freeAuthorization(void)
 {
     if (m_authorization == nil)
         return errAuthorizationSuccess;
