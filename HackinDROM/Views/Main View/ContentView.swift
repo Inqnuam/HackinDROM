@@ -31,12 +31,14 @@ struct ContentView: View {
                     Text("Select a Motherboard to receive updates")
                     
                 } else {
+                    
+                    
                     Button(action: {
                         DispatchQueue.main.async {
                             sharedData.currentview = 3
                         }
-                    },
-                           label: {
+                    }) {
+                        
                         if #available(OSX 11.0, *) {
                             Image(systemName: "desktopcomputer")
                         } else {
@@ -45,11 +47,8 @@ struct ContentView: View {
                                 .scaledToFit()
                                 .frame(width: 18, height: 18)
                         }
-                        
                     }
-                    )
-                    .toolTip("Settings")
-                    .padding(.leading, 4)
+                    
                 }
                 
                 if sharedData.isOnline && sharedData.ConnectedUser != "" {
@@ -66,7 +65,6 @@ struct ContentView: View {
                         }
                     }
                     )
-                    .toolTip("Manage My Builds")
                     Text("Hello \(sharedData.ConnectedUser) 😎")
                 }
                 
@@ -77,15 +75,15 @@ struct ContentView: View {
                     EFIs = getEFIList()
                     isCharging = false
                     
-                }, label: {
+                }) {
                     if #available(OSX 11.0, *) {
                         Image(systemName: "arrow.clockwise.circle")
                     } else {
                         Image(nsImage: NSImage(named: NSImage.refreshTemplateName)!)
                     }
-                })
+                }
                 .disabled(isCharging)
-                .toolTip("Refresh EFI List")
+                
                 Button(action: {
                     NSApplication.shared.terminate(self)
                 }) {

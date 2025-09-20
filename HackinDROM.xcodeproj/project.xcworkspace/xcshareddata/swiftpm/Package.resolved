@@ -1,4 +1,5 @@
 {
+  "originHash" : "8352614a55d1c29515180d3e3cfd5d59e91bcbffcb102fb4e8219574d3f81558",
   "pins" : [
     {
       "identity" : "feedkit",
@@ -7,24 +8,6 @@
       "state" : {
         "revision" : "68493a33d862c33c9a9f67ec729b3b7df1b20ade",
         "version" : "9.1.2"
-      }
-    },
-    {
-      "identity" : "launchatlogin",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/sindresorhus/LaunchAtLogin",
-      "state" : {
-        "branch" : "main",
-        "revision" : "e8171b3e38a2816f579f58f3dac1522aa39efe41"
-      }
-    },
-    {
-      "identity" : "swiftui-introspect",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/siteline/SwiftUI-Introspect",
-      "state" : {
-        "revision" : "f2616860a41f9d9932da412a8978fec79c06fe24",
-        "version" : "0.1.4"
       }
     },
     {
@@ -45,5 +28,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

@@ -172,7 +172,6 @@ struct CreateEFI: View {
                                     .lineLimit(1)
                                 
                             }
-                            .toolTip("Open EFI folder in Finder")
                             .onTapGesture {
                                 NSWorkspace.shared.open(URL(fileURLWithPath: EFIs[index].mounted, isDirectory: true))
                             }
@@ -236,7 +235,6 @@ struct CreateEFI: View {
                                 }
                                 
                             })
-                            .toolTip("Release Notes")
                             
                         } else if !selectedConfig.followLink.isEmpty {
                             
@@ -252,7 +250,6 @@ struct CreateEFI: View {
                                     Text("⚠️")
                                 }
                             })
-                            .toolTip("Author's link")
                             
                         }
                         
@@ -345,7 +342,7 @@ struct CreateEFI: View {
                         mycustomdata.MLB =   String(data[2])
                     }
                 }
-                .toolTip("Generate new SMBIOS data for selected System Product Name")
+
                 Spacer()
                 Divider()
                     .frame(height: 15)
@@ -367,9 +364,7 @@ struct CreateEFI: View {
                         EnableSIP = false
                     }
                     
-                    // nc.post(name: Notification.Name("ClosePasswordWindow"), object: nil)
                 }
-                .toolTip("Import SMBIOS data (Serial Numbers, Product Name ...) from current system")
                 Button("File") {
                     ImportFromFile { result in
                         
@@ -386,7 +381,7 @@ struct CreateEFI: View {
                     }
                     
                 }
-                .toolTip("Import SMBIOS data (Serial Numbers, Product Name ...) from OpenCore or Clover config.plist")
+
             }.padding(.bottom, 5)
             
             HStack {
@@ -418,7 +413,6 @@ struct CreateEFI: View {
                             }
                             
                         })
-                        .toolTip("Check for invalid Serial Number")
                         .disabled(mycustomdata.SystemSerialNumber.count < 10)
                         
                     }

@@ -297,25 +297,6 @@ extension NSColor {
     }
 }
 
-struct Tooltip: NSViewRepresentable {
-    let tooltip: String
-    
-    func makeNSView(context: NSViewRepresentableContext<Tooltip>) -> NSView {
-        let view = NSView()
-        view.toolTip = tooltip
-        
-        return view
-    }
-    
-    func updateNSView(_ nsView: NSView, context: NSViewRepresentableContext<Tooltip>) {
-    }
-}
-
-public extension View {
-    func toolTip(_ toolTip: String) -> some View {
-        self.overlay(Tooltip(tooltip: toolTip))
-    }
-}
 extension HAPlistStruct {
     func find(_ findingName: String) -> HAPlistStruct {
         return self.childs.first(where: {$0.name == findingName}) ?? HAPlistStruct()

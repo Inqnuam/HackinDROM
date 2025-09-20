@@ -14,8 +14,6 @@
 		8C7841D527CF9D02008C8E2A /* fixKeySupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7841D427CF9D02008C8E2A /* fixKeySupport.swift */; };
 		8CD2EF0D27CA7FA800509485 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CD2EF0C27CA7FA800509485 /* Assets.xcassets */; };
 		8CD2EF1027CA7FA800509485 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CD2EF0F27CA7FA800509485 /* Preview Assets.xcassets */; };
-		8CD2EF2527CA807600509485 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 8CD2EF2427CA807600509485 /* LaunchAtLogin */; };
-		8CD2EF2827CA808B00509485 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 8CD2EF2727CA808B00509485 /* Introspect */; };
 		8CD2EF2B27CA809900509485 /* Version in Frameworks */ = {isa = PBXBuildFile; productRef = 8CD2EF2A27CA809900509485 /* Version */; };
 		8CD2EF2E27CA80A800509485 /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8CD2EF2D27CA80A800509485 /* FeedKit */; };
 		8CD2EF3327CA80FD00509485 /* macserial in Resources */ = {isa = PBXBuildFile; fileRef = 8CD2EF3227CA80FD00509485 /* macserial */; };
@@ -30,14 +28,11 @@
 		8CD2EF6127CA81E600509485 /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF4327CA81E600509485 /* Downloader.swift */; };
 		8CD2EF6227CA81E600509485 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF4427CA81E600509485 /* Login.swift */; };
 		8CD2EF6327CA81E600509485 /* SystemInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF4527CA81E600509485 /* SystemInfo.swift */; };
-		8CD2EF6427CA81E600509485 /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF4627CA81E600509485 /* StatusBarController.swift */; };
 		8CD2EF6527CA81E600509485 /* AMDCoresCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF4727CA81E600509485 /* AMDCoresCount.swift */; };
 		8CD2EF6627CA81E600509485 /* Authorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF4827CA81E600509485 /* Authorization.m */; };
-		8CD2EF6727CA81E600509485 /* AskPasswordPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF4927CA81E600509485 /* AskPasswordPopover.swift */; };
 		8CD2EF6827CA81E600509485 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF4A27CA81E600509485 /* Extensions.swift */; };
 		8CD2EF6927CA81E600509485 /* testingFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF4B27CA81E600509485 /* testingFunc.swift */; };
 		8CD2EF6A27CA81E600509485 /* func.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF4C27CA81E600509485 /* func.swift */; };
-		8CD2EF6B27CA81E600509485 /* ChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF4D27CA81E600509485 /* ChartsView.swift */; };
 		8CD2EF6C27CA81E600509485 /* BluetoothDevices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF4E27CA81E600509485 /* BluetoothDevices.swift */; };
 		8CD2EF6D27CA81E600509485 /* HDToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF4F27CA81E600509485 /* HDToggleView.swift */; };
 		8CD2EF6E27CA81E600509485 /* structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2EF5027CA81E600509485 /* structs.swift */; };
@@ -125,14 +120,11 @@
 		8CD2EF4327CA81E600509485 /* Downloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
 		8CD2EF4427CA81E600509485 /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		8CD2EF4527CA81E600509485 /* SystemInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemInfo.swift; sourceTree = "<group>"; };
-		8CD2EF4627CA81E600509485 /* StatusBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
 		8CD2EF4727CA81E600509485 /* AMDCoresCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMDCoresCount.swift; sourceTree = "<group>"; };
 		8CD2EF4827CA81E600509485 /* Authorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Authorization.m; sourceTree = "<group>"; };
-		8CD2EF4927CA81E600509485 /* AskPasswordPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AskPasswordPopover.swift; sourceTree = "<group>"; };
 		8CD2EF4A27CA81E600509485 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		8CD2EF4B27CA81E600509485 /* testingFunc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testingFunc.swift; sourceTree = "<group>"; };
 		8CD2EF4C27CA81E600509485 /* func.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = func.swift; sourceTree = "<group>"; };
-		8CD2EF4D27CA81E600509485 /* ChartsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsView.swift; sourceTree = "<group>"; };
 		8CD2EF4E27CA81E600509485 /* BluetoothDevices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothDevices.swift; sourceTree = "<group>"; };
 		8CD2EF4F27CA81E600509485 /* HDToggleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDToggleView.swift; sourceTree = "<group>"; };
 		8CD2EF5027CA81E600509485 /* structs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = structs.swift; sourceTree = "<group>"; };
@@ -204,8 +196,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CD2EF2B27CA809900509485 /* Version in Frameworks */,
-				8CD2EF2527CA807600509485 /* LaunchAtLogin in Frameworks */,
-				8CD2EF2827CA808B00509485 /* Introspect in Frameworks */,
 				8CD2EF2E27CA80A800509485 /* FeedKit in Frameworks */,
 				8CD2EFE527CA99C700509485 /* Zip in Frameworks */,
 			);
@@ -285,13 +275,10 @@
 				8CD2EF4327CA81E600509485 /* Downloader.swift */,
 				8CD2EF4427CA81E600509485 /* Login.swift */,
 				8CD2EF4527CA81E600509485 /* SystemInfo.swift */,
-				8CD2EF4627CA81E600509485 /* StatusBarController.swift */,
 				8CD2EF4727CA81E600509485 /* AMDCoresCount.swift */,
-				8CD2EF4927CA81E600509485 /* AskPasswordPopover.swift */,
 				8CD2EF4A27CA81E600509485 /* Extensions.swift */,
 				8CD2EF4B27CA81E600509485 /* testingFunc.swift */,
 				8CD2EF4C27CA81E600509485 /* func.swift */,
-				8CD2EF4D27CA81E600509485 /* ChartsView.swift */,
 				8CD2EF4E27CA81E600509485 /* BluetoothDevices.swift */,
 				8CD2EF4F27CA81E600509485 /* HDToggleView.swift */,
 				8CD2EF5027CA81E600509485 /* structs.swift */,
@@ -507,8 +494,6 @@
 			);
 			name = HackinDROM;
 			packageProductDependencies = (
-				8CD2EF2427CA807600509485 /* LaunchAtLogin */,
-				8CD2EF2727CA808B00509485 /* Introspect */,
 				8CD2EF2A27CA809900509485 /* Version */,
 				8CD2EF2D27CA80A800509485 /* FeedKit */,
 				8CD2EFE427CA99C700509485 /* Zip */,
@@ -543,8 +528,6 @@
 			);
 			mainGroup = 8CD2EEFC27CA7FA700509485;
 			packageReferences = (
-				8CD2EF2327CA807600509485 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
-				8CD2EF2627CA808B00509485 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				8CD2EF2927CA809900509485 /* XCRemoteSwiftPackageReference "Version" */,
 				8CD2EF2C27CA80A800509485 /* XCRemoteSwiftPackageReference "FeedKit" */,
 				8CD2EFE327CA99C700509485 /* XCRemoteSwiftPackageReference "Zip" */,
@@ -576,7 +559,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CD2EF6727CA81E600509485 /* AskPasswordPopover.swift in Sources */,
 				8CD2EF6127CA81E600509485 /* Downloader.swift in Sources */,
 				8CD2EFC727CA820D00509485 /* getDriverDownloadLink.swift in Sources */,
 				8CD2EFDF27CA820D00509485 /* StringListView.swift in Sources */,
@@ -588,7 +570,6 @@
 				8CD2EFDE27CA820D00509485 /* HAPlist.swift in Sources */,
 				8CD2EF5C27CA81E600509485 /* IndexedCollection.swift in Sources */,
 				8CD2EFCF27CA820D00509485 /* BuildDetailView.swift in Sources */,
-				8CD2EF6427CA81E600509485 /* StatusBarController.swift in Sources */,
 				8CE439EA27CC0D100056034E /* fixOCFilePathErrors.swift in Sources */,
 				8CD2EF5B27CA81E600509485 /* DiskMounter.m in Sources */,
 				8CD2EFC527CA820D00509485 /* findDriverPath.swift in Sources */,
@@ -598,7 +579,6 @@
 				8CD2EFC827CA820D00509485 /* standaloneUpdateDrivers.swift in Sources */,
 				8CD2EFC027CA820D00509485 /* kextLists.swift in Sources */,
 				8CD2EFBC27CA820D00509485 /* getLatestOCPath.swift in Sources */,
-				8CD2EF6B27CA81E600509485 /* ChartsView.swift in Sources */,
 				8CD2EF5F27CA81E600509485 /* TagCloudView.swift in Sources */,
 				8CD2EFD327CA820D00509485 /* UpdateView.swift in Sources */,
 				8CD2EF5D27CA81E600509485 /* DiskAtrib.swift in Sources */,
@@ -792,7 +772,7 @@
 				CODE_SIGN_ENTITLEMENTS = HackinDROM/HackinDROM.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 0;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"HackinDROM/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
@@ -805,7 +785,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 2.2;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MARKETING_VERSION = 2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = Inqnuam.HackinDROM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -824,7 +805,7 @@
 				CODE_SIGN_ENTITLEMENTS = HackinDROM/HackinDROM.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 0;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"HackinDROM/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
@@ -837,7 +818,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 2.2;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MARKETING_VERSION = 2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = Inqnuam.HackinDROM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -870,22 +852,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		8CD2EF2327CA807600509485 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
-		8CD2EF2627CA808B00509485 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.4;
-			};
-		};
 		8CD2EF2927CA809900509485 /* XCRemoteSwiftPackageReference "Version" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mxcl/Version";
@@ -913,16 +879,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		8CD2EF2427CA807600509485 /* LaunchAtLogin */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8CD2EF2327CA807600509485 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */;
-			productName = LaunchAtLogin;
-		};
-		8CD2EF2727CA808B00509485 /* Introspect */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8CD2EF2627CA808B00509485 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
-			productName = Introspect;
-		};
 		8CD2EF2A27CA809900509485 /* Version */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8CD2EF2927CA809900509485 /* XCRemoteSwiftPackageReference "Version" */;

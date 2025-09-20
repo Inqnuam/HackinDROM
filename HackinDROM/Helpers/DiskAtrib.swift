@@ -75,11 +75,6 @@ func diskAppeard(_ disk: DADisk, _ context: UnsafeMutableRawPointer?) {
                 //   DADiskRename(disk, name as CFString, 0x00000000 ,PostAfterRename ,nil)
             }
             
-            if UserDefaults.standard.bool(forKey: "MountAutomaticly") {
-                
-                nc.post(name: Notification.Name("MountAutomaticly"), object: nil, userInfo: ["MountAutomaticly": mountediskid])
-                
-            }
             
         } else if desc["DAMediaWhole"]! as! Int == 1 &&  desc["DABusName"]! as! String != "/"   &&  desc["DAMediaName"]! as! String != "AppleAPFSMedia"{
             
@@ -124,12 +119,12 @@ func approveDiskMount(_ disk: DADisk, _ context: UnsafeMutableRawPointer?) -> Un
     guard  desc["DAMediaName"]! as! String == "EFI System Partition" else {return nil}
     
     guard desc["DAVolumeName"] != nil  else { return nil}
-        defer {
-            DispatchQueue.main.async {
-                nc.post(name: Notification.Name("JustMounted"), object: nil, userInfo: ["JustMounted": mountediskid])
-            }
+    defer {
+        DispatchQueue.main.async {
+            nc.post(name: Notification.Name("JustMounted"), object: nil, userInfo: ["JustMounted": mountediskid])
         }
-        return nil
+    }
+    return nil
 }
 
 
@@ -196,7 +191,7 @@ func mountEFI(UUID: String, NAME: String, user: String, pwd: String) -> String {
     } else {
         mountedEFIName = "nul"
     }
-     return mountedEFIName
+    return mountedEFIName
     
 }
 
@@ -208,7 +203,7 @@ func generateEFIName(_ desc2: [String: CFTypeRef])-> String {
     let VendorName = desc2["DADeviceVendor"]
     
     let DevicePath = desc2["DADevicePath"]
-
+    
     if DeviceModel != nil {
         
         prename = (DeviceModel as! String).removeWhitespace()

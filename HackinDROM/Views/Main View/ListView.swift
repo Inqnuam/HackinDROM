@@ -146,10 +146,10 @@ struct ListView: View {
                 .contentShape(Rectangle())
                 .contextMenu(menuItems: {
                     if ismounted && !EFI.plists.isEmpty {
-                         Button(EFI.isUpdating ? "Cancel" : "Update") {
+                        Button(EFI.isUpdating ? "Cancel" : "Update") {
                             
                             withAnimation {
-                               
+                                
                                 EFI.isUpdating.toggle()
                             }
                         }
@@ -192,11 +192,9 @@ struct ListView: View {
                                     
                                 }
                             })
-                            .toolTip("Create a report Archive")
                             
                         }
                         Text("Unmount")
-                        // .bold()
                         
                             .foregroundColor(HoverOnMount ? Color("MntBtn1") : Color("MntBtn2"))
                         
@@ -243,7 +241,6 @@ struct ListView: View {
                                             
                                             Text("Reinstall OC")
                                                 .foregroundColor(HoverOnUpdate ? Color("MntBtn1") : Color("MntBtn2") )
-                                                .toolTip("No new update available for your system")
                                             
                                         })
                                         

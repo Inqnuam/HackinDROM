@@ -67,7 +67,6 @@ struct BuildDetailView: View {
                     
                 }
                 )
-                .toolTip("Confirme")
 
                 Button(action: {
                     ChangeName = false
@@ -83,7 +82,6 @@ struct BuildDetailView: View {
 
                 }
                 )
-                .toolTip("Cancel")
 
             } else {
 
@@ -159,7 +157,6 @@ struct BuildDetailView: View {
                                     .fill(Color.red)
                                     .frame(width: 10, height: 10)
                             }
-                            .toolTip("Latest")
 
                         } else {
 
@@ -178,7 +175,7 @@ struct BuildDetailView: View {
                                         .fill(Color.black)
                                         .frame(width: 15, height: 15)
                                 }
-                            }.toolTip("Set as Latest release")
+                            }
 
                             .onHover { inside  in
                                 if inside && TheBuild.active {
@@ -255,7 +252,6 @@ struct BuildDetailView: View {
                         }
                         
                         
-                        //   .toolTip("Release Notes") //
 
                         // Toggle("⚠️", isOn: $ThisBuildConfigs.configs[build].warning)
 
@@ -283,7 +279,6 @@ struct BuildDetailView: View {
                                 .frame(width: 20, height: 20)
                                 .foregroundColor(ThisBuildConfigs.configs[build].warning ? .yellow : .primary)
                                 //  ThisBuildConfigs.configs[build].warning
-                                .toolTip("Warning!")
                                 .onTapGesture {
                                     ThisBuildConfigs.configs[build].warning.toggle()
                                     warning(id: TheBuild.id, warning: TheBuild.warning)
@@ -299,7 +294,6 @@ struct BuildDetailView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 20, height: 20)
-                                .toolTip("Download archive")
                                 .onTapGesture {
 
                                     OpenSafari("https://hackindrom.zapto.org/app/public/uploads/\(TheBuild.Archive)")
@@ -307,7 +301,6 @@ struct BuildDetailView: View {
                         } else {
                             Text("☁️")
                                 .font(.system(size: 20))
-                                .toolTip("Download archive")
                                 .onTapGesture {
 
                                     OpenSafari("https://hackindrom.zapto.org/app/public/uploads/\(TheBuild.Archive)")
@@ -339,7 +332,6 @@ struct BuildDetailView: View {
                                 .foregroundColor(.red)
                                 .padding(.trailing, 15)
                                 .opacity(isLatest || TheBuild.active ? 0.0 : 1.0)
-                                .toolTip("Delete definitely")
                                 .onTapGesture {
                                     DeleteingId = TheBuild.id
                                     DeleteingName = "OpenCore \(String(format: "%.2f", TheBuild.ocv)  )"

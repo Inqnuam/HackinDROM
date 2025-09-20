@@ -21,7 +21,6 @@ struct StartView: View {
     let NCJustUnmounted = nc.publisher(for: NSNotification.Name("JustUnmounted"))
     let NCExternalAdded = nc.publisher(for: NSNotification.Name("ExternalAdded"))
     let NCExternalRemoved = nc.publisher(for: NSNotification.Name("ExternalRemoved"))
-    let NCMountAutomaticly =  nc.publisher(for: NSNotification.Name("MountAutomaticly"))
     
     var body: some View {
         VStack {
@@ -63,21 +62,16 @@ struct StartView: View {
                 } else if sharedData.currentview == 1 {
                     
                     InstallView(EFIs: $EFIs, isCharging: $isCharging).environmentObject(sharedData)
-                        .transition(AnyTransition.move(edge: .trailing)).animation(.default)
                 } else if sharedData.currentview == 2 {
                     
                     // ErrorView().environmentObject(sharedData)
                 } else if sharedData.currentview == 3 {
                     
                     SettingsView().environmentObject(sharedData)
-                        .transition(AnyTransition.move(edge: .leading)).animation(.default)
                     
                 } else if sharedData.currentview == 4 {
                     
                     CreateEFI(ExternalDisksList: $ExternalDisks, isCharging: $isCharging, EFIs: $EFIs).environmentObject(sharedData)
-                        .transition(AnyTransition.move(edge: .bottom)).animation(.default)
-                    //.transition(.move(edge: .bottom)).animation(.default)
-                    
                     
                 } else if sharedData.currentview == 5 {
                     LeaderStartView(isCharging: $isCharging).environmentObject(sharedData)
@@ -88,11 +82,6 @@ struct StartView: View {
                     
                     
                 } else if sharedData.currentview == 10 {
-                    
-                    //  PlistEditorMainView().environmentObject(sharedData).openInWindow(title: "Win View", sender: self)
-                    //  .transition(AnyTransition.move(edge: .top)).animation(.default)
-                    
-                    
                 }
                 
             }
@@ -142,23 +131,5 @@ struct StartView: View {
                 self.EFIs.removeAll(where: {$0.parent == mounteddisk})
             }
         }
-        .onReceive(NCMountAutomaticly) { (output) in
-            
-            guard let name = output.userInfo!["MountAutomaticly"] else { return }
-            let mounteddisk = name as! String
-            
-            if sharedData.Mypwd == "" {
-                
-                sharedData.MountThisPartition[0] = mounteddisk
-                nc.post(name: Notification.Name("OpenPasswordWindow"), object: nil)
-                
-            } else {
-                
-                _ =  mountEFI(UUID: mounteddisk, NAME: "", user: sharedData.whoami, pwd: sharedData.Mypwd)
-                
-            }
-        }
-        
-        
     }
 }

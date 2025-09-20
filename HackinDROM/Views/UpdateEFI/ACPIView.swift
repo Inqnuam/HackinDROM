@@ -38,13 +38,13 @@ struct ACPI: View {
             
             List {
                 ForEach(PreparingAMLs.indexed() , id:\.element.id) { (index, element) in
-
+                    
                     HStack {
                         if #available(OSX 11.0, *) {
                             Toggle("", isOn:  bindingChild(for: index).isSelected)
                                 .labelsHidden()
                                 .toggleStyle(SwitchToggleStyle(tint: .blue))
-                                
+                            
                                 .padding(.leading, 5)
                                 .disabled(isWorking)
                             
@@ -62,19 +62,18 @@ struct ACPI: View {
                         }
                         
                         Text(element.AML.Path.replacingOccurrences(of: ".aml", with: ""))
-                            .toolTip(element.AML.Comment)
                             .contextMenu(ContextMenu(menuItems: {
                                 
                                 Button("Remove") {
                                     
-                                   PreparingAMLs.remove(at: index)
+                                    PreparingAMLs.remove(at: index)
                                 }
                                 
                             }))
                         Spacer()
                     }
                     
-              }
+                }
             }.background(Color.clear)
             
         }
@@ -91,7 +90,7 @@ struct UpateViewTableHeader: View {
         HStack {
             Text("Update")
                 .font(.subheadline)
-                
+            
                 .padding(.trailing, 7)
             Text("Enable")
                 .font(.subheadline)

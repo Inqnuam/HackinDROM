@@ -100,7 +100,6 @@ struct NewBuildView: View {
                         Text(mac).tag(mac)
                     }
                 }  .frame(width: 138)
-                    .toolTip("Default System Product Name")
                 
                 Button(action: {
                     isNewBuild = false
@@ -237,7 +236,6 @@ struct NewBuildView: View {
                 
                     .frame(width: 18, height: 18)
                     .foregroundColor(UploadNewBuild.config.warning ? .yellow : .primary)
-                    .toolTip("Warning!")
                     .onTapGesture {
                         UploadNewBuild.config.warning.toggle()
                         
@@ -299,7 +297,6 @@ struct NewBuildView: View {
                         Text("☁️ Upload")
                     }
                 }).disabled(imageUrls.isEmpty || self.FolderPath == "nul" || self.FolderPath == "" || (!isNewBuild && selectedMLB.vendor.isEmpty))
-                    .toolTip("Upload")
                 
             }
             

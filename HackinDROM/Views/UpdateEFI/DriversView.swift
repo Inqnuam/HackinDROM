@@ -38,7 +38,7 @@ struct DriversView: View {
                     Spacer()
                 }
                 
-              
+                
                 
             } else {
                 UpateViewTableHeader()
@@ -46,45 +46,44 @@ struct DriversView: View {
                 
                 List {
                     ForEach(PreparingDrivers.indexed(), id:\.element.id) { (index, element) in
-                           
-                            HStack {
-                                if #available(macOS 11.0, *) {
-                                    Toggle("", isOn: bindingChild(for: index).isSelected)
-                                        .toggleStyle(SwitchToggleStyle(tint: .blue))
-                                        .padding(.leading, 5)
-                                        .disabled(isWorking)
-                                    Toggle("", isOn: bindingChild(for: index).Driver.Enabled.toggled(index, "", ChangeDriverStatus))
-                                        .toggleStyle(SwitchToggleStyle(tint: .green))
-                                        .disabled(isWorking)
+                        
+                        HStack {
+                            if #available(macOS 11.0, *) {
+                                Toggle("", isOn: bindingChild(for: index).isSelected)
+                                    .toggleStyle(SwitchToggleStyle(tint: .blue))
+                                    .padding(.leading, 5)
+                                    .disabled(isWorking)
+                                Toggle("", isOn: bindingChild(for: index).Driver.Enabled.toggled(index, "", ChangeDriverStatus))
+                                    .toggleStyle(SwitchToggleStyle(tint: .green))
+                                    .disabled(isWorking)
+                                
+                            } else {
+                                HDToggleView(isOn: bindingChild(for: index).isSelected, togCol: Color(.systemBlue), disabled: isWorking)
+                                    .padding(.leading, 25)
+                                
+                                HDToggleView(isOn: bindingChild(for: index).Driver.Enabled.toggled(index, "", ChangeDriverStatus), disabled: isWorking)
+                                    .padding(.leading, 25)
+                                    .padding(.trailing, 10)
+                                
+                                
+                            }
+                            Text(element.Driver.Path.replacingOccurrences(of: "#", with: "").replacingOccurrences(of: ".efi", with: ""))
+                                .contextMenu(ContextMenu(menuItems: {
                                     
-                                } else {
-                                    HDToggleView(isOn: bindingChild(for: index).isSelected, togCol: Color(.systemBlue), disabled: isWorking)
-                                        .padding(.leading, 25)
-
-                                    HDToggleView(isOn: bindingChild(for: index).Driver.Enabled.toggled(index, "", ChangeDriverStatus), disabled: isWorking)
-                                        .padding(.leading, 25)
-                                        .padding(.trailing, 10)
+                                    Button("Remove") {
                                         
-                                
-                                }
-                                Text(element.Driver.Path.replacingOccurrences(of: "#", with: "").replacingOccurrences(of: ".efi", with: ""))
-                                    .toolTip(element.Driver.Comment ?? "")
-                                                        .contextMenu(ContextMenu(menuItems: {
-                                
-                                                            Button("Remove") {
-                                
-                                                                PreparingDrivers.remove(at: index)
-                                                            }
-                                
-                                                        }))
-                                
-                                Spacer()
-                            }.id(index)
-
-                              
+                                        PreparingDrivers.remove(at: index)
+                                    }
+                                    
+                                }))
+                            
+                            Spacer()
+                        }.id(index)
+                        
+                        
                     }
                 }
-  
+                
             }
         }
         Spacer()

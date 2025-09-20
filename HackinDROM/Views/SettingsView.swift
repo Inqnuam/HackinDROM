@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import LaunchAtLogin
 import UserNotifications
 struct SettingsView: View {
     @EnvironmentObject var sharedData: HASharedData
@@ -17,9 +16,7 @@ struct SettingsView: View {
     @AppStorageCompat("GPU") var GPU = 0
     @AppStorageCompat("Wifi") var Wifi = 0
     
-    @AppStorageCompat("HideWindow") var HideWindow = false
     @AppStorageCompat("FirstOpen") var FirstOpen = true
-    @AppStorageCompat("MountAutomaticly") var MountAutomaticly = false
     @AppStorageCompat("BackUpsCustomFolder") var BackUpsCustomFolder = ""
     @AppStorageCompat("BackUpToFolder") var BackUpsToFolder = false
     
@@ -44,29 +41,22 @@ struct SettingsView: View {
                     
                 }, label: {
                     if #available(macOS 11.0, *) {
-                        
                         Image(systemName: "arrow.backward")
-                        
                     } else {
-                        
                         Text("←")
-                        
                     }
-                    
                 }
                 )
                 
-                    .padding(.leading, 5)
-                    .padding(.top, 8)
+                .padding(.leading, 5)
+                .padding(.top, 8)
                 
                 Spacer()
                 
                 Text(StatusText)
-                
                     .bold()
                 
                 Button(action: {
-                    
                     HideMySerials.toggle()
                 }, label: {
                     if #available(macOS 11.0, *) {
@@ -81,9 +71,7 @@ struct SettingsView: View {
                 })
             }
             .onHover { inside in
-                
                 if inside {
-                    
                     StatusText = ""
                 }
             }
@@ -92,89 +80,19 @@ struct SettingsView: View {
             .padding(.leading, 10)
             .padding(.trailing, 10)
             .padding(.bottom, 1)
-            
         }
         
         Divider()
         ScrollView(.vertical, showsIndicators: false) {
             
-            HStack {
-                LaunchAtLogin.Toggle {
-                    Text("Launch at login")
-                        .toolTip("Lunch HackinDROM.app when the system boots")
-                    
-                }
-                
-                if NotificationDenied {
-                    Button("Notifications") {
-                        NSWorkspace.shared.open(URL(fileURLWithPath: "/System/Library/PreferencePanes/Notifications.prefPane"))
-                        
-                    }
-                    
-                } else if NotificationsAllowed {
-                    Toggle(isOn: $Notifications) {
-                        Text("Notifications")
-                        
-                    }
-                } else {
-                    Button("Notifications") {
-                        AskForNotifAuth()
-                    }
-                }
-                
-                
-                Toggle(isOn: $MountAutomaticly) {
-                    Text("Automatically mount EFI partitions")
-                    
-                        .toolTip("When a new device is plugged HackinDROM will try to mount the EFI partition")
-                    
-                }
-                .onHover { inside in
-                    
-                    if inside {
-                        
-                        StatusText = "When a new device is plugged HackinDROM will try to mount the EFI partition"
-                    } else {
-                        if #available(macOS 11.0, *) {
-                            StatusText = ""
-                        }
-                    }
-                }
-                Spacer()
-                
-            }
             
             HStack {
-                
-                Toggle(isOn: $HideWindow) {
-                    Text("Click outside to hide")
-                        .toolTip("Click outside of HackinDROM app's window to hide the app")
-                    
-                }
-                .onHover { inside in
-                    
-                    if inside {
-                        
-                        StatusText = "Click outside of HackinDROM app's window to hide the app"
-                    } else {
-                        if #available(macOS 11.0, *) {
-                            StatusText = ""
-                        }
-                    }
-                }
-                //
-                
                 if !BackUpsToFolder {
-                    Spacer()
                     Toggle(isOn: $BackUpsToFolder.toggled(0, "", ChooseBackUpFolder)) {
                         Text("Custom folder for EFI Backups")
-                            .toolTip("Custom folder for EFI Backups during Update process. Will use your specified folder instead of EFI partition.")
-                        
                     }
                     .onHover { inside in
-                        
                         if inside {
-                            
                             StatusText = "Custom folder for EFI Backups during Update process. Will use your specified folder instead of EFI partition."
                         } else {
                             if #available(macOS 11.0, *) {
@@ -182,8 +100,8 @@ struct SettingsView: View {
                             }
                         }
                     }
-                } else {
                     Spacer()
+                } else {
                     Divider()
                         .frame(height: 15)
                     
@@ -210,9 +128,7 @@ struct SettingsView: View {
                             BackUpsCustomFolder = ""
                         }
                         .onHover { inside in
-                            
                             if inside {
-                                
                                 StatusText = BackUpsCustomFolder + " ❌"
                             } else {
                                 if #available(macOS 11.0, *) {
@@ -220,6 +136,7 @@ struct SettingsView: View {
                                 }
                             }
                         }
+                    Spacer()
                 }
             }
             Divider().frame(width: 200)
@@ -294,7 +211,6 @@ struct SettingsView: View {
                     VStack {
                         
                         Text(MyHackData.SystemProductName)
-                            .toolTip("System Product Name")
                             .onHover { inside in
                                 if #available(macOS 11.0, *) {
                                     if inside {
@@ -411,9 +327,6 @@ struct SettingsView: View {
                                 CopyToClipboard(MyHackData.SystemUUID, "System UUID")
                             }
                         
-                        
-                        
-                        
                     }
                     
                 }
@@ -445,7 +358,6 @@ struct SettingsView: View {
                             }
                         }
                         .onTapGesture {
-                            
                             CopyToClipboard(MyHackData.BootArgs, "Boot Arguments")
                         }
                     
@@ -453,43 +365,21 @@ struct SettingsView: View {
                 
                 if !sharedData.RunningKexts.isEmpty {
                     Divider()
-                    HStack {
-                        ScrollView {
-                            HStack {
-                                Text("Running Kexts")
-                                    .font(.system(size: 18))
-                                Spacer()
-                            }
-                            .padding(.leading, 0)
-                            
-                            HStack {
-                                
-                                VStack(alignment: .leading) {
-                                    ForEach(sharedData.RunningKexts, id: \.self) { kext in
-                                        
-                                        Text(kext.name)
-                                        
-                                    }
-                                    Spacer()
-                                }.padding(.leading, 0)
-                                
-                                VStack(alignment: .leading) {
-                                    
-                                    ForEach(sharedData.RunningKexts, id: \.self) { kext in
-                                        
-                                        Text(kext.version)
-                                        
-                                    }
-                                    
-                                    Spacer()
-                                }.padding(.leading, 0)
-                                Spacer()
-                            }.padding(.leading, 0)
-                            
-                        }
+                    
+                    ScrollView {
+                        Text("Running Kexts")
+                            .font(.system(size: 18))
                         
-                        BTMonitoringView()
+                        ForEach(sharedData.RunningKexts, id: \.self) { kext in
+                            
+                            HStack {
+                                Text(kext.name)
+                                Spacer()
+                                Text(kext.version)
+                            }
+                        }
                     }.padding(.leading, 0)
+                    
                 }
                 
             }
@@ -506,11 +396,7 @@ struct SettingsView: View {
             }
             
             .onAppear {
-                
-                
                 isAvailable = avaibilityCheck()
-                
-                
                 UNUserNotificationCenter.current().getNotificationSettings() { settings in
                     NotificationsAllowed = settings.authorizationStatus == .authorized ? true : false
                     NotificationDenied = settings.authorizationStatus == .denied
@@ -646,174 +532,3 @@ struct SettingsView: View {
         
     }
 }
-@available(OSX 11.0, *)
-struct DarkBlueShadowProgressViewStyle: ProgressViewStyle {
-    
-    func makeBody(configuration: Configuration) -> some View {
-        
-        ProgressView(configuration)
-            .shadow(color: Color(red: 0, green: 0, blue: 0.6),
-                    radius: 4.0, x: 1.0, y: 2.0)
-        
-    }
-    
-}
-
-struct ChartsEmojis: Hashable {
-    
-    var valeur: Int
-    var Emoji: String
-    
-}
-
-
-
-struct BTMonitoringView: View {
-    @State var connectedBTDevices: [BTDevices] = []
-    @State var lesvaleurs: [ChartsEmojis] = []
-    @State var selectedBTDiv:Int = 99
-    @State var BTAverage: Double = 0
-    @State var ProgressViewColor: Color = Color(.red)
-    @State var ProgressViewEmoji: String = "🤭"
-    @State var isMonitoring: Bool = false
-    var body: some View {
-        VStack(alignment: .leading) {
-            if !connectedBTDevices.isEmpty {
-                Divider()
-                
-                HStack {
-                    Image("bt")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 30, height: 30)
-                    Text("Average Signal (RSSI):  -\(Int(BTAverage))dBm")
-                }
-                HStack {
-                    if #available(OSX 11.0, *) {
-                        ProgressView(value: BTAverage, total: 100.0)
-                            .accentColor(Color(.blue))
-                            .foregroundColor(.purple)
-                            .progressViewStyle(DarkBlueShadowProgressViewStyle())
-                    }
-                    Text(ProgressViewEmoji)
-                    //  .scaleEffect(x: 1, y: 4, anchor: .center)
-                    
-                }
-                HStack {
-                    Picker(selection: $selectedBTDiv, label: Text("")) {
-                        
-                        ForEach(connectedBTDevices.indices, id:\.self) { ind in
-                            Text("\(connectedBTDevices[ind].RSSI)dBm \(connectedBTDevices[ind].name)").tag(ind)
-                        }
-                        
-                    }
-                    
-                    Button(action: {
-                        isMonitoring.toggle()
-                        
-                        if isMonitoring {
-                            lesvaleurs = []
-                            Timer.scheduledTimer(withTimeInterval: 0.7, repeats: true) { timer in
-                                DispatchQueue.main.async {
-                                    
-                                    BTScan()
-                                }
-                                if !isMonitoring {
-                                    timer.invalidate()
-                                }
-                            }
-                            
-                        }
-                    }, label: {
-                        
-                        if isMonitoring { /// peut mieux faire
-                            if #available(macOS 11.0, *) {
-                                Image(systemName: "pause.rectangle")
-                            } else {
-                                Image("pause.rectangle")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 18, height: 18)
-                            }
-                            
-                        } else {
-                            if #available(macOS 11.0, *) {
-                                Image(systemName: "play.rectangle")
-                            } else {
-                                Image("play.rectangle")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 18, height: 18)
-                            }
-                            
-                        }
-                        
-                    }).disabled(selectedBTDiv == 99)
-                }
-                
-                ChartsView(lesvaleurs: $lesvaleurs)
-                
-            }
-        }.onAppear {
-            
-            DispatchQueue.main.async {
-                
-                connectedBTDevices = pairedDevices()
-                var AVGVal = 0
-                for bt in connectedBTDevices {
-                    
-                    AVGVal += abs(Int(bt.RSSI)!)
-                    
-                }
-                if !connectedBTDevices.isEmpty {
-                    BTAverage = Double(AVGVal / connectedBTDevices.count)
-                    
-                    ProgressViewEmoji =  GetEmojifromVal(Int(abs(BTAverage)))
-                } else {
-                    BTAverage = 0.00
-                    ProgressViewEmoji =  GetEmojifromVal(Int(abs(BTAverage)))
-                    
-                }
-            }
-        }
-        
-        .onDisappear {
-            isMonitoring = false
-            
-        }
-    }
-    
-    
-    func BTScan() {
-        if isMonitoring {
-            connectedBTDevices = pairedDevices()
-            let valeur = abs(Int(connectedBTDevices[selectedBTDiv].RSSI)!)
-            let Emoji = GetEmojifromVal(valeur)
-            lesvaleurs.append(ChartsEmojis(valeur: valeur, Emoji: Emoji))
-            connectedBTDevices[selectedBTDiv].RSSI = String("-" + String(abs(Int(connectedBTDevices[selectedBTDiv].RSSI)!)))
-            
-            var AVGVal = 0
-            for bt in connectedBTDevices {
-                
-                AVGVal += abs(Int(bt.RSSI)!)
-                
-            }
-            
-            if !connectedBTDevices.isEmpty {
-                BTAverage = Double(AVGVal / connectedBTDevices.count)
-                ProgressViewEmoji =  GetEmojifromVal(Int(abs(BTAverage)))
-            } else {
-                BTAverage = 0.00
-                ProgressViewEmoji =  GetEmojifromVal(Int(abs(BTAverage)))
-                
-            }
-            
-            
-        }
-        
-    }
-}
-
-
-
-

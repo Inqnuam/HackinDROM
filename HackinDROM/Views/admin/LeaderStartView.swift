@@ -67,7 +67,6 @@ struct LeaderStartView: View {
                             }
 
                         })
-                        .toolTip("Log out")
 
                         Button(action: {
                             withAnimation {
@@ -89,7 +88,6 @@ struct LeaderStartView: View {
 
                         }
                         )
-                        .toolTip("New build")
 
                     } else {
                         Spacer()

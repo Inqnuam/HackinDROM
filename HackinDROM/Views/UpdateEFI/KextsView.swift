@@ -71,7 +71,6 @@ struct KextsView: View {
                      
                             
                         Text(element.Kext.BundlePath.replacingOccurrences(of: ".kext", with: ""))
-                            .toolTip(element.Kext.Comment)
                             .contextMenu(ContextMenu(menuItems: {
                                 
                                 Button("Remove") {
